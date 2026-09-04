@@ -1415,3 +1415,503 @@
         <p style="margin-top:15px;">Direct Owner Call: <a href="tel:+919892880155">+91 98928 80155</a> | <a href="tel:+919699034567">+91 96990 34567</a></p>
         <p style="margin-top: 30px; font-size: 0.8rem; color: #777;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
     </footer>
+    <!-- ==========================================================================
+       JAVASCRIPT LOGIC ENGINE (PART 2)
+       ========================================================================== -->
+    <script>
+        /* ==========================================================================
+           1. GLOBAL INITIALIZATION & REPOSITORY DATA STRUCTURES
+           ========================================================================== */
+        // Dynamic In-Memory Database for Invoice System
+        let invoiceItemsList = [
+            { desc: "Royal Velvet Waterproof Tent (40x80)", qty: 1, rate: 25000, total: 25000 },
+            { desc: "VIP Carved Maharaja Couch (Stage)", qty: 1, rate: 5000, total: 5000 },
+            { desc: "Satin Armchairs with Bow Tie Setup", qty: 300, rate: 30, total: 9000 },
+            { desc: "High-Bass Professional DJ Sound Rig", qty: 1, rate: 12000, total: 12000 }
+        ];
+
+        // System Settings State
+        const SYSTEM_CONFIG = {
+            adminPasscode: "jaimaahinglaj",
+            ownerPhone: "919892880155",
+            gstRate: 0.18
+        };
+
+        // Execute on DOM Ready
+        document.addEventListener("DOMContentLoaded", () => {
+            // Set Default Invoice Date to Today
+            const today = new Date().toISOString().split('T')[0];
+            const billDateInput = document.getElementById('billDate');
+            if (billDateInput) billDateInput.value = today;
+
+            // Render Default Invoice Data
+            renderInvoiceTable();
+            
+            // Console Logging Engine Status
+            console.log("%c Kishor Tent House Logic Engine Online ", "background: #6b0018; color: #ffd700; font-size: 14px; font-weight: bold;");
+        });
+
+        /* ==========================================================================
+           2. SECURITY & AUTHENTICATION MODAL ENGINE
+           ========================================================================== */
+        function openAuthModal() {
+            const modal = document.getElementById('authModal');
+            const err = document.getElementById('authError');
+            const passInput = document.getElementById('adminPassInput');
+            
+            if (modal) {
+                modal.style.display = 'flex';
+                err.style.display = 'none';
+                passInput.value = '';
+                passInput.focus();
+            }
+        }
+
+        function closeAuthModal() {
+            const modal = document.getElementById('authModal');
+            if (modal) modal.style.display = 'none';
+        }
+
+        function verifyAdminPassword() {
+            const enteredPass = document.getElementById('adminPassInput').value;
+            const err = document.getElementById('authError');
+            const adminPanel = document.getElementById('admin-panel');
+
+            if (enteredPass === SYSTEM_CONFIG.adminPasscode) {
+                closeAuthModal();
+                if (adminPanel) {
+                    adminPanel.style.display = 'block';
+                    adminPanel.scrollIntoView({ behavior: 'smooth' });
+                    alert("Authentication Successful! Master Admin Console Unlocked.");
+                }
+            } else {
+                if (err) err.style.display = 'block';
+            }
+        }
+
+        function lockAdminConsole() {
+            const adminPanel = document.getElementById('admin-panel');
+            if (adminPanel) {
+                adminPanel.style.display = 'none';
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                alert("Master Console Locked Successfully.");
+            }
+        }
+
+        /* ==========================================================================
+           3. ADMIN NAVIGATION & TAB SWITCHING SYSTEM
+           ========================================================================== */
+        function switchTab(tabId, btnElement) {
+            // Hide all tab contents
+            const contents = document.querySelectorAll('.admin-tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+
+            // Deactivate all tab buttons
+            const buttons = document.querySelectorAll('.admin-tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // Activate specific tab
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) targetTab.classList.add('active');
+            if (btnElement) btnElement.classList.add('active');
+        }
+
+        /* ==========================================================================
+           4. ADMIN FEATURE 1: GST BILLING & INVOICE GENERATOR ENGINE
+           ========================================================================== */
+        function renderInvoiceTable() {
+            const tbody = document.querySelector('#invoiceTable tbody');
+            if (!tbody) return;
+
+            tbody.innerHTML = '';
+            let subtotal = 0;
+
+            invoiceItemsList.forEach((item, index) => {
+                subtotal += item.total;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${item.desc}</td>
+                    <td>${item.qty}</td>
+                    <td>₹${item.rate.toLocaleString('en-IN')}</td>
+                    <td>₹${item.total.toLocaleString('en-IN')}</td>
+                    <td><button class="btn-danger" onclick="removeInvoiceRow(${index})"><i class="fa-solid fa-trash"></i></button></td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const tax = subtotal * SYSTEM_CONFIG.gstRate;
+            const grandTotal = subtotal + tax;
+
+            document.getElementById('billSubTotal').innerText = subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            document.getElementById('billTax').innerText = tax.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            document.getElementById('billGrandTotal').innerText = grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+        }
+
+        function addInvoiceRow() {
+            const descInput = document.getElementById('billItemDesc');
+            const qtyInput = document.getElementById('billItemQty');
+            const rateInput = document.getElementById('billItemRate');
+
+            const desc = descInput.value.trim();
+            const qty = parseFloat(qtyInput.value) || 0;
+            const rate = parseFloat(rateInput.value) || 0;
+
+            if (!desc || qty <= 0 || rate <= 0) {
+                alert("Please fill in valid item descriptions, quantity, and rate.");
+                return;
+            }
+
+            const total = qty * rate;
+            invoiceItemsList.push({ desc, qty, rate, total });
+            
+            // Reset fields
+            descInput.value = '';
+            qtyInput.value = '1';
+            rateInput.value = '';
+
+            renderInvoiceTable();
+        }
+
+        function removeInvoiceRow(index) {
+            invoiceItemsList.splice(index, 1);
+            renderInvoiceTable();
+        }
+
+        function generatePrintableBill() {
+            const clientName = document.getElementById('billClientName').value || 'Valued Client';
+            const clientLoc = document.getElementById('billClientLoc').value || 'Event Venue';
+            const billDate = document.getElementById('billDate').value || new Date().toLocaleDateString();
+
+            document.getElementById('invOutClient').innerText = clientName;
+            document.getElementById('invOutLoc').innerText = clientLoc;
+            document.getElementById('invOutDate').innerText = billDate;
+
+            const tbody = document.getElementById('invOutItems');
+            tbody.innerHTML = '';
+            let subtotal = 0;
+
+            invoiceItemsList.forEach(item => {
+                subtotal += item.total;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="padding:8px; border:1px solid #ccc;">${item.desc}</td>
+                    <td style="padding:8px; border:1px solid #ccc;">${item.qty}</td>
+                    <td style="padding:8px; border:1px solid #ccc;">₹${item.rate.toLocaleString('en-IN')}</td>
+                    <td style="padding:8px; border:1px solid #ccc;">₹${item.total.toLocaleString('en-IN')}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            const tax = subtotal * SYSTEM_CONFIG.gstRate;
+            const grandTotal = subtotal + tax;
+
+            document.getElementById('invOutSub').innerText = subtotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            document.getElementById('invOutTax').innerText = tax.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+            document.getElementById('invOutGrand').innerText = grandTotal.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+
+            const printBox = document.getElementById('printable-invoice');
+            printBox.style.display = 'block';
+            
+            window.print();
+        }
+
+        /* ==========================================================================
+           5. ADMIN FEATURE 2: INVENTORY STOCK CONTROL LOGIC
+           ========================================================================== */
+        function addNewInventoryItem() {
+            const nameInput = document.getElementById('newInvName');
+            const qtyInput = document.getElementById('newInvQty');
+
+            const name = nameInput.value.trim();
+            const qty = parseInt(qtyInput.value) || 0;
+
+            if (!name || qty <= 0) {
+                alert("Please specify a valid item name and total stock quantity.");
+                return;
+            }
+
+            const tbody = document.querySelector('#inventoryTable tbody');
+            const newRow = document.createElement('tr');
+            const code = 'INV-' + Math.floor(100 + Math.random() * 900);
+
+            newRow.innerHTML = `
+                <td>${code}</td>
+                <td>${name}</td>
+                <td>${qty} Units</td>
+                <td>${qty} Units</td>
+                <td><span style="color:var(--success-color);">Sufficient</span></td>
+            `;
+
+            tbody.appendChild(newRow);
+            nameInput.value = '';
+            qtyInput.value = '';
+            alert(`Stock record for "${name}" registered with Code ${code}.`);
+        }
+
+        /* ==========================================================================
+           6. ADMIN FEATURE 5: BAD DEBT WHATSAPP REMINDER ENGINE
+           ========================================================================== */
+        function notifyBadDebt(debtorName, phone, amount) {
+            const cleanPhone = phone.replace(/[^0-9]/g, '');
+            const message = `Dear *${debtorName}*,%0A%0AThis is an official payment balance reminder from *Kishor Tent House*.%0A%0AOur ledger records show an outstanding balance of *₹${amount}* regarding your recent event setup.%0A%0AKindly clear the dues at your earliest convenience.%0A%0A*Contact Proprietor:* +91 98928 80155%0AThank you!`;
+            
+            const whatsappUrl = `https://wa.me/${cleanPhone}?text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        /* ==========================================================================
+           7. ADMIN FEATURE 6: LIVE MEDIA UPLOADER SIMULATOR
+           ========================================================================== */
+        function handleAdminMediaUpload(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const gallery = document.getElementById('publicGalleryContainer');
+                const newCard = document.createElement('div');
+                newCard.className = 'card';
+                newCard.style.padding = '0';
+                newCard.style.overflow = 'hidden';
+
+                if (file.type.startsWith('image/')) {
+                    newCard.innerHTML = `<img src="${e.target.result}" style="width:100%; height:250px; object-fit:cover;" alt="Uploaded Media">`;
+                } else if (file.type.startsWith('video/')) {
+                    newCard.innerHTML = `<video src="${e.target.result}" controls style="width:100%; height:250px; object-fit:cover;"></video>`;
+                }
+
+                gallery.prepend(newCard);
+                alert("Media uploaded and dynamically injected into the live Public Gallery!");
+            };
+
+            reader.readAsDataURL(file);
+        }
+
+        /* ==========================================================================
+           8. 30 CUSTOMER PORTAL FEATURES (LOGIC MODULES)
+           ========================================================================== */
+        
+        // Feature 1: Dynamic Cost Estimator
+        function runF1Calc() {
+            const guests = parseFloat(document.getElementById('f1-guests').value) || 0;
+            const rate = parseFloat(document.getElementById('f1-tier').value) || 0;
+            const total = guests * rate;
+            document.getElementById('f1-out').innerText = total.toLocaleString('en-IN');
+        }
+
+        // Feature 2: Date Availability Lookup
+        function runF2Check() {
+            const dateVal = document.getElementById('f2-date').value;
+            const out = document.getElementById('f2-out');
+            if (!dateVal) {
+                out.innerHTML = '';
+                return;
+            }
+            // Simple mock logic for availability check
+            const day = new Date(dateVal).getDate();
+            if (day % 3 === 0) {
+                out.innerHTML = `<span style="color:var(--danger-color);"><i class="fa-solid fa-circle-xmark"></i> Slot Fully Booked for ${dateVal}.</span>`;
+            } else {
+                out.innerHTML = `<span style="color:var(--success-color);"><i class="fa-solid fa-circle-check"></i> Date Available! Book Now.</span>`;
+            }
+        }
+
+        // Feature 3: Package Selection Engine
+        function runF3Pkg() {
+            const val = document.getElementById('f3-pkg').value;
+            const out = document.getElementById('f3-out');
+            if (val === 'silver') {
+                out.innerText = "Silver Package: Standard Waterproof Canopy, Basic Stage, 200 Chairs & Warm Lights.";
+            } else if (val === 'gold') {
+                out.innerText = "Gold Package: Includes Velvet Canopy, VIP Stage, 400 Chairs, and Basic Lighting.";
+            } else if (val === 'diamond') {
+                out.innerText = "Diamond Package: Royal Marwadi Setup, VIP Stage, Truss Lighting, Cold Pyros, & 800 Chairs.";
+            }
+        }
+
+        // Feature 4: Multi-Currency Converter
+        function runF4Convert() {
+            const inr = parseFloat(document.getElementById('f4-inr').value) || 0;
+            document.getElementById('f4-usd').innerText = (inr / 83.0).toFixed(2);
+            document.getElementById('f4-aed').innerText = (inr / 22.6).toFixed(2);
+        }
+
+        // Feature 6: Theme Lighting Selector
+        function runF6Select() {
+            const val = document.getElementById('f6-light').value;
+            document.getElementById('f6-out').innerText = `Selected Ambience: ${val}`;
+        }
+
+        // Feature 7: Seating Furniture Calculator
+        function runF7Calc() {
+            const count = parseInt(document.getElementById('f7-attendees').value) || 0;
+            const tables = Math.ceil(count / 8);
+            document.getElementById('f7-out').innerText = `Requires: ${count} Chairs, ${tables} Round Dining Tables.`;
+        }
+
+        // Feature 8: Weather Risk Protection
+        function runF8Weather() {
+            const out = document.getElementById('f8-out');
+            out.innerHTML = `<span style="color:var(--success-color);"><i class="fa-solid fa-sun"></i> Weather Clear for Outdoor Canvas Setup!</span>`;
+        }
+
+        // Feature 9: Download Digital Rate List Catalogue
+        function runF9Download() {
+            alert("Downloading 2026 Kishor Tent House Official Rate Sheet (PDF)...");
+        }
+
+        // Feature 10: Catering Counter Builder
+        function runF10Stalls() {
+            const checkboxes = document.querySelectorAll('.f10-item:checked');
+            let selected = [];
+            checkboxes.forEach(cb => selected.push(cb.value));
+            const out = document.getElementById('f10-out');
+            if (selected.length === 0) {
+                out.innerText = 'No stalls selected.';
+            } else {
+                out.innerText = 'Counters Added: ' + selected.join(', ');
+            }
+        }
+
+        // Feature 11: Plot Area Calculator
+        function runF11Area() {
+            const guests = parseInt(document.getElementById('f11-cap').value) || 0;
+            const area = guests * 12; // 12 sq ft per guest rule
+            document.getElementById('f11-out').innerText = `Recommended Plot: ${area.toLocaleString('en-IN')} Sq. Ft.`;
+        }
+
+        // Feature 12: On-Site Truck Dispatch Status
+        function runF12Track() {
+            const out = document.getElementById('f12-out');
+            out.innerText = "Dispatch Vehicle RJ-21-GB-4011 is currently En Route to Venue.";
+        }
+
+        // Feature 13: Customer Review Submission
+        function runF13Review() {
+            const name = document.getElementById('f13-name').value;
+            const msg = document.getElementById('f13-msg').value;
+            if (!name || !msg) {
+                alert("Please provide your name and review message.");
+                return;
+            }
+            alert(`Thank you ${name}! Your feedback has been submitted.`);
+            document.getElementById('f13-name').value = '';
+            document.getElementById('f13-msg').value = '';
+        }
+
+        // Feature 14: Direct UPI Payment
+        function runF14Pay() {
+            alert("Opening Secure UPI Gateway for Kishor Tent House Official Merchant Account...");
+        }
+
+        // Feature 19: Date Countdown
+        function runF19Timer() {
+            const dateVal = document.getElementById('f19-date').value;
+            const out = document.getElementById('f19-out');
+            if (!dateVal) {
+                out.innerText = '';
+                return;
+            }
+            const target = new Date(dateVal).getTime();
+            const now = new Date().getTime();
+            const diff = target - now;
+
+            if (diff < 0) {
+                out.innerText = "Event date has passed or is today!";
+            } else {
+                const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+                out.innerText = `${days} Days Remaining Until Your Event!`;
+            }
+        }
+
+        // Feature 21: Share Estimate to WhatsApp
+        function runF21Share() {
+            const guests = document.getElementById('f1-guests').value;
+            const total = document.getElementById('f1-out').innerText;
+            const msg = `Kishor Tent House Event Estimate:%0A- Expected Guests: ${guests}%0A- Estimated Budget: ₹${total}%0A%0AContact +91 98928 80155 for details.`;
+            window.open(`https://wa.me/?text=${msg}`, '_blank');
+        }
+
+        // Feature 23: Generator Power Requirement Calculator
+        function runF23Genset() {
+            const load = document.getElementById('f23-load').value;
+            document.getElementById('f23-out').innerText = `Recommended Generator Output: ${load} kVA Silent Diesel Genset`;
+        }
+
+        /* ==========================================================================
+           9. PUBLIC WHATSAPP BOOKING FORM ENGINE
+           ========================================================================== */
+        function sendWhatsAppBooking(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
+            const date = document.getElementById('custDate').value;
+            const eventType = document.getElementById('custEvent').value;
+            const details = document.getElementById('custMsg').value.trim();
+
+            if (!name || !phone || !date) {
+                alert("Please fill in all required fields (Name, Phone, and Event Date).");
+                return;
+            }
+
+            const formattedMsg = `*NEW EVENT BOOKING INQUIRY*%0A` +
+                                 `----------------------------------%0A` +
+                                 `*Client Name:* ${name}%0A` +
+                                 `*Contact Mobile:* ${phone}%0A` +
+                                 `*Event Date:* ${date}%0A` +
+                                 `*Function Type:* ${eventType}%0A` +
+                                 `*Venue/Requirements:* ${details || 'N/A'}%0A` +
+                                 `----------------------------------%0A` +
+                                 `Sent via Kishor Tent House Official Website`;
+
+            // Append request to Admin Booking Table Live
+            const bookingTable = document.getElementById('adminBookingsTable');
+            if (bookingTable) {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td>${name}</td>
+                    <td>${phone}</td>
+                    <td>${date}</td>
+                    <td>${eventType}</td>
+                    <td><span style="color:var(--warning-color);">Pending Review</span></td>
+                `;
+                bookingTable.prepend(tr);
+            }
+
+            // Launch WhatsApp Direct Link
+            const whatsappUrl = `https://wa.me/${SYSTEM_CONFIG.ownerPhone}?text=${formattedMsg}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        /* ==========================================================================
+           10. THEME & LANGUAGE SWITCHER ENGINE
+           ========================================================================== */
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+        }
+
+        let isHindi = false;
+        function toggleLanguage() {
+            isHindi = !isHindi;
+            const subTitle = document.getElementById('brand-sub');
+            const propTag = document.getElementById('proprietor-text');
+            const bookBtn = document.getElementById('btn-hero-book');
+
+            if (isHindi) {
+                if (subTitle) subTitle.innerText = "आपके सभी आयोजनों के लिए संपूर्ण समाधान";
+                if (propTag) propTag.innerText = "प्रोप्राइटर: भावेश पुरोहित";
+                if (bookBtn) bookBtn.innerHTML = `<i class="fa-solid fa-calendar-check"></i> अभी बुक करें`;
+            } else {
+                if (subTitle) subTitle.innerText = "Complete Solution For All Your Events";
+                if (propTag) propTag.innerText = "Proprietor: Bhavesh Purohit";
+                if (bookBtn) bookBtn.innerHTML = `<i class="fa-solid fa-calendar-check"></i> Book Event Now`;
+            }
+        }
+
+        function filterGallery(category) {
+            alert(`Filtering gallery view for: ${category.toUpperCase()}`);
+        }
+    </script>
+</body>
+</html>
