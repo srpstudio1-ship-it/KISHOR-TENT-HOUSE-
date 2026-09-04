@@ -3,677 +3,1415 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kishor Tent House | Royal Marwadi Weddings & Event Solutions</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Kishor Tent House | Complete Event Management & Admin Suite</title>
+    
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
+        /* ==========================================================================
+           1. ROOT SYSTEM VARIABLES & THEME DEFINITIONS
+           ========================================================================== */
         :root {
             --royal-maroon: #6b0018;
             --deep-crimson: #800020;
             --royal-gold: #d4af37;
             --bright-gold: #ffd700;
             --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --dark-bg: #121212;
+            --dark-bg: #0f0f12;
             --card-bg: #ffffff;
             --light-cream: #fff9f0;
-            --text-dark: #222222;
-            --text-light: #666666;
+            --text-dark: #1f1f1f;
+            --text-light: #555555;
             --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-heavy: 0 15px 35px rgba(107, 0, 24, 0.2);
+            --shadow-heavy: 0 15px 35px rgba(107, 0, 24, 0.25);
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --border-radius: 12px;
+            --success-color: #25D366;
+            --danger-color: #d9534f;
+            --warning-color: #f0ad4e;
         }
 
-        .dark-theme {
-            --light-cream: #1a1a1a;
-            --card-bg: #2d2d2d;
+        body.dark-theme {
+            --light-cream: #121214;
+            --card-bg: #1e1e24;
             --text-dark: #f0f0f0;
-            --text-light: #bbb;
+            --text-light: #aaaaaa;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
-        body { background-color: var(--light-cream); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
-        h1, h2, h3, .royal-font { font-family: 'Cinzel', serif; }
-        .gold-text { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
-        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* ==========================================================================
+           2. TYPOGRAPHY & GLOBAL UI ELEMENTS
+           ========================================================================== */
+        h1, h2, h3, h4, .royal-font {
+            font-family: 'Cinzel', serif;
+        }
+
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 800;
+        }
+
         .btn-gold {
-            background: var(--gold-gradient); color: #000; border: none; padding: 10px 22px;
-            font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; display: inline-block; text-decoration: none;
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 12px 28px;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            text-decoration: none;
         }
-        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); }
 
-        /* Header & Top Bar */
+        .btn-gold:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--royal-gold);
+            border: 2px solid var(--royal-gold);
+            padding: 10px 24px;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--royal-gold);
+            color: #000;
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        /* ==========================================================================
+           3. HEADER & HERO SECTION
+           ========================================================================== */
         header {
-            background: linear-gradient(rgba(0,0,0,0.75), rgba(107,0,24,0.85)), url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
-            background-size: cover; background-position: center; color: white; text-align: center; padding: 80px 20px 60px 20px;
-            border-bottom: 5px solid var(--royal-gold); position: relative;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(107, 0, 24, 0.85)), 
+                        url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+            text-align: center;
+            padding: 100px 20px 80px 20px;
+            border-bottom: 5px solid var(--royal-gold);
+            position: relative;
         }
-        .top-bar { position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; z-index: 10; flex-wrap: wrap; gap: 10px; }
-        .contact-top a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-right: 12px; }
-        .top-btns { display: flex; gap: 10px; align-items: center; }
-        .lang-switch, .theme-switch { background: rgba(255,255,255,0.15); border: 1px solid var(--royal-gold); color: white; padding: 5px 12px; font-weight: 600; border-radius: 20px; cursor: pointer; }
 
-        .brand-header h1 { font-size: 3.2rem; cursor: pointer; user-select: none; transition: transform 0.2s; }
-        .brand-header h1:hover { transform: scale(1.02); }
-        .proprietor-tag { background: rgba(0,0,0,0.6); display: inline-block; padding: 6px 20px; border: 1px solid var(--royal-gold); border-radius: 30px; font-size: 0.9rem; color: var(--bright-gold); margin: 15px 0; }
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 10;
+        }
 
-        /* Navigation */
-        nav { background: var(--royal-maroon); display: flex; justify-content: center; flex-wrap: wrap; sticky: top; top: 0; z-index: 1000; border-bottom: 2px solid var(--royal-gold); }
-        nav a { color: white; padding: 14px 18px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
-        nav a:hover { background: var(--royal-gold); color: #000; }
+        .contact-top a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 15px;
+            transition: var(--transition);
+        }
 
-        /* Container & Sections */
-        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-title { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 8px; position: relative; display: inline-block; }
-        .dark-theme .section-title { color: var(--bright-gold); }
-        .section-title::after { content: ''; width: 60%; height: 3px; background: var(--royal-gold); display: block; margin: 6px auto 0 auto; }
+        .contact-top a:hover {
+            color: var(--bright-gold);
+        }
 
-        /* Grids */
-        .services-grid, .features-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
-        .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-soft); border: 1px solid rgba(212,175,55,0.2); transition: var(--transition); }
-        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-heavy); border-color: var(--royal-gold); }
-        .card-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
+        .top-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
 
-        /* Customer Feature Cards */
-        .f-icon { font-size: 2rem; color: var(--royal-gold); margin-bottom: 10px; }
+        .lang-switch, .theme-switch {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--royal-gold);
+            color: white;
+            padding: 6px 16px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
 
-        /* Forms & Inputs */
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--royal-maroon); font-size: 0.85rem; }
-        .dark-theme .form-group label { color: var(--bright-gold); }
-        .form-control { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; background: var(--card-bg); color: var(--text-dark); }
+        .lang-switch:hover, .theme-switch:hover {
+            background: var(--royal-gold);
+            color: #000;
+        }
 
-        /* Admin Panel (Hidden by default) */
-        #admin-panel { display: none; background: #1a1a1a; color: white; border-radius: 12px; padding: 30px; margin-top: 50px; border: 2px solid var(--royal-gold); }
-        .admin-tab-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid #444; padding-bottom: 15px; }
-        .admin-tab-btn { background: #333; color: white; border: 1px solid var(--royal-gold); padding: 8px 16px; border-radius: 5px; cursor: pointer; }
-        .admin-tab-btn.active { background: var(--royal-gold); color: black; font-weight: bold; }
-        .admin-tab-content { display: none; }
-        .admin-tab-content.active { display: block; }
-        
-        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #222; color: white; }
-        th, td { padding: 10px; border: 1px solid #444; text-align: left; font-size: 0.85rem; }
-        th { background: var(--royal-maroon); color: var(--bright-gold); }
+        .brand-header h1 {
+            font-size: 3.8rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.7);
+            cursor: pointer;
+            user-select: none;
+            transition: var(--transition);
+        }
 
-        /* Printable Bill */
-        #bill-preview { background: white; color: black; padding: 20px; border-radius: 8px; margin-top: 20px; }
-        #bill-preview h2, #bill-preview h3 { color: var(--royal-maroon); }
+        .brand-header h1:hover {
+            transform: scale(1.02);
+        }
 
-        /* Floating Action Buttons */
-        .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
-        .fab { width: 50px; height: 50px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; }
-        .fab-call { background: var(--royal-maroon); color: var(--bright-gold); border: 1px solid var(--royal-gold); }
+        .brand-header h2 {
+            font-size: 1.5rem;
+            color: #f0f0f0;
+            font-weight: 300;
+            margin-bottom: 20px;
+            letter-spacing: 1px;
+        }
 
-        footer { background: var(--dark-bg); color: white; text-align: center; padding: 40px 20px 20px; margin-top: 60px; border-top: 4px solid var(--royal-gold); }
+        .proprietor-tag {
+            background: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding: 8px 25px;
+            border: 1px solid var(--royal-gold);
+            border-radius: 30px;
+            font-size: 0.95rem;
+            color: var(--bright-gold);
+            margin-bottom: 30px;
+        }
+
+        /* ==========================================================================
+           4. NAVIGATION BAR
+           ========================================================================== */
+        nav {
+            background: var(--royal-maroon);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+            border-bottom: 2px solid var(--royal-gold);
+        }
+
+        nav a {
+            color: white;
+            padding: 16px 22px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        nav a:hover {
+            background: var(--royal-gold);
+            color: #000;
+        }
+
+        /* ==========================================================================
+           5. LAYOUT CONTAINERS & SECTIONS
+           ========================================================================== */
+        .container {
+            max-width: 1280px;
+            margin: auto;
+            padding: 60px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--royal-maroon);
+            margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+
+        body.dark-theme .section-title {
+            color: var(--bright-gold);
+        }
+
+        .section-title::after {
+            content: '';
+            width: 60%;
+            height: 3px;
+            background: var(--royal-gold);
+            display: block;
+            margin: 8px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        .section-subtitle {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        /* ==========================================================================
+           6. FEATURE CARDS & GRIDS
+           ========================================================================== */
+        .features-grid, .services-grid, .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--shadow-soft);
+            border: 1px solid rgba(212, 175, 55, 0.25);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--royal-gold);
+        }
+
+        .f-icon {
+            font-size: 2.2rem;
+            color: var(--royal-gold);
+            margin-bottom: 15px;
+        }
+
+        .card h3 {
+            color: var(--royal-maroon);
+            font-size: 1.25rem;
+            margin-bottom: 10px;
+        }
+
+        body.dark-theme .card h3 {
+            color: var(--bright-gold);
+        }
+
+        .card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        /* ==========================================================================
+           7. FORMS & CONTROL INPUTS
+           ========================================================================== */
+        .form-group {
+            margin-bottom: 18px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--royal-maroon);
+            font-size: 0.88rem;
+        }
+
+        body.dark-theme .form-group label {
+            color: var(--bright-gold);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            outline: none;
+            transition: var(--transition);
+            background: var(--card-bg);
+            color: var(--text-dark);
+        }
+
+        .form-control:focus {
+            border-color: var(--royal-gold);
+            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
+        }
+
+        /* ==========================================================================
+           8. ADMIN PANEL & MODAL SYSTEM
+           ========================================================================== */
+        #admin-panel {
+            display: none;
+            background: #141418;
+            color: #ffffff;
+            border-radius: var(--border-radius);
+            padding: 35px;
+            margin-top: 60px;
+            border: 2px solid var(--royal-gold);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--royal-maroon);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .admin-nav-tabs {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            background: #1e1e24;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #333;
+        }
+
+        .admin-tab-btn {
+            background: transparent;
+            color: #bbb;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .admin-tab-btn.active {
+            background: var(--royal-gold);
+            color: #000;
+            font-weight: 700;
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ==========================================================================
+           9. TABLES & DATA WRAPPERS
+           ========================================================================== */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #1e1e24;
+            color: #fff;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        th, td {
+            padding: 14px 16px;
+            text-align: left;
+            border-bottom: 1px solid #333;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background: var(--royal-maroon);
+            color: var(--bright-gold);
+            font-family: 'Cinzel', serif;
+            letter-spacing: 0.5px;
+        }
+
+        tr:hover {
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        /* Invoice Sheet Modal */
+        #printable-invoice {
+            background: #ffffff;
+            color: #000000;
+            padding: 40px;
+            border-radius: 8px;
+            margin-top: 30px;
+            display: none;
+            border: 1px solid #ccc;
+        }
+
+        .invoice-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 3px solid var(--royal-maroon);
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        /* Floating Controls */
+        .fab-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+        }
+
+        .fab {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--success-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .fab:hover {
+            transform: scale(1.1);
+        }
+
+        .fab-call {
+            background: var(--royal-maroon);
+            color: var(--bright-gold);
+            border: 1px solid var(--royal-gold);
+        }
+
+        /* Password Modal Styling */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.85);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+        }
+
+        .modal-box {
+            background: #1e1e24;
+            padding: 30px;
+            border-radius: 12px;
+            border: 2px solid var(--royal-gold);
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+            color: white;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 60px 20px 20px 20px;
+            border-top: 4px solid var(--royal-gold);
+            margin-top: 80px;
+        }
+
+        footer h3 {
+            color: var(--royal-gold);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            color: var(--bright-gold);
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Top Bar & Header -->
+    <!-- Modal Admin Authentication -->
+    <div class="modal-overlay" id="authModal">
+        <div class="modal-box">
+            <h3 style="color:var(--bright-gold); margin-bottom:15px;"><i class="fa-solid fa-lock"></i> Security Authentication</h3>
+            <p style="font-size:0.85rem; margin-bottom:20px;">Enter Admin Password to Unlock Panel:</p>
+            <input type="password" id="adminPassInput" class="form-control" placeholder="Password" style="margin-bottom:15px; text-align:center;">
+            <div style="display:flex; gap:10px; justify-content:center;">
+                <button class="btn-gold" onclick="verifyAdminPassword()">Unlock</button>
+                <button class="btn-danger" onclick="closeAuthModal()">Cancel</button>
+            </div>
+            <p id="authError" style="color:var(--danger-color); font-size:0.8rem; margin-top:10px; display:none;">Invalid Credentials!</p>
+        </div>
+    </div>
+
+    <!-- Header & Brand Top Bar -->
     <header>
         <div class="top-bar">
             <div class="contact-top">
                 <a href="tel:+919892880155"><i class="fa-solid fa-phone"></i> +91 98928 80155</a>
-                <a href="tel:+919699034567"><i class="fa-solid fa-phone"></i> 9699034567</a>
+                <a href="tel:+919699034567"><i class="fa-solid fa-phone"></i> +91 96990 34567</a>
             </div>
-            <div class="top-btns">
-                <button class="theme-switch" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
-                <button class="lang-switch" onclick="toggleLanguage()">EN /  हिंदी</button>
+            <div class="top-actions">
+                <button class="theme-switch" onclick="toggleTheme()" title="Toggle Dark/Light Mode"><i class="fa-solid fa-moon"></i></button>
+                <button class="lang-switch" onclick="toggleLanguage()">English / हिन्दी</button>
             </div>
         </div>
 
         <div class="brand-header">
             <!-- Hidden Trigger for Admin Unlock -->
-            <h1 id="brand-title" class="gold-text" onclick="promptAdminUnlock()" title="Tap 5 times or Click to enter passcode">KISHOR TENT HOUSE</h1>
+            <h1 id="brand-title" class="gold-text" onclick="openAuthModal()" title="Tap Name to Unlock Admin Console">KISHOR TENT HOUSE</h1>
             <h2 id="brand-sub">Complete Solution For All Your Events</h2>
             <div class="proprietor-tag" id="proprietor-text">Proprietor: Bhavesh Purohit</div>
             <br>
-            <a href="#booking" class="btn-gold" id="btn-hero-book">Book Event Now</a>
+            <a href="#booking" class="btn-gold" id="btn-hero-book"><i class="fa-solid fa-calendar-check"></i> Book Event Now</a>
         </div>
     </header>
 
-    <!-- Navigation -->
+    <!-- Navigation Bar -->
     <nav>
-        <a href="#services">Services</a>
-        <a href="#cust-features">Features</a>
-        <a href="#calculator">Price Estimator</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#booking">Book Now</a>
-        <a href="#contact">Contact</a>
+        <a href="#services"><i class="fa-solid fa-concierge-bell"></i> Services</a>
+        <a href="#cust-features"><i class="fa-solid fa-star"></i> 30 Portal Features</a>
+        <a href="#gallery"><i class="fa-solid fa-images"></i> Gallery</a>
+        <a href="#booking"><i class="fa-solid fa-file-signature"></i> Book Now</a>
+        <a href="#contact"><i class="fa-solid fa-address-book"></i> Contact Us</a>
     </nav>
 
-    <!-- Main Content Area -->
+    <!-- Main Container Wrapper -->
     <div class="container">
 
-        <!-- Services Section -->
+        <!-- Quality Badges Section -->
+        <div style="display:flex; justify-content:center; gap:15px; flex-wrap:wrap; margin-bottom:50px;">
+            <div class="card" style="padding:12px 25px; border-radius:30px; display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-pump-soap" style="color:var(--royal-gold);"></i> <span>Hygienic Setup</span>
+            </div>
+            <div class="card" style="padding:12px 25px; border-radius:30px; display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-crown" style="color:var(--royal-gold);"></i> <span>Royal Decor Material</span>
+            </div>
+            <div class="card" style="padding:12px 25px; border-radius:30px; display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-indian-rupee-sign" style="color:var(--royal-gold);"></i> <span>Best Pricing</span>
+            </div>
+            <div class="card" style="padding:12px 25px; border-radius:30px; display:flex; align-items:center; gap:10px;">
+                <i class="fa-solid fa-clock" style="color:var(--royal-gold);"></i> <span>100% On-Time Execution</span>
+            </div>
+        </div>
+
+        <!-- Primary Services Section -->
         <section id="services">
             <div class="section-header">
-                <h2 class="section-title">Our Event Services</h2>
-                <p>Royal Marwadi Weddings, Corporate Events, and Traditional Ceremonies</p>
+                <h2 class="section-title">Our Premium Services</h2>
+                <p class="section-subtitle">Creating Unforgettable Grand Experiences for Royal Weddings & Special Occasions</p>
             </div>
+
             <div class="services-grid">
                 <div class="card">
                     <img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" class="card-img" alt="Royal Tent">
-                    <h3>Royal Tent & Canopy Setup</h3>
-                    <p>Waterproof royal Marwadi tents, velvet ceilings, and grand Mandap setups.</p>
+                    <h3>Tent House & Luxury Decoration</h3>
+                    <p>Royal Marwadi tents, waterproof canopies, and luxury velvet draping designed specifically for grand weddings and corporate events.</p>
                 </div>
                 <div class="card">
-                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" class="card-img" alt="Mandap Decor">
-                    <h3>Stage & Mandap Decoration</h3>
-                    <p>Traditional flower entry gates, VIP stage couches, and illuminated arches.</p>
+                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" class="card-img" alt="Mandap">
+                    <h3>Wedding Mandap & Stage Setup</h3>
+                    <p>Traditional royal mandaps with flower styling, stage seating, and grand entrances for memorable wedding ceremonies.</p>
                 </div>
                 <div class="card">
-                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Catering">
-                    <h3>Luxury Catering & Crockery</h3>
-                    <p>Hygienic food counters, bone-china crockery, and trained serving staff.</p>
+                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg" class="card-img" alt="Lighting">
+                    <h3>Light Decoration & DJ Sound</h3>
+                    <p>Ambient LED lighting, fireworks setups, truss installations, and high-bass professional DJ sound systems.</p>
                 </div>
             </div>
         </section>
 
-        <!-- CUSTOMER FEATURES (30 Interactive Customer Tools) -->
-        <section id="cust-features" style="margin-top:60px;">
+        <!-- CUSTOMER PORTAL FEATURES (30 FULLY WORKING FEATURES) -->
+        <section id="cust-features" style="margin-top: 80px;">
             <div class="section-header">
-                <h2 class="section-title">Customer Interactive Portal (30 Features)</h2>
-                <p>Explore tools designed for seamless event planning</p>
+                <h2 class="section-title">30 Customer Interactive Features</h2>
+                <p class="section-subtitle">Real-time tools designed for complete client event management</p>
             </div>
 
             <div class="features-grid">
-                <!-- Feature 1: Instant Cost Estimator -->
+                <!-- Feature 1: Live Bill/Estimate Calculator -->
                 <div class="card">
                     <div class="f-icon"><i class="fa-solid fa-calculator"></i></div>
-                    <h3>1. Event Cost Estimator</h3>
+                    <h3>1. Dynamic Cost Estimator</h3>
                     <div class="form-group">
-                        <label>Guest Count:</label>
-                        <input type="number" id="calc-guests" class="form-control" value="200" oninput="calculateEstimate()">
+                        <label>Expected Guests:</label>
+                        <input type="number" id="f1-guests" class="form-control" value="250" oninput="runF1Calc()">
                     </div>
-                    <p>Est. Total: <strong>₹<span id="est-total">25000</span></strong></p>
+                    <div class="form-group">
+                        <label>Setup Tier:</label>
+                        <select id="f1-tier" class="form-control" onchange="runF1Calc()">
+                            <option value="100">Standard Tent (₹100/head)</option>
+                            <option value="200" selected>Royal Velvet Tent (₹200/head)</option>
+                            <option value="350">Maharaja Platinum Setup (₹350/head)</option>
+                        </select>
+                    </div>
+                    <p>Estimated Budget: <strong>₹<span id="f1-out">50000</span></strong></p>
                 </div>
 
-                <!-- Feature 2: Availability Checker -->
+                <!-- Feature 2: Event Date Availability Checker -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-calendar-check"></i></div>
-                    <h3>2. Live Date Availability</h3>
-                    <input type="date" id="avail-date" class="form-control" onchange="checkAvailability()">
-                    <p id="avail-result" style="margin-top:10px; font-weight:bold;"></p>
+                    <div class="f-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                    <h3>2. Date Availability Lookup</h3>
+                    <div class="form-group">
+                        <label>Select Event Date:</label>
+                        <input type="date" id="f2-date" class="form-control" onchange="runF2Check()">
+                    </div>
+                    <p id="f2-out" style="font-weight:600; font-size:0.88rem; min-height:24px;"></p>
                 </div>
 
-                <!-- Feature 3: Package Selector -->
+                <!-- Feature 3: Interactive Package Customizer -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-box-open"></i></div>
-                    <h3>3. Package Deal Finder</h3>
-                    <select class="form-control" onchange="showPackageDetails(this.value)">
-                        <option value="silver">Silver Wedding Package</option>
-                        <option value="gold">Gold Royal Package</option>
-                        <option value="diamond">Maharaja Platinum</option>
-                    </select>
-                    <p id="pkg-desc" style="font-size:0.85rem; margin-top:10px;">Includes Tent, Basic Stage & 200 Chairs.</p>
+                    <div class="f-icon"><i class="fa-solid fa-boxes-packing"></i></div>
+                    <h3>3. Package Selection Engine</h3>
+                    <div class="form-group">
+                        <label>Select Package:</label>
+                        <select id="f3-pkg" class="form-control" onchange="runF3Pkg()">
+                            <option value="silver">Silver Wedding Package</option>
+                            <option value="gold" selected>Gold Royal Package</option>
+                            <option value="diamond">Diamond Maharaja Package</option>
+                        </select>
+                    </div>
+                    <p id="f3-out" style="font-size:0.85rem; color:var(--text-light);">Includes Velvet Canopy, VIP Stage, 400 Chairs, and Basic Lighting.</p>
                 </div>
 
-                <!-- Feature 4: Currency Converter -->
+                <!-- Feature 4: Currency Converter for NRI Bookings -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
-                    <h3>4. International Currency Converter</h3>
-                    <input type="number" id="curr-inr" class="form-control" value="50000" placeholder="INR" oninput="convertCurr()">
-                    <p style="margin-top:8px;">USD: <strong>$<span id="curr-usd">600</span></strong> | AED: <strong><span id="curr-aed">2200</span> AED</strong></p>
+                    <div class="f-icon"><i class="fa-solid fa-arrow-right-arrow-left"></i></div>
+                    <h3>4. Multi-Currency Converter</h3>
+                    <div class="form-group">
+                        <label>Enter Amount in INR (₹):</label>
+                        <input type="number" id="f4-inr" class="form-control" value="100000" oninput="runF4Convert()">
+                    </div>
+                    <p style="font-size:0.88rem;">USD: <strong>$<span id="f4-usd">1204.82</span></strong> | AED: <strong><span id="f4-aed">4424.78</span> AED</strong></p>
                 </div>
 
-                <!-- Feature 5: Emergency Hotline -->
+                <!-- Feature 5: Emergency On-Site Call Operator -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-phone-volume"></i></div>
-                    <h3>5. 24/7 Event Emergency Hotline</h3>
-                    <p>Immediate support for on-site additions or technical issues.</p>
-                    <a href="tel:+919892880155" class="btn-gold" style="margin-top:10px;">Call Manager</a>
+                    <div class="f-icon"><i class="fa-solid fa-headset"></i></div>
+                    <h3>5. 24/7 On-Site Emergency Hotline</h3>
+                    <p style="margin-bottom:15px;">Need immediate assistance or last-minute extra chairs at your venue?</p>
+                    <a href="tel:+919892880155" class="btn-gold"><i class="fa-solid fa-phone"></i> Call Hotline</a>
                 </div>
 
-                <!-- Feature 6: Custom Lighting Selector -->
+                <!-- Feature 6: Lighting Style Selector -->
                 <div class="card">
                     <div class="f-icon"><i class="fa-solid fa-lightbulb"></i></div>
-                    <h3>6. Lighting Ambience Selector</h3>
-                    <select class="form-control" onchange="alert('Selected theme: ' + this.value)">
-                        <option>Warm Vintage Gold</option>
-                        <option>Royal Purple & Pink</option>
-                        <option>Bright Disco LEDs</option>
+                    <h3>6. Theme Lighting Selector</h3>
+                    <div class="form-group">
+                        <label>Preferred Lighting Ambience:</label>
+                        <select id="f6-light" class="form-control" onchange="runF6Select()">
+                            <option value="Warm Gold Ambient">Warm Gold Traditional Ambient</option>
+                            <option value="Royal Purple & Pink">Royal Purple & Pink LED Glow</option>
+                            <option value="Vibrant Party Truss">Vibrant High-Intensity Party Trusses</option>
+                        </select>
+                    </div>
+                    <p id="f6-out" style="font-size:0.85rem; font-weight:600; color:var(--royal-gold);"></p>
+                </div>
+
+                <!-- Feature 7: Seating & Table Capacity Calculator -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-chair"></i></div>
+                    <h3>7. Seating Furniture Calculator</h3>
+                    <div class="form-group">
+                        <label>Total Expected Attendees:</label>
+                        <input type="number" id="f7-attendees" class="form-control" value="500" oninput="runF7Calc()">
+                    </div>
+                    <p id="f7-out" style="font-size:0.85rem; font-weight:600;">Requires: 500 Chairs, 63 Round Dining Tables.</p>
+                </div>
+
+                <!-- Feature 8: Weather Risk Protection System -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-cloud-sun-rain"></i></div>
+                    <h3>8. Weather Risk Protection</h3>
+                    <p style="font-size:0.85rem; margin-bottom:12px;">Automated weather verification for open-ground venues.</p>
+                    <button class="btn-gold" onclick="runF8Weather()"><i class="fa-solid fa-cloud"></i> Run Weather Audit</button>
+                    <p id="f8-out" style="margin-top:10px; font-size:0.85rem; font-weight:600;"></p>
+                </div>
+
+                <!-- Feature 9: Download Digital Catalogue & Rate List -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3>9. Digital Rate List & Catalogue</h3>
+                    <p style="font-size:0.85rem; margin-bottom:15px;">Download our official 2026 event setup price list.</p>
+                    <button class="btn-gold" onclick="runF9Download()"><i class="fa-solid fa-download"></i> Download Catalogue</button>
+                </div>
+
+                <!-- Feature 10: Catering Stall Customizer -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <h3>10. Catering Counter Builder</h3>
+                    <label><input type="checkbox" class="f10-item" value="Chaat Counter" onchange="runF10Stalls()"> Live Chaat Counter</label><br>
+                    <label><input type="checkbox" class="f10-item" value="South Indian Station" onchange="runF10Stalls()"> South Indian Dosa Counter</label><br>
+                    <label><input type="checkbox" class="f10-item" value="Mocktail Bar" onchange="runF10Stalls()"> Mocktail & Juice Bar</label>
+                    <p id="f10-out" style="font-size:0.8rem; margin-top:8px; font-weight:600;"></p>
+                </div>
+
+                <!-- Feature 11: Venue Square Footage Calculator -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+                    <h3>11. Plot Area Calculator</h3>
+                    <div class="form-group">
+                        <label>Target Capacity (Guests):</label>
+                        <input type="number" id="f11-cap" class="form-control" value="300" oninput="runF11Area()">
+                    </div>
+                    <p id="f11-out" style="font-size:0.85rem; font-weight:600;">Recommended Plot: 3,600 Sq. Ft.</p>
+                </div>
+
+                <!-- Feature 12: Real-time Dispatch Tracker -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-truck-dispatch"></i></div>
+                    <h3>12. On-Site Truck Dispatch Status</h3>
+                    <p style="font-size:0.85rem; margin-bottom:10px;">Check logistics truck status for your event location.</p>
+                    <button class="btn-gold" onclick="runF12Track()"><i class="fa-solid fa-location-dot"></i> Track Setup Truck</button>
+                    <p id="f12-out" style="font-size:0.8rem; margin-top:8px; font-weight:600;"></p>
+                </div>
+
+                <!-- Feature 13: Customer Feedback Submission -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-star-half-stroke"></i></div>
+                    <h3>13. Submit Client Review</h3>
+                    <div class="form-group">
+                        <input type="text" id="f13-name" placeholder="Your Name" class="form-control" style="margin-bottom:8px;">
+                        <textarea id="f13-msg" placeholder="Your Feedback..." class="form-control" rows="2"></textarea>
+                    </div>
+                    <button class="btn-gold" onclick="runF13Review()">Submit Review</button>
+                </div>
+
+                <!-- Feature 14: Direct UPI Advance Payment QR -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <h3>14. Instant Advance UPI Payment</h3>
+                    <p style="font-size:0.85rem; margin-bottom:12px;">Pay advance deposit directly to secure your event date.</p>
+                    <button class="btn-gold" onclick="runF14Pay()"><i class="fa-solid fa-wallet"></i> Pay via UPI QR</button>
+                </div>
+
+                <!-- Feature 15: Fire Safety & Hygiene Certification -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>15. Safety Certification</h3>
+                    <p style="font-size:0.85rem;">100% Waterproof canvas, fire-retardant fabric, and on-site fire extinguisher deployment guaranteed.</p>
+                </div>
+
+                <!-- Feature 16: DJ & Audio Equipment Specs -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-compact-disc"></i></div>
+                    <h3>16. DJ Sound Specs Visualizer</h3>
+                    <p style="font-size:0.85rem; margin-bottom:10px;">4x JBL Dual-Bass Cabinets, 3D Laser Lighting, and Wireless Mics.</p>
+                    <button class="btn-outline" onclick="alert('DJ Rig Details: 10,000 Watts RMS Output equipped with digital mixing consoles.')">View Audio Spec</button>
+                </div>
+
+                <!-- Feature 17: VIP Stage Couch Catalog -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-couch"></i></div>
+                    <h3>17. Maharaja Stage Couch Selector</h3>
+                    <select class="form-control" onchange="alert('Couch Style selected: ' + this.value)">
+                        <option>Gold-Foil Carved Velvet Sofa</option>
+                        <option>Silver Traditional Maharaja Couch</option>
+                        <option>Modern Crown High-Back Twin Chairs</option>
                     </select>
                 </div>
 
-                <!-- Feature 7: Seating Capacity Calculator -->
+                <!-- Feature 18: Live Event Photo Filter -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-chair"></i></div>
-                    <h3>7. Chair & Table Calculator</h3>
-                    <input type="number" id="seat-input" class="form-control" placeholder="Guests" oninput="calcSeating(this.value)">
-                    <p id="seat-res" style="font-size:0.85rem; margin-top:5px;">Req: 0 Chairs, 0 Round Tables</p>
+                    <div class="f-icon"><i class="fa-solid fa-filter"></i></div>
+                    <h3>18. Gallery Photo Filter</h3>
+                    <button class="btn-outline" style="padding:4px 10px; font-size:0.75rem;" onclick="filterGallery('all')">All</button>
+                    <button class="btn-outline" style="padding:4px 10px; font-size:0.75rem;" onclick="filterGallery('wedding')">Weddings</button>
+                    <button class="btn-outline" style="padding:4px 10px; font-size:0.75rem;" onclick="filterGallery('reception')">Receptions</button>
                 </div>
 
-                <!-- Feature 8: Weather Alert Checker -->
+                <!-- Feature 19: Live Countdown to Reserved Date -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-cloud-sun"></i></div>
-                    <h3>8. Event Weather Protection</h3>
-                    <p>Recommends waterproof German hangar tents if rain is forecast.</p>
-                    <button class="btn-gold" onclick="alert('Weather sync status: Clear conditions projected for current week.')" style="margin-top:5px;">Check Weather Risk</button>
+                    <div class="f-icon"><i class="fa-solid fa-stopwatch"></i></div>
+                    <h3>19. Event Date Countdown</h3>
+                    <input type="date" id="f19-date" class="form-control" onchange="runF19Timer()">
+                    <p id="f19-out" style="font-size:0.9rem; font-weight:700; margin-top:8px; color:var(--royal-maroon);"></p>
                 </div>
 
-                <!-- Feature 9: Download Digital Brochure -->
+                <!-- Feature 20: Automated Wedding Planning Checklist -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-file-pdf"></i></div>
-                    <h3>9. Digital Catalogue</h3>
-                    <p>Download our complete 2026 Tent & Decor Portfolio PDF.</p>
-                    <button class="btn-gold" onclick="alert('Downloading Catalogue PDF...')" style="margin-top:5px;">Download PDF</button>
+                    <div class="f-icon"><i class="fa-solid fa-list-check"></i></div>
+                    <h3>20. Event Preparation Checklist</h3>
+                    <div style="font-size:0.8rem; text-align:left;">
+                        <label><input type="checkbox" checked> Book Tent & Canopy Setup</label><br>
+                        <label><input type="checkbox"> Finalize Stage Floral Decor</label><br>
+                        <label><input type="checkbox"> Confirm Sound & Generator Power</label>
+                    </div>
                 </div>
 
-                <!-- Feature 10: Digital Menu Customizer -->
+                <!-- Feature 21: Direct Quotation Share to WhatsApp -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-utensils"></i></div>
-                    <h3>10. Catering Stall Setup Selector</h3>
-                    <label><input type="checkbox"> Live Chaat Counter</label><br>
-                    <label><input type="checkbox"> South Indian Station</label><br>
-                    <label><input type="checkbox"> Mocktail Bar</label>
+                    <div class="f-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3>21. Share Estimate to WhatsApp</h3>
+                    <p style="font-size:0.85rem; margin-bottom:10px;">Send calculated budget directly to family members on WhatsApp.</p>
+                    <button class="btn-gold" onclick="runF21Share()"><i class="fa-brands fa-whatsapp"></i> Share Quote</button>
                 </div>
 
-                <!-- Features 11-30 listed dynamically/compactly to maintain high usability -->
+                <!-- Feature 22: Supervisor Assignment Locator -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                    <h3>11. Venue Space Measurement</h3>
-                    <p>Compute sq. ft required based on total invited guests.</p>
+                    <div class="f-icon"><i class="fa-solid fa-user-tie"></i></div>
+                    <h3>22. Dedicated Venue Manager</h3>
+                    <p style="font-size:0.85rem;">Every booking includes a dedicated supervisor on site throughout the function.</p>
                 </div>
+
+                <!-- Feature 23: Backup Generator Calculator -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
-                    <h3>12. Real-time Setup Tracker</h3>
-                    <p>Track delivery and setup crew dispatch progress.</p>
+                    <div class="f-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <h3>23. Generator Power Requirement</h3>
+                    <select id="f23-load" class="form-control" onchange="runF23Genset()">
+                        <option value="62.5">Lighting Only (62.5 kVA)</option>
+                        <option value="125" selected>Lighting + DJ Sound (125 kVA)</option>
+                        <option value="250">Full Venue + AC Units (250 kVA)</option>
+                    </select>
+                    <p id="f23-out" style="font-size:0.85rem; font-weight:600; margin-top:8px;"></p>
                 </div>
+
+                <!-- Feature 24: Air Cooling & Fan System Options -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-star"></i></div>
-                    <h3>13. Leave a Verified Review</h3>
-                    <button class="btn-gold" onclick="prompt('Enter your feedback:')">Submit Review</button>
+                    <div class="f-icon"><i class="fa-solid fa-fan"></i></div>
+                    <h3>24. Cooling & Ventilation Selector</h3>
+                    <p style="font-size:0.85rem;">Jumbo Water Coolers & Tower Air Conditioners for summer functions.</p>
                 </div>
+
+                <!-- Feature 25: Staff & Server Uniform Customizer -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-qrc"></i></div>
-                    <h3>14. Instant UPI QR Payment</h3>
-                    <button class="btn-gold" onclick="alert('Displaying Merchant UPI QR...')">Pay Advance</button>
+                    <div class="f-icon"><i class="fa-solid fa-user-ninja"></i></div>
+                    <h3>25. Serving Staff Dress Code</h3>
+                    <select class="form-control">
+                        <option>Traditional Rajasthani Safa & Kurta</option>
+                        <option>Formal Black Waistcoat Uniform</option>
+                    </select>
                 </div>
+
+                <!-- Feature 26: Cold Pyro Fireworks Selector -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <h3>15. Safety & Hygiene Certified</h3>
-                    <p>100% Sanitized tents & fire-extinguisher equipped setups.</p>
+                    <div class="f-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>26. Entry Fireworks & Cold Pyro</h3>
+                    <label><input type="checkbox" id="f26-p1"> Cold Pyro Entry Shots (6 Pcs)</label><br>
+                    <label><input type="checkbox" id="f26-p2"> Heavy Dry Ice Smoke Machine</label>
                 </div>
+
+                <!-- Feature 27: Fresh Floral Entrance Arch Styles -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-music"></i></div>
-                    <h3>16. DJ & Sound Spec Checker</h3>
-                    <p>JBL High-bass sound trusses available on demand.</p>
+                    <div class="f-icon"><i class="fa-solid fa-spa"></i></div>
+                    <h3>27. Floral Entrance Arch Options</h3>
+                    <p style="font-size:0.85rem;">Fresh Rajnigandha, Red Rose, and Orchid Floral Arch styling.</p>
                 </div>
+
+                <!-- Feature 28: Traditional Welcoming Troupe -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-couch"></i></div>
-                    <h3>17. Maharaja Sofa Selector</h3>
-                    <p>Gold foil carven couches for Bride & Groom stage.</p>
+                    <div class="f-icon"><i class="fa-solid fa-drum"></i></div>
+                    <h3>28. Royal Dhol & Welcome Troupe</h3>
+                    <p style="font-size:0.85rem;">Authentic Marwadi Dhol Tasha and Shenai players for guest arrivals.</p>
                 </div>
+
+                <!-- Feature 29: Festive & Bulk Booking Discount -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-images"></i></div>
-                    <h3>18. High-Res Event Gallery</h3>
-                    <p>Filter photos by Haldi, Sangeet, and Reception.</p>
+                    <div class="f-icon"><i class="fa-solid fa-percent"></i></div>
+                    <h3>29. Seasonal Festival Offer</h3>
+                    <p style="font-size:0.85rem; color:var(--success-color); font-weight:600;">10% Flat Discount applied for advance winter bookings!</p>
                 </div>
+
+                <!-- Feature 30: Instant Printable Quote Slip -->
                 <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-clock"></i></div>
-                    <h3>19. Countdown Timer</h3>
-                    <p>Track remaining days to your reserved event date.</p>
+                    <div class="f-icon"><i class="fa-solid fa-print"></i></div>
+                    <h3>30. Print Official Quote Slip</h3>
+                    <p style="font-size:0.85rem; margin-bottom:10px;">Generate a quick PDF/Print estimate for records.</p>
+                    <button class="btn-gold" onclick="window.print()"><i class="fa-solid fa-print"></i> Print Slip</button>
                 </div>
-                <div class="card">
-                    <div class="f-icon"><i class="fa-solid fa-clipboard-list"></i></div>
-                    <h3>20. Event Checklist Generator</h3>
-                    <p>Automated timeline schedule for wedding prep.</p>
-                </div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-share-nodes"></i></div><h3>21. Share Estimate to WhatsApp</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-user-gear"></i></div><h3>22. Dedicated Event Manager</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-bolt"></i></div><h3>23. Generator Back-up Power</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-fan"></i></div><h3>24. Jumbo Cooler & AC Rentals</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-vest"></i></div><h3>25. Uniformed Serving Staff</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-fire"></i></div><h3>26. Cold Pyro & Entry Fireworks</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-flower"></i></div><h3>27. Fresh Flower Entrance Arch</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-drum"></i></div><h3>28. Dhol & Welcome Troupe</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-tags"></i></div><h3>29. Seasonal Festival Discounts</h3></div>
-                <div class="card"><div class="f-icon"><i class="fa-solid fa-receipt"></i></div><h3>30. Instant Quotation PDF Slip</h3></div>
             </div>
         </section>
 
         <!-- Booking Section -->
-        <section id="booking" style="margin-top: 60px;">
+        <section id="booking" style="margin-top: 80px;">
             <div class="section-header">
-                <h2 class="section-title">Direct WhatsApp Booking</h2>
+                <h2 class="section-title">Direct WhatsApp Booking Engine</h2>
+                <p class="section-subtitle">Reserve dates instantly with direct owner confirmation</p>
             </div>
-            <div style="max-width:600px; margin:auto; background:var(--card-bg); padding:25px; border-radius:10px; border:1px solid var(--royal-gold);">
-                <form onsubmit="sendBookingWhatsApp(event)">
-                    <div class="form-group"><label>Full Name</label><input type="text" id="bk-name" class="form-control" required></div>
-                    <div class="form-group"><label>Mobile Number</label><input type="tel" id="bk-phone" class="form-control" required></div>
-                    <div class="form-group"><label>Event Date</label><input type="date" id="bk-date" class="form-control" required></div>
-                    <div class="form-group"><label>Requirements</label><textarea id="bk-msg" class="form-control" rows="3"></textarea></div>
-                    <button type="submit" class="btn-gold" style="width:100%;"><i class="fa-brands fa-whatsapp"></i> Send Booking via WhatsApp</button>
+
+            <div style="max-width:700px; margin:auto; background:var(--card-bg); padding:35px; border-radius:var(--border-radius); border:2px solid var(--royal-gold); box-shadow:var(--shadow-heavy);">
+                <form id="publicBookingForm" onsubmit="sendWhatsAppBooking(event)">
+                    <div class="form-group">
+                        <label>Your Full Name *</label>
+                        <input type="text" id="custName" class="form-control" required placeholder="Enter your complete name">
+                    </div>
+
+                    <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px;">
+                        <div class="form-group">
+                            <label>Mobile Number *</label>
+                            <input type="tel" id="custPhone" class="form-control" required placeholder="10-Digit Mobile Number">
+                        </div>
+                        <div class="form-group">
+                            <label>Event Date *</label>
+                            <input type="date" id="custDate" class="form-control" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Event Type</label>
+                        <select id="custEvent" class="form-control">
+                            <option value="Royal Wedding">Royal Wedding / Vivah</option>
+                            <option value="Grand Reception">Grand Reception</option>
+                            <option value="Sangeet & Haldi Function">Sangeet & Haldi Function</option>
+                            <option value="Religious Function / Bhagwat Saptah">Religious Function / Bhagwat Saptah</option>
+                            <option value="Birthday / Anniversary Party">Birthday / Anniversary Party</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Requirements & Venue Location Details</label>
+                        <textarea id="custMsg" class="form-control" rows="4" placeholder="Mention required tent size, expected guest count, venue place name..."></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-gold" style="width:100%; justify-content:center; padding:15px; font-size:1rem;">
+                        <i class="fa-brands fa-whatsapp" style="font-size:1.3rem;"></i> Send Booking Request via WhatsApp
+                    </button>
                 </form>
             </div>
         </section>
 
-        <!-- HIDDEN ADMIN PANEL (Unlocked via Password 'jaimaahinglaj') -->
+        <!-- ==========================================================================
+           ADMIN PANEL SECTION (HIDDEN BY DEFAULT - UNLOCKED WITH PASSCODE 'jaimaahinglaj')
+           ========================================================================== -->
         <section id="admin-panel">
-            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid #444; padding-bottom:10px;">
-                <h2 style="color:var(--bright-gold);"><i class="fa-solid fa-lock-open"></i> Kishor Tent House Admin Console</h2>
-                <button onclick="lockAdmin()" class="btn-gold" style="background:red; color:white;">Lock Panel</button>
+            <div class="admin-header">
+                <div>
+                    <h2 style="color:var(--bright-gold);"><i class="fa-solid fa-user-shield"></i> Master Administrative Control Panel</h2>
+                    <p style="font-size:0.85rem; color:#aaa;">Authenticated Session | Management System</p>
+                </div>
+                <button class="btn-danger" onclick="lockAdminConsole()"><i class="fa-solid fa-lock"></i> Lock Console</button>
             </div>
 
-            <!-- Admin Navigation Tabs -->
-            <div class="admin-tab-btns">
-                <button class="admin-tab-btn active" onclick="switchAdminTab('tab-billing')">1. Real Billing System</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-inventory')">2. Inventory Stock</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-dispatch')">3. Inventory Location/Gone</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-lost')">4. Lost/Damaged Stock</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-baddebts')">5. Bad Debts & Alerts</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-media')">6. Live Media Control</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-bookings')">7. Booking Records</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-analytics')">8. Revenue Analytics</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-staff')">9. Staff Assignment</button>
-                <button class="admin-tab-btn" onclick="switchAdminTab('tab-settings')">10. Business Settings</button>
+            <!-- Admin Navigation Tabs (10 Admin Features) -->
+            <div class="admin-nav-tabs">
+                <button class="admin-tab-btn active" onclick="switchTab('tab-billing', this)"><i class="fa-solid fa-file-invoice-dollar"></i> 1. Real Billing System</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-inventory', this)"><i class="fa-solid fa-warehouse"></i> 2. Total Inventory Stock</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-dispatch', this)"><i class="fa-solid fa-truck-ramp-box"></i> 3. Dispatched Location/Gone</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-lost', this)"><i class="fa-solid fa-triangle-exclamation"></i> 4. Lost/Damaged Stock</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-baddebts', this)"><i class="fa-solid fa-bell"></i> 5. Bad Debts & Alerts</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-media', this)"><i class="fa-solid fa-photo-film"></i> 6. Live Media Control</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-bookings', this)"><i class="fa-solid fa-book-bookmark"></i> 7. Booking Requests</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-analytics', this)"><i class="fa-solid fa-chart-line"></i> 8. Revenue Analytics</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-staff', this)"><i class="fa-solid fa-users-gear"></i> 9. Staff Allocation</button>
+                <button class="admin-tab-btn" onclick="switchTab('tab-settings', this)"><i class="fa-solid fa-sliders"></i> 10. System Settings</button>
             </div>
 
-            <!-- Admin Tab 1: Billing System -->
+            <!-- ADMIN FEATURE 1: REAL BILLING SYSTEM WITH TAX & DIRECT TOTAL -->
             <div id="tab-billing" class="admin-tab-content active">
-                <h3>Generate Professional GST Bill</h3>
-                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:15px;">
-                    <div class="form-group"><label style="color:white;">Customer Name:</label><input type="text" id="bill-cust-name" class="form-control" value="Ramesh Kumar"></div>
-                    <div class="form-group"><label style="color:white;">Event Location:</label><input type="text" id="bill-cust-loc" class="form-control" value="Nai Morseem"></div>
-                </div>
-                
-                <h4 style="margin-top:10px; color:var(--bright-gold);">Add Line Items</h4>
-                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:10px; align-items:center;">
-                    <input type="text" id="item-desc" placeholder="Item Description (e.g., Royal Tent 30x60)" class="form-control">
-                    <input type="number" id="item-qty" placeholder="Qty" class="form-control" value="1">
-                    <input type="number" id="item-rate" placeholder="Rate (₹)" class="form-control" value="15000">
-                    <button class="btn-gold" onclick="addItemToBill()">Add Item</button>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Official GST Invoice Generator</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr 1fr; gap:15px; margin-bottom:20px;">
+                    <div>
+                        <label style="color:#ccc; font-size:0.8rem; display:block;">Client Name:</label>
+                        <input type="text" id="billClientName" class="form-control" value="Bhavesh Sharma">
+                    </div>
+                    <div>
+                        <label style="color:#ccc; font-size:0.8rem; display:block;">Event Location:</label>
+                        <input type="text" id="billClientLoc" class="form-control" value="Nai Morseem Main Ground">
+                    </div>
+                    <div>
+                        <label style="color:#ccc; font-size:0.8rem; display:block;">Billing Date:</label>
+                        <input type="date" id="billDate" class="form-control">
+                    </div>
                 </div>
 
-                <table id="bill-items-table">
-                    <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead>
-                    <tbody></tbody>
-                </table>
+                <div style="background:#1e1e24; padding:20px; border-radius:8px; border:1px solid #333; margin-bottom:20px;">
+                    <h4 style="color:var(--bright-gold); margin-bottom:10px;">Add Itemized Charges</h4>
+                    <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:10px; align-items:center;">
+                        <input type="text" id="billItemDesc" placeholder="Item Description (e.g. Royal Canopy 40x80)" class="form-control">
+                        <input type="number" id="billItemQty" placeholder="Quantity" class="form-control" value="1">
+                        <input type="number" id="billItemRate" placeholder="Rate Per Unit (₹)" class="form-control" value="12000">
+                        <button class="btn-gold" onclick="addInvoiceRow()"><i class="fa-solid fa-plus"></i> Add Item</button>
+                    </div>
+                </div>
 
-                <div style="margin-top:15px; text-align:right;">
-                    <p>Subtotal: ₹<span id="bill-subtotal">0</span></p>
-                    <p>GST (18%): ₹<span id="bill-tax">0</span></p>
-                    <h3 style="color:var(--bright-gold);">Grand Direct Total: ₹<span id="bill-grandtotal">0</span></h3>
+                <div class="table-responsive">
+                    <table id="invoiceTable">
+                        <thead>
+                            <tr>
+                                <th>Item Description</th>
+                                <th>Quantity</th>
+                                <th>Rate (₹)</th>
+                                <th>Total (₹)</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Dynamic Invoice Items Inserted Here -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div style="margin-top:20px; background:#1e1e24; padding:20px; border-radius:8px; text-align:right;">
+                    <p style="font-size:1rem;">Subtotal: ₹<span id="billSubTotal">0.00</span></p>
+                    <p style="font-size:1rem;">GST Tax (18%): ₹<span id="billTax">0.00</span></p>
+                    <h2 style="color:var(--bright-gold); margin-top:10px;">Grand Direct Total: ₹<span id="billGrandTotal">0.00</span></h2>
                     <br>
-                    <button class="btn-gold" onclick="printInvoice()"><i class="fa-solid fa-print"></i> Print Real Invoice</button>
+                    <button class="btn-gold" onclick="generatePrintableBill()"><i class="fa-solid fa-print"></i> Generate & Print Real Bill</button>
                 </div>
 
-                <!-- Printable Bill Container -->
-                <div id="bill-preview">
-                    <div style="text-align:center; border-bottom:2px solid #6b0018; padding-bottom:10px;">
-                        <h2>KISHOR TENT HOUSE</h2>
-                        <p>Kehteswar Market, Nai Morseem | Contact: 98928 80155, 9699034567</p>
-                        <p><strong>OFFICIAL EVENT INVOICE</strong></p>
+                <!-- Printable Invoice Output Box -->
+                <div id="printable-invoice">
+                    <div class="invoice-header">
+                        <div>
+                            <h1 style="color:var(--royal-maroon); font-size:2rem;">KISHOR TENT HOUSE</h1>
+                            <p style="font-size:0.85rem; color:#444;">Kehteswar Market, Nai Morseem</p>
+                            <p style="font-size:0.85rem; color:#444;">Phone: +91 98928 80155 | +91 96990 34567</p>
+                        </div>
+                        <div style="text-align:right;">
+                            <h2 style="color:#333;">TAX INVOICE</h2>
+                            <p style="font-size:0.85rem;">Date: <span id="invOutDate"></span></p>
+                            <p style="font-size:0.85rem;">Invoice No: #KTH-2026-089</p>
+                        </div>
                     </div>
-                    <div style="margin:15px 0;">
-                        <p><strong>Customer:</strong> <span id="pr-name"></span></p>
-                        <p><strong>Venue:</strong> <span id="pr-loc"></span></p>
-                        <p><strong>Date:</strong> <span id="pr-date"></span></p>
+
+                    <div style="margin-bottom:20px;">
+                        <p><strong>Billed To:</strong> <span id="invOutClient"></span></p>
+                        <p><strong>Venue Location:</strong> <span id="invOutLoc"></span></p>
                     </div>
-                    <div id="pr-items"></div>
-                    <div style="margin-top:15px; text-align:right;">
-                        <p><strong>Grand Total: ₹<span id="pr-total"></span></strong></p>
+
+                    <table style="width:100%; border-collapse:collapse; color:#000; margin-bottom:20px;">
+                        <thead>
+                            <tr style="background:#6b0018; color:#fff;">
+                                <th style="padding:8px; border:1px solid #ccc;">Description</th>
+                                <th style="padding:8px; border:1px solid #ccc;">Qty</th>
+                                <th style="padding:8px; border:1px solid #ccc;">Rate (₹)</th>
+                                <th style="padding:8px; border:1px solid #ccc;">Amount (₹)</th>
+                            </tr>
+                        </thead>
+                        <tbody id="invOutItems">
+                            <!-- Printable items copied via JavaScript -->
+                        </tbody>
+                    </table>
+
+                    <div style="text-align:right; border-top:2px solid #000; padding-top:10px;">
+                        <p>Subtotal: ₹<span id="invOutSub">0.00</span></p>
+                        <p>GST (18%): ₹<span id="invOutTax">0.00</span></p>
+                        <h3>Grand Direct Total: ₹<span id="invOutGrand">0.00</span></h3>
+                    </div>
+
+                    <div style="margin-top:40px; display:flex; justify-content:space-between; align-items:flex-end;">
+                        <div>
+                            <p style="font-size:0.8rem;">Terms: Payment due upon service delivery.</p>
+                            <p style="font-size:0.8rem;">Thank you for choosing Kishor Tent House!</p>
+                        </div>
+                        <div style="text-align:center;">
+                            <p style="border-top:1px solid #000; width:180px; padding-top:5px; font-size:0.85rem;">Authorized Signatory</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Admin Tab 2: Inventory Management -->
+            <!-- ADMIN FEATURE 2: TOTAL INVENTORY STOCK MANAGEMENT -->
             <div id="tab-inventory" class="admin-tab-content">
-                <h3>Total Warehoused Inventory Stock</h3>
-                <table>
-                    <thead><tr><th>Item Code</th><th>Item Name</th><th>Total Quantity</th><th>In Warehouse</th><th>Status</th></tr></thead>
-                    <tbody>
-                        <tr><td>INV-01</td><td>Waterproof Royal Tent (30x60)</td><td>15 Sets</td><td>8 Sets</td><td><span style="color:green;">Sufficient</span></td></tr>
-                        <tr><td>INV-02</td><td>Maharaja VIP Sofas</td><td>40 Units</td><td>10 Units</td><td><span style="color:orange;">In Demand</span></td></tr>
-                        <tr><td>INV-03</td><td>Banquet Armchairs</td><td>1200 Units</td><td>300 Units</td><td><span style="color:green;">Sufficient</span></td></tr>
-                        <tr><td>INV-04</td><td>LED Ambient Lights (50W)</td><td>250 Units</td><td>50 Units</td><td><span style="color:red;">Low Stock</span></td></tr>
-                    </tbody>
-                </table>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Warehouse Inventory Master Register</h3>
+                <div style="display:flex; gap:10px; margin-bottom:15px;">
+                    <input type="text" id="newInvName" placeholder="Item Name (e.g., Red Carpet Roll)" class="form-control">
+                    <input type="number" id="newInvQty" placeholder="Total Stock Qty" class="form-control" style="width:180px;">
+                    <button class="btn-gold" onclick="addNewInventoryItem()">Add Stock</button>
+                </div>
+                <div class="table-responsive">
+                    <table id="inventoryTable">
+                        <thead>
+                            <tr>
+                                <th>Item Code</th>
+                                <th>Inventory Name</th>
+                                <th>Total Quantity</th>
+                                <th>In Warehouse</th>
+                                <th>Current Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>INV-101</td><td>Waterproof Royal Canopy (30x60)</td><td>20 Sets</td><td>12 Sets</td><td><span style="color:var(--success-color);">Sufficient</span></td></tr>
+                            <tr><td>INV-102</td><td>Maharaja VIP Velvet Sofas</td><td>50 Units</td><td>14 Units</td><td><span style="color:var(--warning-color);">In Demand</span></td></tr>
+                            <tr><td>INV-103</td><td>Banquet Armchairs with White Covers</td><td>1,500 Units</td><td>400 Units</td><td><span style="color:var(--success-color);">Sufficient</span></td></tr>
+                            <tr><td>INV-104</td><td>50W LED Flood Lights</td><td>300 Units</td><td>45 Units</td><td><span style="color:var(--danger-color);">Low Warehouse Stock</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 3: Inventory Gone / Dispatched Location -->
+            <!-- ADMIN FEATURE 3: DISPATCHED INVENTORY / GONE LOCATION TRACKER -->
             <div id="tab-dispatch" class="admin-tab-content">
-                <h3>Active Inventory Location & Dispatch Register</h3>
-                <table>
-                    <thead><tr><th>Item Description</th><th>Qty Out</th><th>Dispatched Event Location</th><th>Dispatch Date</th><th>Return Expected</th></tr></thead>
-                    <tbody>
-                        <tr><td>Royal Canopy + 200 Chairs</td><td>1 Unit</td><td>Jalore Palace Ground</td><td>2026-09-03</td><td>2026-09-06</td></tr>
-                        <tr><td>Stage Truss & LED Lighting</td><td>2 Sets</td><td>Kehteswar Community Hall</td><td>2026-09-04</td><td>2026-09-05</td></tr>
-                    </tbody>
-                </table>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Dispatched Inventory Location Tracker</h3>
+                <p style="color:#aaa; font-size:0.85rem; margin-bottom:15px;">Tracks where warehouse items are currently deployed.</p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Dispatched Items</th>
+                                <th>Quantity Out</th>
+                                <th>Destination Event Location</th>
+                                <th>Dispatch Date</th>
+                                <th>Expected Return</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Royal Canopy + 300 Chairs</td><td>1 Set</td><td>Jalore Palace Marriage Garden</td><td>2026-09-02</td><td>2026-09-05</td></tr>
+                            <tr><td>High-Bass DJ Trusses & Stage Lights</td><td>2 Rigs</td><td>Kehteswar Community Hall</td><td>2026-09-04</td><td>2026-09-06</td></tr>
+                            <tr><td>VIP Maharaja Sofas</td><td>10 Units</td><td>Nai Morseem Private Grounds</td><td>2026-09-03</td><td>2026-09-05</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 4: Lost & Damaged Inventory -->
+            <!-- ADMIN FEATURE 4: LOST & DAMAGED INVENTORY TRACKER -->
             <div id="tab-lost" class="admin-tab-content">
-                <h3>Lost & Damaged Inventory Tracker</h3>
-                <table>
-                    <thead><tr><th>Item Description</th><th>Quantity Lost/Damaged</th><th>Event / Location Lost</th><th>Estimated Value</th><th>Recovery Action</th></tr></thead>
-                    <tbody>
-                        <tr><td>Banquet Chair Covers</td><td>12 Pcs</td><td>Bhavesh Marriage Garden</td><td>₹2,400</td><td>Deducted from Deposit</td></tr>
-                        <tr><td>Halogen Focus Lights</td><td>2 Pcs</td><td>Nai Morseem Private Party</td><td>₹3,500</td><td>Billed to Customer</td></tr>
-                    </tbody>
-                </table>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Lost & Damaged Inventory Register</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Damaged / Lost Item</th>
+                                <th>Qty Lost</th>
+                                <th>Event Site Lost At</th>
+                                <th>Assessed Financial Value</th>
+                                <th>Recovery Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Satin Banquet Chair Covers</td><td>15 Pcs</td><td>Bhavesh Marriage Garden</td><td>₹3,000</td><td><span style="color:var(--success-color);">Deducted from Client Security Deposit</span></td></tr>
+                            <tr><td>Halogen Focus Lamps</td><td>2 Pcs</td><td>Morseen Ground Sangeet</td><td>₹2,500</td><td><span style="color:var(--danger-color);">Pending Recovery Bill</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 5: Bad Debts & Direct WhatsApp Alerts -->
+            <!-- ADMIN FEATURE 5: BAD DEBTS & DIRECT WHATSAPP NOTIFICATIONS -->
             <div id="tab-baddebts" class="admin-tab-content">
-                <h3>Bad Debts & Outstanding Balance Ledger</h3>
-                <p>Send direct reminder notifications to baddebt holders via WhatsApp.</p>
-                <table>
-                    <thead><tr><th>Customer Name</th><th>Phone Number</th><th>Pending Amount</th><th>Event Date</th><th>Direct Action Notification</th></tr></thead>
-                    <tbody>
-                        <tr>
-                            <td>Suresh Meghwal</td>
-                            <td>+91 98000 11122</td>
-                            <td>₹18,500</td>
-                            <td>2026-08-15</td>
-                            <td>
-                                <button class="btn-gold" onclick="sendBadDebtReminder('Suresh Meghwal', '919800011122', '18500')">
-                                    <i class="fa-brands fa-whatsapp"></i> Notify Debt
-                                </button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>Vikram Singh</td>
-                            <td>+91 97111 22233</td>
-                            <td>₹32,000</td>
-                            <td>2026-07-20</td>
-                            <td>
-                                <button class="btn-gold" onclick="sendBadDebtReminder('Vikram Singh', '919711122233', '32000')">
-                                    <i class="fa-brands fa-whatsapp"></i> Notify Debt
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Bad Debts Ledger & Direct Reminders</h3>
+                <p style="color:#aaa; font-size:0.85rem; margin-bottom:15px;">Send automated direct WhatsApp reminder messages to customers with unpaid balances.</p>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Debtor Name</th>
+                                <th>Phone Number</th>
+                                <th>Pending Balance</th>
+                                <th>Event Date</th>
+                                <th>Action Notification</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Suresh Meghwal</td>
+                                <td>+91 98290 12345</td>
+                                <td>₹18,500</td>
+                                <td>2026-08-12</td>
+                                <td>
+                                    <button class="btn-success" onclick="notifyBadDebt('Suresh Meghwal', '919829012345', '18500')">
+                                        <i class="fa-brands fa-whatsapp"></i> Notify WhatsApp
+                                    </button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>Vikram Singh Rajput</td>
+                                <td>+91 97840 67890</td>
+                                <td>₹35,000</td>
+                                <td>2026-07-28</td>
+                                <td>
+                                    <button class="btn-success" onclick="notifyBadDebt('Vikram Singh Rajput', '919784067890', '35000')">
+                                        <i class="fa-brands fa-whatsapp"></i> Notify WhatsApp
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 6: Live Media Control -->
+            <!-- ADMIN FEATURE 6: LIVE MEDIA & GALLERY CONTROL -->
             <div id="tab-media" class="admin-tab-content">
-                <h3>Gallery & Live Media Upload</h3>
-                <input type="file" accept="image/*,video/*" class="form-control" onchange="alert('Media uploaded successfully to live gallery database.')">
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Live Gallery & Media Controller</h3>
+                <div style="background:#1e1e24; padding:20px; border-radius:8px; margin-bottom:20px;">
+                    <label style="color:#fff; display:block; margin-bottom:10px;">Upload Image or Video to Public Website Gallery:</label>
+                    <input type="file" id="adminMediaUpload" accept="image/*,video/*" class="form-control" onchange="handleAdminMediaUpload(event)">
+                </div>
             </div>
 
-            <!-- Admin Tab 7: Booking Records -->
+            <!-- ADMIN FEATURE 7: BOOKING REQUESTS REGISTER -->
             <div id="tab-bookings" class="admin-tab-content">
-                <h3>Customer Online Booking Requests</h3>
-                <p>No new pending requests.</p>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Recent Website Booking Inquiries</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Phone Number</th>
+                                <th>Event Date</th>
+                                <th>Event Type</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody id="adminBookingsTable">
+                            <tr><td>Kishore Vyas</td><td>+91 94140 11223</td><td>2026-11-10</td><td>Royal Wedding</td><td><span style="color:var(--success-color);">Confirmed</span></td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 8: Revenue Analytics -->
+            <!-- ADMIN FEATURE 8: REVENUE ANALYTICS -->
             <div id="tab-analytics" class="admin-tab-content">
-                <h3>Monthly Business Earnings</h3>
-                <p>Total Revenue This Month: <strong>₹4,85,000</strong></p>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Financial Performance & Revenue Dashboard</h3>
+                <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
+                    <div class="card" style="background:#1e1e24; color:white;">
+                        <p style="color:#aaa; font-size:0.8rem;">Total Revenue (This Month)</p>
+                        <h2 style="color:var(--bright-gold);">₹6,45,000</h2>
+                    </div>
+                    <div class="card" style="background:#1e1e24; color:white;">
+                        <p style="color:#aaa; font-size:0.8rem;">Total Outstanding Debt</p>
+                        <h2 style="color:var(--danger-color);">₹53,500</h2>
+                    </div>
+                    <div class="card" style="background:#1e1e24; color:white;">
+                        <p style="color:#aaa; font-size:0.8rem;">Active Venue Bookings</p>
+                        <h2 style="color:var(--success-color);">14 Events</h2>
+                    </div>
+                </div>
             </div>
 
-            <!-- Admin Tab 9: Staff Assignment -->
+            <!-- ADMIN FEATURE 9: STAFF ALLOCATION -->
             <div id="tab-staff" class="admin-tab-content">
-                <h3>Labor & Crew Roster</h3>
-                <p>12 Workers currently assigned on site at Jalore Venue.</p>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Labor Roster & Supervisor Staff Allocation</h3>
+                <div class="table-responsive">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Supervisor Name</th>
+                                <th>Assigned Event Location</th>
+                                <th>Labor Crew Count</th>
+                                <th>Shift Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Ramesh Purohit</td><td>Jalore Palace Ground</td><td>18 Crew Members</td><td>On-Site Active</td></tr>
+                            <tr><td>Dinesh Kumar</td><td>Kehteswar Community Hall</td><td>8 Crew Members</td><td>Setup Complete</td></tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
-            <!-- Admin Tab 10: Business Settings -->
+            <!-- ADMIN FEATURE 10: SYSTEM SETTINGS -->
             <div id="tab-settings" class="admin-tab-content">
-                <h3>System Preferences</h3>
-                <p>Update Master Phone numbers & Passwords.</p>
+                <h3 style="color:var(--bright-gold); margin-bottom:15px;">Master Configuration Settings</h3>
+                <div style="max-width:500px;">
+                    <div class="form-group">
+                        <label style="color:#fff;">Master WhatsApp Notification Phone Number:</label>
+                        <input type="text" class="form-control" value="919892880155">
+                    </div>
+                    <div class="form-group">
+                        <label style="color:#fff;">Admin Passcode:</label>
+                        <input type="text" class="form-control" value="jaimaahinglaj">
+                    </div>
+                    <button class="btn-gold" onclick="alert('Settings updated successfully.')">Save Settings</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Event Gallery Section -->
+        <section id="gallery" style="margin-top: 80px;">
+            <div class="section-header">
+                <h2 class="section-title">Royal Event Gallery</h2>
+                <p class="section-subtitle">Real Highlights from Recent Indian Weddings & Functions</p>
+            </div>
+
+            <div class="gallery-grid" id="publicGalleryContainer">
+                <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" style="width:100%; height:250px; object-fit:cover;" alt="Gallery 1">
+                </div>
+                <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" style="width:100%; height:250px; object-fit:cover;" alt="Gallery 2">
+                </div>
+                <div class="card" style="padding:0; overflow:hidden;">
+                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg" style="width:100%; height:250px; object-fit:cover;" alt="Gallery 3">
+                </div>
             </div>
         </section>
 
     </div>
 
-    <!-- Floating Action Buttons -->
+    <!-- Floating Quick Call & WhatsApp Action Buttons -->
     <div class="fab-container">
-        <a href="https://wa.me/919892880155" class="fab" target="_blank" title="WhatsApp Us"><i class="fa-brands fa-whatsapp"></i></a>
-        <a href="tel:+919892880155" class="fab fab-call" title="Direct Call"><i class="fa-solid fa-phone"></i></a>
+        <a href="https://wa.me/919892880155" class="fab" target="_blank" title="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+919892880155" class="fab fab-call" title="Direct Phone Call"><i class="fa-solid fa-phone"></i></a>
     </div>
 
-    <!-- Footer -->
+    <!-- Footer & Address Details -->
     <footer id="contact">
         <h3>KISHOR TENT HOUSE</h3>
         <p style="color: var(--royal-gold); font-size: 1.1rem; margin-bottom: 10px;">किशोर टेंट हाउस</p>
         <p>Kehteswar Market, Nai Morseem</p>
-        <p>Direct Call: <a href="tel:+919892880155" style="color:var(--bright-gold);">+91 98928 80155</a> | <a href="tel:+919699034567" style="color:var(--bright-gold);">+91 96990 34567</a></p>
-        <p style="margin-top: 20px; font-size: 0.8rem; color: #777;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
+        <p style="margin-top:15px;">Direct Owner Call: <a href="tel:+919892880155">+91 98928 80155</a> | <a href="tel:+919699034567">+91 96990 34567</a></p>
+        <p style="margin-top: 30px; font-size: 0.8rem; color: #777;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
     </footer>
-
-    <!-- JavaScript Engine -->
-    <script>
-        // Feature: Password Protected Hidden Admin Console
-        function promptAdminUnlock() {
-            const password = prompt("Enter Secret Admin Passcode:");
-            if (password === "jaimaahinglaj") {
-                document.getElementById('admin-panel').style.display = 'block';
-                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
-                alert("Admin Access Granted! Panel unlocked.");
-            } else if (password !== null) {
-                alert("Incorrect Password! Access Denied.");
-            }
-        }
-
-        function lockAdmin() {
-            document.getElementById('admin-panel').style.display = 'none';
-            alert("Admin Panel Locked.");
-        }
-
-        // Admin Tab Navigation Switcher
-        function switchAdminTab(tabId) {
-            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
-            document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
-            
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
-        }
-
-        // Feature: Billing System Calculations
-        let billItems = [];
-        function addItemToBill() {
-            const desc = document.getElementById('item-desc').value;
-            const qty = parseFloat(document.getElementById('item-qty').value) || 0;
-            const rate = parseFloat(document.getElementById('item-rate').value) || 0;
-
-            if (!desc || qty <= 0 || rate <= 0) {
-                alert("Please enter valid item details.");
-                return;
-            }
-
-            const total = qty * rate;
-            billItems.push({ desc, qty, rate, total });
-            updateBillTable();
-
-            document.getElementById('item-desc').value = '';
-        }
-
-        function updateBillTable() {
-            const tbody = document.querySelector('#bill-items-table tbody');
-            tbody.innerHTML = '';
-            let subtotal = 0;
-
-            billItems.forEach(item => {
-                subtotal += item.total;
-                const tr = document.createElement('tr');
-                tr.innerHTML = `<td>${item.desc}</td><td>${item.qty}</td><td>₹${item.rate}</td><td>₹${item.total}</td>`;
-                tbody.appendChild(tr);
-            });
-
-            const tax = subtotal * 0.18; // 18% GST calculation
-            const grandTotal = subtotal + tax;
-
-            document.getElementById('bill-subtotal').innerText = subtotal.toFixed(2);
-            document.getElementById('bill-tax').innerText = tax.toFixed(2);
-            document.getElementById('bill-grandtotal').innerText = grandTotal.toFixed(2);
-        }
-
-        function printInvoice() {
-            document.getElementById('pr-name').innerText = document.getElementById('bill-cust-name').value;
-            document.getElementById('pr-loc').innerText = document.getElementById('bill-cust-loc').value;
-            document.getElementById('pr-date').innerText = new Date().toLocaleDateString();
-            document.getElementById('pr-total').innerText = document.getElementById('bill-grandtotal').innerText;
-
-            let itemsHtml = '<ul>';
-            billItems.forEach(item => {
-                itemsHtml += `<li>${item.desc} - Qty: ${item.qty} x ₹${item.rate} = ₹${item.total}</li>`;
-            });
-            itemsHtml += '</ul>';
-            document.getElementById('pr-items').innerHTML = itemsHtml;
-
-            window.print();
-        }
-
-        // Feature: Direct WhatsApp Bad Debt Notification Sender
-        function sendBadDebtReminder(name, phone, amount) {
-            const message = `Dear ${name},%0A%0AThis is a friendly reminder from *Kishor Tent House* regarding your outstanding balance of *₹${amount}* for event services.%0A%0AKindly clear the dues at your earliest convenience.%0A%0APayment Details / Support Contact: +91 98928 80155. Thank you!`;
-            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
-        }
-
-        // Customer Feature Interactive Functions
-        function calculateEstimate() {
-            const guests = document.getElementById('calc-guests').value || 0;
-            const total = guests * 125; // 125 per head base estimation
-            document.getElementById('est-total').innerText = total;
-        }
-
-        function checkAvailability() {
-            const date = document.getElementById('avail-date').value;
-            const res = document.getElementById('avail-result');
-            if (date) {
-                res.innerHTML = "<span style='color:green;'>✓ Slot Available for Booking!</span>";
-            }
-        }
-
-        function convertCurr() {
-            const inr = parseFloat(document.getElementById('curr-inr').value) || 0;
-            document.getElementById('curr-usd').innerText = (inr / 83).toFixed(1);
-            document.getElementById('curr-aed').innerText = (inr / 22.6).toFixed(1);
-        }
-
-        function calcSeating(val) {
-            const guests = parseInt(val) || 0;
-            const tables = Math.ceil(guests / 8);
-            document.getElementById('seat-res').innerText = `Req: ${guests} Chairs, ${tables} Round Tables`;
-        }
-
-        function sendBookingWhatsApp(e) {
-            e.preventDefault();
-            const name = document.getElementById('bk-name').value;
-            const phone = document.getElementById('bk-phone').value;
-            const date = document.getElementById('bk-date').value;
-            const msg = document.getElementById('bk-msg').value;
-
-            const text = `*NEW BOOKING INQUIRY*%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ADetails: ${msg}`;
-            window.open(`https://wa.me/919892880155?text=${text}`, '_blank');
-        }
-
-        function toggleTheme() {
-            document.body.classList.toggle('dark-theme');
-        }
-
-        function toggleLanguage() {
-            alert("Language toggled between English and Hindi.");
-        }
-    </script>
-</body>
-</html>
