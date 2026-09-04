@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kishor Tent House | Complete Event Solution</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <button class="lang-btn" id="lang-toggle" onclick="toggleLanguage()">हिन्दी / English</button>
+
+    <header>
+        <h1 id="brand-title">KISHOR TENT HOUSE</h1>
+        <h2 class="subtitle" id="brand-sub">Complete Event Solution</h2>
+        <div class="proprietor" id="proprietor-text">Proprietor: Bhavesh Purohit</div>
+    </header>
+
+    <nav>
+        <a href="#services" id="nav-services">Services</a>
+        <a href="#gallery" id="nav-gallery">Gallery</a>
+        <a href="#booking" id="nav-booking">Book Now</a>
+        <a href="#contact" id="nav-contact">Contact</a>
+    </nav>
+
+    <div class="container">
+        <!-- Quality Badges -->
+        <div class="badges">
+            <span class="badge" id="b1">Hygienic Setup</span>
+            <span class="badge" id="b2">Best Quality Material</span>
+            <span class="badge" id="b3">Affordable Pricing</span>
+            <span class="badge" id="b4">On-Time Service</span>
+        </div>
+
+        <!-- Services Section -->
+        <section id="services">
+            <h2 class="section-title" id="title-services">Our Premium Services</h2>
+            <div class="grid">
+                <div class="card">
+                    <img src="images/tent-decor.jpg" alt="Tent House & Luxury Decoration">
+                    <div class="card-content">
+                        <h3 id="s1-t">Tent House & Luxury Decoration</h3>
+                        <p id="s1-d">Royal Marwadi tents, waterproof canopies, and luxury velvet draping for all events.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/mandap.jpg" alt="Wedding Mandap">
+                    <div class="card-content">
+                        <h3 id="s2-t">Wedding Mandap & Stage Setup</h3>
+                        <p id="s2-d">Traditional royal mandaps with flower styling, stage seating, and grand entrances.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/light-sound.jpg" alt="Light Decoration & DJ">
+                    <div class="card-content">
+                        <h3 id="s3-t">Light Decoration & DJ Sound</h3>
+                        <p id="s3-d">Ambient LED lighting, fireworks, truss setups, and high-bass professional DJ sound.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/catering.jpg" alt="Catering & Crockery">
+                    <div class="card-content">
+                        <h3 id="s4-t">Catering & Crockery Services</h3>
+                        <p id="s4-d">Hygienic food counters, premium bone china/brass crockery, and trained serving staff.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/furniture.jpg" alt="Furniture Rental">
+                    <div class="card-content">
+                        <h3 id="s5-t">Table, Chair & Sofa Rental</h3>
+                        <p id="s5-d">VIP Maharaja sofas, banquet chairs with covers, and round dining tables.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <img src="images/birthday.jpg" alt="Birthday & Party Decoration">
+                    <div class="card-content">
+                        <h3 id="s6-t">Birthday & Special Events</h3>
+                        <p id="s6-d">Custom themes, balloon arches, flower gates, and lighting setups for private parties.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section id="gallery">
+            <h2 class="section-title" id="title-gallery">Event Gallery</h2>
+            <div class="gallery-grid" id="gallery-container">
+                <img src="images/mandap.jpg" alt="Royal Wedding Setup">
+                <img src="images/light-sound.jpg" alt="Lighting Setup">
+                <img src="images/tent-decor.jpg" alt="Tent Decoration">
+                <img src="images/birthday.jpg" alt="Party Setup">
+            </div>
+        </section>
+
+        <!-- Online Booking Section -->
+        <section id="booking">
+            <h2 class="section-title" id="title-booking">Book Your Event</h2>
+            <div class="booking-form">
+                <form id="whatsappForm" onsubmit="sendToWhatsApp(event)">
+                    <div class="form-group">
+                        <label id="lbl-name" for="cust-name">Your Full Name</label>
+                        <input type="text" id="cust-name" required placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-phone" for="cust-phone">Phone Number</label>
+                        <input type="tel" id="cust-phone" required placeholder="Enter 10-digit number">
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-event" for="cust-event">Event Type</label>
+                        <select id="cust-event">
+                            <option value="Wedding">Wedding / Vivah</option>
+                            <option value="Birthday Party">Birthday Party</option>
+                            <option value="Reception">Reception</option>
+                            <option value="Religious Function">Religious / Puja Setup</option>
+                            <option value="Other Function">Other Event</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-date" for="cust-date">Event Date</label>
+                        <input type="date" id="cust-date" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="lbl-msg" for="cust-msg">Additional Requirements</label>
+                        <textarea id="cust-msg" rows="3" placeholder="Tent size, catering headcount, sound setup details..."></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-submit">Confirm Booking via WhatsApp</button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Gallery Admin Panel -->
+        <section class="admin-section" id="admin">
+            <h3>Gallery Admin Panel</h3>
+            <p class="admin-desc">Add new photos/videos to the gallery dynamically.</p>
+            
+            <div id="admin-login-box">
+                <input type="password" id="admin-pass" placeholder="Enter Password (Default: kishor123)">
+                <button onclick="loginAdmin()">Login</button>
+            </div>
+
+            <div class="admin-controls" id="admin-controls">
+                <p class="auth-msg">Authenticated Admin Mode</p>
+                <div class="form-group">
+                    <label for="media-upload">Select Local Media (Image or Video):</label>
+                    <input type="file" id="media-upload" accept="image/*,video/*" onchange="uploadMedia(event)">
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Contact & Footer -->
+    <footer id="contact">
+        <h3>KISHOR TENT HOUSE</h3>
+        <p>Kehteswar Market, Nai Morseem</p>
+        <p>Contact Numbers: <a href="tel:+919892880155">+91 98928 80155</a> | <a href="tel:+919699034567">+91 96990 34567</a></p>
+        <p class="copyright">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
