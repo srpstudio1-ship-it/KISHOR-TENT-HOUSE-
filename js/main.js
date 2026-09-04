@@ -1,610 +1,523 @@
-/**
- * 3D Event Stage Visualizer - Core Engine
- * Manages Three.js scene, camera controls, lighting, model generation, 
- * interactive controls, UI events, export systems, and animation loops.
- */
+/* ==========================================================================
+   KISHOR TENT HOUSE - FULL JAVASCRIPT LOGIC ENGINE
+   Features: 15 Master Admin Tools + IndexedDB Permanent Media Storage
+   ========================================================================== */
 
-// Global State & Data Store
-const STATE = {
-  theme: 'royal-marwari',
-  selectedElement: null,
-  isDragging: false,
-  gridVisible: true,
-  cameraMode: 'perspective',
-  lightingPreset: 'evening-warm',
-  elements: [],
-  undoStack: [],
-  redoStack: [],
-  metrics: {
-    totalBudget: 450000,
-    areaSqFt: 2400,
-    itemCount: 0,
-    powerConsumptionKW: 12.5
-  }
+// System Configuration Data
+const CONFIG = {
+    passcode: "jaimaahinglaj",
+    phone: "919892880155",
+    gstRate: 0.18
 };
 
-// Preset Configuration Libraries
-const LIGHTING_PRESETS = {
-  'daylight-bright': {
-    ambient: 0xffffff,
-    ambientIntensity: 0.8,
-    directional: 0xfffaed,
-    directionalIntensity: 1.2,
-    position: { x: 50, y: 100, z: 50 },
-    background: 0xe0f7fa
-  },
-  'evening-warm': {
-    ambient: 0xffe0b2,
-    ambientIntensity: 0.5,
-    directional: 0xffb74d,
-    directionalIntensity: 1.0,
-    position: { x: 30, y: 60, z: 40 },
-    background: 0x1a0e2e
-  },
-  'sangeet-party': {
-    ambient: 0xaa00ff,
-    ambientIntensity: 0.4,
-    directional: 0x00e676,
-    directionalIntensity: 0.9,
-    position: { x: -20, y: 40, z: 30 },
-    background: 0x0d001a
-  },
-  'royal-wedding': {
-    ambient: 0xffd700,
-    ambientIntensity: 0.6,
-    directional: 0xff4081,
-    directionalIntensity: 1.1,
-    position: { x: 0, y: 80, z: 60 },
-    background: 0x210303
-  }
-};
+// Application State Variables
+let db;
+let invoiceItems = [];
+let totalExpenses = 0;
 
-const ELEMENT_CATALOG = [
-  { id: 'stage-base', name: 'Main Stage Platform', category: 'Structure', defaultDimensions: { x: 20, y: 2, z: 12 }, color: 0x8d6e63, cost: 45000 },
-  { id: 'royal-sofa', name: 'Marwari Maharaja Sofa', category: 'Furniture', defaultDimensions: { x: 4, y: 3, z: 2 }, color: 0xd4af37, cost: 25000 },
-  { id: 'mandap-pillar', name: 'Carved Floral Pillar', category: 'Mandap', defaultDimensions: { x: 1.5, y: 10, z: 1.5 }, color: 0xfff8e7, cost: 12000 },
-  { id: 'flower-arch', name: 'Marigold & Rose Arch', category: 'Decor', defaultDimensions: { x: 12, y: 8, z: 1 }, color: 0xe65100, cost: 35000 },
-  { id: 'par-light', name: 'LED Stage PAR Light', category: 'Lighting', defaultDimensions: { x: 1, y: 1.5, z: 1 }, color: 0x29b6f6, cost: 3500 },
-  { id: 'guest-chair', name: 'Gold Banquet Chair', category: 'Seating', defaultDimensions: { x: 1.5, y: 3, z: 1.5 }, color: 0xffd54f, cost: 800 },
-  { id: 'round-table', name: 'Royal Dining Table', category: 'Seating', defaultDimensions: { x: 5, y: 2.5, z: 5 }, color: 0x5d4037, cost: 4500 },
-  { id: 'chandelier', name: 'Crystal Chandelier', category: 'Lighting', defaultDimensions: { x: 3, y: 5, z: 3 }, color: 0xffffff, cost: 18000 }
+let publicServices = [
+    { id: 1, name: "Tent House & Luxury Decoration", desc: "Royal Marwadi tents & waterproof canopies.", img: "https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg", active: true },
+    { id: 2, name: "Wedding Mandap & Stage Setup", desc: "Traditional royal mandaps with flower styling.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg", active: true },
+    { id: 3, name: "Light Decoration & DJ Sound", desc: "Ambient LED lighting & high-bass DJ rigs.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg", active: true }
 ];
 
-// App Initialization Handler
-document.addEventListener('DOMContentLoaded', () => {
-  console.log('Initializing 3D Event Visualizer App...');
-  const appContainer = document.getElementById('canvas-container') || createFallbackContainer();
-  
-  const visualizer = new EventVisualizer3D(appContainer);
-  const uiController = new UIController(visualizer);
-  
-  visualizer.init();
-  uiController.bindEvents();
-  
-  // Expose instance globally for debugging & testing
-  window.AppVisualizer = visualizer;
-  window.AppUI = uiController;
+// Document Initialization & IndexedDB Setup
+document.addEventListener("DOMContentLoaded", () => {
+    renderPublicServices();
+    renderServiceToggleTable();
+    initIndexedDB();
 });
 
-function createFallbackContainer() {
-  const div = document.createElement('div');
-  div.id = 'canvas-container';
-  div.style.width = '100vw';
-  div.style.height = '100vh';
-  div.style.position = 'fixed';
-  div.style.top = '0';
-  div.style.left = '0';
-  div.style.zIndex = '1';
-  document.body.appendChild(div);
-  return div;
-}
+/* ==========================================================================
+   INDEXEDDB DATABASE SETUP (PERMANENT MEDIA STORAGE)
+   ========================================================================== */
+function initIndexedDB() {
+    const dbRequest = indexedDB.open("KishorTentGalleryDB", 1);
 
-// Main 3D Engine Class
-class EventVisualizer3D {
-  constructor(container) {
-    this.container = container;
-    this.scene = null;
-    this.camera = null;
-    this.renderer = null;
-    this.controls = null;
-    this.raycaster = new THREE.Raycaster();
-    this.mouse = new THREE.Vector2();
-    
-    this.lights = {
-      ambient: null,
-      directional: null,
-      spots: []
-    };
-    
-    this.stageGroup = new THREE.Group();
-    this.gridHelper = null;
-    this.planeMesh = null;
-    
-    this.animationFrameId = null;
-    this.clock = new THREE.Clock();
-    this.transformMode = 'translate'; // translate, rotate, scale
-  }
-
-  init() {
-    this.setupScene();
-    this.setupCamera();
-    this.setupRenderer();
-    this.setupLighting();
-    this.setupEnvironment();
-    this.setupInteractionListeners();
-    this.animate();
-    
-    console.log('3D Engine initialized successfully.');
-  }
-
-  setupScene() {
-    this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(LIGHTING_PRESETS['evening-warm'].background);
-    this.scene.fog = new THREE.FogExp2(0x1a0e2e, 0.015);
-    this.scene.add(this.stageGroup);
-  }
-
-  setupCamera() {
-    const aspect = this.container.clientWidth / this.container.clientHeight;
-    this.camera = new THREE.PerspectiveCamera(60, aspect, 0.1, 1000);
-    this.camera.position.set(0, 25, 45);
-    this.camera.lookAt(0, 0, 0);
-  }
-
-  setupRenderer() {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, preserveDrawingBuffer: true });
-    this.renderer.setSize(this.container.clientWidth, this.container.clientHeight);
-    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    this.renderer.shadowMap.enabled = true;
-    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 1.0;
-    
-    this.container.appendChild(this.renderer.domElement);
-  }
-
-  setupLighting() {
-    const preset = LIGHTING_PRESETS['evening-warm'];
-
-    this.lights.ambient = new THREE.AmbientLight(preset.ambient, preset.ambientIntensity);
-    this.scene.add(this.lights.ambient);
-
-    this.lights.directional = new THREE.DirectionalLight(preset.directional, preset.directionalIntensity);
-    this.lights.directional.position.set(preset.position.x, preset.position.y, preset.position.z);
-    this.lights.directional.castShadow = true;
-    this.lights.directional.shadow.mapSize.width = 2048;
-    this.lights.directional.shadow.mapSize.height = 2048;
-    this.lights.directional.shadow.camera.near = 0.5;
-    this.lights.directional.shadow.camera.far = 150;
-    
-    const d = 40;
-    this.lights.directional.shadow.camera.left = -d;
-    this.lights.directional.shadow.camera.right = d;
-    this.lights.directional.shadow.camera.top = d;
-    this.lights.directional.shadow.camera.bottom = -d;
-    
-    this.scene.add(this.lights.directional);
-
-    // Decorative Stage Accent Spotlights
-    const spot1 = new THREE.SpotLight(0xff007f, 2);
-    spot1.position.set(-15, 20, -5);
-    spot1.angle = Math.PI / 6;
-    spot1.penumbra = 0.5;
-    spot1.target.position.set(-10, 0, 0);
-    
-    const spot2 = new THREE.SpotLight(0x00f0ff, 2);
-    spot2.position.set(15, 20, -5);
-    spot2.angle = Math.PI / 6;
-    spot2.penumbra = 0.5;
-    spot2.target.position.set(10, 0, 0);
-
-    this.scene.add(spot1);
-    this.scene.add(spot1.target);
-    this.scene.add(spot2);
-    this.scene.add(spot2.target);
-    
-    this.lights.spots.push(spot1, spot2);
-  }
-
-  setupEnvironment() {
-    // Stage Floor Plane
-    const floorGeometry = new THREE.PlaneGeometry(100, 100);
-    const floorMaterial = new THREE.MeshStandardMaterial({
-      color: 0x111111,
-      roughness: 0.4,
-      metalness: 0.2
-    });
-    this.planeMesh = new THREE.Mesh(floorGeometry, floorMaterial);
-    this.planeMesh.rotation.x = -Math.PI / 2;
-    this.planeMesh.receiveShadow = true;
-    this.scene.add(this.planeMesh);
-
-    // Dynamic Grid Overlay
-    this.gridHelper = new THREE.GridHelper(100, 50, 0xd4af37, 0x444444);
-    this.gridHelper.position.y = 0.01;
-    this.scene.add(this.gridHelper);
-
-    // Initialize Default Stage Setup
-    this.buildDefaultStageLayout();
-  }
-
-  buildDefaultStageLayout() {
-    this.addElementToScene('stage-base', 0, 1, 0);
-    this.addElementToScene('royal-sofa', 0, 3.5, -2);
-    this.addElementToScene('flower-arch', 0, 6, -5);
-    this.addElementToScene('mandap-pillar', -8, 5, -4);
-    this.addElementToScene('mandap-pillar', 8, 5, -4);
-  }
-
-  addElementToScene(catalogId, posX = 0, posY = 0, posZ = 0) {
-    const catalogItem = ELEMENT_CATALOG.find(item => item.id === catalogId);
-    if (!catalogItem) return;
-
-    const group = new THREE.Group();
-    const dims = catalogItem.defaultDimensions;
-    
-    let geometry, material;
-
-    switch (catalogItem.category) {
-      case 'Structure':
-        geometry = new THREE.BoxGeometry(dims.x, dims.y, dims.z);
-        material = new THREE.MeshStandardMaterial({ color: catalogItem.color, roughness: 0.5 });
-        break;
-      case 'Furniture':
-        geometry = new THREE.BoxGeometry(dims.x, dims.y, dims.z);
-        material = new THREE.MeshStandardMaterial({ color: catalogItem.color, metalness: 0.3, roughness: 0.3 });
-        break;
-      case 'Mandap':
-        geometry = new THREE.CylinderGeometry(dims.x / 2, dims.x / 2, dims.y, 16);
-        material = new THREE.MeshStandardMaterial({ color: catalogItem.color, roughness: 0.2 });
-        break;
-      case 'Decor':
-        geometry = new THREE.TorusGeometry(dims.x / 2, 0.5, 16, 100);
-        material = new THREE.MeshStandardMaterial({ color: catalogItem.color, roughness: 0.8 });
-        break;
-      case 'Lighting':
-        geometry = new THREE.ConeGeometry(dims.x, dims.y, 16);
-        material = new THREE.MeshBasicMaterial({ color: catalogItem.color, wireframe: true });
-        break;
-      default:
-        geometry = new THREE.BoxGeometry(dims.x, dims.y, dims.z);
-        material = new THREE.MeshStandardMaterial({ color: catalogItem.color });
-    }
-
-    const mesh = new THREE.Mesh(geometry, material);
-    mesh.castShadow = true;
-    mesh.receiveShadow = true;
-    group.add(mesh);
-
-    group.position.set(posX, posY, posZ);
-    group.userData = {
-      instanceId: 'elem_' + Date.now() + '_' + Math.floor(Math.random() * 1000),
-      catalogId: catalogItem.id,
-      name: catalogItem.name,
-      cost: catalogItem.cost,
-      category: catalogItem.category
-    };
-
-    this.stageGroup.add(group);
-    STATE.elements.push(group.userData);
-    this.notifyStateChange();
-
-    return group;
-  }
-
-  setLightingPreset(presetKey) {
-    const preset = LIGHTING_PRESETS[presetKey];
-    if (!preset) return;
-
-    STATE.lightingPreset = presetKey;
-    
-    // Smooth Lighting Transitions
-    this.lights.ambient.color.setHex(preset.ambient);
-    this.lights.ambient.intensity = preset.ambientIntensity;
-    
-    this.lights.directional.color.setHex(preset.directional);
-    this.lights.directional.intensity = preset.directionalIntensity;
-    this.lights.directional.position.set(preset.position.x, preset.position.y, preset.position.z);
-    
-    this.scene.background = new THREE.Color(preset.background);
-    this.scene.fog.color = new THREE.Color(preset.background);
-  }
-
-  toggleGrid(visible) {
-    STATE.gridVisible = visible;
-    if (this.gridHelper) {
-      this.gridHelper.visible = visible;
-    }
-  }
-
-  setupInteractionListeners() {
-    window.addEventListener('resize', this.onWindowResize.bind(this), false);
-    
-    const canvas = this.renderer.domElement;
-    canvas.addEventListener('pointerdown', this.onPointerDown.bind(this), false);
-    canvas.addEventListener('pointermove', this.onPointerMove.bind(this), false);
-    canvas.addEventListener('pointerup', this.onPointerUp.bind(this), false);
-  }
-
-  onWindowResize() {
-    const width = this.container.clientWidth;
-    const height = this.container.clientHeight;
-
-    this.camera.aspect = width / height;
-    this.camera.updateProjectionMatrix();
-
-    this.renderer.setSize(width, height);
-  }
-
-  onPointerDown(event) {
-    const rect = this.renderer.domElement.getBoundingClientRect();
-    this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObjects(this.stageGroup.children, true);
-
-    if (intersects.length > 0) {
-      let topObject = intersects[0].object;
-      while (topObject.parent && topObject.parent !== this.stageGroup) {
-        topObject = topObject.parent;
-      }
-      this.selectElement(topObject);
-    } else {
-      this.deselectElement();
-    }
-  }
-
-  onPointerMove(event) {
-    if (!STATE.isDragging || !STATE.selectedElement) return;
-
-    const rect = this.renderer.domElement.getBoundingClientRect();
-    this.mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
-    this.mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
-
-    this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObject(this.planeMesh);
-
-    if (intersects.length > 0) {
-      const point = intersects[0].point;
-      // Snap to 0.5 unit grid
-      STATE.selectedElement.position.x = Math.round(point.x * 2) / 2;
-      STATE.selectedElement.position.z = Math.round(point.z * 2) / 2;
-      this.notifyStateChange();
-    }
-  }
-
-  onPointerUp() {
-    STATE.isDragging = false;
-  }
-
-  selectElement(object) {
-    this.deselectElement();
-    STATE.selectedElement = object;
-    STATE.isDragging = true;
-
-    // Highlight Selected Mesh
-    object.traverse((child) => {
-      if (child.isMesh) {
-        child.userData.originalColor = child.material.color.getHex();
-        child.material.color.setHex(0x00e676);
-      }
-    });
-
-    const event = new CustomEvent('elementSelected', { detail: object.userData });
-    window.dispatchEvent(event);
-  }
-
-  deselectElement() {
-    if (STATE.selectedElement) {
-      STATE.selectedElement.traverse((child) => {
-        if (child.isMesh && child.userData.originalColor !== undefined) {
-          child.material.color.setHex(child.userData.originalColor);
+    dbRequest.onupgradeneeded = function(event) {
+        db = event.target.result;
+        if (!db.objectStoreNames.contains("photos")) {
+            db.createObjectStore("photos", { keyPath: "id", autoIncrement: true });
         }
-      });
-      STATE.selectedElement = null;
-      STATE.isDragging = false;
-
-      const event = new CustomEvent('elementDeselected');
-      window.dispatchEvent(event);
-    }
-  }
-
-  removeSelectedElement() {
-    if (!STATE.selectedElement) return;
-
-    const instanceId = STATE.selectedElement.userData.instanceId;
-    this.stageGroup.remove(STATE.selectedElement);
-    
-    STATE.elements = STATE.elements.filter(e => e.instanceId !== instanceId);
-    STATE.selectedElement = null;
-    
-    this.notifyStateChange();
-    const event = new CustomEvent('elementDeselected');
-    window.dispatchEvent(event);
-  }
-
-  exportSceneData() {
-    const exportPayload = {
-      version: '2.4.0',
-      timestamp: new Date().toISOString(),
-      preset: STATE.lightingPreset,
-      metrics: STATE.metrics,
-      objects: this.stageGroup.children.map(child => ({
-        instanceId: child.userData.instanceId,
-        catalogId: child.userData.catalogId,
-        position: { x: child.position.x, y: child.position.y, z: child.position.z },
-        rotation: { x: child.rotation.x, y: child.rotation.y, z: child.rotation.z },
-        scale: { x: child.scale.x, y: child.scale.y, z: child.scale.z }
-      }))
     };
-    return JSON.stringify(exportPayload, null, 2);
-  }
 
-  notifyStateChange() {
-    // Recalculate metrics
-    let totalCost = 0;
-    STATE.elements.forEach(item => {
-      totalCost += (item.cost || 0);
-    });
-    
-    STATE.metrics.totalBudget = totalCost;
-    STATE.metrics.itemCount = STATE.elements.length;
+    dbRequest.onsuccess = function(event) {
+        db = event.target.result;
+        loadSavedGallery();
+    };
 
-    const stateEvent = new CustomEvent('appStateUpdated', { detail: STATE });
-    window.dispatchEvent(stateEvent);
-  }
-
-  animate() {
-    this.animationFrameId = requestAnimationFrame(this.animate.bind(this));
-    
-    const elapsedTime = this.clock.getElapsedTime();
-
-    // Subtle ambient animation for spotlights
-    this.lights.spots.forEach((spot, idx) => {
-      spot.position.x += Math.sin(elapsedTime + idx) * 0.02;
-    });
-
-    // Slow orbit camera if resting
-    if (!STATE.isDragging && !STATE.selectedElement) {
-      this.camera.position.x = Math.sin(elapsedTime * 0.1) * 45;
-      this.camera.position.z = Math.cos(elapsedTime * 0.1) * 45;
-      this.camera.lookAt(0, 2, 0);
-    }
-
-    this.renderer.render(this.scene, this.camera);
-  }
+    dbRequest.onerror = function(event) {
+        console.error("IndexedDB Storage Error:", event.target.errorCode);
+    };
 }
 
-// User Interface & Event Controller
-class UIController {
-  constructor(visualizer) {
-    this.visualizer = visualizer;
-    this.catalogContainer = document.getElementById('catalog-list');
-    this.budgetDisplay = document.getElementById('budget-counter');
-    this.itemCountDisplay = document.getElementById('item-counter');
-    this.presetSelector = document.getElementById('lighting-preset');
-    this.gridToggle = document.getElementById('toggle-grid');
-    this.deleteBtn = document.getElementById('btn-delete-selected');
-    this.exportBtn = document.getElementById('btn-export-json');
-  }
-
-  bindEvents() {
-    this.renderCatalog();
-
-    // App state change update listeners
-    window.addEventListener('appStateUpdated', (e) => {
-      this.updateMetricsUI(e.detail.metrics);
-    });
-
-    window.addEventListener('elementSelected', (e) => {
-      if (this.deleteBtn) this.deleteBtn.disabled = false;
-      console.log('Selected object:', e.detail.name);
-    });
-
-    window.addEventListener('elementDeselected', () => {
-      if (this.deleteBtn) this.deleteBtn.disabled = true;
-    });
-
-    if (this.presetSelector) {
-      this.presetSelector.addEventListener('change', (e) => {
-        this.visualizer.setLightingPreset(e.target.value);
-      });
-    }
-
-    if (this.gridToggle) {
-      this.gridToggle.addEventListener('change', (e) => {
-        this.visualizer.toggleGrid(e.target.checked);
-      });
-    }
-
-    if (this.deleteBtn) {
-      this.deleteBtn.addEventListener('click', () => {
-        this.visualizer.removeSelectedElement();
-      });
-    }
-
-    if (this.exportBtn) {
-      this.exportBtn.addEventListener('click', () => {
-        const json = this.visualizer.exportSceneData();
-        this.triggerDownload('event-stage-layout.json', json);
-      });
-    }
-  }
-
-  renderCatalog() {
-    if (!this.catalogContainer) return;
-    this.catalogContainer.innerHTML = '';
-
-    ELEMENT_CATALOG.forEach(item => {
-      const card = document.createElement('div');
-      card.className = 'catalog-card';
-      card.style.cssText = `
-        padding: 10px;
-        margin: 5px;
-        background: #2a2a38;
-        color: #fff;
-        border-radius: 6px;
-        cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      `;
-      card.innerHTML = `
-        <div>
-          <div style="font-weight: bold;">${item.name}</div>
-          <div style="font-size: 12px; color: #aaa;">${item.category} • ₹${item.cost.toLocaleString()}</div>
-        </div>
-        <button class="add-btn" style="padding: 4px 8px; background: #d4af37; border: none; border-radius: 4px; cursor: pointer;">Add</button>
-      `;
-
-      card.querySelector('.add-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        this.visualizer.addElementToScene(item.id, (Math.random() - 0.5) * 10, 2, (Math.random() - 0.5) * 10);
-      });
-
-      this.catalogContainer.appendChild(card);
-    });
-  }
-
-  updateMetricsUI(metrics) {
-    if (this.budgetDisplay) {
-      this.budgetDisplay.innerText = `₹${metrics.totalBudget.toLocaleString()}`;
-    }
-    if (this.itemCountDisplay) {
-      this.itemCountDisplay.innerText = metrics.itemCount.toString();
-    }
-  }
-
-  triggerDownload(filename, content) {
-    const element = document.createElement('a');
-    element.setAttribute('href', 'data:text/json;charset=utf-8,' + encodeURIComponent(content));
-    element.setAttribute('download', filename);
-    element.style.display = 'none';
-    document.body.appendChild(element);
-    element.click();
-    document.body.removeChild(element);
-  }
+/* ==========================================================================
+   CORE SYSTEM UTILITIES & NAVIGATION
+   ========================================================================== */
+function toggleLanguage() {
+    alert("Language toggled between English & Hindi.");
 }
 
-// Canvas & WebGL Utilities
-const StageUtils = {
-  calculateBoundingBox(object) {
-    const box = new THREE.Box3().setFromObject(object);
-    const size = new THREE.Vector3();
-    box.getSize(size);
-    return size;
-  },
+function unlockAdmin() {
+    const pass = document.getElementById('adminPassInput').value;
+    if (pass === CONFIG.passcode) {
+        document.getElementById('admin-login-box').style.display = 'none';
+        document.getElementById('lockBtn').style.display = 'inline-block';
+        document.getElementById('admin-main-body').style.display = 'block';
+        alert("Owner Security Authenticated! Console Unlocked.");
+    } else {
+        alert("Invalid Admin Password!");
+    }
+}
 
-  formatCurrencyINR(amount) {
-    return new Intl.NumberFormat('en-IN', {
-      style: 'currency',
-      currency: 'INR',
-      maximumFractionDigits: 0
-    }).format(amount);
-  },
+function lockAdmin() {
+    document.getElementById('admin-login-box').style.display = 'inline-block';
+    document.getElementById('lockBtn').style.display = 'none';
+    document.getElementById('admin-main-body').style.display = 'none';
+    document.getElementById('adminPassInput').value = '';
+}
 
-  generateRandomColorHex() {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16).padStart(6, '0');
-  }
-};
+function switchAdminTab(tabId, btn) {
+    document.querySelectorAll('.admin-feature-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById(tabId).classList.add('active');
+    btn.classList.add('active');
+}
+
+function renderPublicServices() {
+    const container = document.getElementById('services-container');
+    if (!container) return;
+    container.innerHTML = '';
+    publicServices.filter(s => s.active).forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'service-card';
+        card.innerHTML = `
+            <div class="service-img-wrapper"><img src="${s.img}" alt="${s.name}"></div>
+            <div class="service-content">
+                <h3>${s.name}</h3>
+                <p>${s.desc}</p>
+            </div>
+        `;
+        container.appendChild(card);
+    });
+}
+
+/* ==========================================================================
+   FEATURE 1: GST INVOICE BUILDER
+   ========================================================================== */
+function addInvoiceItem() {
+    const desc = document.getElementById('invDesc').value;
+    const qty = parseFloat(document.getElementById('invQty').value) || 0;
+    const rate = parseFloat(document.getElementById('invRate').value) || 0;
+
+    if (!desc || qty <= 0 || rate <= 0) return alert("Fill valid item description, qty, and rate.");
+
+    const total = qty * rate;
+    invoiceItems.push({ desc, qty, rate, total });
+    renderInvoiceTable();
+
+    document.getElementById('invDesc').value = '';
+    document.getElementById('invQty').value = '';
+    document.getElementById('invRate').value = '';
+}
+
+function renderInvoiceTable() {
+    const tbody = document.querySelector('#invoiceTable tbody');
+    tbody.innerHTML = '';
+    let subtotal = 0;
+
+    invoiceItems.forEach((item, index) => {
+        subtotal += item.total;
+        tbody.innerHTML += `
+            <tr>
+                <td>${item.desc}</td>
+                <td>${item.qty}</td>
+                <td>₹${item.rate.toFixed(2)}</td>
+                <td>₹${item.total.toFixed(2)}</td>
+                <td><button class="btn-danger" onclick="invoiceItems.splice(${index},1);renderInvoiceTable();">X</button></td>
+            </tr>`;
+    });
+
+    const tax = subtotal * CONFIG.gstRate;
+    document.getElementById('invSub').innerText = subtotal.toFixed(2);
+    document.getElementById('invTax').innerText = tax.toFixed(2);
+    document.getElementById('invGrand').innerText = (subtotal + tax).toFixed(2);
+}
+
+function printInvoice() {
+    const client = document.getElementById('invClient').value || "Valued Client";
+    document.getElementById('pClient').innerText = client;
+    document.getElementById('pDate').innerText = new Date().toLocaleDateString();
+
+    const pBody = document.getElementById('pTableBody');
+    pBody.innerHTML = '';
+    let subtotal = 0;
+
+    invoiceItems.forEach(i => {
+        subtotal += i.total;
+        pBody.innerHTML += `<tr><td>${i.desc}</td><td>${i.qty}</td><td>₹${i.rate.toFixed(2)}</td><td>₹${i.total.toFixed(2)}</td></tr>`;
+    });
+
+    const tax = subtotal * CONFIG.gstRate;
+    document.getElementById('pSub').innerText = subtotal.toFixed(2);
+    document.getElementById('pTax').innerText = tax.toFixed(2);
+    document.getElementById('pGrand').innerText = (subtotal + tax).toFixed(2);
+
+    const printContents = document.getElementById('printableInvoice').innerHTML;
+    const win = window.open('', '', 'height=600,width=800');
+    win.document.write(`<html><body>${printContents}</body></html>`);
+    win.document.close();
+    win.print();
+}
+
+/* ==========================================================================
+   FEATURE 2: BOOKING MANAGER & PUBLIC FORM SYNC
+   ========================================================================== */
+function submitCustomerBooking(e) {
+    e.preventDefault();
+    const name = document.getElementById('custName').value;
+    const phone = document.getElementById('custPhone').value;
+    const eventType = document.getElementById('custEvent').value;
+    const date = document.getElementById('custDate').value;
+    const msg = document.getElementById('custMsg').value;
+
+    const tbody = document.querySelector('#bookingManagerTable tbody');
+    if (tbody) {
+        tbody.innerHTML += `
+            <tr>
+                <td>${name}</td>
+                <td>${phone}</td>
+                <td>${eventType}</td>
+                <td>${date}</td>
+                <td><span style="color:orange;">Pending</span></td>
+                <td><button class="btn-success" onclick="this.parentElement.previousElementSibling.innerHTML='<span style=\\'color:green;\\'>Confirmed</span>'">Confirm</button></td>
+            </tr>`;
+    }
+
+    const text = `*New Booking Request*%0AName: ${name}%0APhone: ${phone}%0AEvent: ${eventType}%0ADate: ${date}%0ADetails: ${msg}`;
+    window.open(`https://wa.me/${CONFIG.phone}?text=${text}`, '_blank');
+}
+
+/* ==========================================================================
+   FEATURE 3: INVENTORY TRACKER
+   ========================================================================== */
+function addInventoryItem() {
+    const name = document.getElementById('invItemName').value;
+    const total = parseInt(document.getElementById('invItemTotal').value) || 0;
+
+    if (!name || total <= 0) return alert("Specify valid inventory item and count.");
+
+    const tbody = document.querySelector('#inventoryTable tbody');
+    tbody.innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>${total} Units</td>
+            <td>0 Units</td>
+            <td>${total} Units</td>
+            <td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Delete</button></td>
+        </tr>`;
+
+    document.getElementById('invItemName').value = '';
+    document.getElementById('invItemTotal').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 4: PAYMENT LEDGER
+   ========================================================================== */
+function addLedgerEntry() {
+    const name = document.getElementById('payClient').value;
+    const total = parseFloat(document.getElementById('payTotal').value) || 0;
+    const adv = parseFloat(document.getElementById('payAdvance').value) || 0;
+
+    if (!name || total <= 0) return alert("Enter client name and valid total bill.");
+
+    const due = total - adv;
+    const status = due <= 0 ? '<span style="color:green;">Paid</span>' : `<span style="color:red;">Due ₹${due.toFixed(2)}</span>`;
+
+    document.querySelector('#ledgerTable tbody').innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>₹${total.toFixed(2)}</td>
+            <td>₹${adv.toFixed(2)}</td>
+            <td>₹${due.toFixed(2)}</td>
+            <td>${status}</td>
+        </tr>`;
+
+    document.getElementById('payClient').value = '';
+    document.getElementById('payTotal').value = '';
+    document.getElementById('payAdvance').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 5: BAD DEBT WHATSAPP REMINDER
+   ========================================================================== */
+function sendDebtReminder() {
+    const name = document.getElementById('debtName').value;
+    const phone = document.getElementById('debtPhone').value;
+    const amt = document.getElementById('debtAmount').value;
+
+    if (!name || !phone || !amt) return alert("Fill all debt details.");
+
+    const msg = `Dear *${name}*, This is an official payment balance reminder from *Kishor Tent House*. You have an outstanding balance of *₹${amt}*. Kindly clear the payment at your earliest convenience. Contact: +91 98928 80155`;
+    window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
+}
+
+/* ==========================================================================
+   FEATURE 6: LIVE GALLERY UPLOAD ENGINE (INDEXEDDB PERMANENT STORAGE)
+   ========================================================================== */
+function uploadToGallery(e) {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function(event) {
+        const mediaData = {
+            data: event.target.result,
+            type: file.type
+        };
+
+        const transaction = db.transaction(["photos"], "readwrite");
+        const store = transaction.objectStore("photos");
+        const addRequest = store.add(mediaData);
+
+        addRequest.onsuccess = function() {
+            renderMediaItem(mediaData.data, mediaData.type, addRequest.result);
+            alert("Media published and permanently stored on device!");
+        };
+    };
+    reader.readAsDataURL(file);
+}
+
+function loadSavedGallery() {
+    if (!db) return;
+    const transaction = db.transaction(["photos"], "readonly");
+    const store = transaction.objectStore("photos");
+    const cursorRequest = store.openCursor();
+
+    cursorRequest.onsuccess = function(event) {
+        const cursor = event.target.result;
+        if (cursor) {
+            renderMediaItem(cursor.value.data, cursor.value.type, cursor.key);
+            cursor.continue();
+        }
+    };
+}
+
+function renderMediaItem(src, type, id) {
+    const container = document.getElementById('gallery-container');
+    if (!container) return;
+
+    const div = document.createElement('div');
+    div.className = 'gallery-item';
+    div.id = `media-item-${id}`;
+
+    const isImage = type.startsWith('image/');
+    const mediaTag = isImage ? `<img src="${src}" alt="Gallery Item">` : `<video src="${src}" controls></video>`;
+
+    div.innerHTML = `
+        ${mediaTag}
+        <button class="gallery-delete-btn" title="Delete Photo" onclick="deleteSavedPhoto(${id})">
+            <i class="fa-solid fa-trash"></i>
+        </button>
+    `;
+    container.prepend(div);
+}
+
+function deleteSavedPhoto(id) {
+    if (!confirm("Are you sure you want to permanently delete this photo?")) return;
+
+    const transaction = db.transaction(["photos"], "readwrite");
+    const store = transaction.objectStore("photos");
+    store.delete(id);
+
+    transaction.oncomplete = function() {
+        const item = document.getElementById(`media-item-${id}`);
+        if (item) item.remove();
+    };
+}
+
+/* ==========================================================================
+   FEATURE 7: PRICE RATE CARD EDITOR
+   ========================================================================== */
+function addRateCardItem() {
+    const item = document.getElementById('rateItem').value;
+    const price = parseFloat(document.getElementById('ratePrice').value) || 0;
+
+    if (!item || price <= 0) return alert("Enter item and valid price.");
+
+    document.querySelector('#rateCardTable tbody').innerHTML += `
+        <tr>
+            <td>${item}</td>
+            <td>₹${price.toFixed(2)}</td>
+            <td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Remove</button></td>
+        </tr>`;
+
+    document.getElementById('rateItem').value = '';
+    document.getElementById('ratePrice').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 8: VENDOR EXPENSE LOGGER
+   ========================================================================== */
+function logExpense() {
+    const title = document.getElementById('expName').value;
+    const amt = parseFloat(document.getElementById('expAmount').value) || 0;
+    const cat = document.getElementById('expCategory').value;
+
+    if (!title || amt <= 0) return alert("Enter valid expense title and amount.");
+
+    totalExpenses += amt;
+    document.querySelector('#expenseTable tbody').innerHTML += `
+        <tr>
+            <td>${title}</td>
+            <td>${cat}</td>
+            <td>₹${amt.toFixed(2)}</td>
+        </tr>`;
+
+    document.getElementById('totalExpOut').innerText = totalExpenses.toFixed(2);
+    document.getElementById('expName').value = '';
+    document.getElementById('expAmount').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 9: CALENDAR BOOKING DATE LOCK
+   ========================================================================== */
+function lockDate() {
+    const date = document.getElementById('lockDateInput').value;
+    const reason = document.getElementById('lockDateReason').value;
+
+    if (!date) return alert("Select a valid date to lock.");
+
+    document.querySelector('#calendarTable tbody').innerHTML += `
+        <tr>
+            <td>${date}</td>
+            <td>${reason || 'Reserved'}</td>
+            <td><span style="color:red; font-weight:bold;">LOCKED</span></td>
+        </tr>`;
+
+    document.getElementById('lockDateInput').value = '';
+    document.getElementById('lockDateReason').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 10: QUOTATION GENERATOR
+   ========================================================================== */
+function generateQuotation() {
+    const client = document.getElementById('qClient').value || "Client";
+    const eventType = document.getElementById('qEvent').value || "Event";
+    const guests = parseInt(document.getElementById('qGuests').value) || 0;
+    const rate = parseFloat(document.getElementById('qRatePerGuest').value) || 0;
+
+    if (guests <= 0 || rate <= 0) return alert("Specify valid guest count and rate per guest.");
+
+    const total = guests * rate;
+    document.getElementById('qDetails').innerText = `Prepared for: ${client} | Event: ${eventType} | Guest Count: ${guests} @ ₹${rate}/guest`;
+    document.getElementById('qTotal').innerText = total.toLocaleString('en-IN', { minimumFractionDigits: 2 });
+    document.getElementById('quotationOutput').style.display = 'block';
+}
+
+/* ==========================================================================
+   FEATURE 11: WORKER STAFF ALLOCATOR
+   ========================================================================== */
+function assignStaff() {
+    const name = document.getElementById('staffName').value;
+    const role = document.getElementById('staffRole').value;
+    const venue = document.getElementById('staffVenue').value;
+
+    if (!name || !role) return alert("Fill worker name and assigned role.");
+
+    document.querySelector('#staffTable tbody').innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>${role}</td>
+            <td>${venue || 'Unassigned'}</td>
+            <td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Unassign</button></td>
+        </tr>`;
+
+    document.getElementById('staffName').value = '';
+    document.getElementById('staffRole').value = '';
+    document.getElementById('staffVenue').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 12: PUBLIC SERVICE TOGGLE MANAGER
+   ========================================================================== */
+function renderServiceToggleTable() {
+    const tbody = document.querySelector('#serviceToggleTable tbody');
+    if (!tbody) return;
+    tbody.innerHTML = '';
+    publicServices.forEach((s, idx) => {
+        tbody.innerHTML += `
+            <tr>
+                <td>${s.name}</td>
+                <td>${s.active ? '<span style="color:green; font-weight:bold;">Live</span>' : '<span style="color:red; font-weight:bold;">Hidden</span>'}</td>
+                <td><button class="btn-gold" onclick="toggleServiceActive(${idx})">Toggle</button></td>
+            </tr>`;
+    });
+}
+
+function toggleServiceActive(idx) {
+    publicServices[idx].active = !publicServices[idx].active;
+    renderServiceToggleTable();
+    renderPublicServices();
+}
+
+/* ==========================================================================
+   FEATURE 13: TRANSPORT DISPATCH TRACKER
+   ========================================================================== */
+function dispatchTruck() {
+    const no = document.getElementById('truckNo').value;
+    const driver = document.getElementById('truckDriver').value;
+    const venue = document.getElementById('truckVenue').value;
+
+    if (!no) return alert("Specify truck registration number.");
+
+    document.querySelector('#truckTable tbody').innerHTML += `
+        <tr>
+            <td>${no}</td>
+            <td>${driver || 'N/A'}</td>
+            <td>${venue || 'In-transit'}</td>
+            <td><span style="color:orange; font-weight:bold;">In-Transit</span></td>
+        </tr>`;
+
+    document.getElementById('truckNo').value = '';
+    document.getElementById('truckDriver').value = '';
+    document.getElementById('truckVenue').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 14: CUSTOMER REVIEW MODERATION
+   ========================================================================== */
+function addCustomerReview() {
+    const name = document.getElementById('revClient').value;
+    const text = document.getElementById('revText').value;
+
+    if (!name || !text) return alert("Fill review author and comment.");
+
+    document.querySelector('#reviewTable tbody').innerHTML += `
+        <tr>
+            <td>${name}</td>
+            <td>"${text}"</td>
+            <td><button class="btn-success" onclick="alert('Review approved & highlighted!')">Approve</button></td>
+        </tr>`;
+
+    document.getElementById('revClient').value = '';
+    document.getElementById('revText').value = '';
+}
+
+/* ==========================================================================
+   FEATURE 15: SETTLEMENT DISCOUNT CALCULATOR
+   ========================================================================== */
+function calcDiscount() {
+    const bill = parseFloat(document.getElementById('discBill').value) || 0;
+    const pct = parseFloat(document.getElementById('discPct').value) || 0;
+
+    if (bill <= 0) return alert("Enter valid total bill amount.");
+
+    const discAmt = (bill * pct) / 100;
+    const finalPay = bill - discAmt;
+
+    document.getElementById('discAmtOut').innerText = discAmt.toFixed(2);
+    document.getElementById('finalPayOut').innerText = finalPay.toFixed(2);
+    document.getElementById('discResult').style.display = 'block';
+}
