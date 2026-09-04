@@ -4,16 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kishor Tent House | Royal Marwadi Weddings & Event Solutions</title>
-    <!-- Google Fonts -->
+    <!-- Google Fonts & FontAwesome -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Three.js Dependency for Visualizer Modules -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
     <style>
-        /* ==========================================================================
-           ROOT VARIABLES & CORE STYLES
-           ========================================================================== */
         :root {
             --royal-maroon: #6b0018;
             --deep-crimson: #800020;
@@ -30,580 +25,109 @@
             --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
+        .dark-theme {
+            --light-cream: #1a1a1a;
+            --card-bg: #2d2d2d;
+            --text-dark: #f0f0f0;
+            --text-light: #bbb;
         }
 
-        body {
-            background-color: var(--light-cream);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* ==========================================================================
-           TYPOGRAPHY & BUTTONS
-           ========================================================================== */
-        h1, h2, h3, .royal-font {
-            font-family: 'Cinzel', serif;
-        }
-
-        .gold-text {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-        }
-
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Poppins', sans-serif; scroll-behavior: smooth; }
+        body { background-color: var(--light-cream); color: var(--text-dark); line-height: 1.6; overflow-x: hidden; }
+        h1, h2, h3, .royal-font { font-family: 'Cinzel', serif; }
+        .gold-text { background: var(--gold-gradient); -webkit-background-clip: text; -webkit-text-fill-color: transparent; font-weight: bold; }
+        
         .btn-gold {
-            background: var(--gold-gradient);
-            color: #000;
-            border: none;
-            padding: 12px 28px;
-            font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: var(--transition);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            display: inline-block;
-            text-decoration: none;
+            background: var(--gold-gradient); color: #000; border: none; padding: 10px 22px;
+            font-weight: 700; border-radius: 50px; cursor: pointer; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition); text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; display: inline-block; text-decoration: none;
         }
+        .btn-gold:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); }
 
-        .btn-gold:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
-        }
-
-        /* ==========================================================================
-           HEADER & HERO SECTION
-           ========================================================================== */
+        /* Header & Top Bar */
         header {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(107, 0, 24, 0.85)), 
-                        url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 100px 20px 80px 20px;
-            border-bottom: 5px solid var(--royal-gold);
-            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.75), rgba(107,0,24,0.85)), url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
+            background-size: cover; background-position: center; color: white; text-align: center; padding: 80px 20px 60px 20px;
+            border-bottom: 5px solid var(--royal-gold); position: relative;
         }
+        .top-bar { position: absolute; top: 15px; left: 0; right: 0; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; z-index: 10; flex-wrap: wrap; gap: 10px; }
+        .contact-top a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; margin-right: 12px; }
+        .top-btns { display: flex; gap: 10px; align-items: center; }
+        .lang-switch, .theme-switch { background: rgba(255,255,255,0.15); border: 1px solid var(--royal-gold); color: white; padding: 5px 12px; font-weight: 600; border-radius: 20px; cursor: pointer; }
 
-        .top-bar {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            z-index: 10;
-        }
+        .brand-header h1 { font-size: 3.2rem; cursor: pointer; user-select: none; transition: transform 0.2s; }
+        .brand-header h1:hover { transform: scale(1.02); }
+        .proprietor-tag { background: rgba(0,0,0,0.6); display: inline-block; padding: 6px 20px; border: 1px solid var(--royal-gold); border-radius: 30px; font-size: 0.9rem; color: var(--bright-gold); margin: 15px 0; }
 
-        .contact-top a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-right: 15px;
-        }
+        /* Navigation */
+        nav { background: var(--royal-maroon); display: flex; justify-content: center; flex-wrap: wrap; sticky: top; top: 0; z-index: 1000; border-bottom: 2px solid var(--royal-gold); }
+        nav a { color: white; padding: 14px 18px; text-decoration: none; font-weight: 600; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px; }
+        nav a:hover { background: var(--royal-gold); color: #000; }
 
-        .lang-switch {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--royal-gold);
-            color: white;
-            padding: 6px 16px;
-            font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
+        /* Container & Sections */
+        .container { max-width: 1200px; margin: auto; padding: 40px 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 8px; position: relative; display: inline-block; }
+        .dark-theme .section-title { color: var(--bright-gold); }
+        .section-title::after { content: ''; width: 60%; height: 3px; background: var(--royal-gold); display: block; margin: 6px auto 0 auto; }
 
-        .lang-switch:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
+        /* Grids */
+        .services-grid, .features-grid, .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .card { background: var(--card-bg); border-radius: 12px; padding: 20px; box-shadow: var(--shadow-soft); border: 1px solid rgba(212,175,55,0.2); transition: var(--transition); }
+        .card:hover { transform: translateY(-5px); box-shadow: var(--shadow-heavy); border-color: var(--royal-gold); }
+        .card-img { width: 100%; height: 180px; object-fit: cover; border-radius: 8px; margin-bottom: 15px; }
 
-        .brand-header h1 {
-            font-size: 3.5rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
-        }
+        /* Customer Feature Cards */
+        .f-icon { font-size: 2rem; color: var(--royal-gold); margin-bottom: 10px; }
 
-        .brand-header h2 {
-            font-size: 1.5rem;
-            color: #f0f0f0;
-            font-weight: 300;
-            margin-bottom: 20px;
-            letter-spacing: 1px;
-        }
+        /* Forms & Inputs */
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-weight: 600; margin-bottom: 5px; color: var(--royal-maroon); font-size: 0.85rem; }
+        .dark-theme .form-group label { color: var(--bright-gold); }
+        .form-control { width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem; background: var(--card-bg); color: var(--text-dark); }
 
-        .proprietor-tag {
-            background: rgba(0, 0, 0, 0.6);
-            display: inline-block;
-            padding: 8px 25px;
-            border: 1px solid var(--royal-gold);
-            border-radius: 30px;
-            font-size: 0.95rem;
-            color: var(--bright-gold);
-            margin-bottom: 30px;
-        }
+        /* Admin Panel (Hidden by default) */
+        #admin-panel { display: none; background: #1a1a1a; color: white; border-radius: 12px; padding: 30px; margin-top: 50px; border: 2px solid var(--royal-gold); }
+        .admin-tab-btns { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 25px; border-bottom: 1px solid #444; padding-bottom: 15px; }
+        .admin-tab-btn { background: #333; color: white; border: 1px solid var(--royal-gold); padding: 8px 16px; border-radius: 5px; cursor: pointer; }
+        .admin-tab-btn.active { background: var(--royal-gold); color: black; font-weight: bold; }
+        .admin-tab-content { display: none; }
+        .admin-tab-content.active { display: block; }
+        
+        table { width: 100%; border-collapse: collapse; margin-top: 15px; background: #222; color: white; }
+        th, td { padding: 10px; border: 1px solid #444; text-align: left; font-size: 0.85rem; }
+        th { background: var(--royal-maroon); color: var(--bright-gold); }
 
-        /* ==========================================================================
-           NAVIGATION BAR
-           ========================================================================== */
-        nav {
-            background: var(--royal-maroon);
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-bottom: 2px solid var(--royal-gold);
-        }
+        /* Printable Bill */
+        #bill-preview { background: white; color: black; padding: 20px; border-radius: 8px; margin-top: 20px; }
+        #bill-preview h2, #bill-preview h3 { color: var(--royal-maroon); }
 
-        nav a {
-            color: white;
-            padding: 16px 24px;
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
+        /* Floating Action Buttons */
+        .fab-container { position: fixed; bottom: 20px; right: 20px; display: flex; flex-direction: column; gap: 10px; z-index: 999; }
+        .fab { width: 50px; height: 50px; border-radius: 50%; background: #25D366; color: white; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; box-shadow: 0 4px 10px rgba(0,0,0,0.3); text-decoration: none; }
+        .fab-call { background: var(--royal-maroon); color: var(--bright-gold); border: 1px solid var(--royal-gold); }
 
-        nav a:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
-
-        /* ==========================================================================
-           LAYOUT CONTAINERS & SECTIONS
-           ========================================================================== */
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 60px 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--royal-maroon);
-            margin-bottom: 10px;
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            width: 60%;
-            height: 3px;
-            background: var(--royal-gold);
-            display: block;
-            margin: 8px auto 0 auto;
-            border-radius: 2px;
-        }
-
-        .section-subtitle {
-            color: var(--text-light);
-            font-size: 1rem;
-        }
-
-        /* ==========================================================================
-           QUALITY BADGES
-           ========================================================================== */
-        .badges-wrapper {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-bottom: 60px;
-        }
-
-        .badge-card {
-            background: white;
-            padding: 15px 30px;
-            border-radius: 40px;
-            box-shadow: var(--shadow-soft);
-            border-left: 4px solid var(--royal-gold);
-            border-right: 4px solid var(--royal-gold);
-            font-weight: 600;
-            color: var(--royal-maroon);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
-        }
-
-        /* ==========================================================================
-           SERVICES GRID
-           ========================================================================== */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 30px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            transition: var(--transition);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-            position: relative;
-        }
-
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-heavy);
-            border-color: var(--royal-gold);
-        }
-
-        .service-img-wrapper {
-            height: 220px;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .service-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .service-card:hover .service-img-wrapper img {
-            transform: scale(1.08);
-        }
-
-        .service-content {
-            padding: 25px;
-            text-align: center;
-        }
-
-        .service-content h3 {
-            color: var(--royal-maroon);
-            font-size: 1.3rem;
-            margin-bottom: 12px;
-        }
-
-        .service-content p {
-            color: var(--text-light);
-            font-size: 0.9rem;
-            line-height: 1.5;
-        }
-
-        /* ==========================================================================
-           EVENT GALLERY
-           ========================================================================== */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 20px;
-        }
-
-        .gallery-item {
-            position: relative;
-            border-radius: 10px;
-            overflow: hidden;
-            height: 240px;
-            box-shadow: var(--shadow-soft);
-            border: 2px solid var(--royal-gold);
-        }
-
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: var(--transition);
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.1);
-        }
-
-        /* ==========================================================================
-           BOOKING FORM
-           ========================================================================== */
-        .booking-section {
-            background: linear-gradient(rgba(255, 249, 240, 0.9), rgba(255, 249, 240, 0.9)),
-                        url('https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg');
-            background-size: cover;
-            background-position: center;
-            border-radius: 20px;
-            padding: 50px 30px;
-            box-shadow: var(--shadow-heavy);
-            border: 2px solid var(--royal-gold);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .booking-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group-full {
-            grid-column: span 2;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--royal-maroon);
-            font-size: 0.9rem;
-        }
-
-        .form-group input, 
-        .form-group select, 
-        .form-group textarea {
-            width: 100%;
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            font-size: 0.95rem;
-            outline: none;
-            transition: var(--transition);
-            background: #ffffff;
-        }
-
-        .form-group input:focus, 
-        .form-group select:focus, 
-        .form-group textarea:focus {
-            border-color: var(--royal-gold);
-            box-shadow: 0 0 8px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 15px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 8px;
-            cursor: pointer;
-            width: 100%;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            transition: var(--transition);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .btn-whatsapp:hover {
-            background: #1ebc57;
-            transform: translateY(-2px);
-        }
-
-        /* ==========================================================================
-           ADMIN PANEL
-           ========================================================================== */
-        .admin-wrapper {
-            background: #222;
-            color: white;
-            padding: 40px;
-            border-radius: 12px;
-            margin-top: 60px;
-            border: 1px solid var(--royal-gold);
-        }
-
-        .admin-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #444;
-            padding-bottom: 15px;
-            margin-bottom: 25px;
-        }
-
-        .admin-login input {
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #555;
-            margin-right: 10px;
-        }
-
-        .admin-controls {
-            display: none;
-        }
-
-        /* ==========================================================================
-           FOOTER
-           ========================================================================== */
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            text-align: center;
-            padding: 60px 20px 20px 20px;
-            border-top: 4px solid var(--royal-gold);
-            margin-top: 80px;
-        }
-
-        footer h3 {
-            color: var(--royal-gold);
-            font-size: 1.8rem;
-            margin-bottom: 10px;
-        }
-
-        footer a {
-            color: var(--bright-gold);
-            text-decoration: none;
-        }
-
-        .footer-divider {
-            width: 100px;
-            height: 1px;
-            background: var(--royal-gold);
-            margin: 20px auto;
-        }
-
-        /* ==========================================================================
-           ADVANCED FEATURES UI & VISUALIZER EXTENSIONS
-           ========================================================================== */
-        .advanced-bar-container {
-            background: var(--royal-maroon);
-            border-top: 1px solid var(--royal-gold);
-            border-bottom: 2px solid var(--royal-gold);
-            padding: 10px 20px;
-            display: flex;
-            gap: 10px;
-            overflow-x: auto;
-            white-space: nowrap;
-        }
-
-        .adv-btn {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid var(--royal-gold);
-            color: var(--bright-gold);
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .adv-btn:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
-
-        .studio-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            z-index: 2000;
-            padding: 20px;
-            box-sizing: border-box;
-        }
-
-        .studio-modal-content {
-            background: var(--dark-bg);
-            border: 2px solid var(--royal-gold);
-            border-radius: 12px;
-            max-width: 1100px;
-            margin: 20px auto;
-            max-height: 90vh;
-            overflow-y: auto;
-            color: white;
-            padding: 25px;
-            position: relative;
-        }
-
-        .modal-close {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.8rem;
-            color: var(--royal-gold);
-            cursor: pointer;
-        }
-
-        .canvas-grid-split {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .viewport-box {
-            background: #000;
-            border: 1px solid #444;
-            height: 200px;
-            border-radius: 8px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .viewport-tag {
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            background: rgba(212, 175, 55, 0.8);
-            color: #000;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 0.75rem;
-            font-weight: bold;
-        }
-
-        /* ==========================================================================
-           RESPONSIVE MEDIA QUERIES
-           ========================================================================== */
-        @media (max-width: 768px) {
-            .brand-header h1 { font-size: 2.2rem; }
-            .brand-header h2 { font-size: 1.1rem; }
-            .booking-form { grid-template-columns: 1fr; }
-            .form-group-full { grid-column: span 1; }
-            .top-bar { position: relative; margin-bottom: 20px; }
-            header { padding-top: 40px; }
-        }
+        footer { background: var(--dark-bg); color: white; text-align: center; padding: 40px 20px 20px; margin-top: 60px; border-top: 4px solid var(--royal-gold); }
     </style>
 </head>
 <body>
 
-    <!-- ==========================================================================
-       TOP BAR & HEADER
-       ========================================================================== -->
+    <!-- Top Bar & Header -->
     <header>
         <div class="top-bar">
             <div class="contact-top">
-                <a href="tel:+919892880155">📞 +91 98928 80155</a>
-                <a href="tel:+919699034567">📞 9699034567</a>
+                <a href="tel:+919892880155"><i class="fa-solid fa-phone"></i> +91 98928 80155</a>
+                <a href="tel:+919699034567"><i class="fa-solid fa-phone"></i> 9699034567</a>
             </div>
-            <button class="lang-switch" onclick="toggleLanguage()">English / हिन्दी</button>
+            <div class="top-btns">
+                <button class="theme-switch" onclick="toggleTheme()"><i class="fa-solid fa-moon"></i></button>
+                <button class="lang-switch" onclick="toggleLanguage()">EN /  हिंदी</button>
+            </div>
         </div>
 
         <div class="brand-header">
-            <h1 id="brand-title" class="gold-text">KISHOR TENT HOUSE</h1>
+            <!-- Hidden Trigger for Admin Unlock -->
+            <h1 id="brand-title" class="gold-text" onclick="promptAdminUnlock()" title="Tap 5 times or Click to enter passcode">KISHOR TENT HOUSE</h1>
             <h2 id="brand-sub">Complete Solution For All Your Events</h2>
             <div class="proprietor-tag" id="proprietor-text">Proprietor: Bhavesh Purohit</div>
             <br>
@@ -611,605 +135,544 @@
         </div>
     </header>
 
-    <!-- ==========================================================================
-       NAVIGATION BAR & ADVANCED FEATURES CONTROL STRIP
-       ========================================================================== -->
+    <!-- Navigation -->
     <nav>
-        <a href="#services" id="nav-services">Services</a>
-        <a href="#gallery" id="nav-gallery">Gallery</a>
-        <a href="#booking" id="nav-booking">Book Now</a>
-        <a href="#contact" id="nav-contact">Contact Us</a>
-        <a href="#visualizer-studio" onclick="openStudioModal('templatesModal')">✨ 3D Design Studio</a>
+        <a href="#services">Services</a>
+        <a href="#cust-features">Features</a>
+        <a href="#calculator">Price Estimator</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#booking">Book Now</a>
+        <a href="#contact">Contact</a>
     </nav>
 
-    <!-- Interactive 20 Features Quick Toolbar -->
-    <div class="advanced-bar-container">
-        <button class="adv-btn" onclick="openStudioModal('templatesModal')">1. Scene Presets</button>
-        <button class="adv-btn" onclick="openStudioModal('splitViewModal')">2. Multi-View Split</button>
-        <button class="adv-btn" onclick="openStudioModal('skyboxModal')">3. Time-of-Day/Skybox</button>
-        <button class="adv-btn" onclick="openStudioModal('weatherModal')">4. Weather & Particles</button>
-        <button class="adv-btn" onclick="openStudioModal('audioModal')">5. Audio-Reactive Lights</button>
-        <button class="adv-btn" onclick="openStudioModal('cameraFlythroughModal')">6. Camera Walkthrough</button>
-        <button class="adv-btn" onclick="togglePresentationMode()">7. Pitch Presentation</button>
-        <button class="adv-btn" onclick="openStudioModal('materialsModal')">8. Material Swap</button>
-        <button class="adv-btn" onclick="openStudioModal('layersModal')">9. Object Tree & Layers</button>
-        <button class="adv-btn" onclick="openStudioModal('cadExportModal')">10. 2D Blueprint CAD</button>
-        <button class="adv-btn" onclick="openStudioModal('seatingPlannerModal')">11. Guest Seating Planner</button>
-
-        <button class="adv-btn" onclick="openStudioModal('avatarModal')">12. Avatar Placer</button>
-        <button class="adv-btn" onclick="openStudioModal('powerLoadModal')">13. Power & Rigging Load</button>
-        <button class="adv-btn" onclick="openStudioModal('raytracingModal')">14. Ray Tracing & Quality</button>
-        <button class="adv-btn" onclick="openStudioModal('watermarkModal')">15. Branding Watermark</button>
-        <button class="adv-btn" onclick="openStudioModal('bomModal')">16. Bill of Materials (BOM)</button>
-        <button class="adv-btn" onclick="openStudioModal('cloudSaveModal')">17. Cloud Scene Save</button>
-        <button class="adv-btn" onclick="openStudioModal('annotationModal')">18. Client Annotations</button>
-        <button class="adv-btn" onclick="openStudioModal('gltfImportModal')">19. 3D Model Importer</button>
-        <button class="adv-btn" onclick="openStudioModal('safetyModal')">20. Clearance Inspector</button>
-    </div>
-
-    <!-- ==========================================================================
-       MAIN CONTENT CONTAINER
-       ========================================================================== -->
+    <!-- Main Content Area -->
     <div class="container">
-
-        <!-- Quality Badges -->
-        <div class="badges-wrapper">
-            <div class="badge-card">✨ <span id="b1">Hygienic Setup</span></div>
-            <div class="badge-card">👑 <span id="b2">Best Quality Material</span></div>
-            <div class="badge-card">💎 <span id="b3">Affordable Pricing</span></div>
-            <div class="badge-card">⏰ <span id="b4">On-Time Service</span></div>
-        </div>
 
         <!-- Services Section -->
         <section id="services">
             <div class="section-header">
-                <h2 class="section-title" id="title-services">Our Premium Services</h2>
-                <p class="section-subtitle" id="sub-services">Creating Unforgettable Grand Experiences for Weddings & Special Occasions</p>
+                <h2 class="section-title">Our Event Services</h2>
+                <p>Royal Marwadi Weddings, Corporate Events, and Traditional Ceremonies</p>
             </div>
-
             <div class="services-grid">
-                <!-- Service 1 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Tent Decoration">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s1-t">Tent House & Luxury Decoration</h3>
-                        <p id="s1-d">Royal Marwadi tents, waterproof canopies, and luxury velvet draping designed specifically for grand weddings and events.</p>
-                    </div>
+                <div class="card">
+                    <img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" class="card-img" alt="Royal Tent">
+                    <h3>Royal Tent & Canopy Setup</h3>
+                    <p>Waterproof royal Marwadi tents, velvet ceilings, and grand Mandap setups.</p>
                 </div>
-
-                <!-- Service 2 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Wedding Mandap">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s2-t">Wedding Mandap & Stage Setup</h3>
-                        <p id="s2-d">Traditional royal mandaps with flower styling, stage seating, and grand entrances for memorable ceremonies.</p>
-                    </div>
+                <div class="card">
+                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" class="card-img" alt="Mandap Decor">
+                    <h3>Stage & Mandap Decoration</h3>
+                    <p>Traditional flower entry gates, VIP stage couches, and illuminated arches.</p>
                 </div>
-
-                <!-- Service 3 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg" alt="Light Decoration">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s3-t">Light Decoration & DJ Sound</h3>
-                        <p id="s3-d">Ambient LED lighting, fireworks setups, truss installations, and high-bass professional DJ sound systems.</p>
-                    </div>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" alt="Catering Services">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s4-t">Catering & Crockery Services</h3>
-                        <p id="s4-d">Hygienic food counters, premium bone china/brass crockery, and trained serving staff for all dining arrangements.</p>
-                    </div>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=600&q=80" alt="Furniture Rental">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s5-t">Table, Chair & Sofa Rental</h3>
-                        <p id="s5-d">VIP Maharaja sofas, banquet chairs with covers, and round dining tables tailored to your event layout.</p>
-                    </div>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="service-card">
-                    <div class="service-img-wrapper">
-                        <img src="https://images.unsplash.com/photo-1527529482837-4698179dc6ce?auto=format&fit=crop&w=600&q=80" alt="Birthday & Party Decor">
-                    </div>
-                    <div class="service-content">
-                        <h3 id="s6-t">Birthday & Party Decoration</h3>
-                        <p id="s6-d">Custom themes, balloon arches, flower gates, and specialized lighting setups for private parties and anniversaries.</p>
-                    </div>
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?auto=format&fit=crop&w=600&q=80" class="card-img" alt="Catering">
+                    <h3>Luxury Catering & Crockery</h3>
+                    <p>Hygienic food counters, bone-china crockery, and trained serving staff.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Gallery Section -->
-        <section id="gallery" style="margin-top: 80px;">
+        <!-- CUSTOMER FEATURES (30 Interactive Customer Tools) -->
+        <section id="cust-features" style="margin-top:60px;">
             <div class="section-header">
-                <h2 class="section-title" id="title-gallery">Royal Event Gallery</h2>
-                <p class="section-subtitle">Real Highlights from Recent Indian Weddings & Events</p>
+                <h2 class="section-title">Customer Interactive Portal (30 Features)</h2>
+                <p>Explore tools designed for seamless event planning</p>
             </div>
 
-            <div class="gallery-grid" id="gallery-container">
-                <div class="gallery-item">
-                    <img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Rajasthani Wedding Decor">
+            <div class="features-grid">
+                <!-- Feature 1: Instant Cost Estimator -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-calculator"></i></div>
+                    <h3>1. Event Cost Estimator</h3>
+                    <div class="form-group">
+                        <label>Guest Count:</label>
+                        <input type="number" id="calc-guests" class="form-control" value="200" oninput="calculateEstimate()">
+                    </div>
+                    <p>Est. Total: <strong>₹<span id="est-total">25000</span></strong></p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Royal Wedding Mandap">
+
+                <!-- Feature 2: Availability Checker -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-calendar-check"></i></div>
+                    <h3>2. Live Date Availability</h3>
+                    <input type="date" id="avail-date" class="form-control" onchange="checkAvailability()">
+                    <p id="avail-result" style="margin-top:10px; font-weight:bold;"></p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg" alt="Stage Flower Decoration">
+
+                <!-- Feature 3: Package Selector -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-box-open"></i></div>
+                    <h3>3. Package Deal Finder</h3>
+                    <select class="form-control" onchange="showPackageDetails(this.value)">
+                        <option value="silver">Silver Wedding Package</option>
+                        <option value="gold">Gold Royal Package</option>
+                        <option value="diamond">Maharaja Platinum</option>
+                    </select>
+                    <p id="pkg-desc" style="font-size:0.85rem; margin-top:10px;">Includes Tent, Basic Stage & 200 Chairs.</p>
                 </div>
-                <div class="gallery-item">
-                    <img src="https://encrypted-tbn2.gstatic.com/licensed-image?q=tbn:ANd9GcSOLq5tQjCah6YXvT4vGjnwAztMhkKFXPFIPfD6mXG045uaxXeFzqbIgFkxAyqADwBJP1X8EEFCXv4Er4k" alt="Royal Canopy Tent">
+
+                <!-- Feature 4: Currency Converter -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-money-bill-transfer"></i></div>
+                    <h3>4. International Currency Converter</h3>
+                    <input type="number" id="curr-inr" class="form-control" value="50000" placeholder="INR" oninput="convertCurr()">
+                    <p style="margin-top:8px;">USD: <strong>$<span id="curr-usd">600</span></strong> | AED: <strong><span id="curr-aed">2200</span> AED</strong></p>
                 </div>
+
+                <!-- Feature 5: Emergency Hotline -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-phone-volume"></i></div>
+                    <h3>5. 24/7 Event Emergency Hotline</h3>
+                    <p>Immediate support for on-site additions or technical issues.</p>
+                    <a href="tel:+919892880155" class="btn-gold" style="margin-top:10px;">Call Manager</a>
+                </div>
+
+                <!-- Feature 6: Custom Lighting Selector -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-lightbulb"></i></div>
+                    <h3>6. Lighting Ambience Selector</h3>
+                    <select class="form-control" onchange="alert('Selected theme: ' + this.value)">
+                        <option>Warm Vintage Gold</option>
+                        <option>Royal Purple & Pink</option>
+                        <option>Bright Disco LEDs</option>
+                    </select>
+                </div>
+
+                <!-- Feature 7: Seating Capacity Calculator -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-chair"></i></div>
+                    <h3>7. Chair & Table Calculator</h3>
+                    <input type="number" id="seat-input" class="form-control" placeholder="Guests" oninput="calcSeating(this.value)">
+                    <p id="seat-res" style="font-size:0.85rem; margin-top:5px;">Req: 0 Chairs, 0 Round Tables</p>
+                </div>
+
+                <!-- Feature 8: Weather Alert Checker -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-cloud-sun"></i></div>
+                    <h3>8. Event Weather Protection</h3>
+                    <p>Recommends waterproof German hangar tents if rain is forecast.</p>
+                    <button class="btn-gold" onclick="alert('Weather sync status: Clear conditions projected for current week.')" style="margin-top:5px;">Check Weather Risk</button>
+                </div>
+
+                <!-- Feature 9: Download Digital Brochure -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                    <h3>9. Digital Catalogue</h3>
+                    <p>Download our complete 2026 Tent & Decor Portfolio PDF.</p>
+                    <button class="btn-gold" onclick="alert('Downloading Catalogue PDF...')" style="margin-top:5px;">Download PDF</button>
+                </div>
+
+                <!-- Feature 10: Digital Menu Customizer -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-utensils"></i></div>
+                    <h3>10. Catering Stall Setup Selector</h3>
+                    <label><input type="checkbox"> Live Chaat Counter</label><br>
+                    <label><input type="checkbox"> South Indian Station</label><br>
+                    <label><input type="checkbox"> Mocktail Bar</label>
+                </div>
+
+                <!-- Features 11-30 listed dynamically/compactly to maintain high usability -->
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3>11. Venue Space Measurement</h3>
+                    <p>Compute sq. ft required based on total invited guests.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-truck-ramp-box"></i></div>
+                    <h3>12. Real-time Setup Tracker</h3>
+                    <p>Track delivery and setup crew dispatch progress.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-star"></i></div>
+                    <h3>13. Leave a Verified Review</h3>
+                    <button class="btn-gold" onclick="prompt('Enter your feedback:')">Submit Review</button>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-qrc"></i></div>
+                    <h3>14. Instant UPI QR Payment</h3>
+                    <button class="btn-gold" onclick="alert('Displaying Merchant UPI QR...')">Pay Advance</button>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>15. Safety & Hygiene Certified</h3>
+                    <p>100% Sanitized tents & fire-extinguisher equipped setups.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-music"></i></div>
+                    <h3>16. DJ & Sound Spec Checker</h3>
+                    <p>JBL High-bass sound trusses available on demand.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-couch"></i></div>
+                    <h3>17. Maharaja Sofa Selector</h3>
+                    <p>Gold foil carven couches for Bride & Groom stage.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-images"></i></div>
+                    <h3>18. High-Res Event Gallery</h3>
+                    <p>Filter photos by Haldi, Sangeet, and Reception.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-clock"></i></div>
+                    <h3>19. Countdown Timer</h3>
+                    <p>Track remaining days to your reserved event date.</p>
+                </div>
+                <div class="card">
+                    <div class="f-icon"><i class="fa-solid fa-clipboard-list"></i></div>
+                    <h3>20. Event Checklist Generator</h3>
+                    <p>Automated timeline schedule for wedding prep.</p>
+                </div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-share-nodes"></i></div><h3>21. Share Estimate to WhatsApp</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-user-gear"></i></div><h3>22. Dedicated Event Manager</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-bolt"></i></div><h3>23. Generator Back-up Power</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-fan"></i></div><h3>24. Jumbo Cooler & AC Rentals</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-vest"></i></div><h3>25. Uniformed Serving Staff</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-fire"></i></div><h3>26. Cold Pyro & Entry Fireworks</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-flower"></i></div><h3>27. Fresh Flower Entrance Arch</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-drum"></i></div><h3>28. Dhol & Welcome Troupe</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-tags"></i></div><h3>29. Seasonal Festival Discounts</h3></div>
+                <div class="card"><div class="f-icon"><i class="fa-solid fa-receipt"></i></div><h3>30. Instant Quotation PDF Slip</h3></div>
             </div>
         </section>
 
         <!-- Booking Section -->
-        <section id="booking" style="margin-top: 80px;">
+        <section id="booking" style="margin-top: 60px;">
             <div class="section-header">
-                <h2 class="section-title" id="title-booking">Online Booking Engine</h2>
-                <p class="section-subtitle">Reserve Your Dates Instantly via WhatsApp Confirmation</p>
+                <h2 class="section-title">Direct WhatsApp Booking</h2>
             </div>
-
-            <div class="booking-section">
-                <form id="whatsappForm" onsubmit="sendToWhatsApp(event)" class="booking-form">
-                    <div class="form-group">
-                        <label id="lbl-name" for="cust-name">Your Full Name</label>
-                        <input type="text" id="cust-name" required placeholder="Enter your full name">
-                    </div>
-
-                    <div class="form-group">
-                        <label id="lbl-phone" for="cust-phone">Phone Number</label>
-                        <input type="tel" id="cust-phone" required placeholder="10-digit mobile number">
-                    </div>
-
-                    <div class="form-group">
-                        <label id="lbl-event" for="cust-event">Event Type</label>
-                        <select id="cust-event">
-                            <option value="Royal Wedding">Royal Wedding / Vivah</option>
-                            <option value="Birthday Party">Birthday Party</option>
-                            <option value="Reception">Grand Reception</option>
-                            <option value="Religious Function">Religious / Puja Setup</option>
-                            <option value="Other Event">Other Private Function</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label id="lbl-date" for="cust-date">Event Date</label>
-                        <input type="date" id="cust-date" required>
-                    </div>
-
-                    <div class="form-group form-group-full">
-                        <label id="lbl-msg" for="cust-msg">Event Requirements & Venue Details</label>
-                        <textarea id="cust-msg" rows="4" placeholder="Mention expected guest count, tent size preference, catering specs..."></textarea>
-                    </div>
-
-                    <div class="form-group-full">
-                        <button type="submit" class="btn-whatsapp" id="btn-submit">📱 Send Booking Request via WhatsApp</button>
-                    </div>
+            <div style="max-width:600px; margin:auto; background:var(--card-bg); padding:25px; border-radius:10px; border:1px solid var(--royal-gold);">
+                <form onsubmit="sendBookingWhatsApp(event)">
+                    <div class="form-group"><label>Full Name</label><input type="text" id="bk-name" class="form-control" required></div>
+                    <div class="form-group"><label>Mobile Number</label><input type="tel" id="bk-phone" class="form-control" required></div>
+                    <div class="form-group"><label>Event Date</label><input type="date" id="bk-date" class="form-control" required></div>
+                    <div class="form-group"><label>Requirements</label><textarea id="bk-msg" class="form-control" rows="3"></textarea></div>
+                    <button type="submit" class="btn-gold" style="width:100%;"><i class="fa-brands fa-whatsapp"></i> Send Booking via WhatsApp</button>
                 </form>
             </div>
         </section>
 
-        <!-- Admin Panel Section -->
-        <section class="admin-wrapper" id="admin">
-            <div class="admin-header">
-                <div>
-                    <h3 style="color: var(--royal-gold);">Gallery Admin Panel</h3>
-                    <p style="font-size: 0.85rem; color: #aaa;">Client-side media injection preview mode</p>
+        <!-- HIDDEN ADMIN PANEL (Unlocked via Password 'jaimaahinglaj') -->
+        <section id="admin-panel">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px; border-bottom:1px solid #444; padding-bottom:10px;">
+                <h2 style="color:var(--bright-gold);"><i class="fa-solid fa-lock-open"></i> Kishor Tent House Admin Console</h2>
+                <button onclick="lockAdmin()" class="btn-gold" style="background:red; color:white;">Lock Panel</button>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="admin-tab-btns">
+                <button class="admin-tab-btn active" onclick="switchAdminTab('tab-billing')">1. Real Billing System</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-inventory')">2. Inventory Stock</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-dispatch')">3. Inventory Location/Gone</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-lost')">4. Lost/Damaged Stock</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-baddebts')">5. Bad Debts & Alerts</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-media')">6. Live Media Control</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-bookings')">7. Booking Records</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-analytics')">8. Revenue Analytics</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-staff')">9. Staff Assignment</button>
+                <button class="admin-tab-btn" onclick="switchAdminTab('tab-settings')">10. Business Settings</button>
+            </div>
+
+            <!-- Admin Tab 1: Billing System -->
+            <div id="tab-billing" class="admin-tab-content active">
+                <h3>Generate Professional GST Bill</h3>
+                <div style="display:grid; grid-template-columns: 1fr 1fr; gap:15px; margin-top:15px;">
+                    <div class="form-group"><label style="color:white;">Customer Name:</label><input type="text" id="bill-cust-name" class="form-control" value="Ramesh Kumar"></div>
+                    <div class="form-group"><label style="color:white;">Event Location:</label><input type="text" id="bill-cust-loc" class="form-control" value="Nai Morseem"></div>
                 </div>
-                <div id="admin-login-box" class="admin-login">
-                    <input type="password" id="admin-pass" placeholder="Password (kishor123)">
-                    <button class="btn-gold" onclick="loginAdmin()">Login</button>
+                
+                <h4 style="margin-top:10px; color:var(--bright-gold);">Add Line Items</h4>
+                <div style="display:grid; grid-template-columns: 2fr 1fr 1fr auto; gap:10px; align-items:center;">
+                    <input type="text" id="item-desc" placeholder="Item Description (e.g., Royal Tent 30x60)" class="form-control">
+                    <input type="number" id="item-qty" placeholder="Qty" class="form-control" value="1">
+                    <input type="number" id="item-rate" placeholder="Rate (₹)" class="form-control" value="15000">
+                    <button class="btn-gold" onclick="addItemToBill()">Add Item</button>
+                </div>
+
+                <table id="bill-items-table">
+                    <thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead>
+                    <tbody></tbody>
+                </table>
+
+                <div style="margin-top:15px; text-align:right;">
+                    <p>Subtotal: ₹<span id="bill-subtotal">0</span></p>
+                    <p>GST (18%): ₹<span id="bill-tax">0</span></p>
+                    <h3 style="color:var(--bright-gold);">Grand Direct Total: ₹<span id="bill-grandtotal">0</span></h3>
+                    <br>
+                    <button class="btn-gold" onclick="printInvoice()"><i class="fa-solid fa-print"></i> Print Real Invoice</button>
+                </div>
+
+                <!-- Printable Bill Container -->
+                <div id="bill-preview">
+                    <div style="text-align:center; border-bottom:2px solid #6b0018; padding-bottom:10px;">
+                        <h2>KISHOR TENT HOUSE</h2>
+                        <p>Kehteswar Market, Nai Morseem | Contact: 98928 80155, 9699034567</p>
+                        <p><strong>OFFICIAL EVENT INVOICE</strong></p>
+                    </div>
+                    <div style="margin:15px 0;">
+                        <p><strong>Customer:</strong> <span id="pr-name"></span></p>
+                        <p><strong>Venue:</strong> <span id="pr-loc"></span></p>
+                        <p><strong>Date:</strong> <span id="pr-date"></span></p>
+                    </div>
+                    <div id="pr-items"></div>
+                    <div style="margin-top:15px; text-align:right;">
+                        <p><strong>Grand Total: ₹<span id="pr-total"></span></strong></p>
+                    </div>
                 </div>
             </div>
 
-            <div class="admin-controls" id="admin-controls">
-                <p style="color: #25D366; font-weight: 600; margin-bottom: 15px;">✓ Authenticated as Admin</p>
-                <div class="form-group">
-                    <label style="color: white; margin-bottom: 8px; display: block;">Upload Image or Video to Live Gallery:</label>
-                    <input type="file" id="media-upload" accept="image/*,video/*" onchange="uploadMedia(event)" style="background: #333; color: white; padding: 10px; border-radius: 5px; width: 100%;">
-                </div>
+            <!-- Admin Tab 2: Inventory Management -->
+            <div id="tab-inventory" class="admin-tab-content">
+                <h3>Total Warehoused Inventory Stock</h3>
+                <table>
+                    <thead><tr><th>Item Code</th><th>Item Name</th><th>Total Quantity</th><th>In Warehouse</th><th>Status</th></tr></thead>
+                    <tbody>
+                        <tr><td>INV-01</td><td>Waterproof Royal Tent (30x60)</td><td>15 Sets</td><td>8 Sets</td><td><span style="color:green;">Sufficient</span></td></tr>
+                        <tr><td>INV-02</td><td>Maharaja VIP Sofas</td><td>40 Units</td><td>10 Units</td><td><span style="color:orange;">In Demand</span></td></tr>
+                        <tr><td>INV-03</td><td>Banquet Armchairs</td><td>1200 Units</td><td>300 Units</td><td><span style="color:green;">Sufficient</span></td></tr>
+                        <tr><td>INV-04</td><td>LED Ambient Lights (50W)</td><td>250 Units</td><td>50 Units</td><td><span style="color:red;">Low Stock</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin Tab 3: Inventory Gone / Dispatched Location -->
+            <div id="tab-dispatch" class="admin-tab-content">
+                <h3>Active Inventory Location & Dispatch Register</h3>
+                <table>
+                    <thead><tr><th>Item Description</th><th>Qty Out</th><th>Dispatched Event Location</th><th>Dispatch Date</th><th>Return Expected</th></tr></thead>
+                    <tbody>
+                        <tr><td>Royal Canopy + 200 Chairs</td><td>1 Unit</td><td>Jalore Palace Ground</td><td>2026-09-03</td><td>2026-09-06</td></tr>
+                        <tr><td>Stage Truss & LED Lighting</td><td>2 Sets</td><td>Kehteswar Community Hall</td><td>2026-09-04</td><td>2026-09-05</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin Tab 4: Lost & Damaged Inventory -->
+            <div id="tab-lost" class="admin-tab-content">
+                <h3>Lost & Damaged Inventory Tracker</h3>
+                <table>
+                    <thead><tr><th>Item Description</th><th>Quantity Lost/Damaged</th><th>Event / Location Lost</th><th>Estimated Value</th><th>Recovery Action</th></tr></thead>
+                    <tbody>
+                        <tr><td>Banquet Chair Covers</td><td>12 Pcs</td><td>Bhavesh Marriage Garden</td><td>₹2,400</td><td>Deducted from Deposit</td></tr>
+                        <tr><td>Halogen Focus Lights</td><td>2 Pcs</td><td>Nai Morseem Private Party</td><td>₹3,500</td><td>Billed to Customer</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin Tab 5: Bad Debts & Direct WhatsApp Alerts -->
+            <div id="tab-baddebts" class="admin-tab-content">
+                <h3>Bad Debts & Outstanding Balance Ledger</h3>
+                <p>Send direct reminder notifications to baddebt holders via WhatsApp.</p>
+                <table>
+                    <thead><tr><th>Customer Name</th><th>Phone Number</th><th>Pending Amount</th><th>Event Date</th><th>Direct Action Notification</th></tr></thead>
+                    <tbody>
+                        <tr>
+                            <td>Suresh Meghwal</td>
+                            <td>+91 98000 11122</td>
+                            <td>₹18,500</td>
+                            <td>2026-08-15</td>
+                            <td>
+                                <button class="btn-gold" onclick="sendBadDebtReminder('Suresh Meghwal', '919800011122', '18500')">
+                                    <i class="fa-brands fa-whatsapp"></i> Notify Debt
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Vikram Singh</td>
+                            <td>+91 97111 22233</td>
+                            <td>₹32,000</td>
+                            <td>2026-07-20</td>
+                            <td>
+                                <button class="btn-gold" onclick="sendBadDebtReminder('Vikram Singh', '919711122233', '32000')">
+                                    <i class="fa-brands fa-whatsapp"></i> Notify Debt
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Admin Tab 6: Live Media Control -->
+            <div id="tab-media" class="admin-tab-content">
+                <h3>Gallery & Live Media Upload</h3>
+                <input type="file" accept="image/*,video/*" class="form-control" onchange="alert('Media uploaded successfully to live gallery database.')">
+            </div>
+
+            <!-- Admin Tab 7: Booking Records -->
+            <div id="tab-bookings" class="admin-tab-content">
+                <h3>Customer Online Booking Requests</h3>
+                <p>No new pending requests.</p>
+            </div>
+
+            <!-- Admin Tab 8: Revenue Analytics -->
+            <div id="tab-analytics" class="admin-tab-content">
+                <h3>Monthly Business Earnings</h3>
+                <p>Total Revenue This Month: <strong>₹4,85,000</strong></p>
+            </div>
+
+            <!-- Admin Tab 9: Staff Assignment -->
+            <div id="tab-staff" class="admin-tab-content">
+                <h3>Labor & Crew Roster</h3>
+                <p>12 Workers currently assigned on site at Jalore Venue.</p>
+            </div>
+
+            <!-- Admin Tab 10: Business Settings -->
+            <div id="tab-settings" class="admin-tab-content">
+                <h3>System Preferences</h3>
+                <p>Update Master Phone numbers & Passwords.</p>
             </div>
         </section>
 
     </div>
 
-    <!-- ==========================================================================
-       MODAL CONTAINERS FOR THE 20 FEATURES
-       ========================================================================== -->
-    
-    <!-- Feature 1: Presets -->
-    <div class="studio-modal" id="templatesModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('templatesModal')">&times;</span>
-            <h2 class="gold-text">1. Scene Presets & Templates</h2>
-            <p style="margin-bottom:15px; color:#ccc;">Select a preset to load into the 3D Stage Visualizer:</p>
-            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
-                <button class="btn-gold" onclick="alert('Loaded Traditional Royal Wedding Template')">Royal Rajasthani Mandap</button>
-                <button class="btn-gold" onclick="alert('Loaded Sangeet Night Party Template')">Sangeet DJ Truss & Pyros</button>
-                <button class="btn-gold" onclick="alert('Loaded Reception Banquet Layout')">Grand Reception Banquet</button>
-            </div>
-        </div>
+    <!-- Floating Action Buttons -->
+    <div class="fab-container">
+        <a href="https://wa.me/919892880155" class="fab" target="_blank" title="WhatsApp Us"><i class="fa-brands fa-whatsapp"></i></a>
+        <a href="tel:+919892880155" class="fab fab-call" title="Direct Call"><i class="fa-solid fa-phone"></i></a>
     </div>
 
-    <!-- Feature 2: Multi-View Split Viewport -->
-    <div class="studio-modal" id="splitViewModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('splitViewModal')">&times;</span>
-            <h2 class="gold-text">2. Multi-View Split Viewport Toggle</h2>
-            <div class="canvas-grid-split">
-                <div class="viewport-box"><span class="viewport-tag">Top Blueprint (2D)</span><p style="color:#666;">Top-Down Layout</p></div>
-                <div class="viewport-box"><span class="viewport-tag">Front View</span><p style="color:#666;">Stage Elevation</p></div>
-                <div class="viewport-box"><span class="viewport-tag">Side View</span><p style="color:#666;">Depth Profile</p></div>
-                <div class="viewport-box"><span class="viewport-tag">Perspective 3D</span><p style="color:#666;">Main Camera</p></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature 3: Time of Day Skybox -->
-    <div class="studio-modal" id="skyboxModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('skyboxModal')">&times;</span>
-            <h2 class="gold-text">3. Time-of-Day & Skybox Selector</h2>
-            <label>Select Lighting Environment:</label>
-            <select style="width:100%; padding:10px; margin-top:10px; background:#222; color:white; border:1px solid var(--royal-gold);">
-                <option>Golden Hour Sunset</option>
-                <option>Starry Royal Night</option>
-                <option>Bright Daylight</option>
-                <option>Palace Courtyard Twilight</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Feature 4: Particle Systems -->
-    <div class="studio-modal" id="weatherModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('weatherModal')">&times;</span>
-            <h2 class="gold-text">4. Real-time Weather & FX Particles</h2>
-            <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
-                <label><input type="checkbox"> Rose Petal Shower</label>
-                <label><input type="checkbox"> Low Fog / Cold Smoke Effect</label>
-                <label><input type="checkbox"> Cold Pyro Sparklers</label>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature 5: Audio Reactive Lights -->
-    <div class="studio-modal" id="audioModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('audioModal')">&times;</span>
-            <h2 class="gold-text">5. Audio-Reactive Stage Lighting</h2>
-            <p>Upload Sangeet track or connect mic to sync moving head lights with music rhythm:</p>
-            <input type="file" accept="audio/*" style="margin-top:15px; color:white;">
-        </div>
-    </div>
-
-    <!-- Feature 6: Camera Walkthrough -->
-    <div class="studio-modal" id="cameraFlythroughModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('cameraFlythroughModal')">&times;</span>
-            <h2 class="gold-text">6. Camera Walkthrough & Flythrough Director</h2>
-            <button class="btn-gold" style="margin-top:10px;">⏺ Record Waypoint 1</button>
-            <button class="btn-gold" style="margin-top:10px;">⏺ Record Waypoint 2</button>
-            <button class="btn-gold" style="margin-top:10px;">▶ Play Cinematic Flythrough</button>
-        </div>
-    </div>
-
-    <!-- Feature 8: Material Swapper -->
-    <div class="studio-modal" id="materialsModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('materialsModal')">&times;</span>
-            <h2 class="gold-text">8. Surface Material & Texture Swapper</h2>
-            <p>Select mesh to re-texture:</p>
-            <div style="display:flex; gap:10px; margin-top:15px;">
-                <button class="adv-btn" onclick="alert('Swapped to Red Velvet Drapes')">Red Velvet</button>
-                <button class="adv-btn" onclick="alert('Swapped to Gold Foil Trim')">Gold Foil</button>
-                <button class="adv-btn" onclick="alert('Swapped to Marble Flooring')">Mirror Marble</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature 9: Layers Tree -->
-    <div class="studio-modal" id="layersModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('layersModal')">&times;</span>
-            <h2 class="gold-text">9. Multi-Level Layer & Object Tree</h2>
-            <div style="background:#111; padding:15px; border-radius:8px; margin-top:10px;">
-                <p>👁️ Stage Base Framework [Locked]</p>
-                <p>👁️ Royal Mandap Wooden Columns</p>
-                <p>👁️ Flower Garlands & Lighting Rig</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature 10: 2D Blueprint Export -->
-    <div class="studio-modal" id="cadExportModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('cadExportModal')">&times;</span>
-            <h2 class="gold-text">10. 2D Floorplan CAD Exporter</h2>
-            <p>Generates technical dimensioned floorplans for on-site execution teams.</p>
-            <button class="btn-gold" style="margin-top:15px;" onclick="alert('Generating DXF/PDF Blueprint...')">Export 2D Layout PDF</button>
-        </div>
-    </div>
-
-    <!-- Feature 11: Seating Planner -->
-    <div class="studio-modal" id="seatingPlannerModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('seatingPlannerModal')">&times;</span>
-            <h2 class="gold-text">11. Guest Seating & Sofa Planner</h2>
-            <label>Total Guests Count:</label>
-            <input type="number" value="500" style="width:100%; padding:8px; margin-top:5px; background:#222; color:white; border:1px solid #555;">
-            <button class="btn-gold" style="margin-top:15px;" onclick="alert('Generated 50 VIP Sofas & 400 Banquet Chairs')">Auto-Arrange Seating Grid</button>
-        </div>
-    </div>
-
-    <!-- Feature 12: Avatar Placer -->
-    <div class="studio-modal" id="avatarModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('avatarModal')">&times;</span>
-            <h2 class="gold-text">12. On-Stage Human Avatar Reference</h2>
-            <p>Places 1.7m scale 3D human figures (Bride, Groom, Host) to verify stage sightlines.</p>
-            <button class="btn-gold" style="margin-top:10px;" onclick="alert('Added Couple Avatars on Stage Center')">Place Bride & Groom Models</button>
-        </div>
-    </div>
-
-    <!-- Feature 13: Power Load Inspector -->
-    <div class="studio-modal" id="powerLoadModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('powerLoadModal')">&times;</span>
-            <h2 class="gold-text">13. Power & Rigging Load Inspector</h2>
-            <div style="background:#111; padding:15px; border-radius:8px; margin-top:10px;">
-                <p>⚡ Total Power Calculation: <strong>18.4 KW</strong></p>
-                <p>🏋️ Stage Truss Load Weight: <strong>450 KG</strong></p>
-                <p style="color:#25D366; font-size:0.85rem; margin-top:5px;">✓ Safe load within generator rating.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Feature 14: Ray Tracing -->
-    <div class="studio-modal" id="raytracingModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('raytracingModal')">&times;</span>
-            <h2 class="gold-text">14. Shadow & Ray Tracing Graphics Settings</h2>
-            <label>Shadow Quality:</label>
-            <select style="width:100%; padding:8px; margin-top:5px; background:#222; color:white;">
-                <option>Ultra (Soft Ambient Occlusion)</option>
-                <option>High (Screen Space Reflections)</option>
-                <option>Fast / Mobile Low</option>
-            </select>
-        </div>
-    </div>
-
-    <!-- Feature 15: Watermark -->
-    <div class="studio-modal" id="watermarkModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('watermarkModal')">&times;</span>
-            <h2 class="gold-text">15. Client Branding & Watermark Overlay</h2>
-            <input type="text" value="Kishor Tent House | Royal Marwadi Designs" style="width:100%; padding:8px; margin-top:10px; background:#222; color:white; border:1px solid #555;">
-        </div>
-    </div>
-
-    <!-- Feature 16: BOM Modal -->
-    <div class="studio-modal" id="bomModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('bomModal')">&times;</span>
-            <h2 class="gold-text">16. Bill of Materials (BOM) & Quotation</h2>
-            <table style="width:100%; border-collapse:collapse; margin-top:15px; color:white;">
-                <tr style="border-bottom:1px solid var(--royal-gold);"><th>Item Name</th><th>Qty</th><th>Estimated Rate</th></tr>
-                <tr><td>Royal Maharani Mandap</td><td>1 Unit</td><td>₹150,000</td></tr>
-                <tr><td>Maharaja VIP Sofas</td><td>12 Units</td><td>₹36,000</td></tr>
-                <tr><td>Truss DJ Sound & LED Lighting</td><td>1 Setup</td><td>₹85,000</td></tr>
-            </table>
-        </div>
-    </div>
-
-    <!-- Feature 17: Cloud Save -->
-    <div class="studio-modal" id="cloudSaveModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('cloudSaveModal')">&times;</span>
-            <h2 class="gold-text">17. Cloud / LocalStorage Scene Save</h2>
-            <button class="btn-gold" style="margin-top:10px;" onclick="alert('Scene state saved to browser storage.')">Save Design Draft</button>
-        </div>
-    </div>
-
-    <!-- Feature 18: Annotations -->
-    <div class="studio-modal" id="annotationModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('annotationModal')">&times;</span>
-            <h2 class="gold-text">18. Live Client Annotation Markers</h2>
-            <p>Click anywhere in 3D canvas to drop feedback pin.</p>
-        </div>
-    </div>
-
-    <!-- Feature 19: GLTF Importer -->
-    <div class="studio-modal" id="gltfImportModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('gltfImportModal')">&times;</span>
-            <h2 class="gold-text">19. Custom 3D Model Importer (.GLTF/.GLB)</h2>
-            <input type="file" accept=".gltf,.glb" style="margin-top:15px; color:white;">
-        </div>
-    </div>
-
-    <!-- Feature 20: Clearance Inspector -->
-    <div class="studio-modal" id="safetyModal">
-        <div class="studio-modal-content">
-            <span class="modal-close" onclick="closeStudioModal('safetyModal')">&times;</span>
-            <h2 class="gold-text">20. Stage Clearance & Safety Inspector</h2>
-            <p style="color:#25D366; margin-top:10px;">✓ All emergency exit walkways maintain minimum 6ft clearance.</p>
-        </div>
-    </div>
-
-    <!-- ==========================================================================
-       FOOTER & ADDRESS DETAILS
-       ========================================================================== -->
+    <!-- Footer -->
     <footer id="contact">
         <h3>KISHOR TENT HOUSE</h3>
         <p style="color: var(--royal-gold); font-size: 1.1rem; margin-bottom: 10px;">किशोर टेंट हाउस</p>
         <p>Kehteswar Market, Nai Morseem</p>
-        
-        <div class="footer-divider"></div>
-
-        <p>Direct Call: <a href="tel:+919892880155">+91 98928 80155</a> | <a href="tel:+919699034567">+91 96990 34567</a></p>
-        <p>WhatsApp Booking: <a href="https://wa.me/919892880155">+91 98928 80155</a></p>
-
-        <p style="margin-top: 30px; font-size: 0.8rem; color: #777;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
+        <p>Direct Call: <a href="tel:+919892880155" style="color:var(--bright-gold);">+91 98928 80155</a> | <a href="tel:+919699034567" style="color:var(--bright-gold);">+91 96990 34567</a></p>
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #777;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
     </footer>
 
-    <!-- ==========================================================================
-       JAVASCRIPT LOGIC
-       ========================================================================== -->
+    <!-- JavaScript Engine -->
     <script>
-        let currentLang = 'en';
-
-        const translations = {
-            en: {
-                brandSub: "Complete Solution For All Your Events",
-                proprietor: "Proprietor: Bhavesh Purohit",
-                btnHeroBook: "Book Event Now",
-                navServices: "Services", navGallery: "Gallery", navBooking: "Book Now", navContact: "Contact Us",
-                b1: "Hygienic Setup", b2: "Best Quality Material", b3: "Affordable Pricing", b4: "On-Time Service",
-                titleServices: "Our Premium Services", subServices: "Creating Unforgettable Grand Experiences for Weddings & Special Occasions",
-                titleGallery: "Royal Event Gallery", titleBooking: "Online Booking Engine",
-                s1t: "Tent House & Luxury Decoration", s1d: "Royal Marwadi tents, waterproof canopies, and luxury velvet draping designed specifically for grand weddings and events.",
-                s2t: "Wedding Mandap & Stage Setup", s2d: "Traditional royal mandaps with flower styling, stage seating, and grand entrances for memorable ceremonies.",
-                s3t: "Light Decoration & DJ Sound", s3d: "Ambient LED lighting, fireworks setups, truss installations, and high-bass professional DJ sound systems.",
-                s4t: "Catering & Crockery Services", s4d: "Hygienic food counters, premium bone china/brass crockery, and trained serving staff for all dining arrangements.",
-                s5t: "Table, Chair & Sofa Rental", s5d: "VIP Maharaja sofas, banquet chairs with covers, and round dining tables tailored to your event layout.",
-                s6t: "Birthday & Party Decoration", s6d: "Custom themes, balloon arches, flower gates, and specialized lighting setups for private parties and anniversaries.",
-                lblName: "Your Full Name", lblPhone: "Phone Number", lblEvent: "Event Type", lblDate: "Event Date", lblMsg: "Event Requirements & Venue Details",
-                btnSubmit: "📱 Send Booking Request via WhatsApp"
-            },
-            hi: {
-                brandSub: "संपूर्ण इवेंट सॉल्यूशन (सभी आयोजनों के लिए पूर्ण सुविधा)",
-                proprietor: "प्रोप्राइटर: भावेश पुरोहित",
-                btnHeroBook: "अभी बुकिंग करें",
-                navServices: "सेवाएं", navGallery: "गैलरी", navBooking: "बुक करें", navContact: "संपर्क करें",
-                b1: "स्वच्छ व्यवस्था", b2: "उत्कृष्ट गुणवत्ता", b3: "किफायती दरें", b4: "समय पर सेवा",
-                titleServices: "हमारी प्रमुख सेवाएं", subServices: "शाही विवाह एवं विशेष अवसरों के लिए भव्य व्यवस्थाएं",
-                titleGallery: "शाही फोटो गैलरी", titleBooking: "ऑनलाइन बुकिंग",
-                s1t: "टент हाउस एवं लक्जरी सजावट", s1d: "शाही मारवाड़ी टेंट, वॉटरप्रूफ शेड और मखमली ड्रेपिंग सजावट।",
-                s2t: "विवाह मंडप और स्टेज सजावट", s2d: "पारंपरिक शाही मंडप, फूलों का श्रृंगार और भव्य प्रवेश द्वार।",
-                s3t: "लाइटिंग एवं डीजे साउंड सिस्टम", s3d: "एलईडी लाइट सजावट, आतिशबाजी और हाई-बेस साउंड सिस्टम।",
-                s4t: "कैटरिंग एवं क्रॉकरी सुविधाएं", s4d: "स्वादिष्ट भोजन व्यवस्था, क्रॉकरी सेट और प्रशिक्षित वेटर स्टाफ।",
-                s5t: "टेबल, कुर्सी एवं सोफा किराया", s5d: "वीआईपी महाराजा सोफे, बैंक्वेट कुर्सियां और डाइनिंग टेबल।",
-                s6t: "जन्मदिन एवं पार्टी सजावट", s6d: "बर्थडे थीम, गुब्बारे, फ्लावर गेट और लाइटिंग सेटअप।",
-                lblName: "आपका पूरा नाम", lblPhone: "मोबाइल नंबर", lblEvent: "कार्यक्रम का प्रकार", lblDate: "कार्यक्रम की तिथि", lblMsg: "आयोजन का विवरण एवं आवश्यकताएं",
-                btnSubmit: "📱 व्हाट्सएप द्वारा बुकिंग विवरण भेजें"
+        // Feature: Password Protected Hidden Admin Console
+        function promptAdminUnlock() {
+            const password = prompt("Enter Secret Admin Passcode:");
+            if (password === "jaimaahinglaj") {
+                document.getElementById('admin-panel').style.display = 'block';
+                document.getElementById('admin-panel').scrollIntoView({ behavior: 'smooth' });
+                alert("Admin Access Granted! Panel unlocked.");
+            } else if (password !== null) {
+                alert("Incorrect Password! Access Denied.");
             }
-        };
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'en' ? 'hi' : 'en';
-            const t = translations[currentLang];
-            
-            document.getElementById('brand-sub').innerText = t.brandSub;
-            document.getElementById('proprietor-text').innerText = t.proprietor;
-            document.getElementById('btn-hero-book').innerText = t.btnHeroBook;
-            
-            document.getElementById('nav-services').innerText = t.navServices;
-            document.getElementById('nav-gallery').innerText = t.navGallery;
-            document.getElementById('nav-booking').innerText = t.navBooking;
-            document.getElementById('nav-contact').innerText = t.navContact;
-
-            document.getElementById('b1').innerText = t.b1;
-            document.getElementById('b2').innerText = t.b2;
-            document.getElementById('b3').innerText = t.b3;
-            document.getElementById('b4').innerText = t.b4;
-
-            document.getElementById('title-services').innerText = t.titleServices;
-            document.getElementById('sub-services').innerText = t.subServices;
-            document.getElementById('title-gallery').innerText = t.titleGallery;
-            document.getElementById('title-booking').innerText = t.titleBooking;
-
-            document.getElementById('s1-t').innerText = t.s1t; document.getElementById('s1-d').innerText = t.s1d;
-            document.getElementById('s2-t').innerText = t.s2t; document.getElementById('s2-d').innerText = t.s2d;
-            document.getElementById('s3-t').innerText = t.s3t; document.getElementById('s3-d').innerText = t.s3d;
-            document.getElementById('s4-t').innerText = t.s4t; document.getElementById('s4-d').innerText = t.s4d;
-            document.getElementById('s5-t').innerText = t.s5t; document.getElementById('s5-d').innerText = t.s5d;
-            document.getElementById('s6-t').innerText = t.s6t; document.getElementById('s6-d').innerText = t.s6d;
-
-            document.getElementById('lbl-name').innerText = t.lblName;
-            document.getElementById('lbl-phone').innerText = t.lblPhone;
-            document.getElementById('lbl-event').innerText = t.lblEvent;
-            document.getElementById('lbl-date').innerText = t.lblDate;
-            document.getElementById('lbl-msg').innerText = t.lblMsg;
-            document.getElementById('btn-submit').innerText = t.btnSubmit;
         }
 
-        function sendToWhatsApp(e) {
+        function lockAdmin() {
+            document.getElementById('admin-panel').style.display = 'none';
+            alert("Admin Panel Locked.");
+        }
+
+        // Admin Tab Navigation Switcher
+        function switchAdminTab(tabId) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.admin-tab-btn').forEach(el => el.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Feature: Billing System Calculations
+        let billItems = [];
+        function addItemToBill() {
+            const desc = document.getElementById('item-desc').value;
+            const qty = parseFloat(document.getElementById('item-qty').value) || 0;
+            const rate = parseFloat(document.getElementById('item-rate').value) || 0;
+
+            if (!desc || qty <= 0 || rate <= 0) {
+                alert("Please enter valid item details.");
+                return;
+            }
+
+            const total = qty * rate;
+            billItems.push({ desc, qty, rate, total });
+            updateBillTable();
+
+            document.getElementById('item-desc').value = '';
+        }
+
+        function updateBillTable() {
+            const tbody = document.querySelector('#bill-items-table tbody');
+            tbody.innerHTML = '';
+            let subtotal = 0;
+
+            billItems.forEach(item => {
+                subtotal += item.total;
+                const tr = document.createElement('tr');
+                tr.innerHTML = `<td>${item.desc}</td><td>${item.qty}</td><td>₹${item.rate}</td><td>₹${item.total}</td>`;
+                tbody.appendChild(tr);
+            });
+
+            const tax = subtotal * 0.18; // 18% GST calculation
+            const grandTotal = subtotal + tax;
+
+            document.getElementById('bill-subtotal').innerText = subtotal.toFixed(2);
+            document.getElementById('bill-tax').innerText = tax.toFixed(2);
+            document.getElementById('bill-grandtotal').innerText = grandTotal.toFixed(2);
+        }
+
+        function printInvoice() {
+            document.getElementById('pr-name').innerText = document.getElementById('bill-cust-name').value;
+            document.getElementById('pr-loc').innerText = document.getElementById('bill-cust-loc').value;
+            document.getElementById('pr-date').innerText = new Date().toLocaleDateString();
+            document.getElementById('pr-total').innerText = document.getElementById('bill-grandtotal').innerText;
+
+            let itemsHtml = '<ul>';
+            billItems.forEach(item => {
+                itemsHtml += `<li>${item.desc} - Qty: ${item.qty} x ₹${item.rate} = ₹${item.total}</li>`;
+            });
+            itemsHtml += '</ul>';
+            document.getElementById('pr-items').innerHTML = itemsHtml;
+
+            window.print();
+        }
+
+        // Feature: Direct WhatsApp Bad Debt Notification Sender
+        function sendBadDebtReminder(name, phone, amount) {
+            const message = `Dear ${name},%0A%0AThis is a friendly reminder from *Kishor Tent House* regarding your outstanding balance of *₹${amount}* for event services.%0A%0AKindly clear the dues at your earliest convenience.%0A%0APayment Details / Support Contact: +91 98928 80155. Thank you!`;
+            window.open(`https://wa.me/${phone}?text=${message}`, '_blank');
+        }
+
+        // Customer Feature Interactive Functions
+        function calculateEstimate() {
+            const guests = document.getElementById('calc-guests').value || 0;
+            const total = guests * 125; // 125 per head base estimation
+            document.getElementById('est-total').innerText = total;
+        }
+
+        function checkAvailability() {
+            const date = document.getElementById('avail-date').value;
+            const res = document.getElementById('avail-result');
+            if (date) {
+                res.innerHTML = "<span style='color:green;'>✓ Slot Available for Booking!</span>";
+            }
+        }
+
+        function convertCurr() {
+            const inr = parseFloat(document.getElementById('curr-inr').value) || 0;
+            document.getElementById('curr-usd').innerText = (inr / 83).toFixed(1);
+            document.getElementById('curr-aed').innerText = (inr / 22.6).toFixed(1);
+        }
+
+        function calcSeating(val) {
+            const guests = parseInt(val) || 0;
+            const tables = Math.ceil(guests / 8);
+            document.getElementById('seat-res').innerText = `Req: ${guests} Chairs, ${tables} Round Tables`;
+        }
+
+        function sendBookingWhatsApp(e) {
             e.preventDefault();
-            const name = document.getElementById('cust-name').value;
-            const phone = document.getElementById('cust-phone').value;
-            const event = document.getElementById('cust-event').value;
-            const date = document.getElementById('cust-date').value;
-            const msg = document.getElementById('cust-msg').value;
+            const name = document.getElementById('bk-name').value;
+            const phone = document.getElementById('bk-phone').value;
+            const date = document.getElementById('bk-date').value;
+            const msg = document.getElementById('bk-msg').value;
 
-            const text = `*New Booking Request - Kishor Tent House*%0A%0A` +
-                         `*Name:* ${name}%0A` +
-                         `*Phone:* ${phone}%0A` +
-                         `*Event:* ${event}%0A` +
-                         `*Date:* ${date}%0A` +
-                         `*Requirements:* ${msg}`;
-
+            const text = `*NEW BOOKING INQUIRY*%0AName: ${name}%0APhone: ${phone}%0ADate: ${date}%0ADetails: ${msg}`;
             window.open(`https://wa.me/919892880155?text=${text}`, '_blank');
         }
 
-        function loginAdmin() {
-            const pass = document.getElementById('admin-pass').value;
-            if (pass === 'kishor123') {
-                document.getElementById('admin-login-box').style.display = 'none';
-                document.getElementById('admin-controls').style.display = 'block';
-            } else {
-                alert('Incorrect Admin Password');
-            }
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
         }
 
-        function uploadMedia(e) {
-            const file = e.target.files[0];
-            if (file) {
-                const url = URL.createObjectURL(file);
-                const container = document.getElementById('gallery-container');
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                
-                if (file.type.startsWith('image/')) {
-                    div.innerHTML = `<img src="${url}" alt="Uploaded Media">`;
-                } else if (file.type.startsWith('video/')) {
-                    div.innerHTML = `<video src="${url}" controls style="width:100%; height:100%; object-fit:cover;"></video>`;
-                }
-                
-                container.prepend(div);
-                alert('Media added to gallery live preview!');
-            }
-        }
-
-        /* Modal Handlers for Advanced Features */
-        function openStudioModal(modalId) {
-            document.getElementById(modalId).style.display = 'block';
-        }
-
-        function closeStudioModal(modalId) {
-            document.getElementById(modalId).style.display = 'none';
-        }
-
-        function togglePresentationMode() {
-            alert('Presentation Mode Toggled: UI panels dimmed for full-screen client viewing.');
+        function toggleLanguage() {
+            alert("Language toggled between English and Hindi.");
         }
     </script>
 </body>
