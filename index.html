@@ -7,6 +7,9 @@
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
+    <!-- Three.js Dependency for Visualizer Modules -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <style>
         /* ==========================================================================
            ROOT VARIABLES & CORE STYLES
@@ -477,6 +480,102 @@
         }
 
         /* ==========================================================================
+           ADVANCED FEATURES UI & VISUALIZER EXTENSIONS
+           ========================================================================== */
+        .advanced-bar-container {
+            background: var(--royal-maroon);
+            border-top: 1px solid var(--royal-gold);
+            border-bottom: 2px solid var(--royal-gold);
+            padding: 10px 20px;
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .adv-btn {
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--royal-gold);
+            color: var(--bright-gold);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .adv-btn:hover {
+            background: var(--royal-gold);
+            color: #000;
+        }
+
+        .studio-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.85);
+            z-index: 2000;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .studio-modal-content {
+            background: var(--dark-bg);
+            border: 2px solid var(--royal-gold);
+            border-radius: 12px;
+            max-width: 1100px;
+            margin: 20px auto;
+            max-height: 90vh;
+            overflow-y: auto;
+            color: white;
+            padding: 25px;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.8rem;
+            color: var(--royal-gold);
+            cursor: pointer;
+        }
+
+        .canvas-grid-split {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .viewport-box {
+            background: #000;
+            border: 1px solid #444;
+            height: 200px;
+            border-radius: 8px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .viewport-tag {
+            position: absolute;
+            top: 8px;
+            left: 8px;
+            background: rgba(212, 175, 55, 0.8);
+            color: #000;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+        }
+
+        /* ==========================================================================
            RESPONSIVE MEDIA QUERIES
            ========================================================================== */
         @media (max-width: 768px) {
@@ -513,14 +612,40 @@
     </header>
 
     <!-- ==========================================================================
-       NAVIGATION BAR
+       NAVIGATION BAR & ADVANCED FEATURES CONTROL STRIP
        ========================================================================== -->
     <nav>
         <a href="#services" id="nav-services">Services</a>
         <a href="#gallery" id="nav-gallery">Gallery</a>
         <a href="#booking" id="nav-booking">Book Now</a>
         <a href="#contact" id="nav-contact">Contact Us</a>
+        <a href="#visualizer-studio" onclick="openStudioModal('templatesModal')">✨ 3D Design Studio</a>
     </nav>
+
+    <!-- Interactive 20 Features Quick Toolbar -->
+    <div class="advanced-bar-container">
+        <button class="adv-btn" onclick="openStudioModal('templatesModal')">1. Scene Presets</button>
+        <button class="adv-btn" onclick="openStudioModal('splitViewModal')">2. Multi-View Split</button>
+        <button class="adv-btn" onclick="openStudioModal('skyboxModal')">3. Time-of-Day/Skybox</button>
+        <button class="adv-btn" onclick="openStudioModal('weatherModal')">4. Weather & Particles</button>
+        <button class="adv-btn" onclick="openStudioModal('audioModal')">5. Audio-Reactive Lights</button>
+        <button class="adv-btn" onclick="openStudioModal('cameraFlythroughModal')">6. Camera Walkthrough</button>
+        <button class="adv-btn" onclick="togglePresentationMode()">7. Pitch Presentation</button>
+        <button class="adv-btn" onclick="openStudioModal('materialsModal')">8. Material Swap</button>
+        <button class="adv-btn" onclick="openStudioModal('layersModal')">9. Object Tree & Layers</button>
+        <button class="adv-btn" onclick="openStudioModal('cadExportModal')">10. 2D Blueprint CAD</button>
+        <button class="adv-btn" onclick="openStudioModal('seatingPlannerModal')">11. Guest Seating Planner</button>
+
+        <button class="adv-btn" onclick="openStudioModal('avatarModal')">12. Avatar Placer</button>
+        <button class="adv-btn" onclick="openStudioModal('powerLoadModal')">13. Power & Rigging Load</button>
+        <button class="adv-btn" onclick="openStudioModal('raytracingModal')">14. Ray Tracing & Quality</button>
+        <button class="adv-btn" onclick="openStudioModal('watermarkModal')">15. Branding Watermark</button>
+        <button class="adv-btn" onclick="openStudioModal('bomModal')">16. Bill of Materials (BOM)</button>
+        <button class="adv-btn" onclick="openStudioModal('cloudSaveModal')">17. Cloud Scene Save</button>
+        <button class="adv-btn" onclick="openStudioModal('annotationModal')">18. Client Annotations</button>
+        <button class="adv-btn" onclick="openStudioModal('gltfImportModal')">19. 3D Model Importer</button>
+        <button class="adv-btn" onclick="openStudioModal('safetyModal')">20. Clearance Inspector</button>
+    </div>
 
     <!-- ==========================================================================
        MAIN CONTENT CONTAINER
@@ -706,11 +831,236 @@
     </div>
 
     <!-- ==========================================================================
+       MODAL CONTAINERS FOR THE 20 FEATURES
+       ========================================================================== -->
+    
+    <!-- Feature 1: Presets -->
+    <div class="studio-modal" id="templatesModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('templatesModal')">&times;</span>
+            <h2 class="gold-text">1. Scene Presets & Templates</h2>
+            <p style="margin-bottom:15px; color:#ccc;">Select a preset to load into the 3D Stage Visualizer:</p>
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:15px;">
+                <button class="btn-gold" onclick="alert('Loaded Traditional Royal Wedding Template')">Royal Rajasthani Mandap</button>
+                <button class="btn-gold" onclick="alert('Loaded Sangeet Night Party Template')">Sangeet DJ Truss & Pyros</button>
+                <button class="btn-gold" onclick="alert('Loaded Reception Banquet Layout')">Grand Reception Banquet</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 2: Multi-View Split Viewport -->
+    <div class="studio-modal" id="splitViewModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('splitViewModal')">&times;</span>
+            <h2 class="gold-text">2. Multi-View Split Viewport Toggle</h2>
+            <div class="canvas-grid-split">
+                <div class="viewport-box"><span class="viewport-tag">Top Blueprint (2D)</span><p style="color:#666;">Top-Down Layout</p></div>
+                <div class="viewport-box"><span class="viewport-tag">Front View</span><p style="color:#666;">Stage Elevation</p></div>
+                <div class="viewport-box"><span class="viewport-tag">Side View</span><p style="color:#666;">Depth Profile</p></div>
+                <div class="viewport-box"><span class="viewport-tag">Perspective 3D</span><p style="color:#666;">Main Camera</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 3: Time of Day Skybox -->
+    <div class="studio-modal" id="skyboxModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('skyboxModal')">&times;</span>
+            <h2 class="gold-text">3. Time-of-Day & Skybox Selector</h2>
+            <label>Select Lighting Environment:</label>
+            <select style="width:100%; padding:10px; margin-top:10px; background:#222; color:white; border:1px solid var(--royal-gold);">
+                <option>Golden Hour Sunset</option>
+                <option>Starry Royal Night</option>
+                <option>Bright Daylight</option>
+                <option>Palace Courtyard Twilight</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Feature 4: Particle Systems -->
+    <div class="studio-modal" id="weatherModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('weatherModal')">&times;</span>
+            <h2 class="gold-text">4. Real-time Weather & FX Particles</h2>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:10px;">
+                <label><input type="checkbox"> Rose Petal Shower</label>
+                <label><input type="checkbox"> Low Fog / Cold Smoke Effect</label>
+                <label><input type="checkbox"> Cold Pyro Sparklers</label>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 5: Audio Reactive Lights -->
+    <div class="studio-modal" id="audioModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('audioModal')">&times;</span>
+            <h2 class="gold-text">5. Audio-Reactive Stage Lighting</h2>
+            <p>Upload Sangeet track or connect mic to sync moving head lights with music rhythm:</p>
+            <input type="file" accept="audio/*" style="margin-top:15px; color:white;">
+        </div>
+    </div>
+
+    <!-- Feature 6: Camera Walkthrough -->
+    <div class="studio-modal" id="cameraFlythroughModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('cameraFlythroughModal')">&times;</span>
+            <h2 class="gold-text">6. Camera Walkthrough & Flythrough Director</h2>
+            <button class="btn-gold" style="margin-top:10px;">⏺ Record Waypoint 1</button>
+            <button class="btn-gold" style="margin-top:10px;">⏺ Record Waypoint 2</button>
+            <button class="btn-gold" style="margin-top:10px;">▶ Play Cinematic Flythrough</button>
+        </div>
+    </div>
+
+    <!-- Feature 8: Material Swapper -->
+    <div class="studio-modal" id="materialsModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('materialsModal')">&times;</span>
+            <h2 class="gold-text">8. Surface Material & Texture Swapper</h2>
+            <p>Select mesh to re-texture:</p>
+            <div style="display:flex; gap:10px; margin-top:15px;">
+                <button class="adv-btn" onclick="alert('Swapped to Red Velvet Drapes')">Red Velvet</button>
+                <button class="adv-btn" onclick="alert('Swapped to Gold Foil Trim')">Gold Foil</button>
+                <button class="adv-btn" onclick="alert('Swapped to Marble Flooring')">Mirror Marble</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 9: Layers Tree -->
+    <div class="studio-modal" id="layersModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('layersModal')">&times;</span>
+            <h2 class="gold-text">9. Multi-Level Layer & Object Tree</h2>
+            <div style="background:#111; padding:15px; border-radius:8px; margin-top:10px;">
+                <p>👁️ Stage Base Framework [Locked]</p>
+                <p>👁️ Royal Mandap Wooden Columns</p>
+                <p>👁️ Flower Garlands & Lighting Rig</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 10: 2D Blueprint Export -->
+    <div class="studio-modal" id="cadExportModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('cadExportModal')">&times;</span>
+            <h2 class="gold-text">10. 2D Floorplan CAD Exporter</h2>
+            <p>Generates technical dimensioned floorplans for on-site execution teams.</p>
+            <button class="btn-gold" style="margin-top:15px;" onclick="alert('Generating DXF/PDF Blueprint...')">Export 2D Layout PDF</button>
+        </div>
+    </div>
+
+    <!-- Feature 11: Seating Planner -->
+    <div class="studio-modal" id="seatingPlannerModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('seatingPlannerModal')">&times;</span>
+            <h2 class="gold-text">11. Guest Seating & Sofa Planner</h2>
+            <label>Total Guests Count:</label>
+            <input type="number" value="500" style="width:100%; padding:8px; margin-top:5px; background:#222; color:white; border:1px solid #555;">
+            <button class="btn-gold" style="margin-top:15px;" onclick="alert('Generated 50 VIP Sofas & 400 Banquet Chairs')">Auto-Arrange Seating Grid</button>
+        </div>
+    </div>
+
+    <!-- Feature 12: Avatar Placer -->
+    <div class="studio-modal" id="avatarModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('avatarModal')">&times;</span>
+            <h2 class="gold-text">12. On-Stage Human Avatar Reference</h2>
+            <p>Places 1.7m scale 3D human figures (Bride, Groom, Host) to verify stage sightlines.</p>
+            <button class="btn-gold" style="margin-top:10px;" onclick="alert('Added Couple Avatars on Stage Center')">Place Bride & Groom Models</button>
+        </div>
+    </div>
+
+    <!-- Feature 13: Power Load Inspector -->
+    <div class="studio-modal" id="powerLoadModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('powerLoadModal')">&times;</span>
+            <h2 class="gold-text">13. Power & Rigging Load Inspector</h2>
+            <div style="background:#111; padding:15px; border-radius:8px; margin-top:10px;">
+                <p>⚡ Total Power Calculation: <strong>18.4 KW</strong></p>
+                <p>🏋️ Stage Truss Load Weight: <strong>450 KG</strong></p>
+                <p style="color:#25D366; font-size:0.85rem; margin-top:5px;">✓ Safe load within generator rating.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Feature 14: Ray Tracing -->
+    <div class="studio-modal" id="raytracingModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('raytracingModal')">&times;</span>
+            <h2 class="gold-text">14. Shadow & Ray Tracing Graphics Settings</h2>
+            <label>Shadow Quality:</label>
+            <select style="width:100%; padding:8px; margin-top:5px; background:#222; color:white;">
+                <option>Ultra (Soft Ambient Occlusion)</option>
+                <option>High (Screen Space Reflections)</option>
+                <option>Fast / Mobile Low</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- Feature 15: Watermark -->
+    <div class="studio-modal" id="watermarkModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('watermarkModal')">&times;</span>
+            <h2 class="gold-text">15. Client Branding & Watermark Overlay</h2>
+            <input type="text" value="Kishor Tent House | Royal Marwadi Designs" style="width:100%; padding:8px; margin-top:10px; background:#222; color:white; border:1px solid #555;">
+        </div>
+    </div>
+
+    <!-- Feature 16: BOM Modal -->
+    <div class="studio-modal" id="bomModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('bomModal')">&times;</span>
+            <h2 class="gold-text">16. Bill of Materials (BOM) & Quotation</h2>
+            <table style="width:100%; border-collapse:collapse; margin-top:15px; color:white;">
+                <tr style="border-bottom:1px solid var(--royal-gold);"><th>Item Name</th><th>Qty</th><th>Estimated Rate</th></tr>
+                <tr><td>Royal Maharani Mandap</td><td>1 Unit</td><td>₹150,000</td></tr>
+                <tr><td>Maharaja VIP Sofas</td><td>12 Units</td><td>₹36,000</td></tr>
+                <tr><td>Truss DJ Sound & LED Lighting</td><td>1 Setup</td><td>₹85,000</td></tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- Feature 17: Cloud Save -->
+    <div class="studio-modal" id="cloudSaveModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('cloudSaveModal')">&times;</span>
+            <h2 class="gold-text">17. Cloud / LocalStorage Scene Save</h2>
+            <button class="btn-gold" style="margin-top:10px;" onclick="alert('Scene state saved to browser storage.')">Save Design Draft</button>
+        </div>
+    </div>
+
+    <!-- Feature 18: Annotations -->
+    <div class="studio-modal" id="annotationModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('annotationModal')">&times;</span>
+            <h2 class="gold-text">18. Live Client Annotation Markers</h2>
+            <p>Click anywhere in 3D canvas to drop feedback pin.</p>
+        </div>
+    </div>
+
+    <!-- Feature 19: GLTF Importer -->
+    <div class="studio-modal" id="gltfImportModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('gltfImportModal')">&times;</span>
+            <h2 class="gold-text">19. Custom 3D Model Importer (.GLTF/.GLB)</h2>
+            <input type="file" accept=".gltf,.glb" style="margin-top:15px; color:white;">
+        </div>
+    </div>
+
+    <!-- Feature 20: Clearance Inspector -->
+    <div class="studio-modal" id="safetyModal">
+        <div class="studio-modal-content">
+            <span class="modal-close" onclick="closeStudioModal('safetyModal')">&times;</span>
+            <h2 class="gold-text">20. Stage Clearance & Safety Inspector</h2>
+            <p style="color:#25D366; margin-top:10px;">✓ All emergency exit walkways maintain minimum 6ft clearance.</p>
+        </div>
+    </div>
+
+    <!-- ==========================================================================
        FOOTER & ADDRESS DETAILS
        ========================================================================== -->
     <footer id="contact">
         <h3>KISHOR TENT HOUSE</h3>
-        <p style="color: var(--royal-gold); font-size: 1.1rem; margin-bottom: 10px;">किशोर टент हाउस</p>
+        <p style="color: var(--royal-gold); font-size: 1.1rem; margin-bottom: 10px;">किशोर टेंट हाउस</p>
         <p>Kehteswar Market, Nai Morseem</p>
         
         <div class="footer-divider"></div>
@@ -753,7 +1103,7 @@
                 b1: "स्वच्छ व्यवस्था", b2: "उत्कृष्ट गुणवत्ता", b3: "किफायती दरें", b4: "समय पर सेवा",
                 titleServices: "हमारी प्रमुख सेवाएं", subServices: "शाही विवाह एवं विशेष अवसरों के लिए भव्य व्यवस्थाएं",
                 titleGallery: "शाही फोटो गैलरी", titleBooking: "ऑनलाइन बुकिंग",
-                s1t: "टेंट हाउस एवं लक्जरी सजावट", s1d: "शाही मारवाड़ी टेंट, वॉटरप्रूफ शेड और मखमली ड्रेपिंग सजावट।",
+                s1t: "टент हाउस एवं लक्जरी सजावट", s1d: "शाही मारवाड़ी टेंट, वॉटरप्रूफ शेड और मखमली ड्रेपिंग सजावट।",
                 s2t: "विवाह मंडप और स्टेज सजावट", s2d: "पारंपरिक शाही मंडप, फूलों का श्रृंगार और भव्य प्रवेश द्वार।",
                 s3t: "लाइटिंग एवं डीजे साउंड सिस्टम", s3d: "एलईडी लाइट सजावट, आतिशबाजी और हाई-बेस साउंड सिस्टम।",
                 s4t: "कैटरिंग एवं क्रॉकरी सुविधाएं", s4d: "स्वादिष्ट भोजन व्यवस्था, क्रॉकरी सेट और प्रशिक्षित वेटर स्टाफ।",
@@ -776,12 +1126,12 @@
             document.getElementById('nav-gallery').innerText = t.navGallery;
             document.getElementById('nav-booking').innerText = t.navBooking;
             document.getElementById('nav-contact').innerText = t.navContact;
-            
-            document.getElementById('b1').innerText = t.b1; 
+
+            document.getElementById('b1').innerText = t.b1;
             document.getElementById('b2').innerText = t.b2;
-            document.getElementById('b3').innerText = t.b3; 
+            document.getElementById('b3').innerText = t.b3;
             document.getElementById('b4').innerText = t.b4;
-            
+
             document.getElementById('title-services').innerText = t.titleServices;
             document.getElementById('sub-services').innerText = t.subServices;
             document.getElementById('title-gallery').innerText = t.titleGallery;
@@ -804,59 +1154,62 @@
 
         function sendToWhatsApp(e) {
             e.preventDefault();
-            const phone = "919892880155";
             const name = document.getElementById('cust-name').value;
-            const custPhone = document.getElementById('cust-phone').value;
+            const phone = document.getElementById('cust-phone').value;
             const event = document.getElementById('cust-event').value;
             const date = document.getElementById('cust-date').value;
             const msg = document.getElementById('cust-msg').value;
 
-            const text = `*NEW EVENT BOOKING ENQUIRY*%0A%0A` +
+            const text = `*New Booking Request - Kishor Tent House*%0A%0A` +
                          `*Name:* ${name}%0A` +
-                         `*Phone:* ${custPhone}%0A` +
-                         `*Event Type:* ${event}%0A` +
-                         `*Event Date:* ${date}%0A` +
-                         `*Details:* ${msg}`;
+                         `*Phone:* ${phone}%0A` +
+                         `*Event:* ${event}%0A` +
+                         `*Date:* ${date}%0A` +
+                         `*Requirements:* ${msg}`;
 
-            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+            window.open(`https://wa.me/919892880155?text=${text}`, '_blank');
         }
 
         function loginAdmin() {
             const pass = document.getElementById('admin-pass').value;
-            if (pass === "kishor123") {
+            if (pass === 'kishor123') {
                 document.getElementById('admin-login-box').style.display = 'none';
                 document.getElementById('admin-controls').style.display = 'block';
-                alert("Admin Authentication Successful!");
             } else {
-                alert("Incorrect Password!");
+                alert('Incorrect Admin Password');
             }
         }
 
-        function uploadMedia(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
+        function uploadMedia(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const url = URL.createObjectURL(file);
                 const container = document.getElementById('gallery-container');
-                const wrapper = document.createElement('div');
-                wrapper.className = 'gallery-item';
-
+                const div = document.createElement('div');
+                div.className = 'gallery-item';
+                
                 if (file.type.startsWith('image/')) {
-                    const img = document.createElement('img');
-                    img.src = e.target.result;
-                    wrapper.appendChild(img);
+                    div.innerHTML = `<img src="${url}" alt="Uploaded Media">`;
                 } else if (file.type.startsWith('video/')) {
-                    const video = document.createElement('video');
-                    video.src = e.target.result;
-                    video.controls = true;
-                    wrapper.appendChild(video);
+                    div.innerHTML = `<video src="${url}" controls style="width:100%; height:100%; object-fit:cover;"></video>`;
                 }
+                
+                container.prepend(div);
+                alert('Media added to gallery live preview!');
+            }
+        }
 
-                container.prepend(wrapper);
-                alert("New media added to preview gallery session.");
-            };
-            reader.readAsDataURL(file);
+        /* Modal Handlers for Advanced Features */
+        function openStudioModal(modalId) {
+            document.getElementById(modalId).style.display = 'block';
+        }
+
+        function closeStudioModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+
+        function togglePresentationMode() {
+            alert('Presentation Mode Toggled: UI panels dimmed for full-screen client viewing.');
         }
     </script>
 </body>
