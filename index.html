@@ -3,1278 +3,891 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kishor Tent House | Royal Marwadi Weddings & Event Solutions</title>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Kishor Tent House</title>
     
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        kth: {
+                            maroon: '#800000',
+                            maroon_light: '#a52a2a',
+                            gold: '#d4af37',
+                            gold_light: '#f3e5ab',
+                            dark: '#1a1a1a',
+                            light: '#fdf8f5'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
     <style>
-        /* ==========================================================================
-           ROOT VARIABLES & CORE STYLES
-           ========================================================================== */
-        :root {
-            --royal-maroon: #6b0018;
-            --deep-crimson: #800020;
-            --royal-gold: #d4af37;
-            --bright-gold: #ffd700;
-            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
-            --dark-bg: #121212;
-            --card-bg: #ffffff;
-            --light-cream: #fff9f0;
-            --text-dark: #222222;
-            --text-light: #666666;
-            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
-            --shadow-heavy: 0 15px 35px rgba(107, 0, 24, 0.2);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-            --success-color: #2e7d32;
-            --danger-color: #c62828;
-            --warning-color: #f57c00;
-        }
+        /* Base Language Toggling Styles */
+        body.lang-hi .lang-en { display: none !important; }
+        body.lang-en .lang-hi { display: none !important; }
+        
+        /* Smooth Scrolling */
+        html { scroll-behavior: smooth; }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #fdf8f5; }
+        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #800000; }
 
-        body {
-            background-color: var(--light-cream);
-            color: var(--text-dark);
-            line-height: 1.6;
-            overflow-x: hidden;
+        /* Requested Quality Promise Styles (.kth-* classes) */
+        .kth-section {
+            padding: 5rem 1rem;
+            background-color: #fdf8f5;
+            text-align: center;
         }
-
-        /* Language Toggle Defaults */
-        .lang-hi {
-            display: none; /* Hide Hindi by default */
+        .kth-section-title {
+            margin-bottom: 3rem;
         }
-
-        /* ==========================================================================
-           TYPOGRAPHY & BUTTONS
-           ========================================================================== */
-        h1, h2, h3, .royal-font {
-            font-family: 'Cinzel', serif;
-        }
-
-        .gold-text {
-            background: var(--gold-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: bold;
-        }
-
-        .btn-gold {
-            background: var(--gold-gradient);
-            color: #000;
-            border: none;
-            padding: 10px 22px;
+        .kth-section-title h2 {
+            color: #800000;
+            font-size: 2.5rem;
+            font-family: 'Playfair Display', serif;
             font-weight: 700;
-            border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-            transition: var(--transition);
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            display: inline-block;
-            text-decoration: none;
+            margin-bottom: 0.5rem;
         }
-
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        .kth-section-title p {
+            color: #4b5563;
+            font-size: 1.125rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
-
-        .btn-danger {
-            background: var(--danger-color);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-success {
-            background: var(--success-color);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* ==========================================================================
-           HEADER & HERO SECTION
-           ========================================================================== */
-        header {
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(107, 0, 24, 0.85)), 
-                        url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            color: white;
-            text-align: center;
-            padding: 80px 20px 60px 20px;
-            border-bottom: 5px solid var(--royal-gold);
-            position: relative;
-        }
-
-        .top-bar {
-            position: absolute;
-            top: 20px;
-            left: 0;
-            right: 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 5%;
-            z-index: 10;
-        }
-
-        .contact-top a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-right: 15px;
-        }
-
-        .lang-switch {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--royal-gold);
-            color: white;
-            padding: 6px 16px;
-            font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
-        }
-
-        .lang-switch:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
-
-        .brand-header h1 {
-            font-size: 3.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .brand-header h2 {
-            font-size: 1.4rem;
-            color: #f0f0f0;
-            font-weight: 300;
-            margin-bottom: 15px;
-        }
-
-        .proprietor-tag {
-            background: rgba(0, 0, 0, 0.6);
-            display: inline-block;
-            padding: 6px 20px;
-            border: 1px solid var(--royal-gold);
-            border-radius: 30px;
-            font-size: 0.9rem;
-            color: var(--bright-gold);
-            margin-bottom: 20px;
-            cursor: pointer; /* Acts as the secret admin reveal button */
-            transition: var(--transition);
-        }
-        
-        .proprietor-tag:hover {
-            background: rgba(0,0,0,0.8);
-            border-color: #fff;
-        }
-
-        /* Navigation */
-        nav {
-            background: var(--royal-maroon);
-            display: flex;
-            justify-content: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            border-bottom: 2px solid var(--royal-gold);
-        }
-
-        nav a {
-            color: white;
-            padding: 16px 24px;
-            text-decoration: none;
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            transition: var(--transition);
-        }
-
-        nav a:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            color: var(--royal-maroon);
-            margin-bottom: 10px;
-        }
-
-        /* Quality Promise CSS */
-        .kth-section { padding: 20px 0 60px 0; }
-        .kth-section-title { text-align: center; margin-bottom: 40px; }
-        .kth-section-title h2 { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 10px; font-family: 'Cinzel', serif; }
-        .kth-section-title p { color: var(--text-light); font-size: 1.1rem; }
-        
         .kth-grid {
             display: grid;
-            gap: 25px;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
         }
-        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
         
+        @media (max-width: 1024px) {
+            .grid-md-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+            .grid-md-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        }
+
         .kth-promise-card {
-            background: var(--card-bg);
-            padding: 30px 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            border-bottom: 4px solid var(--royal-gold);
-            transition: var(--transition);
+            background: white;
+            padding: 2.5rem 1.5rem;
+            border-radius: 0.75rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
+            border-bottom: 4px solid #d4af37;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         .kth-promise-card:hover {
             transform: translateY(-8px);
-            box-shadow: var(--shadow-heavy);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-bottom-color: #800000;
         }
         .kth-promise-icon {
-            font-size: 2.8rem;
-            color: var(--royal-gold);
-            margin-bottom: 15px;
+            font-size: 3.5rem;
+            color: #d4af37;
+            margin-bottom: 1.25rem;
+            transition: color 0.3s;
+        }
+        .kth-promise-card:hover .kth-promise-icon {
+            color: #800000;
         }
         .kth-promise-title {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--royal-maroon);
-        }
-
-        /* Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-
-        .service-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--shadow-soft);
-            border: 1px solid rgba(212, 175, 55, 0.2);
-        }
-
-        .service-img-wrapper {
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .service-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .service-content {
-            padding: 20px;
+            font-weight: 600;
+            color: #1f2937;
+            font-size: 1.25rem;
             text-align: center;
         }
 
-        /* Gallery Grid */
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
+        /* AI Chatbot Styles */
+        #ai-chat-window {
+            transition: opacity 0.3s, transform 0.3s;
+            transform-origin: bottom right;
         }
-
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 220px;
-            border: 2px solid var(--royal-gold);
+        .chat-message {
+            animation: fadeIn 0.3s ease-out;
         }
-
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
-
-        /* Booking Form */
-        .booking-section {
-            background: #ffffff;
-            border-radius: 15px;
-            padding: 40px;
-            box-shadow: var(--shadow-heavy);
-            border: 2px solid var(--royal-gold);
-            max-width: 800px;
-            margin: 0 auto;
+        
+        /* Loading Spinner */
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #800000;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
         }
-
-        .booking-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
-        .form-group-full { grid-column: span 2; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--royal-maroon);
-        }
-
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 0.95rem;
-        }
-
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
-        }
-
-        /* ==========================================================================
-           15 ADMIN FEATURES CONSOLE ENGINE
-           ========================================================================== */
-        .admin-section {
-            display: none; /* Hidden strictly by default from general visitors */
-            background: #1e1e24;
-            color: #ffffff;
-            border-radius: 15px;
-            padding: 30px;
-            margin-top: 60px;
-            border: 2px solid var(--royal-gold);
-        }
-
-        .admin-top-bar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid #333;
-            padding-bottom: 20px;
-            margin-bottom: 25px;
-        }
-
-        .admin-tabs-nav {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .admin-tab-btn {
-            background: #2b2b36;
-            color: #ddd;
-            border: 1px solid #444;
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: left;
-            transition: var(--transition);
-        }
-
-        .admin-tab-btn:hover, .admin-tab-btn.active {
-            background: var(--royal-gold);
-            color: #000;
-            border-color: var(--bright-gold);
-        }
-
-        .admin-feature-panel {
-            display: none;
-            background: #282833;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #3d3d4e;
-        }
-
-        .admin-feature-panel.active {
-            display: block;
-        }
-
-        .admin-panel-title {
-            color: var(--bright-gold);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 1px dashed #555;
-            padding-bottom: 8px;
-        }
-
-        .admin-grid-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .admin-grid-form input, .admin-grid-form select, .admin-grid-form textarea {
-            background: #181820;
-            border: 1px solid #444;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
-
-        .admin-table th, .admin-table td {
-            border: 1px solid #444;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .admin-table th {
-            background: #181820;
-            color: var(--royal-gold);
-        }
-
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 3px solid var(--royal-gold);
-        }
-
-        @media(max-width: 900px) {
-            .grid-md-2 { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media(max-width: 768px) {
-            .booking-form { grid-template-columns: 1fr; }
-            .form-group-full { grid-column: span 1; }
-            .brand-header h1 { font-size: 2.2rem; }
-            .grid-cols-4 { grid-template-columns: 1fr; }
-        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body>
+<body class="lang-en bg-kth-light font-sans text-gray-800">
 
-    <!-- Header -->
-    <header>
-        <div class="top-bar">
-            <div class="contact-top">
-                <a href="tel:+919892880155"><i class="fa-solid fa-phone"></i> +91 98928 80155</a>
+    <div id="public-notification-banner" class="hidden bg-kth-gold text-kth-maroon font-semibold py-2 px-4 text-center text-sm md:text-base flex justify-center items-center shadow-md z-40 relative">
+        <i class="fa-solid fa-bullhorn mr-2"></i>
+        <span id="public-notification-text"></span>
+        <button onclick="document.getElementById('public-notification-banner').style.display='none'" class="absolute right-4 text-kth-maroon hover:text-black">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <nav class="bg-white shadow-md sticky top-0 z-30">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-20">
+                <div class="flex items-center">
+                    <span class="font-serif text-3xl font-bold text-kth-maroon">
+                        <i class="fa-solid fa-tent mr-2 text-kth-gold"></i>Kishor Tent House
+                    </span>
+                </div>
+                <div class="flex items-center space-x-6">
+                    <a href="#services" class="text-gray-700 hover:text-kth-maroon font-medium hidden md:block">
+                        <span class="lang-en">Services</span><span class="lang-hi">सेवाएं</span>
+                    </a>
+                    <a href="#gallery" class="text-gray-700 hover:text-kth-maroon font-medium hidden md:block">
+                        <span class="lang-en">Gallery</span><span class="lang-hi">गैलरी</span>
+                    </a>
+                    <!-- Language Toggle -->
+                    <button onclick="toggleLanguage()" class="bg-kth-maroon text-white px-3 py-1 rounded-full text-sm hover:bg-kth-maroon_light transition shadow-sm">
+                        <span class="lang-en">हिन्दी</span><span class="lang-hi">English</span>
+                    </button>
+                </div>
             </div>
-            <button class="lang-switch" onclick="toggleLanguage()">English / हिन्दी</button>
         </div>
-        <div class="brand-header">
-            <h1 class="gold-text" id="brand-title">KISHOR TENT HOUSE</h1>
-            <h2 id="brand-sub">Complete Solution For All Your Events</h2>
-            <!-- Click the Proprietor Tag to Reveal the Hidden Admin Master Console -->
-            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Admin Login">Proprietor: Bhavesh Purohit</div><br>
-            <a href="#booking" class="btn-gold">Book Event Now</a>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav>
-        <!-- Removed Master Admin link to hide it securely from public customers -->
-        <a href="#services">Services</a>
-        <a href="#gallery">Gallery</a>
-        <a href="#booking">Book Now</a>
     </nav>
 
-    <div class="container">
-        
-        <!-- Quality Promise Section Added Here -->
-        <section class="kth-section">
-            <div class="kth-section-title">
-                <h2>
-                    <span class="lang-en">Our Quality Promise</span>
-                    <span class="lang-hi">हमारी गुणवत्ता का वादा</span>
+    <section class="relative bg-kth-dark text-white overflow-hidden">
+        <div class="absolute inset-0 opacity-40">
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Wedding Tent Event" class="w-full h-full object-cover">
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-r from-kth-maroon to-transparent opacity-80"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col justify-center min-h-[60vh]">
+            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4 leading-tight shadow-sm">
+                <span class="lang-en">Crafting Unforgettable<br><span class="text-kth-gold">Moments & Memories</span></span>
+                <span class="lang-hi">आपके हर पल को बनाएं<br><span class="text-kth-gold">यादगार और खास</span></span>
+            </h1>
+            <p class="text-lg md:text-xl max-w-2xl mb-8 opacity-90">
+                <span class="lang-en">Premium tent, catering, and event management services in the city. Experience elegance and perfection.</span>
+                <span class="lang-hi">शहर में प्रीमियम टेंट, खानपान और इवेंट मैनेजमेंट सेवाएं। लालित्य और पूर्णता का अनुभव करें।</span>
+            </p>
+            <div>
+                <a href="#services" class="bg-kth-gold text-kth-maroon font-bold py-3 px-8 rounded-full hover:bg-white hover:text-kth-maroon transition shadow-lg inline-block">
+                    <span class="lang-en">Explore Services</span><span class="lang-hi">सेवाएं देखें</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <section id="services" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-kth-maroon mb-2">
+                    <span class="lang-en">Our Premium Services</span><span class="lang-hi">हमारी प्रीमियम सेवाएं</span>
                 </h2>
-                <p>
-                    <span class="lang-en">We deliver high-standard event services with complete perfection.</span>
-                    <span class="lang-hi">हम पूर्ण पूर्णता और उच्च मानकों के साथ सेवाएं प्रदान करते हैं।</span>
+                <div class="h-1 w-20 bg-kth-gold mx-auto rounded"></div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Service 1 -->
+                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tent Decor" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
+                            <span class="lang-en">Luxury Tents & Decor</span><span class="lang-hi">लक्जरी टेंट और सजावट</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Exquisite designs and robust setups for weddings, parties, and corporate events.</span>
+                            <span class="lang-hi">शादियों, पार्टियों और कॉर्पोरेट कार्यक्रमों के लिए उत्तम डिजाइन और मजबूत सेटअप।</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Catering" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
+                            <span class="lang-en">Premium Catering</span><span class="lang-hi">प्रीमियम कैटरिंग</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Delicious, hygienic, and authentic cuisines served with utmost hospitality.</span>
+                            <span class="lang-hi">अत्यंत आतिथ्य के साथ परोसा गया स्वादिष्ट, स्वच्छ और प्रामाणिक व्यंजन।</span>
+                        </p>
+                    </div>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lighting" class="w-full h-48 object-cover">
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
+                            <span class="lang-en">Elegant Lighting</span><span class="lang-hi">आकर्षक प्रकाश व्यवस्था</span>
+                        </h3>
+                        <p class="text-gray-600 text-sm">
+                            <span class="lang-en">Magical illumination setups to bring your evening events to life.</span>
+                            <span class="lang-hi">आपके शाम के कार्यक्रमों को जीवंत करने के लिए जादुई रोशनी सेटअप।</span>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="kth-section">
+        <div class="kth-section-title">
+            <h2>
+                <span class="lang-en">Our Quality Promise</span>
+                <span class="lang-hi">हमारी गुणवत्ता का वादा</span>
+            </h2>
+            <p>
+                <span class="lang-en">We deliver high-standard event services with complete perfection.</span>
+                <span class="lang-hi">हम पूर्ण पूर्णता और उच्च मानकों के साथ सेवाएं प्रदान करते हैं।</span>
+            </p>
+        </div>
+        <div class="kth-grid grid-cols-4 grid-md-2">
+            <div class="kth-promise-card">
+                <div class="kth-promise-icon"><i class="fa-solid fa-sparkles"></i></div>
+                <div class="kth-promise-title">
+                    <span class="lang-en">Hygienic Setup</span>
+                    <span class="lang-hi">हाइजीनिक सेटअप</span>
+                </div>
+            </div>
+            <div class="kth-promise-card">
+                <div class="kth-promise-icon"><i class="fa-solid fa-award"></i></div>
+                <div class="kth-promise-title">
+                    <span class="lang-en">Best Quality Material</span>
+                    <span class="lang-hi">उत्कृष्ट गुणवत्ता</span>
+                </div>
+            </div>
+            <div class="kth-promise-card">
+                <div class="kth-promise-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                <div class="kth-promise-title">
+                    <span class="lang-en">Affordable Pricing</span>
+                    <span class="lang-hi">किफायती दरें</span>
+                </div>
+            </div>
+            <div class="kth-promise-card">
+                <div class="kth-promise-icon"><i class="fa-regular fa-clock"></i></div>
+                <div class="kth-promise-title">
+                    <span class="lang-en">On Time Service</span>
+                    <span class="lang-hi">समय पर सेवा</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-serif font-bold text-kth-maroon mb-2">
+                    <span class="lang-en">Event Gallery</span><span class="lang-hi">इवेंट गैलरी</span>
+                </h2>
+                <div class="h-1 w-20 bg-kth-gold mx-auto rounded"></div>
+            </div>
+            <div id="public-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Gallery items will be loaded here dynamically -->
+                <div class="col-span-full text-center text-gray-500 py-10" id="gallery-loading">
+                    <div class="loader mx-auto mb-4"></div>
+                    Loading Gallery...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-kth-dark text-gray-300 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
+            <div>
+                <span class="font-serif text-2xl font-bold text-kth-gold mb-4 inline-block">
+                    <i class="fa-solid fa-tent mr-2"></i>Kishor Tent House
+                </span>
+                <p class="text-sm mt-2">
+                    <span class="lang-en">Making your celebrations grand and memorable since 1995.</span>
+                    <span class="lang-hi">1995 से आपके समारोहों को भव्य और यादगार बना रहे हैं।</span>
                 </p>
             </div>
-            <div class="kth-grid grid-cols-4 grid-md-2">
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-sparkles"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Hygienic Setup</span>
-                        <span class="lang-hi">हाइजीनिक सेटअप</span>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Contact</h4>
+                <p class="text-sm mb-2"><i class="fa-solid fa-phone text-kth-gold mr-2"></i> +91 98765 43210</p>
+                <p class="text-sm mb-2"><i class="fa-solid fa-envelope text-kth-gold mr-2"></i> info@kishortent.com</p>
+                <p class="text-sm"><i class="fa-solid fa-location-dot text-kth-gold mr-2"></i> Main Market, City Center</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Admin</h4>
+                <button onclick="promptAdminUnlock()" class="text-sm text-gray-500 hover:text-kth-gold transition">
+                    <i class="fa-solid fa-lock mr-2"></i>Admin Console
+                </button>
+            </div>
+        </div>
+        <div class="text-center mt-8 pt-8 border-t border-gray-700 text-sm text-gray-500">
+            &copy; 2023 Kishor Tent House. All rights reserved.
+        </div>
+    </footer>
+
+    <div id="ai-widget-container" class="fixed bottom-6 right-6 z-40 flex flex-col items-end">
+        <!-- Chat Window -->
+        <div id="ai-chat-window" class="hidden w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden mb-4 flex flex-col h-[500px]">
+            <div class="bg-kth-maroon text-white p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="bg-white text-kth-maroon rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">AI</div>
+                    <div>
+                        <h3 class="font-bold text-sm">Kishor Assistant</h3>
+                        <p class="text-xs text-kth-gold_light">Online & Ready</p>
                     </div>
                 </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Best Quality Material</span>
-                        <span class="lang-hi">उत्कृष्ट गुणवत्ता</span>
-                    </div>
-                </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Affordable Pricing</span>
-                        <span class="lang-hi">किफायती दरें</span>
-                    </div>
-                </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-clock-check"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">On Time Service</span>
-                        <span class="lang-hi">समय पर सेवा</span>
+                <button onclick="toggleChat()" class="text-white hover:text-kth-gold"><i class="fa-solid fa-minus"></i></button>
+            </div>
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 text-sm space-y-4">
+                <!-- Greeting -->
+                <div class="flex items-start">
+                    <div class="bg-gray-200 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] chat-message shadow-sm">
+                        Hello! I am the AI Assistant for Kishor Tent House. How can I help you plan your event today?
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- Services Section -->
-        <section id="services">
-            <div class="section-header">
-                <h2 class="section-title">Our Premium Services</h2>
-                <p>Creating Unforgettable Grand Experiences for Weddings & Special Occasions</p>
+            <div class="p-3 bg-white border-t border-gray-200 flex items-center">
+                <input type="text" id="chat-input" placeholder="Ask about pricing, services..." class="flex-1 bg-gray-100 rounded-full px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-kth-maroon" onkeypress="if(event.key === 'Enter') sendChatMessage()">
+                <button onclick="sendChatMessage()" class="ml-2 bg-kth-gold text-kth-maroon rounded-full w-10 h-10 flex items-center justify-center hover:bg-yellow-500 transition shadow-sm">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
             </div>
-            <div class="services-grid" id="services-container">
-                <!-- Services rendered via JS for dynamic admin updates -->
-            </div>
-        </section>
-
-        <!-- Gallery Section -->
-        <section id="gallery" style="margin-top: 60px;">
-            <div class="section-header">
-                <h2 class="section-title">Royal Event Gallery</h2>
-            </div>
-            <!-- Populated via Javascript to support Permanent Local Storage -->
-            <div class="gallery-grid" id="gallery-container">
-            </div>
-        </section>
-
-        <!-- Booking Section -->
-        <section id="booking" style="margin-top: 60px;">
-            <div class="section-header">
-                <h2 class="section-title">Online Booking Engine</h2>
-            </div>
-            <div class="booking-section">
-                <form id="publicBookingForm" onsubmit="submitCustomerBooking(event)" class="booking-form">
-                    <div class="form-group">
-                        <label>Your Name</label>
-                        <input type="text" id="custName" required placeholder="Full Name">
-                    </div>
-                    <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="custPhone" required placeholder="10-digit number">
-                    </div>
-                    <div class="form-group">
-                        <label>Event Type</label>
-                        <select id="custEvent">
-                            <option value="Royal Wedding">Royal Wedding</option>
-                            <option value="Reception">Reception</option>
-                            <option value="Birthday Party">Birthday Party</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label>Event Date</label>
-                        <input type="date" id="custDate" required>
-                    </div>
-                    <div class="form-group form-group-full">
-                        <label>Venue / Requirements</label>
-                        <textarea id="custMsg" rows="3" placeholder="Expected guests, tent size..."></textarea>
-                    </div>
-                    <div class="form-group-full">
-                        <button type="submit" class="btn-whatsapp">📱 Send Booking Request via WhatsApp</button>
-                    </div>
-                </form>
-            </div>
-        </section>
-
-        <!-- ==========================================================================
-           15 ADMIN FEATURES CONSOLE (HIDDEN)
-           ========================================================================== -->
-        <section class="admin-section" id="admin-console">
-            <div class="admin-top-bar">
-                <div>
-                    <h2 class="gold-text"><i class="fa-solid fa-user-shield"></i> Owner Master Console</h2>
-                    <p style="font-size: 0.85rem; color: #aaa;">15 Core Fully Operational Management Tools</p>
-                </div>
-                <div id="admin-login-box">
-                    <input type="password" id="adminPassInput" placeholder="Password (jaimaahinglaj)" style="padding: 8px; border-radius: 4px; border: 1px solid #555;">
-                    <button class="btn-gold" onclick="unlockAdmin()">Unlock Console</button>
-                </div>
-                <button id="lockBtn" class="btn-danger" style="display:none;" onclick="lockAdmin()"><i class="fa-solid fa-lock"></i> Lock Console</button>
-                <button class="btn-danger" onclick="hideAdminConsole()">Close Admin Panel</button>
-            </div>
-
-            <div id="admin-main-body" style="display: none;">
-                <!-- 15 Feature Tabs Nav -->
-                <div class="admin-tabs-nav">
-                    <button class="admin-tab-btn active" onclick="switchAdminTab('tab1', this)">1. GST Invoice Builder</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab2', this)">2. Booking Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab3', this)">3. Godown Stock</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab4', this)">4. Payment Ledger</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab5', this)">5. Bad Debt WhatsApp</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab6', this)">6. Live Gallery Upload</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab7', this)">7. Price Rate Editor</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab8', this)">8. Vendor Expense Logger</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab9', this)">9. Calendar Booking</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab10', this)">10. Quotation Generator</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab11', this)">11. Event Staff Allocator</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab12', this)">12. Service Toggle Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab13', this)">13. Transport Dispatcher</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab14', this)">14. Feedback Review Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab15', this)">15. Dynamic Discount Calc</button>
-                </div>
-
-                <!-- FEATURE 1: GST Invoice Builder -->
-                <div id="tab1" class="admin-feature-panel active">
-                    <h3 class="admin-panel-title">1. Interactive GST Billing & Tax Invoice Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="invClient" placeholder="Client Name">
-                        <input type="text" id="invDesc" placeholder="Item Description">
-                        <input type="number" id="invQty" placeholder="Qty">
-                        <input type="number" id="invRate" placeholder="Rate (₹)">
-                        <button class="btn-gold" onclick="addInvoiceItem()">Add Item</button>
-                    </div>
-                    <table class="admin-table" id="invoiceTable">
-                        <thead>
-                            <tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div style="margin-top: 15px; text-align: right;">
-                        <p>Subtotal: ₹<span id="invSub">0.00</span> | GST (18%): ₹<span id="invTax">0.00</span></p>
-                        <h3 style="color: var(--bright-gold);">Grand Total: ₹<span id="invGrand">0.00</span></h3>
-                        <button class="btn-success" style="margin-top: 10px;" onclick="printInvoice()"><i class="fa-solid fa-print"></i> Print GST Invoice</button>
-                    </div>
-                </div>
- 
-                <!-- FEATURE 2: Booking Manager -->
-                <div id="tab2" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">2. Customer Booking Request Manager</h3>
-                    <table class="admin-table" id="bookingManagerTable">
-                        <thead>
-                            <tr><th>Name</th><th>Phone</th><th>Event</th><th>Date</th><th>Status</th><th>Actions</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 3: Godown Stock -->
-                <div id="tab3" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">3. Godown Stock / Inventory Tracker</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="godownItemName" placeholder="Item Name (e.g. Maharaja Sofa)">
-                        <input type="number" id="godownItemQty" placeholder="Total Stock Quantity">
-                        <button class="btn-gold" onclick="addGodownStock()">Add to Godown</button>
-                    </div>
-                    <table class="admin-table" id="godownTable">
-                        <thead>
-                            <tr><th>Item Name</th><th>Total Quantity in Stock</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 4: Payment Ledger -->
-                <div id="tab4" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">4. Advance & Outstanding Payment Ledger</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="payClient" placeholder="Client Name">
-                        <input type="number" id="payTotal" placeholder="Total Bill (₹)">
-                        <input type="number" id="payAdvance" placeholder="Advance Paid (₹)">
-                        <button class="btn-gold" onclick="addLedgerEntry()">Record Payment</button>
-                    </div>
-                    <table class="admin-table" id="ledgerTable">
-                        <thead>
-                            <tr><th>Client</th><th>Total Bill</th><th>Advance</th><th>Balance Due</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 5: Bad Debt WhatsApp -->
-                <div id="tab5" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">5. Bad Debt WhatsApp Payment Recovery Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="debtName" placeholder="Debtor Name">
-                        <input type="tel" id="debtPhone" placeholder="Mobile Number">
-                        <input type="number" id="debtAmount" placeholder="Due Amount (₹)">
-                        <button class="btn-danger" onclick="sendDebtReminder()">📱 Send Payment Warning via WhatsApp</button>
-                    </div>
-                </div>
-
-                <!-- FEATURE 6: Live Gallery Upload -->
-                <div id="tab6" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">6. Live Media Injector (Permanent Gallery Upload)</h3>
-                    <input type="file" id="mediaUploadInput" accept="image/*,video/*" onchange="uploadToGallery(event)" style="background: #181820; padding: 10px; border-radius: 5px; width: 100%;">
-                    <p style="font-size:0.8rem; color:#aaa; margin-top:8px;">Uploaded image/video instantly injects into public website gallery and saves permanently to storage.</p>
-                </div>
-
-                <!-- FEATURE 7: Price Rate Editor -->
-                <div id="tab7" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">7. Dynamic Rate Card Master Configurator</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="rateItem" placeholder="Service Name">
-                        <input type="number" id="ratePrice" placeholder="Default Rate (₹)">
-                        <button class="btn-gold" onclick="addRateCardItem()">Save Rate</button>
-                    </div>
-                    <table class="admin-table" id="rateCardTable">
-                        <thead>
-                            <tr><th>Service Item</th><th>Base Price</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 8: Vendor Expense Logger -->
-                <div id="tab8" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">8. Event Expense & Vendor Payment Logger</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="expName" placeholder="Expense Name (e.g., Flower Vendor)">
-                        <input type="number" id="expAmount" placeholder="Amount (₹)">
-                        <select id="expCategory">
-                            <option value="Labor">Labor</option>
-                            <option value="Transport">Transport</option>
-                            <option value="Materials">Materials</option>
-                        </select>
-                        <button class="btn-gold" onclick="logExpense()">Log Expense</button>
-                    </div>
-                    <table class="admin-table" id="expenseTable">
-                        <thead>
-                            <tr><th>Expense Title</th><th>Category</th><th>Amount</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <p style="margin-top: 10px; font-weight: bold;">Total Event Expenses: ₹<span id="totalExpOut">0.00</span></p>
-                </div>
-
-                <!-- FEATURE 9: Calendar Booking -->
-                <div id="tab9" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">9. Event Calendar Date Lock Manager</h3>
-                    <div class="admin-grid-form">
-                        <input type="date" id="lockDateInput">
-                        <input type="text" id="lockDateReason" placeholder="Reason / Client Name">
-                        <button class="btn-gold" onclick="lockDate()">Lock Date</button>
-                    </div>
-                    <table class="admin-table" id="calendarTable">
-                        <thead>
-                            <tr><th>Date Locked</th><th>Event Details</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 10: Quotation Generator -->
-                <div id="tab10" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">10. Estimate & Quotation Builder Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="qClient" placeholder="Client Name">
-                        <input type="text" id="qEvent" placeholder="Event Type">
-                        <input type="number" id="qGuests" placeholder="Estimated Guests">
-                        <input type="number" id="qRatePerGuest" placeholder="Budget Per Guest (₹)">
-                        <button class="btn-gold" onclick="generateQuotation()">Generate Quotation</button>
-                    </div>
-                    <div id="quotationOutput" style="background:#181820; padding:15px; border-radius:5px; margin-top:15px; display:none;">
-                        <h4 style="color:var(--royal-gold);">OFFICIAL ESTIMATE QUOTATION</h4>
-                        <p id="qDetails"></p>
-                        <h3 style="color:var(--bright-gold); margin-top:8px;">Total Estimated Cost: ₹<span id="qTotal"></span></h3>
-                    </div>
-                </div>
-
-                <!-- FEATURE 11: Staff Allocator -->
-                <div id="tab11" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">11. Worker & On-Site Staff Allocation</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="staffName" placeholder="Worker Name">
-                        <input type="text" id="staffRole" placeholder="Role (e.g. Tent Supervisor)">
-                        <input type="text" id="staffVenue" placeholder="Assigned Venue">
-                        <button class="btn-gold" onclick="assignStaff()">Assign Staff</button>
-                    </div>
-                    <table class="admin-table" id="staffTable">
-                        <thead>
-                            <tr><th>Worker Name</th><th>Role</th><th>Venue</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 12: Service Toggle Manager -->
-                <div id="tab12" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">12. Dynamic Public Service Visibility Toggle</h3>
-                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px;">Enable or disable services offered on the public site in real-time.</p>
-                    <table class="admin-table" id="serviceToggleTable">
-                        <thead>
-                            <tr><th>Service Title</th><th>Status</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 13: Transport Dispatcher -->
-                <div id="tab13" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">13. Loading Truck & Vehicle Dispatch Status Tracker</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="truckNo" placeholder="Vehicle Reg No (e.g. RJ-21-GB-4011)">
-                        <input type="text" id="truckDriver" placeholder="Driver Name & Phone">
-                        <input type="text" id="truckVenue" placeholder="Destination Venue">
-                        <button class="btn-gold" onclick="dispatchTruck()">Dispatch Truck</button>
-                    </div>
-                    <table class="admin-table" id="truckTable">
-                        <thead>
-                            <tr><th>Vehicle No</th><th>Driver Info</th><th>Destination</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 14: Feedback Review Manager -->
-                <div id="tab14" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">14. Customer Testimonial Moderation Panel</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="revClient" placeholder="Client Name">
-                        <textarea id="revText" placeholder="Review Comment"></textarea>
-                        <button class="btn-gold" onclick="addCustomerReview()">Add Review</button>
-                    </div>
-                    <table class="admin-table" id="reviewTable">
-                        <thead>
-                            <tr><th>Client Name</th><th>Review Comment</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 15: Dynamic Discount Calculator -->
-                <div id="tab15" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">15. Instant Bill Discount & Settlement Calculator</h3>
-                    <div class="admin-grid-form">
-                        <input type="number" id="discBill" placeholder="Total Bill Amount (₹)">
-                        <input type="number" id="discPct" placeholder="Discount Percentage (%)">
-                        <button class="btn-gold" onclick="calcDiscount()">Calculate Discount</button>
-                    </div>
-                    <div id="discResult" style="margin-top:15px; background:#181820; padding:15px; border-radius:5px; display:none;">
-                        <p>Discount Amount: ₹<span id="discAmtOut"></span></p>
-                        <h3 style="color:var(--bright-gold);">Net Final Payable Amount: ₹<span id="finalPayOut"></span></h3>
-                    </div>
-                </div>
-
-            </div>
-        </section>
+        </div>
+        
+        <!-- Floating Button -->
+        <button id="ai-chat-btn" onclick="toggleChat()" class="bg-kth-maroon text-white w-16 h-16 rounded-full shadow-2xl flex items-center justify-center text-2xl hover:bg-kth-maroon_light hover:scale-110 transition-all border-2 border-kth-gold relative">
+            <i class="fa-solid fa-message"></i>
+            <span class="absolute top-0 right-0 bg-red-500 w-4 h-4 rounded-full border-2 border-white animate-pulse"></span>
+        </button>
     </div>
 
-    <!-- Printable Invoice Template Hidden Overlay -->
-    <div id="printableInvoice" style="display: none; background: white; color: black; padding: 30px; font-family: sans-serif;">
-        <h2 style="text-align: center; color: #6b0018;">KISHOR TENT HOUSE - TAX INVOICE</h2>
-        <p style="text-align: center;">Kehteswar Market, Nai Morseem | Mob: +91 98928 80155</p>
-        <hr style="margin: 15px 0;">
-        <p><strong>Client:</strong> <span id="pClient"></span></p>
-        <p><strong>Date:</strong> <span id="pDate"></span></p>
-        <br>
-        <table style="width: 100%; border-collapse: collapse;" border="1">
-            <thead>
-                <tr style="background: #eee;"><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
-            </thead>
-            <tbody id="pTableBody"></tbody>
-        </table>
-        <br>
-        <div style="text-align: right;">
-            <p>Subtotal: ₹<span id="pSub"></span></p>
-            <p>GST (18%): ₹<span id="pTax"></span></p>
-            <h3>Grand Total: ₹<span id="pGrand"></span></h3>
+    <div id="admin-overlay" class="fixed inset-0 bg-kth-dark bg-opacity-95 text-gray-100 z-50 overflow-y-auto hidden">
+        <div class="max-w-6xl mx-auto p-4 md:p-8">
+            <div class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
+                <h2 class="text-2xl font-bold text-kth-gold"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Console</h2>
+                <button onclick="closeAdmin()" class="text-gray-400 hover:text-white bg-gray-800 px-4 py-2 rounded">Exit Admin</button>
+            </div>
+
+            <!-- Admin Navigation Tabs -->
+            <div class="flex space-x-4 mb-8">
+                <button onclick="switchAdminTab('tab-godown')" id="btn-tab-godown" class="admin-tab-btn px-6 py-3 bg-kth-maroon text-white rounded-t-lg font-bold">Godown Stock</button>
+                <button onclick="switchAdminTab('tab-gallery')" id="btn-tab-gallery" class="admin-tab-btn px-6 py-3 bg-gray-800 text-gray-400 rounded-t-lg hover:text-white font-bold">Live Gallery</button>
+                <button onclick="switchAdminTab('tab-notify')" id="btn-tab-notify" class="admin-tab-btn px-6 py-3 bg-gray-800 text-gray-400 rounded-t-lg hover:text-white font-bold">Notifications</button>
+            </div>
+
+            <div class="bg-gray-800 p-6 rounded-b-lg rounded-tr-lg shadow-2xl min-h-[500px]">
+                
+                <!-- Godown Stock Manager Tab -->
+                <div id="tab-godown" class="admin-tab-content">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Godown Stock Manager</h3>
+                        <p class="text-sm text-gray-400">Manage your inventory items dynamically.</p>
+                    </div>
+                    
+                    <!-- Add Item Form -->
+                    <form onsubmit="addInventoryItem(event)" class="bg-gray-700 p-4 rounded-lg mb-8 grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase">Item Name</label>
+                            <input type="text" id="inv-name" required class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-kth-gold">
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase">Category</label>
+                            <select id="inv-cat" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-kth-gold">
+                                <option value="Tent & Structure">Tent & Structure</option>
+                                <option value="Furniture">Furniture</option>
+                                <option value="Catering">Catering</option>
+                                <option value="Lighting">Lighting</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-xs text-gray-400 mb-1 uppercase">Quantity</label>
+                            <input type="number" id="inv-qty" required min="1" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-kth-gold">
+                        </div>
+                        <div>
+                            <button type="submit" class="w-full bg-kth-gold text-kth-maroon font-bold py-2 px-4 rounded hover:bg-yellow-500 transition">
+                                <i class="fa-solid fa-plus mr-2"></i>Add to Stock
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Stock Table -->
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-sm text-gray-300">
+                            <thead class="bg-gray-700 text-gray-100 uppercase text-xs">
+                                <tr>
+                                    <th class="px-4 py-3 rounded-tl">Item Name</th>
+                                    <th class="px-4 py-3">Category</th>
+                                    <th class="px-4 py-3">Total Quantity</th>
+                                    <th class="px-4 py-3 rounded-tr text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody id="admin-inventory-list" class="divide-y divide-gray-700">
+                                <tr><td colspan="4" class="text-center py-4">Loading stock...</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Gallery Manager Tab -->
+                <div id="tab-gallery" class="admin-tab-content hidden">
+                    <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Live Gallery Upload</h3>
+                        <p class="text-sm text-gray-400">Permanently save images to public gallery.</p>
+                    </div>
+
+                    <div class="bg-gray-700 p-6 rounded-lg mb-8">
+                        <label class="block text-sm font-medium mb-2">Upload New Photo</label>
+                        <div class="flex items-center space-x-4">
+                            <input type="file" id="gallery-file-input" accept="image/*" class="flex-1 bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-kth-gold file:text-kth-maroon hover:file:bg-yellow-500 cursor-pointer">
+                            <button onclick="uploadGalleryImage()" id="btn-upload" class="bg-green-600 text-white font-bold py-2 px-6 rounded hover:bg-green-500 transition">
+                                Upload
+                            </button>
+                        </div>
+                        <p class="text-xs text-gray-400 mt-2">Images will be resized and compressed automatically to ensure fast loading.</p>
+                    </div>
+
+                    <h4 class="font-bold mb-4 text-kth-gold border-b border-gray-700 pb-2">Manage Uploaded Photos</h4>
+                    <div id="admin-gallery-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+                        <!-- Admin gallery items loaded here -->
+                    </div>
+                </div>
+
+                <!-- Notifications Tab -->
+                <div id="tab-notify" class="admin-tab-content hidden">
+                     <div class="flex justify-between items-center mb-6">
+                        <h3 class="text-xl font-bold">Deals & Notifications</h3>
+                        <p class="text-sm text-gray-400">Push live banners to the public site.</p>
+                    </div>
+
+                    <form onsubmit="saveNotification(event)" class="bg-gray-700 p-6 rounded-lg max-w-2xl">
+                        <div class="mb-4">
+                            <label class="block text-sm font-medium mb-2">Notification Message</label>
+                            <input type="text" id="notif-message" placeholder="e.g., Special 20% off on Wedding Bookings this month!" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-kth-gold">
+                        </div>
+                        <div class="mb-6">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="notif-active" class="form-checkbox h-5 w-5 text-kth-maroon bg-gray-800 border-gray-600 rounded focus:ring-0 focus:ring-offset-0">
+                                <span class="ml-3 text-sm font-medium">Display on Public Site (Active)</span>
+                            </label>
+                        </div>
+                        <div class="flex space-x-4">
+                            <button type="submit" class="bg-kth-gold text-kth-maroon font-bold py-2 px-6 rounded hover:bg-yellow-500 transition">
+                                Save Notification
+                            </button>
+                            <button type="button" onclick="clearNotification()" class="bg-red-600 text-white font-bold py-2 px-6 rounded hover:bg-red-500 transition">
+                                Delete Active
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
         </div>
     </div>
 
-    <footer>
-        <h3>KISHOR TENT HOUSE</h3>
-        <p>Kehteswar Market, Nai Morseem | Call: +91 98928 80155</p>
-        <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
-    </footer>
+    <script type="module">
+        // Core App State
+        let currentUser = { uid: 'local-admin' }; // Mock user for LocalStorage version
+        let isChatOpen = false;
+        let chatHistory = [];
 
-    <!-- ==========================================================================
-       JAVASCRIPT LOGIC ENGINE FOR ALL 15 ADMIN FEATURES
-       ========================================================================== -->
-    <script>
-        // System Config Data Structures
-        const CONFIG = {
-            passcode: "jaimaahinglaj",
-            phone: "919892880155",
-            gstRate: 0.18
-        };
-
-        // Pre-loaded Services State for Toggle Manager
-        let publicServices = [
-            { id: 1, name: "Tent House & Luxury Decoration", desc: "Royal Marwadi tents & waterproof canopies.", img: "https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg", active: true },
-            { id: 2, name: "Wedding Mandap & Stage Setup", desc: "Traditional royal mandaps with flower styling.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg", active: true },
-            { id: 3, name: "Light Decoration & DJ Sound", desc: "Ambient LED lighting & high-bass DJ rigs.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/10/Sindhu-Raghavan-Saravana-Raj-Reception-Apr-22-Sree-Varaaham-9.jpg", active: true }
-        ];
-
-        let invoiceItems = [];
-        
-        // Permanent Data Holders
-        let godownStockDB = JSON.parse(localStorage.getItem('godownStockDB')) || [];
-        let permanentGalleryDB = JSON.parse(localStorage.getItem('permanentGalleryDB')) || [];
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderPublicServices();
-            renderServiceToggleTable();
-            renderGodownStock();
-            renderPermanentGallery();
+        // Initialize App Data on Load
+        document.addEventListener('DOMContentLoaded', () => {
+            initAppRealtimeData();
         });
 
-        // Toggle Hindi/English Functionality
-        let isHindi = false;
-        function toggleLanguage() {
-            isHindi = !isHindi;
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = isHindi ? 'none' : 'inline-block');
-            document.querySelectorAll('.lang-hi').forEach(el => el.style.display = isHindi ? 'inline-block' : 'none');
+        // Use LocalStorage instead of Firebase to avoid permission errors
+        function getLocalData(key, defaultVal) {
+            const data = localStorage.getItem(key);
+            return data ? JSON.parse(data) : defaultVal;
         }
 
-        // Render Public Services based on Admin Toggles
-        function renderPublicServices() {
-            const container = document.getElementById('services-container');
-            container.innerHTML = '';
-            publicServices.filter(s => s.active).forEach(s => {
-                const card = document.createElement('div');
-                card.className = 'service-card';
-                card.innerHTML = `
-                    <div class="service-img-wrapper"><img src="${s.img}" alt="${s.name}"></div>
-                    <div class="service-content">
-                        <h3>${s.name}</h3>
-                        <p>${s.desc}</p>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
+        function setLocalData(key, val) {
+            localStorage.setItem(key, JSON.stringify(val));
         }
 
-        // Secret Admin Panel Revelator
-        function revealAdminConsole() {
-            document.getElementById('admin-console').style.display = 'block';
-            window.location.href = '#admin-console';
-        }
-
-        function hideAdminConsole() {
-            lockAdmin();
-            document.getElementById('admin-console').style.display = 'none';
-        }
-
-        // Admin Security Lock
-        function unlockAdmin() {
-            const pass = document.getElementById('adminPassInput').value;
-            if (pass === CONFIG.passcode) {
-                document.getElementById('admin-login-box').style.display = 'none';
-                document.getElementById('lockBtn').style.display = 'inline-block';
-                document.getElementById('admin-main-body').style.display = 'block';
-                alert("Owner Security Authenticated! Console Unlocked.");
-            } else {
-                alert("Invalid Admin Password!");
-            }
-        }
-
-        function lockAdmin() {
-            document.getElementById('admin-login-box').style.display = 'inline-block';
-            document.getElementById('lockBtn').style.display = 'none';
-            document.getElementById('admin-main-body').style.display = 'none';
-            document.getElementById('adminPassInput').value = '';
-        }
-
-        // Tab Switching
-        function switchAdminTab(tabId, btn) {
-            document.querySelectorAll('.admin-feature-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        /* FEATURE 1: GST Invoice Builder */
-        function addInvoiceItem() {
-            const desc = document.getElementById('invDesc').value;
-            const qty = parseFloat(document.getElementById('invQty').value) || 0;
-            const rate = parseFloat(document.getElementById('invRate').value) || 0;
-            if (!desc || qty <= 0 || rate <= 0) return alert("Fill item details");
-
-            const total = qty * rate;
-            invoiceItems.push({ desc, qty, rate, total });
-            renderInvoiceTable();
-        }
-
-        function renderInvoiceTable() {
-            const tbody = document.querySelector('#invoiceTable tbody');
-            tbody.innerHTML = '';
-            let subtotal = 0;
-            invoiceItems.forEach((item, index) => {
-                subtotal += item.total;
-                tbody.innerHTML += `<tr><td>${item.desc}</td><td>${item.qty}</td><td>₹${item.rate}</td><td>₹${item.total}</td><td><button class="btn-danger" onclick="invoiceItems.splice(${index},1);renderInvoiceTable();">X</button></td></tr>`;
-            });
-            const tax = subtotal * CONFIG.gstRate;
-            document.getElementById('invSub').innerText = subtotal.toFixed(2);
-            document.getElementById('invTax').innerText = tax.toFixed(2);
-            document.getElementById('invGrand').innerText = (subtotal + tax).toFixed(2);
-        }
-
-        function printInvoice() {
-            const client = document.getElementById('invClient').value || "Valued Client";
-            document.getElementById('pClient').innerText = client;
-            document.getElementById('pDate').innerText = new Date().toLocaleDateString();
-            const pBody = document.getElementById('pTableBody');
-            pBody.innerHTML = '';
-            let subtotal = 0;
-            invoiceItems.forEach(i => {
-                subtotal += i.total;
-                pBody.innerHTML += `<tr><td>${i.desc}</td><td>${i.qty}</td><td>₹${i.rate}</td><td>₹${i.total}</td></tr>`;
-            });
-            const tax = subtotal * CONFIG.gstRate;
-            document.getElementById('pSub').innerText = subtotal.toFixed(2);
-            document.getElementById('pTax').innerText = tax.toFixed(2);
-            document.getElementById('pGrand').innerText = (subtotal + tax).toFixed(2);
+        // Simulate Real-time Listeners using Custom Events and LocalStorage
+        function initAppRealtimeData() {
+            setupInventoryListener();
+            setupGalleryListener();
+            setupNotificationListener();
             
-            const printContents = document.getElementById('printableInvoice').innerHTML;
-            const win = window.open('', '', 'height=600,width=800');
-            win.document.write(`<html><body>${printContents}</body></html>`);
-            win.document.close();
-            win.print();
+            // Trigger initial render
+            window.dispatchEvent(new Event('inventoryUpdated'));
+            window.dispatchEvent(new Event('galleryUpdated'));
+            window.dispatchEvent(new Event('notificationUpdated'));
         }
 
-        /* FEATURE 2: Public Booking to Admin Sync */
-        function submitCustomerBooking(e) {
+        function setupInventoryListener() {
+            window.addEventListener('inventoryUpdated', () => {
+                const inventory = getLocalData('kth_inventory', []);
+                const tbody = document.getElementById('admin-inventory-list');
+                tbody.innerHTML = '';
+                
+                if(inventory.length === 0) {
+                    tbody.innerHTML = '<tr><td colspan="4" class="text-center py-4 text-gray-500">No items in godown. Add some above.</td></tr>';
+                    return;
+                }
+
+                inventory.forEach((item) => {
+                    const tr = document.createElement('tr');
+                    tr.className = "hover:bg-gray-700 transition";
+                    tr.innerHTML = `
+                        <td class="px-4 py-3 font-medium">${escapeHTML(item.name)}</td>
+                        <td class="px-4 py-3"><span class="bg-gray-800 px-2 py-1 rounded text-xs">${escapeHTML(item.category)}</span></td>
+                        <td class="px-4 py-3 font-bold text-kth-gold">${item.quantity}</td>
+                        <td class="px-4 py-3 text-right">
+                            <button onclick="removeInventoryItem('${item.id}')" class="text-red-400 hover:text-red-300 bg-red-900 bg-opacity-30 p-2 rounded">
+                                <i class="fa-solid fa-trash"></i> Remove
+                            </button>
+                        </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+            });
+        }
+
+        window.addInventoryItem = function(e) {
             e.preventDefault();
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
-            const event = document.getElementById('custEvent').value;
-            const date = document.getElementById('custDate').value;
-            const msg = document.getElementById('custMsg').value;
+            const name = document.getElementById('inv-name').value;
+            const cat = document.getElementById('inv-cat').value;
+            const qty = parseInt(document.getElementById('inv-qty').value);
+            
+            const inventory = getLocalData('kth_inventory', []);
+            inventory.push({
+                id: Date.now().toString(),
+                name: name,
+                category: cat,
+                quantity: qty,
+                timestamp: Date.now()
+            });
+            setLocalData('kth_inventory', inventory);
+            window.dispatchEvent(new Event('inventoryUpdated'));
+            e.target.reset();
+        };
 
-            // Add to Admin Booking Manager
-            const tbody = document.querySelector('#bookingManagerTable tbody');
-            tbody.innerHTML += `<tr><td>${name}</td><td>${phone}</td><td>${event}</td><td>${date}</td><td><span style="color:orange;">Pending</span></td><td><button class="btn-success" onclick="this.parentElement.previousElementSibling.innerHTML='<span style=\'color:green;\'>Confirmed</span>'">Confirm</button></td></tr>`;
+        window.removeInventoryItem = function(id) {
+            let inventory = getLocalData('kth_inventory', []);
+            inventory = inventory.filter(item => item.id !== id);
+            setLocalData('kth_inventory', inventory);
+            window.dispatchEvent(new Event('inventoryUpdated'));
+        };
 
-            // Open WhatsApp
-            const text = `*New Booking Request*%0AName: ${name}%0APhone: ${phone}%0AEvent: ${event}%0ADate: ${date}%0ADetails: ${msg}`;
-            window.open(`https://wa.me/${CONFIG.phone}?text=${text}`, '_blank');
-        }
+        function setupGalleryListener() {
+            window.addEventListener('galleryUpdated', () => {
+                const gallery = getLocalData('kth_gallery', []);
+                const publicGrid = document.getElementById('public-gallery-grid');
+                const adminGrid = document.getElementById('admin-gallery-grid');
+                
+                publicGrid.innerHTML = '';
+                adminGrid.innerHTML = '';
 
-        /* FEATURE 3: Permanent Godown Stock Tracker (with Local Storage) */
-        function renderGodownStock() {
-            const tbody = document.querySelector('#godownTable tbody');
-            tbody.innerHTML = '';
-            godownStockDB.forEach((item, index) => {
-                tbody.innerHTML += `<tr>
-                    <td>${item.name}</td>
-                    <td>${item.qty} Units</td>
-                    <td><button class="btn-danger" onclick="removeGodownItem(${index})"><i class="fa-solid fa-trash"></i> Remove</button></td>
-                </tr>`;
+                if(gallery.length === 0) {
+                    publicGrid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Check back soon for new event photos!</div>';
+                    adminGrid.innerHTML = '<div class="col-span-full text-gray-500 text-sm">No photos uploaded yet.</div>';
+                    return;
+                }
+
+                gallery.forEach((item) => {
+                    // Public Card
+                    const pubDiv = document.createElement('div');
+                    pubDiv.className = "rounded-lg overflow-hidden shadow-md aspect-square relative group";
+                    pubDiv.innerHTML = `
+                        <img src="${item.image}" alt="Event Photo" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition flex justify-center items-center">
+                            <i class="fa-solid fa-magnifying-glass text-white opacity-0 group-hover:opacity-100 text-3xl"></i>
+                        </div>
+                    `;
+                    publicGrid.appendChild(pubDiv);
+
+                    // Admin Card
+                    const adminDiv = document.createElement('div');
+                    adminDiv.className = "relative rounded overflow-hidden group aspect-square border border-gray-600";
+                    adminDiv.innerHTML = `
+                        <img src="${item.image}" class="w-full h-full object-cover">
+                        <button onclick="deleteGalleryImage('${item.id}')" class="absolute top-2 right-2 bg-red-600 text-white w-8 h-8 rounded-full opacity-0 group-hover:opacity-100 transition shadow hover:bg-red-500">
+                            <i class="fa-solid fa-trash"></i>
+                        </button>
+                    `;
+                    adminGrid.appendChild(adminDiv);
+                });
             });
         }
 
-        function addGodownStock() {
-            const name = document.getElementById('godownItemName').value;
-            const qty = parseInt(document.getElementById('godownItemQty').value) || 0;
-            if(!name || qty <= 0) return alert("Please specify valid item name and total quantity.");
+        window.uploadGalleryImage = async function() {
+            const fileInput = document.getElementById('gallery-file-input');
+            const btn = document.getElementById('btn-upload');
+            if(fileInput.files.length === 0) return;
             
-            godownStockDB.push({ name, qty });
-            localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save permanently
-            
-            document.getElementById('godownItemName').value = '';
-            document.getElementById('godownItemQty').value = '';
-            renderGodownStock();
-            alert("Item Added to Godown Successfully!");
-        }
+            const file = fileInput.files[0];
+            btn.innerHTML = '<div class="loader inline-block align-middle w-4 h-4 border-2"></div> Uploading...';
+            btn.disabled = true;
 
-        function removeGodownItem(index) {
-            if(confirm("Are you sure you want to remove this item completely from stock?")) {
-                godownStockDB.splice(index, 1);
-                localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save deletion permanently
-                renderGodownStock();
+            try {
+                // Resize image to base64 string
+                const base64Img = await resizeImageFile(file, 600); 
+                const gallery = getLocalData('kth_gallery', []);
+                gallery.push({
+                    id: Date.now().toString(),
+                    image: base64Img,
+                    timestamp: Date.now()
+                });
+                setLocalData('kth_gallery', gallery);
+                window.dispatchEvent(new Event('galleryUpdated'));
+                fileInput.value = '';
+            } catch (err) {
+                console.error("Upload error:", err);
+            } finally {
+                btn.innerHTML = 'Upload';
+                btn.disabled = false;
             }
+        };
+
+        window.deleteGalleryImage = function(id) {
+            let gallery = getLocalData('kth_gallery', []);
+            gallery = gallery.filter(item => item.id !== id);
+            setLocalData('kth_gallery', gallery);
+            window.dispatchEvent(new Event('galleryUpdated'));
+        };
+
+        // Helper to resize image client-side before upload
+        function resizeImageFile(file, maxSize) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.onload = () => {
+                        const canvas = document.createElement('canvas');
+                        let width = img.width;
+                        let height = img.height;
+                        if (width > height) {
+                            if (width > maxSize) { height *= maxSize / width; width = maxSize; }
+                        } else {
+                            if (height > maxSize) { width *= maxSize / height; height = maxSize; }
+                        }
+                        canvas.width = width; canvas.height = height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, width, height);
+                        resolve(canvas.toDataURL('image/jpeg', 0.6)); // compressed jpg
+                    };
+                    img.src = e.target.result;
+                };
+                reader.onerror = reject;
+                reader.readAsDataURL(file);
+            });
         }
 
-        /* FEATURE 4: Payment Ledger */
-        function addLedgerEntry() {
-            const name = document.getElementById('payClient').value;
-            const total = parseFloat(document.getElementById('payTotal').value) || 0;
-            const adv = parseFloat(document.getElementById('payAdvance').value) || 0;
-            const due = total - adv;
-            const status = due <= 0 ? '<span style="color:green;">Paid</span>' : `<span style="color:red;">Due ₹${due}</span>`;
-            document.querySelector('#ledgerTable tbody').innerHTML += `<tr><td>${name}</td><td>₹${total}</td><td>₹${adv}</td><td>₹${due}</td><td>${status}</td></tr>`;
-        }
+        function setupNotificationListener() {
+            window.addEventListener('notificationUpdated', () => {
+                const data = getLocalData('kth_notification', { message: '', isActive: false });
+                const banner = document.getElementById('public-notification-banner');
+                const text = document.getElementById('public-notification-text');
+                const notifInput = document.getElementById('notif-message');
+                const activeCheck = document.getElementById('notif-active');
 
-        /* FEATURE 5: Bad Debt WhatsApp Reminder */
-        function sendDebtReminder() {
-            const name = document.getElementById('debtName').value;
-            const phone = document.getElementById('debtPhone').value;
-            const amt = document.getElementById('debtAmount').value;
-            if(!name || !phone || !amt) return alert("Fill all debt details");
-            const msg = `Dear *${name}*, This is an official payment balance reminder from *Kishor Tent House*. You have an outstanding balance of *₹${amt}*. Kindly clear the payment at earliest. Contact: +91 98928 80155`;
-            window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        /* FEATURE 6: Live Gallery Upload (Permanent Local Storage) */
-        function renderPermanentGallery() {
-            const container = document.getElementById('gallery-container');
-            let html = `
-                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Event"></div>
-                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Mandap"></div>
-            `;
-            
-            // Render custom saved images
-            permanentGalleryDB.forEach(mediaSrc => {
-                if(mediaSrc.startsWith('data:video')) {
-                    html = `<div class="gallery-item"><video src="${mediaSrc}" controls></video></div>` + html;
+                if (data.isActive && data.message) {
+                    banner.style.display = 'flex';
+                    text.textContent = data.message;
                 } else {
-                    html = `<div class="gallery-item"><img src="${mediaSrc}" alt="Saved Event"></div>` + html;
+                    banner.style.display = 'none';
                 }
+                
+                // Update admin form
+                if (notifInput) notifInput.value = data.message || '';
+                if (activeCheck) activeCheck.checked = data.isActive || false;
             });
-            container.innerHTML = html;
         }
 
-        function uploadToGallery(e) {
-            const file = e.target.files[0];
-            if(!file) return;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                try {
-                    // Save base64 string to local array
-                    permanentGalleryDB.push(event.target.result);
-                    localStorage.setItem('permanentGalleryDB', JSON.stringify(permanentGalleryDB)); // Save permanently
-                    
-                    renderPermanentGallery();
-                    alert("Media successfully published permanently to your public website gallery!");
-                } catch (error) {
-                    alert("Browser storage size exceeded! Image shown temporarily but may not save permanently.");
-                    // Fallback to show it temporarily if storage size exceeded
-                    permanentGalleryDB.push(event.target.result);
-                    renderPermanentGallery();
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-
-        /* FEATURE 7: Price Rate Card Editor */
-        function addRateCardItem() {
-            const item = document.getElementById('rateItem').value;
-            const price = document.getElementById('ratePrice').value;
-            if(!item || !price) return;
-            document.querySelector('#rateCardTable tbody').innerHTML += `<tr><td>${item}</td><td>₹${price}</td><td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Remove</button></td></tr>`;
-        }
-
-        /* FEATURE 8: Vendor Expense Logger */
-        let totalExpenses = 0;
-        function logExpense() {
-            const title = document.getElementById('expName').value;
-            const amt = parseFloat(document.getElementById('expAmount').value) || 0;
-            const cat = document.getElementById('expCategory').value;
-            if(!title || amt <= 0) return;
-            totalExpenses += amt;
-            document.querySelector('#expenseTable tbody').innerHTML += `<tr><td>${title}</td><td>${cat}</td><td>₹${amt}</td></tr>`;
-            document.getElementById('totalExpOut').innerText = totalExpenses.toFixed(2);
-        }
-
-        /* FEATURE 9: Calendar Booking Lock */
-        function lockDate() {
-            const date = document.getElementById('lockDateInput').value;
-            const reason = document.getElementById('lockDateReason').value;
-            if(!date) return;
-            document.querySelector('#calendarTable tbody').innerHTML += `<tr><td>${date}</td><td>${reason}</td><td><span style="color:red;">LOCKED</span></td></tr>`;
-        }
-
-        /* FEATURE 10: Quotation Generator */
-        function generateQuotation() {
-            const client = document.getElementById('qClient').value;
-            const event = document.getElementById('qEvent').value;
-            const guests = parseInt(document.getElementById('qGuests').value) || 0;
-            const rate = parseFloat(document.getElementById('qRatePerGuest').value) || 0;
-            const total = guests * rate;
+        window.saveNotification = function(e) {
+            e.preventDefault();
+            const message = document.getElementById('notif-message').value;
+            const isActive = document.getElementById('notif-active').checked;
             
-            document.getElementById('qDetails').innerText = `Prepared for: ${client} | Event: ${event} | Guest Count: ${guests} @ ₹${rate}/guest`;
-            document.getElementById('qTotal').innerText = total.toLocaleString('en-IN');
-            document.getElementById('quotationOutput').style.display = 'block';
-        }
-
-        /* FEATURE 11: Worker Staff Allocator */
-        function assignStaff() {
-            const name = document.getElementById('staffName').value;
-            const role = document.getElementById('staffRole').value;
-            const venue = document.getElementById('staffVenue').value;
-            if(!name) return;
-            document.querySelector('#staffTable tbody').innerHTML += `<tr><td>${name}</td><td>${role}</td><td>${venue}</td><td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Unassign</button></td></tr>`;
-        }
-
-        /* FEATURE 12: Service Toggle Manager */
-        function renderServiceToggleTable() {
-            const tbody = document.querySelector('#serviceToggleTable tbody');
-            tbody.innerHTML = '';
-            publicServices.forEach((s, idx) => {
-                tbody.innerHTML += `<tr><td>${s.name}</td><td>${s.active ? '<span style="color:green;">Live</span>' : '<span style="color:red;">Hidden</span>'}</td><td><button class="btn-gold" onclick="toggleServiceActive(${idx})">Toggle</button></td></tr>`;
+            setLocalData('kth_notification', {
+                message: message,
+                isActive: isActive,
+                timestamp: Date.now()
             });
-        }
-        function toggleServiceActive(idx) {
-            publicServices[idx].active = !publicServices[idx].active;
-            renderServiceToggleTable();
-            renderPublicServices();
+            window.dispatchEvent(new Event('notificationUpdated'));
+            alertModal("Notification updated successfully!");
+        };
+
+        window.clearNotification = function() {
+             setLocalData('kth_notification', {
+                 message: "",
+                 isActive: false
+             });
+             window.dispatchEvent(new Event('notificationUpdated'));
         }
 
-        /* FEATURE 13: Transport Dispatcher */
-        function dispatchTruck() {
-            const no = document.getElementById('truckNo').value;
-            const driver = document.getElementById('truckDriver').value;
-            const venue = document.getElementById('truckVenue').value;
-            if(!no) return;
-            document.querySelector('#truckTable tbody').innerHTML += `<tr><td>${no}</td><td>${driver}</td><td>${venue}</td><td><span style="color:orange;">In-Transit</span></td></tr>`;
+        const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=";
+        const SYSTEM_PROMPT = "You are a helpful, polite customer service AI for 'Kishor Tent House'. Keep responses very brief (1-2 sentences). You provide luxury tents, premium catering, elegant lighting, and hygienic event setups. Pricing is affordable but you don't give exact numbers, suggest they contact via info@kishortent.com or +919876543210. Tone: professional, welcoming.";
+
+        window.toggleChat = function() {
+            const windowEl = document.getElementById('ai-chat-window');
+            const btnEl = document.getElementById('ai-chat-btn');
+            isChatOpen = !isChatOpen;
+            
+            if(isChatOpen) {
+                windowEl.classList.remove('hidden');
+                btnEl.classList.add('hidden');
+                document.getElementById('chat-input').focus();
+            } else {
+                windowEl.classList.add('hidden');
+                btnEl.classList.remove('hidden');
+            }
+        };
+
+        window.sendChatMessage = async function() {
+            const inputEl = document.getElementById('chat-input');
+            const message = inputEl.value.trim();
+            if(!message) return;
+
+            appendMessage(message, 'user');
+            inputEl.value = '';
+            
+            // Add loading indicator
+            const loadId = 'loading-' + Date.now();
+            appendLoading(loadId);
+
+            // Construct payload
+            chatHistory.push({ role: "user", parts: [{ text: message }] });
+            
+            const payload = {
+                contents: chatHistory,
+                systemInstruction: { parts: [{ text: SYSTEM_PROMPT }] }
+            };
+
+            try {
+                const response = await fetch(GEMINI_API_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+                
+                const result = await response.json();
+                document.getElementById(loadId).remove(); // remove loader
+
+                if (result.candidates && result.candidates[0].content) {
+                    const aiText = result.candidates[0].content.parts[0].text;
+                    appendMessage(aiText, 'model');
+                    chatHistory.push({ role: "model", parts: [{ text: aiText }] });
+                } else {
+                    appendMessage("I'm having trouble connecting right now. Please call us!", 'model');
+                }
+
+            } catch (err) {
+                console.error("Gemini API Error", err);
+                document.getElementById(loadId)?.remove();
+                appendMessage("Sorry, I encountered an error.", 'model');
+            }
+        };
+
+        function appendMessage(text, sender) {
+            const chatBox = document.getElementById('chat-messages');
+            const wrapper = document.createElement('div');
+            wrapper.className = sender === 'user' ? 'flex justify-end' : 'flex items-start';
+            
+            let html = '';
+            if(sender === 'user') {
+                html = `<div class="bg-kth-maroon text-white p-3 rounded-2xl rounded-tr-none max-w-[85%] chat-message shadow-sm">${escapeHTML(text)}</div>`;
+            } else {
+                html = `<div class="bg-gray-200 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] chat-message shadow-sm">${escapeHTML(text)}</div>`;
+            }
+            wrapper.innerHTML = html;
+            chatBox.appendChild(wrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        /* FEATURE 14: Customer Review Moderation */
-        function addCustomerReview() {
-            const name = document.getElementById('revClient').value;
-            const text = document.getElementById('revText').value;
-            if(!name || !text) return;
-            document.querySelector('#reviewTable tbody').innerHTML += `<tr><td>${name}</td><td>"${text}"</td><td><button class="btn-success" onclick="alert('Review approved & highlighted!')">Approve</button></td></tr>`;
+        function appendLoading(id) {
+            const chatBox = document.getElementById('chat-messages');
+            const wrapper = document.createElement('div');
+            wrapper.id = id;
+            wrapper.className = 'flex items-start';
+            wrapper.innerHTML = `<div class="bg-gray-100 p-3 rounded-2xl rounded-tl-none chat-message shadow-sm flex items-center space-x-2"><div class="loader" style="width:14px;height:14px;border-width:2px;"></div><span class="text-xs text-gray-500">Typing...</span></div>`;
+            chatBox.appendChild(wrapper);
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
 
-        /* FEATURE 15: Settlement Discount Calculator */
-        function calcDiscount() {
-            const bill = parseFloat(document.getElementById('discBill').value) || 0;
-            const pct = parseFloat(document.getElementById('discPct').value) || 0;
-            const discAmt = (bill * pct) / 100;
-            const finalPay = bill - discAmt;
-            document.getElementById('discAmtOut').innerText = discAmt.toFixed(2);
-            document.getElementById('finalPayOut').innerText = finalPay.toFixed(2);
-            document.getElementById('discResult').style.display = 'block';
+        window.promptAdminUnlock = function() {
+            // Simple mock authentication for environment constraints. 
+            // In reality, rely on proper Firebase Custom Claims.
+            const pass = prompt("Enter Admin Passcode (Hint: type 'admin123'):");
+            if(pass === 'admin123') {
+                document.getElementById('admin-overlay').classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+            } else if(pass !== null) {
+                alertModal("Incorrect passcode.");
+            }
+        };
+
+        window.closeAdmin = function() {
+            document.getElementById('admin-overlay').classList.add('hidden');
+            document.body.style.overflow = 'auto';
+        };
+
+        window.switchAdminTab = function(tabId) {
+            document.querySelectorAll('.admin-tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.admin-tab-btn').forEach(el => {
+                el.classList.remove('bg-kth-maroon', 'text-white');
+                el.classList.add('bg-gray-800', 'text-gray-400');
+            });
+            
+            document.getElementById(tabId).classList.remove('hidden');
+            const btn = document.getElementById('btn-' + tabId);
+            btn.classList.remove('bg-gray-800', 'text-gray-400');
+            btn.classList.add('bg-kth-maroon', 'text-white');
+        };
+
+        window.toggleLanguage = function() {
+            if(document.body.classList.contains('lang-en')) {
+                document.body.classList.remove('lang-en');
+                document.body.classList.add('lang-hi');
+            } else {
+                document.body.classList.remove('lang-hi');
+                document.body.classList.add('lang-en');
+            }
+        };
+
+        function escapeHTML(str) {
+            if(!str) return '';
+            return str.replace(/[&<>'"]/g, 
+                tag => ({
+                    '&': '&amp;',
+                    '<': '&lt;',
+                    '>': '&gt;',
+                    "'": '&#39;',
+                    '"': '&quot;'
+                }[tag] || tag)
+            );
         }
+
+        // Custom alert substitute
+        function alertModal(msg) {
+            const overlay = document.createElement('div');
+            overlay.className = "fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-center items-center";
+            overlay.innerHTML = `
+                <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow-2xl text-gray-800">
+                    <p class="mb-6 font-medium">${escapeHTML(msg)}</p>
+                    <button class="bg-kth-maroon text-white px-6 py-2 rounded shadow hover:bg-red-800" onclick="this.parentElement.parentElement.remove()">OK</button>
+                </div>
+            `;
+            document.body.appendChild(overlay);
+        }
+
     </script>
 </body>
 </html>
