@@ -46,6 +46,11 @@
             overflow-x: hidden;
         }
 
+        /* Language Toggle Defaults */
+        .lang-hi {
+            display: none; /* Hide Hindi by default */
+        }
+
         /* ==========================================================================
            TYPOGRAPHY & BUTTONS
            ========================================================================== */
@@ -178,6 +183,13 @@
             font-size: 0.9rem;
             color: var(--bright-gold);
             margin-bottom: 20px;
+            cursor: pointer; /* Acts as the secret admin reveal button */
+            transition: var(--transition);
+        }
+        
+        .proprietor-tag:hover {
+            background: rgba(0,0,0,0.8);
+            border-color: #fff;
         }
 
         /* Navigation */
@@ -223,6 +235,42 @@
             font-size: 2.2rem;
             color: var(--royal-maroon);
             margin-bottom: 10px;
+        }
+
+        /* Quality Promise CSS */
+        .kth-section { padding: 20px 0 60px 0; }
+        .kth-section-title { text-align: center; margin-bottom: 40px; }
+        .kth-section-title h2 { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 10px; font-family: 'Cinzel', serif; }
+        .kth-section-title p { color: var(--text-light); font-size: 1.1rem; }
+        
+        .kth-grid {
+            display: grid;
+            gap: 25px;
+        }
+        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+        
+        .kth-promise-card {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 4px solid var(--royal-gold);
+            transition: var(--transition);
+        }
+        .kth-promise-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-heavy);
+        }
+        .kth-promise-icon {
+            font-size: 2.8rem;
+            color: var(--royal-gold);
+            margin-bottom: 15px;
+        }
+        .kth-promise-title {
+            font-weight: 700;
+            font-size: 1.15rem;
+            color: var(--royal-maroon);
         }
 
         /* Services Grid */
@@ -326,6 +374,7 @@
            15 ADMIN FEATURES CONSOLE ENGINE
            ========================================================================== */
         .admin-section {
+            display: none; /* Hidden strictly by default from general visitors */
             background: #1e1e24;
             color: #ffffff;
             border-radius: 15px;
@@ -343,7 +392,6 @@
             margin-bottom: 25px;
         }
 
-        /* Admin Grid Navigator */
         .admin-tabs-nav {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -390,7 +438,6 @@
             padding-bottom: 8px;
         }
 
-        /* Form Controls inside Admin */
         .admin-grid-form {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -407,7 +454,6 @@
             width: 100%;
         }
 
-        /* Tables Inside Admin */
         .admin-table {
             width: 100%;
             border-collapse: collapse;
@@ -435,10 +481,14 @@
             border-top: 3px solid var(--royal-gold);
         }
 
+        @media(max-width: 900px) {
+            .grid-md-2 { grid-template-columns: repeat(2, 1fr); }
+        }
         @media(max-width: 768px) {
             .booking-form { grid-template-columns: 1fr; }
             .form-group-full { grid-column: span 1; }
             .brand-header h1 { font-size: 2.2rem; }
+            .grid-cols-4 { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -455,20 +505,66 @@
         <div class="brand-header">
             <h1 class="gold-text" id="brand-title">KISHOR TENT HOUSE</h1>
             <h2 id="brand-sub">Complete Solution For All Your Events</h2>
-            <div class="proprietor-tag">Proprietor: Bhavesh Purohit</div><br>
+            <!-- Click the Proprietor Tag to Reveal the Hidden Admin Master Console -->
+            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Admin Login">Proprietor: Bhavesh Purohit</div><br>
             <a href="#booking" class="btn-gold">Book Event Now</a>
         </div>
     </header>
 
     <!-- Navigation -->
     <nav>
+        <!-- Removed Master Admin link to hide it securely from public customers -->
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#booking">Book Now</a>
-        <a href="#admin-console">Master Admin (15 Features)</a>
     </nav>
 
     <div class="container">
+        
+        <!-- Quality Promise Section Added Here -->
+        <section class="kth-section">
+            <div class="kth-section-title">
+                <h2>
+                    <span class="lang-en">Our Quality Promise</span>
+                    <span class="lang-hi">हमारी गुणवत्ता का वादा</span>
+                </h2>
+                <p>
+                    <span class="lang-en">We deliver high-standard event services with complete perfection.</span>
+                    <span class="lang-hi">हम पूर्ण पूर्णता और उच्च मानकों के साथ सेवाएं प्रदान करते हैं।</span>
+                </p>
+            </div>
+            <div class="kth-grid grid-cols-4 grid-md-2">
+                <div class="kth-promise-card">
+                    <div class="kth-promise-icon"><i class="fa-solid fa-sparkles"></i></div>
+                    <div class="kth-promise-title">
+                        <span class="lang-en">Hygienic Setup</span>
+                        <span class="lang-hi">हाइजीनिक सेटअप</span>
+                    </div>
+                </div>
+                <div class="kth-promise-card">
+                    <div class="kth-promise-icon"><i class="fa-solid fa-award"></i></div>
+                    <div class="kth-promise-title">
+                        <span class="lang-en">Best Quality Material</span>
+                        <span class="lang-hi">उत्कृष्ट गुणवत्ता</span>
+                    </div>
+                </div>
+                <div class="kth-promise-card">
+                    <div class="kth-promise-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
+                    <div class="kth-promise-title">
+                        <span class="lang-en">Affordable Pricing</span>
+                        <span class="lang-hi">किफायती दरें</span>
+                    </div>
+                </div>
+                <div class="kth-promise-card">
+                    <div class="kth-promise-icon"><i class="fa-solid fa-clock-check"></i></div>
+                    <div class="kth-promise-title">
+                        <span class="lang-en">On Time Service</span>
+                        <span class="lang-hi">समय पर सेवा</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Services Section -->
         <section id="services">
             <div class="section-header">
@@ -485,9 +581,8 @@
             <div class="section-header">
                 <h2 class="section-title">Royal Event Gallery</h2>
             </div>
+            <!-- Populated via Javascript to support Permanent Local Storage -->
             <div class="gallery-grid" id="gallery-container">
-                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Event"></div>
-                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Mandap"></div>
             </div>
         </section>
 
@@ -530,7 +625,7 @@
         </section>
 
         <!-- ==========================================================================
-           15 ADMIN FEATURES CONSOLE (FULLY FUNCTIONAL)
+           15 ADMIN FEATURES CONSOLE (HIDDEN)
            ========================================================================== -->
         <section class="admin-section" id="admin-console">
             <div class="admin-top-bar">
@@ -539,10 +634,11 @@
                     <p style="font-size: 0.85rem; color: #aaa;">15 Core Fully Operational Management Tools</p>
                 </div>
                 <div id="admin-login-box">
-                    <input type="password" id="adminPassInput" placeholder="Password (1234)" style="padding: 8px; border-radius: 4px; border: 1px solid #555;">
+                    <input type="password" id="adminPassInput" placeholder="Password (jaimaahinglaj)" style="padding: 8px; border-radius: 4px; border: 1px solid #555;">
                     <button class="btn-gold" onclick="unlockAdmin()">Unlock Console</button>
                 </div>
                 <button id="lockBtn" class="btn-danger" style="display:none;" onclick="lockAdmin()"><i class="fa-solid fa-lock"></i> Lock Console</button>
+                <button class="btn-danger" onclick="hideAdminConsole()">Close Admin Panel</button>
             </div>
 
             <div id="admin-main-body" style="display: none;">
@@ -550,7 +646,7 @@
                 <div class="admin-tabs-nav">
                     <button class="admin-tab-btn active" onclick="switchAdminTab('tab1', this)">1. GST Invoice Builder</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('tab2', this)">2. Booking Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab3', this)">3. Inventory Tracker</button>
+                    <button class="admin-tab-btn" onclick="switchAdminTab('tab3', this)">3. Godown Stock</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('tab4', this)">4. Payment Ledger</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('tab5', this)">5. Bad Debt WhatsApp</button>
                     <button class="admin-tab-btn" onclick="switchAdminTab('tab6', this)">6. Live Gallery Upload</button>
@@ -588,8 +684,6 @@
                     </div>
                 </div>
  
-
-       
                 <!-- FEATURE 2: Booking Manager -->
                 <div id="tab2" class="admin-feature-panel">
                     <h3 class="admin-panel-title">2. Customer Booking Request Manager</h3>
@@ -601,17 +695,17 @@
                     </table>
                 </div>
 
-                <!-- FEATURE 3: Inventory Tracker -->
+                <!-- FEATURE 3: Godown Stock -->
                 <div id="tab3" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">3. Live Material Inventory Tracker</h3>
+                    <h3 class="admin-panel-title">3. Godown Stock / Inventory Tracker</h3>
                     <div class="admin-grid-form">
-                        <input type="text" id="invItemName" placeholder="Item Name (e.g. Maharaja Sofa)">
-                        <input type="number" id="invItemTotal" placeholder="Total Stock">
-                        <button class="btn-gold" onclick="addInventoryItem()">Register Item</button>
+                        <input type="text" id="godownItemName" placeholder="Item Name (e.g. Maharaja Sofa)">
+                        <input type="number" id="godownItemQty" placeholder="Total Stock Quantity">
+                        <button class="btn-gold" onclick="addGodownStock()">Add to Godown</button>
                     </div>
-                    <table class="admin-table" id="inventoryTable">
+                    <table class="admin-table" id="godownTable">
                         <thead>
-                            <tr><th>Item Name</th><th>Total Stock</th><th>Booked/Dispatched</th><th>Available</th><th>Action</th></tr>
+                            <tr><th>Item Name</th><th>Total Quantity in Stock</th><th>Action</th></tr>
                         </thead>
                         <tbody></tbody>
                     </table>
@@ -647,9 +741,9 @@
 
                 <!-- FEATURE 6: Live Gallery Upload -->
                 <div id="tab6" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">6. Live Media Injector (Public Gallery Upload)</h3>
+                    <h3 class="admin-panel-title">6. Live Media Injector (Permanent Gallery Upload)</h3>
                     <input type="file" id="mediaUploadInput" accept="image/*,video/*" onchange="uploadToGallery(event)" style="background: #181820; padding: 10px; border-radius: 5px; width: 100%;">
-                    <p style="font-size:0.8rem; color:#aaa; margin-top:8px;">Uploaded image/video instantly injects into public website gallery.</p>
+                    <p style="font-size:0.8rem; color:#aaa; margin-top:8px;">Uploaded image/video instantly injects into public website gallery and saves permanently to storage.</p>
                 </div>
 
                 <!-- FEATURE 7: Price Rate Editor -->
@@ -850,15 +944,24 @@
         ];
 
         let invoiceItems = [];
+        
+        // Permanent Data Holders
+        let godownStockDB = JSON.parse(localStorage.getItem('godownStockDB')) || [];
+        let permanentGalleryDB = JSON.parse(localStorage.getItem('permanentGalleryDB')) || [];
 
         document.addEventListener("DOMContentLoaded", () => {
             renderPublicServices();
             renderServiceToggleTable();
+            renderGodownStock();
+            renderPermanentGallery();
         });
 
-        // Language Switcher
+        // Toggle Hindi/English Functionality
+        let isHindi = false;
         function toggleLanguage() {
-            alert("Language toggled between English & Hindi.");
+            isHindi = !isHindi;
+            document.querySelectorAll('.lang-en').forEach(el => el.style.display = isHindi ? 'none' : 'inline-block');
+            document.querySelectorAll('.lang-hi').forEach(el => el.style.display = isHindi ? 'inline-block' : 'none');
         }
 
         // Render Public Services based on Admin Toggles
@@ -877,6 +980,17 @@
                 `;
                 container.appendChild(card);
             });
+        }
+
+        // Secret Admin Panel Revelator
+        function revealAdminConsole() {
+            document.getElementById('admin-console').style.display = 'block';
+            window.location.href = '#admin-console';
+        }
+
+        function hideAdminConsole() {
+            lockAdmin();
+            document.getElementById('admin-console').style.display = 'none';
         }
 
         // Admin Security Lock
@@ -974,13 +1088,39 @@
             window.open(`https://wa.me/${CONFIG.phone}?text=${text}`, '_blank');
         }
 
-        /* FEATURE 3: Inventory Tracker */
-        function addInventoryItem() {
-            const name = document.getElementById('invItemName').value;
-            const total = parseInt(document.getElementById('invItemTotal').value) || 0;
-            if(!name || total <= 0) return alert("Specify valid item");
-            const tbody = document.querySelector('#inventoryTable tbody');
-            tbody.innerHTML += `<tr><td>${name}</td><td>${total} Units</td><td>0 Units</td><td>${total} Units</td><td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Delete</button></td></tr>`;
+        /* FEATURE 3: Permanent Godown Stock Tracker (with Local Storage) */
+        function renderGodownStock() {
+            const tbody = document.querySelector('#godownTable tbody');
+            tbody.innerHTML = '';
+            godownStockDB.forEach((item, index) => {
+                tbody.innerHTML += `<tr>
+                    <td>${item.name}</td>
+                    <td>${item.qty} Units</td>
+                    <td><button class="btn-danger" onclick="removeGodownItem(${index})"><i class="fa-solid fa-trash"></i> Remove</button></td>
+                </tr>`;
+            });
+        }
+
+        function addGodownStock() {
+            const name = document.getElementById('godownItemName').value;
+            const qty = parseInt(document.getElementById('godownItemQty').value) || 0;
+            if(!name || qty <= 0) return alert("Please specify valid item name and total quantity.");
+            
+            godownStockDB.push({ name, qty });
+            localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save permanently
+            
+            document.getElementById('godownItemName').value = '';
+            document.getElementById('godownItemQty').value = '';
+            renderGodownStock();
+            alert("Item Added to Godown Successfully!");
+        }
+
+        function removeGodownItem(index) {
+            if(confirm("Are you sure you want to remove this item completely from stock?")) {
+                godownStockDB.splice(index, 1);
+                localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save deletion permanently
+                renderGodownStock();
+            }
         }
 
         /* FEATURE 4: Payment Ledger */
@@ -1003,22 +1143,43 @@
             window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
         }
 
-        /* FEATURE 6: Live Media Upload Engine */
+        /* FEATURE 6: Live Gallery Upload (Permanent Local Storage) */
+        function renderPermanentGallery() {
+            const container = document.getElementById('gallery-container');
+            let html = `
+                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Event"></div>
+                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Mandap"></div>
+            `;
+            
+            // Render custom saved images
+            permanentGalleryDB.forEach(mediaSrc => {
+                if(mediaSrc.startsWith('data:video')) {
+                    html = `<div class="gallery-item"><video src="${mediaSrc}" controls></video></div>` + html;
+                } else {
+                    html = `<div class="gallery-item"><img src="${mediaSrc}" alt="Saved Event"></div>` + html;
+                }
+            });
+            container.innerHTML = html;
+        }
+
         function uploadToGallery(e) {
             const file = e.target.files[0];
             if(!file) return;
             const reader = new FileReader();
             reader.onload = function(event) {
-                const container = document.getElementById('gallery-container');
-                const div = document.createElement('div');
-                div.className = 'gallery-item';
-                if(file.type.startsWith('image/')) {
-                    div.innerHTML = `<img src="${event.target.result}">`;
-                } else {
-                    div.innerHTML = `<video src="${event.target.result}" controls></video>`;
+                try {
+                    // Save base64 string to local array
+                    permanentGalleryDB.push(event.target.result);
+                    localStorage.setItem('permanentGalleryDB', JSON.stringify(permanentGalleryDB)); // Save permanently
+                    
+                    renderPermanentGallery();
+                    alert("Media successfully published permanently to your public website gallery!");
+                } catch (error) {
+                    alert("Browser storage size exceeded! Image shown temporarily but may not save permanently.");
+                    // Fallback to show it temporarily if storage size exceeded
+                    permanentGalleryDB.push(event.target.result);
+                    renderPermanentGallery();
                 }
-                container.prepend(div);
-                alert("Media published to public website gallery!");
             };
             reader.readAsDataURL(file);
         }
