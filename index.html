@@ -43,9 +43,9 @@
             overflow-x: hidden;
         }
 
-        .lang-hi { display: none; }
-
-        h1, h2, h3, .royal-font { font-family: 'Cinzel', serif; }
+        h1, h2, h3, .royal-font {
+            font-family: 'Cinzel', serif;
+        }
 
         .gold-text {
             background: var(--gold-gradient);
@@ -71,10 +71,30 @@
             text-decoration: none;
         }
 
-        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); }
-        .btn-danger { background: var(--danger-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
-        .btn-success { background: var(--success-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
-        .btn-warning { background: var(--warning-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .btn-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+
+        .btn-danger {
+            background: var(--danger-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-success {
+            background: var(--success-color);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+        }
 
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(107, 0, 24, 0.85)), 
@@ -101,22 +121,26 @@
             z-index: 10;
         }
 
-        .contact-top a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
-
-        .lang-switch {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(5px);
-            border: 1px solid var(--royal-gold);
+        .contact-top a {
             color: white;
-            padding: 6px 16px;
+            text-decoration: none;
+            font-size: 0.9rem;
             font-weight: 600;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: var(--transition);
         }
 
-        .brand-header h1 { font-size: 3.2rem; letter-spacing: 2px; margin-bottom: 5px; }
-        .brand-header h2 { font-size: 1.4rem; color: #f0f0f0; font-weight: 300; margin-bottom: 15px; }
+        .brand-header h1 {
+            font-size: 3.2rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+        }
+
+        .brand-header h2 {
+            font-size: 1.4rem;
+            color: #f0f0f0;
+            font-weight: 300;
+            margin-bottom: 15px;
+        }
 
         .proprietor-tag {
             background: rgba(0, 0, 0, 0.6);
@@ -130,7 +154,11 @@
             cursor: pointer;
             transition: var(--transition);
         }
-        .proprietor-tag:hover { background: rgba(0,0,0,0.8); border-color: #fff; }
+        
+        .proprietor-tag:hover {
+            background: rgba(0,0,0,0.8);
+            border-color: #fff;
+        }
 
         nav {
             background: var(--royal-maroon);
@@ -153,11 +181,28 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
-        nav a:hover { background: var(--royal-gold); color: #000; }
 
-        .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
-        .section-header { text-align: center; margin-bottom: 40px; }
-        .section-title { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 10px; }
+        nav a:hover {
+            background: var(--royal-gold);
+            color: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            color: var(--royal-maroon);
+            margin-bottom: 10px;
+        }
 
         .services-grid {
             display: grid;
@@ -173,9 +218,21 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .service-img-wrapper { height: 200px; overflow: hidden; }
-        .service-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
-        .service-content { padding: 20px; text-align: center; }
+        .service-img-wrapper {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .service-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .service-content {
+            padding: 20px;
+            text-align: center;
+        }
 
         .gallery-grid {
             display: grid;
@@ -183,8 +240,19 @@
             gap: 20px;
         }
 
-        .gallery-item { border-radius: 10px; overflow: hidden; height: 220px; border: 2px solid var(--royal-gold); position: relative; }
-        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 220px;
+            border: 2px solid var(--royal-gold);
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
 
         .booking-section {
             background: #ffffff;
@@ -196,26 +264,54 @@
             margin: 0 auto;
         }
 
-        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group-full { grid-column: span 2; }
-        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--royal-maroon); }
-        .form-group input, .form-group select, .form-group textarea {
-            width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem;
+        .booking-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
         }
 
-        /* Status Check Section */
+        .form-group-full { grid-column: span 2; }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--royal-maroon);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 10px 14px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 0.95rem;
+        }
+
+        .btn-booking {
+            background: var(--royal-maroon);
+            color: white;
+            border: none;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: var(--transition);
+        }
+        .btn-booking:hover { background: var(--deep-crimson); }
+
+        /* STATUS TRACKER BOX */
         .status-check-box {
             background: #fff;
-            border: 2px solid var(--royal-gold);
-            border-radius: 15px;
-            padding: 30px;
-            max-width: 800px;
-            margin: 40px auto 0 auto;
-            box-shadow: var(--shadow-soft);
+            border: 2px dashed var(--royal-gold);
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 40px;
             text-align: center;
         }
 
-        /* Admin Console */
+        /* ADMIN CONSOLE */
         .admin-section {
             display: none;
             background: #1e1e24;
@@ -237,40 +333,128 @@
             gap: 15px;
         }
 
-        .admin-feature-panel {
-            background: #282833;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #3d3d4e;
+        .admin-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.85rem;
         }
 
-        .admin-panel-title { color: var(--bright-gold); font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px dashed #555; padding-bottom: 8px; }
+        .admin-table th, .admin-table td {
+            border: 1px solid #444;
+            padding: 10px;
+            text-align: left;
+        }
 
-        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
-        .admin-table th, .admin-table td { border: 1px solid #444; padding: 10px; text-align: left; color: #fff; }
-        .admin-table th { background: #181820; color: var(--royal-gold); }
+        .admin-table th {
+            background: #181820;
+            color: var(--royal-gold);
+        }
 
-        /* AI Floating Widget */
+        /* AI WIDGET */
         #ai-widget-container {
-            position: fixed; right: 20px; bottom: 20px; z-index: 5000; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            z-index: 5000;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 12px;
         }
+
         #ai-chat-btn {
-            width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--royal-gold); background: var(--royal-maroon); color: var(--bright-gold); box-shadow: 0 12px 30px rgba(0,0,0,0.28); cursor: pointer; font-weight: 900; font-size: 1rem;
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            border: 2px solid var(--royal-gold);
+            background: var(--royal-maroon);
+            color: var(--bright-gold);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
+            cursor: pointer;
+            font-weight: 900;
+            font-size: 1rem;
         }
+
         #ai-chat-window {
-            width: min(380px, calc(100vw - 30px)); height: 520px; background: #fff; border: 2px solid var(--royal-gold); border-radius: 18px; overflow: hidden; box-shadow: 0 20px 55px rgba(0,0,0,.3); display: none; flex-direction: column; color: #222;
+            width: min(380px, calc(100vw - 30px));
+            height: 520px;
+            background: #fff;
+            border: 2px solid var(--royal-gold);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 20px 55px rgba(0,0,0,.3);
+            display: none;
+            flex-direction: column;
         }
+
         #ai-chat-window.open { display: flex; }
-        .chat-header { background: var(--royal-maroon); color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--royal-gold); }
-        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: #fffaf4; display: flex; flex-direction: column; gap: 10px; }
-        .chat-bubble { max-width: 86%; padding: 10px 13px; border-radius: 15px; line-height: 1.45; font-size: .9rem; word-break: break-word; }
+
+        .chat-header {
+            background: linear-gradient(135deg, var(--royal-maroon), #30000b);
+            color: #fff;
+            padding: 14px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--royal-gold);
+        }
+
+        .chat-messages {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            background: #fffaf4;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .chat-bubble {
+            max-width: 86%;
+            padding: 10px 13px;
+            border-radius: 15px;
+            line-height: 1.45;
+            font-size: .9rem;
+        }
+
         .chat-bubble.bot { align-self: flex-start; background: #eee; color: #252525; }
         .chat-bubble.user { align-self: flex-end; background: var(--royal-maroon); color: #fff; }
-        .chat-input-area { display: flex; gap: 8px; padding: 11px; background: #fff; border-top: 1px solid #ddd; }
-        .chat-input-area input { flex: 1; border: 1px solid #ccc; border-radius: 30px; padding: 11px 14px; outline: none; }
-        .chat-input-area button { width: 44px; border: 0; border-radius: 50%; background: var(--royal-gold); color: #2b0008; font-weight: 900; cursor: pointer; }
 
-        footer { background: var(--dark-bg); color: white; text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 3px solid var(--royal-gold); }
+        .chat-input-area {
+            display: flex;
+            gap: 8px;
+            padding: 11px;
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .chat-input-area input {
+            flex: 1;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            padding: 11px 14px;
+            outline: none;
+        }
+
+        .chat-input-area button {
+            width: 44px;
+            border: 0;
+            border-radius: 50%;
+            background: var(--royal-gold);
+            color: #2b0008;
+            font-weight: 900;
+            cursor: pointer;
+        }
+
+        footer {
+            background: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 60px;
+            border-top: 3px solid var(--royal-gold);
+        }
     </style>
 </head>
 <body>
@@ -281,12 +465,11 @@
             <div class="contact-top">
                 <a href="tel:+919892880155"><i class="fa-solid fa-phone"></i> +91 98928 80155</a>
             </div>
-            <button class="lang-switch" onclick="toggleLanguage()">English / हिन्दी</button>
         </div>
         <div class="brand-header">
             <h1 class="gold-text">KISHOR TENT HOUSE</h1>
-            <h2>Complete Solution For All Your Events</h2>
-            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Admin Login">Proprietor: Bhavesh Purohit (Admin Login)</div><br>
+            <h2>Royal Marwadi Weddings & Event Solutions</h2>
+            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Click to open Admin Panel">Proprietor: Bhavesh Purohit (Admin Access)</div><br>
             <a href="#booking" class="btn-gold">Book Event Now</a>
         </div>
     </header>
@@ -296,7 +479,7 @@
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#booking">Book Now</a>
-        <a href="#status-section">Check Status</a>
+        <a href="#status-lookup">Track Booking</a>
     </nav>
 
     <div class="container">
@@ -304,29 +487,29 @@
         <!-- Services Section -->
         <section id="services">
             <div class="section-header">
-                <h2 class="section-title">Our Royal Marwadi Services</h2>
-                <p>Creating Unforgettable Grand Experiences for Weddings & Special Occasions</p>
+                <h2 class="section-title">Our Premium Services</h2>
+                <p>Creating Unforgettable Grand Marwadi Experiences</p>
             </div>
-            <div class="services-grid" id="services-container">
+            <div class="services-grid">
                 <div class="service-card">
                     <div class="service-img-wrapper"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Tent"></div>
                     <div class="service-content">
-                        <h3>Royal Marwadi Tent House</h3>
-                        <p>Waterproof royal canopies & palace-style decor.</p>
+                        <h3>Royal Marwadi Tents</h3>
+                        <p>Grand waterproof luxury canopies and royal sitting lounge setups.</p>
                     </div>
                 </div>
                 <div class="service-card">
                     <div class="service-img-wrapper"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Mandap"></div>
                     <div class="service-content">
-                        <h3>Royal Mandap & Stage</h3>
-                        <p>Traditional Rajasthani wedding mandaps with floral styling.</p>
+                        <h3>Grand Mandap & Stage</h3>
+                        <p>Traditional Marwadi & Rajputana styled floral stages and mandaps.</p>
                     </div>
                 </div>
                 <div class="service-card">
-                    <div class="service-img-wrapper"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Lighting"></div>
+                    <div class="service-img-wrapper"><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed" alt="Lighting"></div>
                     <div class="service-content">
-                        <h3>Lighting & Catering Setup</h3>
-                        <p>Ambient LED lighting and grand banquet arrangements.</p>
+                        <h3>Palace Lighting & Catering</h3>
+                        <p>Ambient royal illumination, chandeliers, and complete event arrangements.</p>
                     </div>
                 </div>
             </div>
@@ -337,11 +520,11 @@
             <div class="section-header">
                 <h2 class="section-title">Royal Event Gallery</h2>
             </div>
-            <div class="gallery-grid" id="gallery-container">
-                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Wedding 1"></div>
-                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Royal Wedding 2"></div>
-                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Wedding 3"></div>
-                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Royal Wedding 4"></div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Wedding"></div>
+                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Marwadi Stage"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622" alt="Reception Decor"></div>
+                <div class="gallery-item"><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6" alt="Wedding Setup"></div>
             </div>
         </section>
 
@@ -349,6 +532,7 @@
         <section id="booking" style="margin-top: 60px;">
             <div class="section-header">
                 <h2 class="section-title">Online Booking Engine</h2>
+                <p>Submit your event requirements below. It records instantly in the admin manager.</p>
             </div>
             <div class="booking-section">
                 <form id="publicBookingForm" onsubmit="submitCustomerBooking(event)" class="booking-form">
@@ -357,7 +541,7 @@
                         <input type="text" id="custName" required placeholder="Full Name">
                     </div>
                     <div class="form-group">
-                        <label>Phone Number (Used to track booking status)</label>
+                        <label>Phone Number (Used for tracking status)</label>
                         <input type="tel" id="custPhone" required placeholder="10-digit mobile number">
                     </div>
                     <div class="form-group">
@@ -365,7 +549,7 @@
                         <select id="custEvent">
                             <option value="Royal Marwadi Wedding">Royal Marwadi Wedding</option>
                             <option value="Reception">Reception</option>
-                            <option value="Birthday Party">Birthday Party</option>
+                            <option value="Engagement / Party">Engagement / Party</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -373,85 +557,84 @@
                         <input type="date" id="custDate" required>
                     </div>
                     <div class="form-group form-group-full">
-                        <label>Venue / Requirements</label>
-                        <textarea id="custMsg" rows="3" placeholder="Expected guests, tent size, custom decor..."></textarea>
+                        <label>Venue / Special Requirements</label>
+                        <textarea id="custMsg" rows="3" placeholder="Expected guests, tent size, location..."></textarea>
                     </div>
                     <div class="form-group-full">
-                        <button type="submit" class="btn-gold" style="width:100%;">Submit Booking Request</button>
+                        <button type="submit" class="btn-booking">✨ Submit Booking Request</button>
                     </div>
                 </form>
             </div>
         </section>
 
-        <!-- Customer Booking Status Checker Section -->
-        <div id="status-section" class="status-check-box">
-            <h3 style="color: var(--royal-maroon); margin-bottom: 15px;"><i class="fa-solid fa-magnifying-glass"></i> Check Your Booking Status</h3>
-            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Enter your 10-digit mobile number to check if your booking is Waiting, Approved, or Declined.</p>
+        <!-- Customer Status Check Section -->
+        <section id="status-lookup" class="status-check-box">
+            <h3 class="royal-font" style="color: var(--royal-maroon); margin-bottom: 10px;">Check Your Booking Status</h3>
+            <p style="color: var(--text-light); font-size: 0.9rem; margin-bottom: 15px;">Enter your registered mobile number to see if your booking is Waiting, Approved, or Declined.</p>
             <div style="display: flex; gap: 10px; max-width: 400px; margin: 0 auto;">
-                <input type="tel" id="checkPhoneInput" placeholder="Enter Mobile Number" style="flex:1; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
-                <button class="btn-gold" onclick="checkCustomerBookingStatus()">Check Status</button>
+                <input type="tel" id="trackPhoneInput" placeholder="Enter Mobile Number" style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                <button class="btn-gold" onclick="checkCustomerStatus()">Check Status</button>
             </div>
-            <div id="statusResultOutput" style="margin-top: 20px; font-weight: 600; font-size: 1.1rem;"></div>
-        </div>
+            <div id="trackResultBox" style="margin-top: 15px; font-weight: 600;"></div>
+        </section>
 
-        <!-- ADMIN CONSOLE (Secured with Password 8233615852) -->
+        <!-- ==========================================================================
+           ADMIN CONSOLE (PROTECTED BY PASSWORD: 8233615852)
+           ========================================================================== -->
         <section class="admin-section" id="admin-console">
             <div class="admin-top-bar">
                 <div>
-                    <h2 class="gold-text"><i class="fa-solid fa-user-shield"></i> Confidential Admin Master Console</h2>
-                    <p style="font-size: 0.85rem; color: #aaa;">Restricted Access: Orders & Customer Details Manager</p>
+                    <h2 class="gold-text"><i class="fa-solid fa-user-shield"></i> Owner Master Console</h2>
+                    <p style="font-size: 0.85rem; color: #aaa;">Confidential Order & Customer Details Manager</p>
                 </div>
                 <div id="admin-login-box">
-                    <input type="password" id="adminPassInput" placeholder="Enter Admin Password" style="padding: 8px; border-radius: 4px; border: 1px solid #555; color: #fff; background: #111;">
-                    <button class="btn-gold" onclick="unlockAdmin()">Unlock Confidential Data</button>
+                    <input type="password" id="adminPassInput" placeholder="Enter Admin Password" style="padding: 8px; border-radius: 4px; border: 1px solid #555; color:#000;">
+                    <button class="btn-gold" onclick="unlockAdmin()">Unlock Console</button>
                 </div>
-                <button id="lockBtn" class="btn-danger" style="display:none;" onclick="lockAdmin()"><i class="fa-solid fa-lock"></i> Lock Console</button>
+                <button id="lockBtn" class="btn-danger" style="display:none;" onclick="lockAdmin()"><i class="fa-solid fa-lock"></i> Lock</button>
                 <button class="btn-danger" onclick="hideAdminConsole()">Close Panel</button>
             </div>
 
-            <!-- Confidential Admin Area (Locked by default) -->
             <div id="admin-main-body" style="display: none;">
-                <div class="admin-feature-panel">
-                    <h3 class="admin-panel-title"><i class="fa-solid fa-clipboard-list"></i> Customer Booking & Order Manager</h3>
-                    <p style="font-size: 0.85rem; color: #ccc; margin-bottom: 15px;">Review incoming customer bookings and update status to Approved, Waiting, or Declined.</p>
-                    <table class="admin-table" id="adminBookingTable">
-                        <thead>
-                            <tr>
-                                <th>Client Name</th>
-                                <th>Phone</th>
-                                <th>Event Type</th>
-                                <th>Date</th>
-                                <th>Requirements</th>
-                                <th>Current Status</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <!-- Dynamically populated -->
-                        </tbody>
-                    </table>
-                </div>
+                <h3 style="color: var(--bright-gold); margin-bottom: 15px;">Customer Bookings Manager</h3>
+                <p style="font-size: 0.85rem; color: #ccc; margin-bottom: 10px;">Approve or decline customer booking requests below:</p>
+                <table class="admin-table" id="adminBookingsTable">
+                    <thead>
+                        <tr>
+                            <th>Customer Name</th>
+                            <th>Phone</th>
+                            <th>Event Type</th>
+                            <th>Date</th>
+                            <th>Requirements</th>
+                            <th>Current Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Populated dynamically -->
+                    </tbody>
+                </table>
             </div>
         </section>
     </div>
 
-    <!-- AI Assistant Floating Widget -->
+    <!-- AI ASSISTANT WIDGET -->
     <div id="ai-widget-container">
-        <div id="ai-chat-window" aria-label="AI Assistant">
+        <div id="ai-chat-window">
             <div class="chat-header">
                 <div>
-                    <strong>Kishor Royal AI Assistant</strong>
-                    <small style="color: #f8dc7b; font-size: .72rem;">Ask about bookings & decor</small>
+                    <strong>Kishor Royal Assistant</strong>
+                    <small style="color: #f8dc7b; font-size: .75rem;">Trained for Marwadi Weddings</small>
                 </div>
-                <button type="button" onclick="toggleChat()" style="background:transparent; color:#fff; border:0; font-size:1.5rem; cursor:pointer;">×</button>
+                <button type="button" onclick="toggleChat()" style="background:none; border:0; color:#fff; font-size:1.5rem; cursor:pointer;">×</button>
             </div>
             <div id="chat-messages" class="chat-messages">
                 <div class="chat-bubble bot">
-                    Namaste! Welcome to Kishor Tent House. I can assist you with royal Marwadi wedding bookings, decor inquiries, and checking your booking status using your mobile number.
+                    Namaste! I am your Kishor Tent House assistant. Ask me about royal Marwadi tents, mandaps, event availability, or how to book!
                 </div>
             </div>
             <div class="chat-input-area">
-                <input id="chat-input" type="text" autocomplete="off" placeholder="Ask about bookings or decor...">
+                <input id="chat-input" type="text" placeholder="Ask about royal Marwadi weddings..." onkeypress="if(event.key==='Enter')sendChatMessage()">
                 <button type="button" onclick="sendChatMessage()">➤</button>
             </div>
         </div>
@@ -466,27 +649,18 @@
         <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
     </footer>
 
+    <!-- JAVASCRIPT LOGIC ENGINE -->
     <script>
-        // Config & API Key integration
+        const ADMIN_PASSWORD = "8233615852";
         const GEMINI_API_KEY = "AQ.Ab8RN6IupqwDWAZshmZYVG0qNYdvySF5YVB_1tMANjIh-9UKTQ";
-        const ADMIN_SECRET_PASS = "8233615852";
 
-        // Initialize Bookings in LocalStorage if not present
-        if (!localStorage.getItem('kth_bookings')) {
-            localStorage.setItem('kth_bookings', JSON.stringify([
-                { name: "Mahendra Singh", phone: "9829012345", event: "Royal Marwadi Wedding", date: "2026-12-10", msg: "Large palace tent with royal gold lighting", status: "Waiting" },
-                { name: "Priyanka Rathore", phone: "9414098765", event: "Reception", date: "2026-10-15", msg: "Standard stage setup", status: "Approved" }
-            ]));
-        }
+        // Load bookings from LocalStorage or initialize empty array
+        let bookingsDB = JSON.parse(localStorage.getItem('kth_bookings')) || [];
 
-        // Language Toggle
-        let isHindi = false;
-        function toggleLanguage() {
-            isHindi = !isHindi;
-            alert(isHindi ? "Hindi mode toggled." : "English mode active.");
-        }
+        document.addEventListener("DOMContentLoaded", () => {
+            renderAdminBookings();
+        });
 
-        // Reveal Admin Console
         function revealAdminConsole() {
             document.getElementById('admin-console').style.display = 'block';
             window.location.href = '#admin-console';
@@ -497,17 +671,16 @@
             document.getElementById('admin-console').style.display = 'none';
         }
 
-        // Password Authentication
         function unlockAdmin() {
             const pass = document.getElementById('adminPassInput').value;
-            if (pass === ADMIN_SECRET_PASS) {
+            if (pass === ADMIN_PASSWORD) {
                 document.getElementById('admin-login-box').style.display = 'none';
                 document.getElementById('lockBtn').style.display = 'inline-block';
                 document.getElementById('admin-main-body').style.display = 'block';
                 renderAdminBookings();
-                alert("Confidential Access Granted!");
+                alert("Access Granted! Welcome Admin.");
             } else {
-                alert("Incorrect Password! Access Denied to Confidential Data.");
+                alert("Incorrect Password! Confidential details are locked.");
             }
         }
 
@@ -518,7 +691,7 @@
             document.getElementById('adminPassInput').value = '';
         }
 
-        // Public Booking Submission (Automated recording into Admin section)
+        // Public booking submission
         function submitCustomerBooking(e) {
             e.preventDefault();
             const name = document.getElementById('custName').value.trim();
@@ -527,49 +700,50 @@
             const date = document.getElementById('custDate').value;
             const msg = document.getElementById('custMsg').value.trim();
 
-            if (!name || !phone || !date) {
-                alert("Please fill in all mandatory fields.");
-                return;
-            }
-
-            let bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
-            
-            // Push new booking with default status 'Waiting'
-            bookings.push({
+            const newBooking = {
+                id: 'BK' + Math.floor(1000 + Math.random() * 9000),
                 name,
                 phone,
                 event,
                 date,
-                msg: msg || 'No extra notes',
-                status: 'Waiting'
-            });
+                msg,
+                status: 'Waiting' // Default status
+            };
 
-            localStorage.setItem('kth_bookings', JSON.stringify(bookings));
+            bookingsDB.push(newBooking);
+            localStorage.setItem('kth_bookings', JSON.stringify(bookingsDB));
 
-            alert("Booking request submitted successfully! Your booking has been recorded automatically in our system. You can check your status anytime using your mobile number.");
+            alert("Booking request submitted successfully! It has been recorded in the Admin Manager. You can check your status anytime using your mobile number.");
             document.getElementById('publicBookingForm').reset();
+            renderAdminBookings();
         }
 
-        // Render Bookings in Admin Panel
+        // Render bookings in Admin section
         function renderAdminBookings() {
-            const tbody = document.querySelector('#adminBookingTable tbody');
-            if (!tbody) return;
-            const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+            const tbody = document.querySelector('#adminBookingsTable tbody');
+            if(!tbody) return;
             
+            if(bookingsDB.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:#aaa;">No booking requests found yet.</td></tr>`;
+                return;
+            }
+
             tbody.innerHTML = '';
-            bookings.forEach((b, index) => {
-                let statusColor = b.status === 'Approved' ? 'green' : b.status === 'Declined' ? 'red' : 'orange';
+            bookingsDB.forEach((b, index) => {
+                let statusColor = 'orange';
+                if(b.status === 'Approved') statusColor = 'green';
+                if(b.status === 'Declined') statusColor = 'red';
+
                 tbody.innerHTML += `
                     <tr>
-                        <td>${escapeHTML(b.name)}</td>
-                        <td>${escapeHTML(b.phone)}</td>
-                        <td>${escapeHTML(b.event)}</td>
-                        <td>${escapeHTML(b.date)}</td>
-                        <td>${escapeHTML(b.msg)}</td>
+                        <td>${b.name}</td>
+                        <td>${b.phone}</td>
+                        <td>${b.event}</td>
+                        <td>${b.date}</td>
+                        <td>${b.msg || 'N/A'}</td>
                         <td><span style="color:${statusColor}; font-weight:bold;">${b.status}</span></td>
                         <td>
                             <button class="btn-success" onclick="updateBookingStatus(${index}, 'Approved')">Approve</button>
-                            <button class="btn-warning" onclick="updateBookingStatus(${index}, 'Waiting')">Wait</button>
                             <button class="btn-danger" onclick="updateBookingStatus(${index}, 'Declined')">Decline</button>
                         </td>
                     </tr>
@@ -578,46 +752,38 @@
         }
 
         function updateBookingStatus(index, newStatus) {
-            let bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
-            if (bookings[index]) {
-                bookings[index].status = newStatus;
-                localStorage.setItem('kth_bookings', JSON.stringify(bookings));
-                renderAdminBookings();
-                alert(`Booking status updated to ${newStatus}`);
-            }
+            bookingsDB[index].status = newStatus;
+            localStorage.setItem('kth_bookings', JSON.stringify(bookingsDB));
+            renderAdminBookings();
+            alert(`Booking status updated to ${newStatus}`);
         }
 
-        // Customer Status Check by Mobile Number
-        function checkCustomerBookingStatus() {
-            const phone = document.getElementById('checkPhoneInput').value.trim();
-            const output = document.getElementById('statusResultOutput');
-            if (!phone) {
-                output.innerHTML = "<span style='color:red;'>Please enter your mobile number.</span>";
+        // Customer status tracker via mobile number
+        function checkCustomerStatus() {
+            const phoneInput = document.getElementById('trackPhoneInput').value.trim();
+            const resultBox = document.getElementById('trackResultBox');
+
+            if(!phoneInput) {
+                resultBox.innerHTML = `<span style="color:red;">Please enter a valid mobile number.</span>`;
                 return;
             }
 
-            const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
-            const userBookings = bookings.filter(b => b.phone === phone);
-
-            if (userBookings.length === 0) {
-                output.innerHTML = "<span style='color:red;'>No bookings found for mobile number: " + escapeHTML(phone) + "</span>";
+            const found = bookingsDB.filter(b => b.phone === phoneInput);
+            if(found.length === 0) {
+                resultBox.innerHTML = `<span style="color:red;">No bookings found for mobile number: ${phoneInput}</span>`;
                 return;
             }
 
-            let html = "<div style='margin-top:10px; text-align:left; background:#fff9f0; padding:15px; border-radius:8px; border:1px solid var(--royal-gold);'>";
-            userBookings.forEach(b => {
+            let html = `<div style="margin-top:10px; text-align:left; background:#fff9f0; padding:15px; border-radius:8px; border:1px solid var(--royal-gold);">`;
+            found.forEach(b => {
                 let color = b.status === 'Approved' ? 'green' : b.status === 'Declined' ? 'red' : 'orange';
-                html += `<p><strong>Event:</strong> ${escapeHTML(b.event)} | <strong>Date:</strong> ${escapeHTML(b.date)} | <strong>Status:</strong> <span style="color:${color};">${b.status}</span></p><hr style="margin:8px 0;">`;
+                html += `<p><strong>Event:</strong> ${b.event} (${b.date}) | <strong>Status:</strong> <span style="color:${color};">${b.status}</span></p>`;
             });
-            html += "</div>";
-            output.innerHTML = html;
+            html += `</div>`;
+            resultBox.innerHTML = html;
         }
 
-        function escapeHTML(str) {
-            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-        }
-
-        // AI Chat Widget Logic with Gemini API Key Integration
+        // AI Chat Widget Logic with Gemini API Key integration
         let chatOpen = false;
         function toggleChat() {
             chatOpen = !chatOpen;
@@ -625,10 +791,10 @@
             document.getElementById('ai-chat-btn').style.display = chatOpen ? 'none' : 'flex';
         }
 
-        function appendChatMessage(text, sender) {
+        function appendMessage(text, sender) {
             const box = document.getElementById('chat-messages');
             const bubble = document.createElement('div');
-            bubble.className = 'chat-bubble ' + (sender === 'user' ? 'user' : 'bot');
+            bubble.className = 'chat-bubble ' + sender;
             bubble.textContent = text;
             box.appendChild(bubble);
             box.scrollTop = box.scrollHeight;
@@ -636,43 +802,48 @@
 
         async function sendChatMessage() {
             const input = document.getElementById('chat-input');
-            const message = input.value.trim();
-            if (!message) return;
+            const text = input.value.trim();
+            if(!text) return;
 
-            appendChatMessage(message, 'user');
+            appendMessage(text, 'user');
             input.value = '';
 
-            // Handle status query directly in AI assistant if user provides mobile number
-            if (message.toLowerCase().includes('status') || message.length === 10 && !isNaN(message)) {
-                const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
-                const found = bookings.filter(b => message.includes(b.phone));
-                if (found.length > 0) {
-                    let reply = found.map(b => `Your ${b.event} on ${b.date} is currently: ${b.status}`).join('. ');
-                    appendChatMessage(reply, 'bot');
-                    return;
-                }
+            // Local fallback knowledge base for royal Marwadi event business
+            let reply = "Namaste! Kishor Tent House offers royal Marwadi tents, grand mandaps, lighting, and catering. You can book directly using our online booking form on this website!";
+            
+            const query = text.toLowerCase();
+            if(query.includes('price') || query.includes('cost') || query.includes('rate')) {
+                reply = "Our pricing is customized based on your guest count, venue, and specific royal Marwadi decor requirements. Please fill out the booking form or call us at +91 98928 80155.";
+            } else if(query.includes('tent') || query.includes('decor') || query.includes('mandap')) {
+                reply = "We specialize in royal Rajasthani & Marwadi wedding setups, waterproof luxury tents, palace stage themes, and traditional flower mandaps.";
+            } else if(query.includes('book') || query.includes('status')) {
+                reply = "You can submit a booking using our Online Booking form, and check your status anytime using your mobile number in our 'Track Booking' section.";
             }
 
-            // Call Gemini API using provided key
-            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
-            
+            // Try calling Gemini API with provided API key
             try {
+                const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         contents: [{
-                            parts: [{ text: "You are the royal Marwadi AI assistant for Kishor Tent House. Help customers with bookings, tent decor, mandaps, and inform them they can check their booking status using their mobile number. Keep replies friendly and concise. Customer query: " + message }]
+                            parts: [{
+                                text: `You are an AI assistant for Kishor Tent House, a royal Marwadi tent and event house business in India. Answer concisely and professionally regarding tents, mandaps, weddings, and bookings: ${text}`
+                            }]
                         }]
                     })
                 });
-
-                const data = await response.json();
-                const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Namaste! For booking assistance or checking status, please use our booking form and status checker.";
-                appendChatMessage(reply, 'bot');
-            } catch (err) {
-                appendChatMessage("Namaste! Welcome to Kishor Tent House. You can book our royal Marwadi tents and check your booking status instantly on our website.", 'bot');
+                if(response.ok) {
+                    const data = await response.json();
+                    const apiReply = data?.candidates?.[0]?.content?.parts?.[0]?.text;
+                    if(apiReply) reply = apiReply;
+                }
+            } catch(err) {
+                console.log("Using local AI fallback");
             }
+
+            setTimeout(() => appendMessage(reply, 'bot'), 400);
         }
     </script>
 </body>
