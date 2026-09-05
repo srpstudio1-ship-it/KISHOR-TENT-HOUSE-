@@ -3,29 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kishor Tent House</title>
+    <title>Kishor Tent House | Royal Marwadi Weddings & Event Solutions</title>
     
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
     
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind Config to map the new theme -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
                         kth: {
-                            maroon: '#800000',
-                            maroon_light: '#a52a2a',
+                            maroon: '#6b0018',
+                            maroon_light: '#800020',
                             gold: '#d4af37',
-                            gold_light: '#f3e5ab',
-                            dark: '#1a1a1a',
-                            light: '#fdf8f5'
+                            gold_light: '#ffd700',
+                            dark: '#121212',
+                            light: '#fff9f0'
                         }
                     },
                     fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        serif: ['Playfair Display', 'serif'],
+                        sans: ['Poppins', 'sans-serif'],
+                        serif: ['Cinzel', 'serif'],
                     }
                 }
             }
@@ -33,114 +37,255 @@
     </script>
 
     <style>
-        /* Base Language Toggling Styles */
+        /* ==========================================================================
+           ROOT VARIABLES & CORE STYLES (Merged)
+           ========================================================================== */
+        :root {
+            --royal-maroon: #6b0018;
+            --deep-crimson: #800020;
+            --royal-gold: #d4af37;
+            --bright-gold: #ffd700;
+            --gold-gradient: linear-gradient(135deg, #bf953f, #fcf6ba, #b38728, #fbf5b7, #aa771c);
+            --dark-bg: #121212;
+            --card-bg: #ffffff;
+            --light-cream: #fff9f0;
+            --text-dark: #222222;
+            --text-light: #666666;
+            --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.08);
+            --shadow-heavy: 0 15px 35px rgba(107, 0, 24, 0.2);
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --success-color: #2e7d32;
+            --danger-color: #c62828;
+            --warning-color: #f57c00;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--light-cream);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Language Toggle Styles */
         body.lang-hi .lang-en { display: none !important; }
         body.lang-en .lang-hi { display: none !important; }
-        
-        /* Smooth Scrolling */
-        html { scroll-behavior: smooth; }
+        .lang-hi { display: none; } /* Default state fallback */
 
         /* Custom Scrollbar */
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #fdf8f5; }
-        ::-webkit-scrollbar-thumb { background: #d4af37; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb:hover { background: #800000; }
+        ::-webkit-scrollbar-track { background: var(--light-cream); }
+        ::-webkit-scrollbar-thumb { background: var(--royal-gold); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--royal-maroon); }
 
-        /* Requested Quality Promise Styles (.kth-* classes) */
-        .kth-section {
-            padding: 5rem 1rem;
-            background-color: #fdf8f5;
-            text-align: center;
+        /* ==========================================================================
+           TYPOGRAPHY & BUTTONS
+           ========================================================================== */
+        h1, h2, h3, .royal-font { font-family: 'Cinzel', serif; }
+
+        .gold-text {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: bold;
         }
-        .kth-section-title {
-            margin-bottom: 3rem;
-        }
-        .kth-section-title h2 {
-            color: #800000;
-            font-size: 2.5rem;
-            font-family: 'Playfair Display', serif;
+
+        .btn-gold {
+            background: var(--gold-gradient);
+            color: #000;
+            border: none;
+            padding: 10px 22px;
             font-weight: 700;
-            margin-bottom: 0.5rem;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+            transition: var(--transition);
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            display: inline-block;
+            text-decoration: none;
         }
-        .kth-section-title p {
-            color: #4b5563;
-            font-size: 1.125rem;
-            max-width: 600px;
-            margin: 0 auto;
-        }
-        .kth-grid {
-            display: grid;
-            gap: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        .grid-cols-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-        
-        @media (max-width: 1024px) {
-            .grid-md-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-        }
-        @media (max-width: 640px) {
-            .grid-md-2 { grid-template-columns: repeat(1, minmax(0, 1fr)); }
-        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); }
 
-        .kth-promise-card {
-            background: white;
-            padding: 2.5rem 1.5rem;
-            border-radius: 0.75rem;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05);
-            border-bottom: 4px solid #d4af37;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-        .kth-promise-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-            border-bottom-color: #800000;
-        }
-        .kth-promise-icon {
-            font-size: 3.5rem;
-            color: #d4af37;
-            margin-bottom: 1.25rem;
-            transition: color 0.3s;
-        }
-        .kth-promise-card:hover .kth-promise-icon {
-            color: #800000;
-        }
-        .kth-promise-title {
-            font-weight: 600;
-            color: #1f2937;
-            font-size: 1.25rem;
+        /* ==========================================================================
+           HEADER & HERO SECTION
+           ========================================================================== */
+        header.hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(107, 0, 24, 0.85)), 
+                        url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
             text-align: center;
+            padding: 100px 20px 80px 20px;
+            border-bottom: 5px solid var(--royal-gold);
+            position: relative;
         }
 
-        /* AI Chatbot Styles */
-        #ai-chat-window {
-            transition: opacity 0.3s, transform 0.3s;
-            transform-origin: bottom right;
+        .top-bar {
+            position: absolute;
+            top: 20px;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            z-index: 10;
         }
-        .chat-message {
-            animation: fadeIn 0.3s ease-out;
+
+        .contact-top a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-right: 15px;
         }
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+
+        .lang-switch {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--royal-gold);
+            color: white;
+            padding: 6px 16px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: var(--transition);
         }
+        .lang-switch:hover { background: var(--royal-gold); color: #000; }
+
+        .brand-header h1 {
+            font-size: 3.5rem;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
+        }
+        .brand-header h2 {
+            font-size: 1.4rem;
+            color: #f0f0f0;
+            font-weight: 300;
+            margin-bottom: 25px;
+        }
+
+        .proprietor-tag {
+            background: rgba(0, 0, 0, 0.6);
+            display: inline-block;
+            padding: 6px 20px;
+            border: 1px solid var(--royal-gold);
+            border-radius: 30px;
+            font-size: 0.9rem;
+            color: var(--bright-gold);
+            margin-bottom: 20px;
+            cursor: pointer; /* Acts as the secret admin reveal button */
+            transition: var(--transition);
+        }
+        .proprietor-tag:hover { background: rgba(0,0,0,0.8); border-color: #fff; }
+
+        /* Navigation */
+        nav.main-nav {
+            background: var(--royal-maroon);
+            display: flex;
+            justify-content: center;
+            position: sticky;
+            top: 0;
+            z-index: 30;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            border-bottom: 2px solid var(--royal-gold);
+            flex-wrap: wrap;
+        }
+        nav.main-nav a {
+            color: white;
+            padding: 16px 24px;
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            transition: var(--transition);
+        }
+        nav.main-nav a:hover { background: var(--royal-gold); color: #000; }
+
+        /* ==========================================================================
+           LAYOUT SECTIONS & COMPONENTS
+           ========================================================================== */
+        .container { max-width: 1200px; margin: auto; padding: 60px 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 2.5rem; color: var(--royal-maroon); margin-bottom: 10px; font-family: 'Cinzel', serif; font-weight: 700; }
         
-        /* Loading Spinner */
-        .loader {
-            border: 3px solid #f3f3f3;
-            border-top: 3px solid #800000;
-            border-radius: 50%;
-            width: 20px;
-            height: 20px;
-            animation: spin 1s linear infinite;
+        /* Quality Promise */
+        .kth-section { padding: 4rem 1rem; text-align: center; }
+        .kth-grid { display: grid; gap: 25px; max-width: 1200px; margin: 0 auto; }
+        .grid-cols-4 { grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); }
+        
+        .kth-promise-card {
+            background: var(--card-bg);
+            padding: 30px 20px;
+            border-radius: 12px;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            border-bottom: 4px solid var(--royal-gold);
+            transition: var(--transition);
         }
+        .kth-promise-card:hover { transform: translateY(-8px); box-shadow: var(--shadow-heavy); border-bottom-color: var(--royal-maroon); }
+        .kth-promise-icon { font-size: 2.8rem; color: var(--royal-gold); margin-bottom: 15px; transition: color 0.3s; }
+        .kth-promise-card:hover .kth-promise-icon { color: var(--royal-maroon); }
+        .kth-promise-title { font-weight: 700; font-size: 1.15rem; color: var(--royal-maroon); }
+
+        /* Services Grid */
+        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .service-card { background: var(--card-bg); border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-soft); border: 1px solid rgba(212, 175, 55, 0.2); transition: var(--transition); }
+        .service-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-heavy); }
+        .service-img-wrapper { height: 220px; overflow: hidden; }
+        .service-img-wrapper img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .service-card:hover .service-img-wrapper img { transform: scale(1.05); }
+        .service-content { padding: 25px; text-align: center; }
+
+        /* Gallery Grid */
+        .gallery-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; }
+        .gallery-item { border-radius: 10px; overflow: hidden; height: 250px; border: 2px solid var(--royal-gold); position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s; }
+        .gallery-item:hover img { transform: scale(1.1); }
+
+        /* Booking Form */
+        .booking-section {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow-heavy);
+            border: 2px solid var(--royal-gold);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .form-group-full { grid-column: span 2; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--royal-maroon); font-size: 0.9rem; }
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px;
+            font-family: 'Poppins', sans-serif; transition: border-color 0.3s;
+        }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline: none; border-color: var(--royal-gold); box-shadow: 0 0 5px rgba(212,175,55,0.3);
+        }
+        @media (max-width: 768px) { .booking-form { grid-template-columns: 1fr; } .form-group-full { grid-column: span 1; } }
+
+        /* AI Chatbot Additions */
+        #ai-chat-window { transition: opacity 0.3s, transform 0.3s; transform-origin: bottom right; }
+        .chat-message { animation: fadeIn 0.3s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        .loader { border: 3px solid #f3f3f3; border-top: 3px solid var(--royal-maroon); border-radius: 50%; width: 20px; height: 20px; animation: spin 1s linear infinite; }
         @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
     </style>
 </head>
-<body class="lang-en bg-kth-light font-sans text-gray-800">
+<body class="lang-en font-sans">
 
     <div id="public-notification-banner" class="hidden bg-kth-gold text-kth-maroon font-semibold py-2 px-4 text-center text-sm md:text-base flex justify-center items-center shadow-md z-40 relative">
         <i class="fa-solid fa-bullhorn mr-2"></i>
@@ -150,116 +295,109 @@
         </button>
     </div>
 
-    <nav class="bg-white shadow-md sticky top-0 z-30">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-20">
-                <div class="flex items-center">
-                    <span class="font-serif text-3xl font-bold text-kth-maroon">
-                        <i class="fa-solid fa-tent mr-2 text-kth-gold"></i>Kishor Tent House
-                    </span>
-                </div>
-                <div class="flex items-center space-x-6">
-                    <a href="#services" class="text-gray-700 hover:text-kth-maroon font-medium hidden md:block">
-                        <span class="lang-en">Services</span><span class="lang-hi">सेवाएं</span>
-                    </a>
-                    <a href="#gallery" class="text-gray-700 hover:text-kth-maroon font-medium hidden md:block">
-                        <span class="lang-en">Gallery</span><span class="lang-hi">गैलरी</span>
-                    </a>
-                    <!-- Language Toggle -->
-                    <button onclick="toggleLanguage()" class="bg-kth-maroon text-white px-3 py-1 rounded-full text-sm hover:bg-kth-maroon_light transition shadow-sm">
-                        <span class="lang-en">हिन्दी</span><span class="lang-hi">English</span>
-                    </button>
-                </div>
+    <header class="hero" id="home">
+        <div class="top-bar">
+            <div class="contact-top hidden sm:block">
+                <a href="tel:+919876543210"><i class="fa-solid fa-phone"></i> +91 98765 43210</a>
+                <a href="mailto:info@kishortent.com"><i class="fa-solid fa-envelope"></i> info@kishortent.com</a>
             </div>
+            <button onclick="toggleLanguage()" class="lang-switch ml-auto">
+                <span class="lang-en">हिन्दी</span><span class="lang-hi">English</span>
+            </button>
         </div>
+        
+        <div class="brand-header mt-8 md:mt-16">
+            <div class="proprietor-tag" onclick="promptAdminUnlock()">
+                <i class="fa-solid fa-crown mr-1"></i>
+                <span class="lang-en">Proprietor: Kishor Sharma</span>
+                <span class="lang-hi">प्रोपराइटर: किशोर शर्मा</span>
+            </div>
+            <h1 class="font-serif">Kishor Tent House</h1>
+            <h2 class="font-sans">
+                <span class="lang-en">Royal Marwadi Weddings & Event Solutions</span>
+                <span class="lang-hi">रॉयल मारवाड़ी वेडिंग और इवेंट सॉल्यूशंस</span>
+            </h2>
+            <a href="#services" class="btn-gold mt-6 shadow-lg inline-block">
+                <span class="lang-en">Explore Services</span><span class="lang-hi">सेवाएं देखें</span>
+            </a>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <a href="#home"><i class="fa-solid fa-house mr-1"></i> <span class="lang-en">Home</span><span class="lang-hi">होम</span></a>
+        <a href="#services"><i class="fa-solid fa-star mr-1"></i> <span class="lang-en">Services</span><span class="lang-hi">सेवाएं</span></a>
+        <a href="#gallery"><i class="fa-solid fa-image mr-1"></i> <span class="lang-en">Gallery</span><span class="lang-hi">गैलरी</span></a>
+        <a href="#booking"><i class="fa-solid fa-calendar-check mr-1"></i> <span class="lang-en">Book Event</span><span class="lang-hi">बुक करें</span></a>
     </nav>
 
-    <section class="relative bg-kth-dark text-white overflow-hidden">
-        <div class="absolute inset-0 opacity-40">
-            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80" alt="Wedding Tent Event" class="w-full h-full object-cover">
+    <section id="services" class="container bg-white">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Our Premium Services</span><span class="lang-hi">हमारी प्रीमियम सेवाएं</span>
+            </h2>
+            <div class="h-1 w-24 bg-kth-gold mx-auto rounded"></div>
         </div>
-        <div class="absolute inset-0 bg-gradient-to-r from-kth-maroon to-transparent opacity-80"></div>
-        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 md:py-32 flex flex-col justify-center min-h-[60vh]">
-            <h1 class="text-4xl md:text-6xl font-serif font-bold mb-4 leading-tight shadow-sm">
-                <span class="lang-en">Crafting Unforgettable<br><span class="text-kth-gold">Moments & Memories</span></span>
-                <span class="lang-hi">आपके हर पल को बनाएं<br><span class="text-kth-gold">यादगार और खास</span></span>
-            </h1>
-            <p class="text-lg md:text-xl max-w-2xl mb-8 opacity-90">
-                <span class="lang-en">Premium tent, catering, and event management services in the city. Experience elegance and perfection.</span>
-                <span class="lang-hi">शहर में प्रीमियम टेंट, खानपान और इवेंट मैनेजमेंट सेवाएं। लालित्य और पूर्णता का अनुभव करें।</span>
-            </p>
-            <div>
-                <a href="#services" class="bg-kth-gold text-kth-maroon font-bold py-3 px-8 rounded-full hover:bg-white hover:text-kth-maroon transition shadow-lg inline-block">
-                    <span class="lang-en">Explore Services</span><span class="lang-hi">सेवाएं देखें</span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <section id="services" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-kth-maroon mb-2">
-                    <span class="lang-en">Our Premium Services</span><span class="lang-hi">हमारी प्रीमियम सेवाएं</span>
-                </h2>
-                <div class="h-1 w-20 bg-kth-gold mx-auto rounded"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Service 1 -->
-                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tent Decor" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
-                            <span class="lang-en">Luxury Tents & Decor</span><span class="lang-hi">लक्जरी टेंट और सजावट</span>
-                        </h3>
-                        <p class="text-gray-600 text-sm">
-                            <span class="lang-en">Exquisite designs and robust setups for weddings, parties, and corporate events.</span>
-                            <span class="lang-hi">शादियों, पार्टियों और कॉर्पोरेट कार्यक्रमों के लिए उत्तम डिजाइन और मजबूत सेटअप।</span>
-                        </p>
-                    </div>
+        <div class="services-grid">
+            <!-- Service 1 -->
+            <div class="service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tent Decor">
                 </div>
-                <!-- Service 2 -->
-                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Catering" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
-                            <span class="lang-en">Premium Catering</span><span class="lang-hi">प्रीमियम कैटरिंग</span>
-                        </h3>
-                        <p class="text-gray-600 text-sm">
-                            <span class="lang-en">Delicious, hygienic, and authentic cuisines served with utmost hospitality.</span>
-                            <span class="lang-hi">अत्यंत आतिथ्य के साथ परोसा गया स्वादिष्ट, स्वच्छ और प्रामाणिक व्यंजन।</span>
-                        </p>
-                    </div>
+                <div class="service-content">
+                    <h3 class="text-xl font-bold text-kth-maroon mb-2 font-serif">
+                        <span class="lang-en">Luxury Tents & Decor</span><span class="lang-hi">लक्जरी टेंट और सजावट</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                        <span class="lang-en">Exquisite designs and robust setups for weddings, parties, and corporate events.</span>
+                        <span class="lang-hi">शादियों, पार्टियों और कॉर्पोरेट कार्यक्रमों के लिए उत्तम डिजाइन और मजबूत सेटअप।</span>
+                    </p>
                 </div>
-                <!-- Service 3 -->
-                <div class="bg-kth-light rounded-xl overflow-hidden shadow-md hover:shadow-xl transition">
-                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lighting" class="w-full h-48 object-cover">
-                    <div class="p-6 text-center">
-                        <h3 class="text-xl font-bold text-kth-maroon mb-2">
-                            <span class="lang-en">Elegant Lighting</span><span class="lang-hi">आकर्षक प्रकाश व्यवस्था</span>
-                        </h3>
-                        <p class="text-gray-600 text-sm">
-                            <span class="lang-en">Magical illumination setups to bring your evening events to life.</span>
-                            <span class="lang-hi">आपके शाम के कार्यक्रमों को जीवंत करने के लिए जादुई रोशनी सेटअप।</span>
-                        </p>
-                    </div>
+            </div>
+            <!-- Service 2 -->
+            <div class="service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Catering">
+                </div>
+                <div class="service-content">
+                    <h3 class="text-xl font-bold text-kth-maroon mb-2 font-serif">
+                        <span class="lang-en">Premium Catering</span><span class="lang-hi">प्रीमियम कैटरिंग</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                        <span class="lang-en">Delicious, hygienic, and authentic cuisines served with utmost hospitality.</span>
+                        <span class="lang-hi">अत्यंत आतिथ्य के साथ परोसा गया स्वादिष्ट, स्वच्छ और प्रामाणिक व्यंजन।</span>
+                    </p>
+                </div>
+            </div>
+            <!-- Service 3 -->
+            <div class="service-card">
+                <div class="service-img-wrapper">
+                    <img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Lighting">
+                </div>
+                <div class="service-content">
+                    <h3 class="text-xl font-bold text-kth-maroon mb-2 font-serif">
+                        <span class="lang-en">Elegant Lighting</span><span class="lang-hi">आकर्षक प्रकाश व्यवस्था</span>
+                    </h3>
+                    <p class="text-gray-600 text-sm">
+                        <span class="lang-en">Magical illumination setups to bring your evening events to life.</span>
+                        <span class="lang-hi">आपके शाम के कार्यक्रमों को जीवंत करने के लिए जादुई रोशनी सेटअप।</span>
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <section class="kth-section">
-        <div class="kth-section-title">
-            <h2>
+        <div class="section-header">
+            <h2 class="section-title">
                 <span class="lang-en">Our Quality Promise</span>
                 <span class="lang-hi">हमारी गुणवत्ता का वादा</span>
             </h2>
-            <p>
+            <p class="text-gray-600">
                 <span class="lang-en">We deliver high-standard event services with complete perfection.</span>
                 <span class="lang-hi">हम पूर्ण पूर्णता और उच्च मानकों के साथ सेवाएं प्रदान करते हैं।</span>
             </p>
         </div>
-        <div class="kth-grid grid-cols-4 grid-md-2">
+        <div class="kth-grid grid-cols-4">
             <div class="kth-promise-card">
                 <div class="kth-promise-icon"><i class="fa-solid fa-sparkles"></i></div>
                 <div class="kth-promise-title">
@@ -291,59 +429,103 @@
         </div>
     </section>
 
-    <section id="gallery" class="py-16 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-12">
-                <h2 class="text-3xl font-serif font-bold text-kth-maroon mb-2">
-                    <span class="lang-en">Event Gallery</span><span class="lang-hi">इवेंट गैलरी</span>
-                </h2>
-                <div class="h-1 w-20 bg-kth-gold mx-auto rounded"></div>
-            </div>
-            <div id="public-gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Gallery items will be loaded here dynamically -->
-                <div class="col-span-full text-center text-gray-500 py-10" id="gallery-loading">
-                    <div class="loader mx-auto mb-4"></div>
-                    Loading Gallery...
-                </div>
+    <section id="gallery" class="container bg-white">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Event Gallery</span><span class="lang-hi">इवेंट गैलरी</span>
+            </h2>
+            <div class="h-1 w-24 bg-kth-gold mx-auto rounded"></div>
+        </div>
+        <div id="public-gallery-grid" class="gallery-grid">
+            <!-- Gallery items will be loaded here dynamically -->
+            <div class="col-span-full text-center text-gray-500 py-10 w-full" id="gallery-loading">
+                <div class="loader mx-auto mb-4"></div>
+                Loading Gallery...
             </div>
         </div>
     </section>
 
-    <footer class="bg-kth-dark text-gray-300 py-12">
+    <section id="booking" class="container pb-20">
+        <div class="section-header">
+            <h2 class="section-title">
+                <span class="lang-en">Book Your Event</span><span class="lang-hi">अपना इवेंट बुक करें</span>
+            </h2>
+            <p class="text-gray-600 mb-4">
+                <span class="lang-en">Fill out the form below and our team will get back to you with a custom quote.</span>
+                <span class="lang-hi">नीचे दिया गया फॉर्म भरें और हमारी टीम आपको एक कस्टम उद्धरण के साथ वापस बुलाएगी।</span>
+            </p>
+        </div>
+        <div class="booking-section">
+            <form class="booking-form" onsubmit="event.preventDefault(); alertModal('Booking request sent successfully! We will contact you shortly to finalize details.'); this.reset();">
+                <div class="form-group">
+                    <label>Full Name</label>
+                    <input type="text" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" required placeholder="+91 98765 43210">
+                </div>
+                <div class="form-group form-group-full">
+                    <label>Event Type</label>
+                    <select required>
+                        <option value="">Select Event Type</option>
+                        <option value="Wedding">Wedding / Marriage</option>
+                        <option value="Reception">Reception</option>
+                        <option value="Corporate">Corporate Event</option>
+                        <option value="Birthday">Birthday Party</option>
+                        <option value="Other">Other Celebration</option>
+                    </select>
+                </div>
+                <div class="form-group form-group-full">
+                    <label>Event Date</label>
+                    <input type="date" required>
+                </div>
+                <div class="form-group form-group-full">
+                    <label>Additional Details</label>
+                    <textarea rows="4" placeholder="Tell us about your event requirements, expected guests, location, etc."></textarea>
+                </div>
+                <div class="form-group form-group-full mt-2">
+                    <button type="submit" class="btn-gold w-full text-center text-lg shadow-lg">Submit Request</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <footer class="bg-kth-dark text-gray-300 py-12 border-t-4 border-kth-gold">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-3 gap-8 text-center md:text-left">
             <div>
                 <span class="font-serif text-2xl font-bold text-kth-gold mb-4 inline-block">
                     <i class="fa-solid fa-tent mr-2"></i>Kishor Tent House
                 </span>
-                <p class="text-sm mt-2">
+                <p class="text-sm mt-2 text-gray-400">
                     <span class="lang-en">Making your celebrations grand and memorable since 1995.</span>
                     <span class="lang-hi">1995 से आपके समारोहों को भव्य और यादगार बना रहे हैं।</span>
                 </p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Contact</h4>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider font-serif">Contact</h4>
                 <p class="text-sm mb-2"><i class="fa-solid fa-phone text-kth-gold mr-2"></i> +91 98765 43210</p>
                 <p class="text-sm mb-2"><i class="fa-solid fa-envelope text-kth-gold mr-2"></i> info@kishortent.com</p>
                 <p class="text-sm"><i class="fa-solid fa-location-dot text-kth-gold mr-2"></i> Main Market, City Center</p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-4 uppercase tracking-wider">Admin</h4>
+                <h4 class="text-white font-bold mb-4 uppercase tracking-wider font-serif">Admin</h4>
                 <button onclick="promptAdminUnlock()" class="text-sm text-gray-500 hover:text-kth-gold transition">
                     <i class="fa-solid fa-lock mr-2"></i>Admin Console
                 </button>
             </div>
         </div>
-        <div class="text-center mt-8 pt-8 border-t border-gray-700 text-sm text-gray-500">
-            &copy; 2023 Kishor Tent House. All rights reserved.
+        <div class="text-center mt-8 pt-8 border-t border-gray-800 text-sm text-gray-500">
+            &copy; 2024 Kishor Tent House. All rights reserved.
         </div>
     </footer>
 
     <div id="ai-widget-container" class="fixed bottom-6 right-6 z-40 flex flex-col items-end">
         <!-- Chat Window -->
         <div id="ai-chat-window" class="hidden w-80 sm:w-96 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden mb-4 flex flex-col h-[500px]">
-            <div class="bg-kth-maroon text-white p-4 flex justify-between items-center">
+            <div class="bg-kth-maroon text-white p-4 flex justify-between items-center border-b-2 border-kth-gold">
                 <div class="flex items-center">
-                    <div class="bg-white text-kth-maroon rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold">AI</div>
+                    <div class="bg-white text-kth-maroon rounded-full w-8 h-8 flex items-center justify-center mr-3 font-bold font-serif">AI</div>
                     <div>
                         <h3 class="font-bold text-sm">Kishor Assistant</h3>
                         <p class="text-xs text-kth-gold_light">Online & Ready</p>
@@ -351,7 +533,7 @@
                 </div>
                 <button onclick="toggleChat()" class="text-white hover:text-kth-gold"><i class="fa-solid fa-minus"></i></button>
             </div>
-            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 text-sm space-y-4">
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto bg-gray-50 text-sm space-y-4 font-sans">
                 <!-- Greeting -->
                 <div class="flex items-start">
                     <div class="bg-gray-200 text-gray-800 p-3 rounded-2xl rounded-tl-none max-w-[85%] chat-message shadow-sm">
@@ -374,10 +556,10 @@
         </button>
     </div>
 
-    <div id="admin-overlay" class="fixed inset-0 bg-kth-dark bg-opacity-95 text-gray-100 z-50 overflow-y-auto hidden">
-        <div class="max-w-6xl mx-auto p-4 md:p-8">
+    <div id="admin-overlay" class="fixed inset-0 bg-kth-dark bg-opacity-95 text-gray-100 z-50 overflow-y-auto hidden font-sans">
+        <div class="max-w-6xl mx-auto p-4 md:p-8 mt-10">
             <div class="flex justify-between items-center mb-8 border-b border-gray-700 pb-4">
-                <h2 class="text-2xl font-bold text-kth-gold"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Console</h2>
+                <h2 class="text-2xl font-bold text-kth-gold font-serif"><i class="fa-solid fa-shield-halved mr-2"></i>Admin Console</h2>
                 <button onclick="closeAdmin()" class="text-gray-400 hover:text-white bg-gray-800 px-4 py-2 rounded">Exit Admin</button>
             </div>
 
@@ -393,7 +575,7 @@
                 <!-- Godown Stock Manager Tab -->
                 <div id="tab-godown" class="admin-tab-content">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-bold">Godown Stock Manager</h3>
+                        <h3 class="text-xl font-bold font-serif text-white">Godown Stock Manager</h3>
                         <p class="text-sm text-gray-400">Manage your inventory items dynamically.</p>
                     </div>
                     
@@ -444,12 +626,12 @@
                 <!-- Gallery Manager Tab -->
                 <div id="tab-gallery" class="admin-tab-content hidden">
                     <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-bold">Live Gallery Upload</h3>
+                        <h3 class="text-xl font-bold font-serif text-white">Live Gallery Upload</h3>
                         <p class="text-sm text-gray-400">Permanently save images to public gallery.</p>
                     </div>
 
                     <div class="bg-gray-700 p-6 rounded-lg mb-8">
-                        <label class="block text-sm font-medium mb-2">Upload New Photo</label>
+                        <label class="block text-sm font-medium mb-2 text-white">Upload New Photo</label>
                         <div class="flex items-center space-x-4">
                             <input type="file" id="gallery-file-input" accept="image/*" class="flex-1 bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white file:mr-4 file:py-2 file:px-4 file:rounded file:border-0 file:text-sm file:font-semibold file:bg-kth-gold file:text-kth-maroon hover:file:bg-yellow-500 cursor-pointer">
                             <button onclick="uploadGalleryImage()" id="btn-upload" class="bg-green-600 text-white font-bold py-2 px-6 rounded hover:bg-green-500 transition">
@@ -468,19 +650,19 @@
                 <!-- Notifications Tab -->
                 <div id="tab-notify" class="admin-tab-content hidden">
                      <div class="flex justify-between items-center mb-6">
-                        <h3 class="text-xl font-bold">Deals & Notifications</h3>
+                        <h3 class="text-xl font-bold font-serif text-white">Deals & Notifications</h3>
                         <p class="text-sm text-gray-400">Push live banners to the public site.</p>
                     </div>
 
                     <form onsubmit="saveNotification(event)" class="bg-gray-700 p-6 rounded-lg max-w-2xl">
                         <div class="mb-4">
-                            <label class="block text-sm font-medium mb-2">Notification Message</label>
+                            <label class="block text-sm font-medium mb-2 text-white">Notification Message</label>
                             <input type="text" id="notif-message" placeholder="e.g., Special 20% off on Wedding Bookings this month!" class="w-full bg-gray-800 border border-gray-600 rounded px-3 py-2 text-white focus:outline-none focus:border-kth-gold">
                         </div>
                         <div class="mb-6">
                             <label class="flex items-center cursor-pointer">
                                 <input type="checkbox" id="notif-active" class="form-checkbox h-5 w-5 text-kth-maroon bg-gray-800 border-gray-600 rounded focus:ring-0 focus:ring-offset-0">
-                                <span class="ml-3 text-sm font-medium">Display on Public Site (Active)</span>
+                                <span class="ml-3 text-sm font-medium text-white">Display on Public Site (Active)</span>
                             </label>
                         </div>
                         <div class="flex space-x-4">
@@ -509,7 +691,7 @@
             initAppRealtimeData();
         });
 
-        // Use LocalStorage instead of Firebase to avoid permission errors
+        // Use LocalStorage to avoid server permission errors
         function getLocalData(key, defaultVal) {
             const data = localStorage.getItem(key);
             return data ? JSON.parse(data) : defaultVal;
@@ -519,7 +701,7 @@
             localStorage.setItem(key, JSON.stringify(val));
         }
 
-        // Simulate Real-time Listeners using Custom Events and LocalStorage
+        // Simulate Real-time Listeners
         function initAppRealtimeData() {
             setupInventoryListener();
             setupGalleryListener();
@@ -596,7 +778,7 @@
                 adminGrid.innerHTML = '';
 
                 if(gallery.length === 0) {
-                    publicGrid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10">Check back soon for new event photos!</div>';
+                    publicGrid.innerHTML = '<div class="col-span-full text-center text-gray-500 py-10 w-full">Check back soon for new event photos!</div>';
                     adminGrid.innerHTML = '<div class="col-span-full text-gray-500 text-sm">No photos uploaded yet.</div>';
                     return;
                 }
@@ -604,9 +786,9 @@
                 gallery.forEach((item) => {
                     // Public Card
                     const pubDiv = document.createElement('div');
-                    pubDiv.className = "rounded-lg overflow-hidden shadow-md aspect-square relative group";
+                    pubDiv.className = "gallery-item group";
                     pubDiv.innerHTML = `
-                        <img src="${item.image}" alt="Event Photo" class="w-full h-full object-cover transition duration-500 group-hover:scale-110">
+                        <img src="${item.image}" alt="Event Photo">
                         <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-30 transition flex justify-center items-center">
                             <i class="fa-solid fa-magnifying-glass text-white opacity-0 group-hover:opacity-100 text-3xl"></i>
                         </div>
@@ -734,7 +916,7 @@
         }
 
         const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=";
-        const SYSTEM_PROMPT = "You are a helpful, polite customer service AI for 'Kishor Tent House'. Keep responses very brief (1-2 sentences). You provide luxury tents, premium catering, elegant lighting, and hygienic event setups. Pricing is affordable but you don't give exact numbers, suggest they contact via info@kishortent.com or +919876543210. Tone: professional, welcoming.";
+        const SYSTEM_PROMPT = "You are a helpful, polite customer service AI for 'Kishor Tent House'. Keep responses very brief (1-2 sentences). You provide luxury tents, premium catering, elegant lighting, and hygienic event setups. Pricing is affordable but you don't give exact numbers, suggest they contact via info@kishortent.com or +919876543210. Tone: professional, welcoming, royal.";
 
         window.toggleChat = function() {
             const windowEl = document.getElementById('ai-chat-window');
@@ -824,7 +1006,6 @@
 
         window.promptAdminUnlock = function() {
             // Simple mock authentication for environment constraints. 
-            // In reality, rely on proper Firebase Custom Claims.
             const pass = prompt("Enter Admin Passcode (Hint: type 'admin123'):");
             if(pass === 'admin123') {
                 document.getElementById('admin-overlay').classList.remove('hidden');
@@ -876,13 +1057,13 @@
         }
 
         // Custom alert substitute
-        function alertModal(msg) {
+        window.alertModal = function(msg) {
             const overlay = document.createElement('div');
-            overlay.className = "fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-center items-center";
+            overlay.className = "fixed inset-0 bg-black bg-opacity-50 z-[100] flex justify-center items-center font-sans";
             overlay.innerHTML = `
-                <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow-2xl text-gray-800">
+                <div class="bg-white rounded-lg p-6 max-w-sm text-center shadow-2xl text-gray-800 border-t-4 border-kth-gold">
                     <p class="mb-6 font-medium">${escapeHTML(msg)}</p>
-                    <button class="bg-kth-maroon text-white px-6 py-2 rounded shadow hover:bg-red-800" onclick="this.parentElement.parentElement.remove()">OK</button>
+                    <button class="bg-kth-maroon text-white px-6 py-2 rounded shadow hover:bg-red-800 transition" onclick="this.parentElement.parentElement.remove()">OK</button>
                 </div>
             `;
             document.body.appendChild(overlay);
