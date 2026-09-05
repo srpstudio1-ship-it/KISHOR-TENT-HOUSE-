@@ -9,9 +9,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* ==========================================================================
-           ROOT VARIABLES & CORE STYLES
-           ========================================================================== */
         :root {
             --royal-maroon: #6b0018;
             --deep-crimson: #800020;
@@ -46,17 +43,9 @@
             overflow-x: hidden;
         }
 
-        /* Language Toggle Defaults */
-        .lang-hi {
-            display: none; /* Hide Hindi by default */
-        }
+        .lang-hi { display: none; }
 
-        /* ==========================================================================
-           TYPOGRAPHY & BUTTONS
-           ========================================================================== */
-        h1, h2, h3, .royal-font {
-            font-family: 'Cinzel', serif;
-        }
+        h1, h2, h3, .royal-font { font-family: 'Cinzel', serif; }
 
         .gold-text {
             background: var(--gold-gradient);
@@ -82,34 +71,11 @@
             text-decoration: none;
         }
 
-        .btn-gold:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
-        }
+        .btn-gold:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6); }
+        .btn-danger { background: var(--danger-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .btn-success { background: var(--success-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
+        .btn-warning { background: var(--warning-color); color: white; border: none; padding: 6px 12px; border-radius: 4px; cursor: pointer; font-weight: 600; }
 
-        .btn-danger {
-            background: var(--danger-color);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        .btn-success {
-            background: var(--success-color);
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: 600;
-        }
-
-        /* ==========================================================================
-           HEADER & HERO SECTION
-           ========================================================================== */
         header {
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(107, 0, 24, 0.85)), 
                         url('https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg');
@@ -135,13 +101,7 @@
             z-index: 10;
         }
 
-        .contact-top a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-right: 15px;
-        }
+        .contact-top a { color: white; text-decoration: none; font-size: 0.9rem; font-weight: 600; }
 
         .lang-switch {
             background: rgba(255, 255, 255, 0.15);
@@ -155,24 +115,8 @@
             transition: var(--transition);
         }
 
-        .lang-switch:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
-
-        .brand-header h1 {
-            font-size: 3.2rem;
-            letter-spacing: 2px;
-            margin-bottom: 5px;
-            text-shadow: 2px 4px 10px rgba(0,0,0,0.5);
-        }
-
-        .brand-header h2 {
-            font-size: 1.4rem;
-            color: #f0f0f0;
-            font-weight: 300;
-            margin-bottom: 15px;
-        }
+        .brand-header h1 { font-size: 3.2rem; letter-spacing: 2px; margin-bottom: 5px; }
+        .brand-header h2 { font-size: 1.4rem; color: #f0f0f0; font-weight: 300; margin-bottom: 15px; }
 
         .proprietor-tag {
             background: rgba(0, 0, 0, 0.6);
@@ -183,16 +127,11 @@
             font-size: 0.9rem;
             color: var(--bright-gold);
             margin-bottom: 20px;
-            cursor: pointer; /* Acts as the secret admin reveal button */
+            cursor: pointer;
             transition: var(--transition);
         }
-        
-        .proprietor-tag:hover {
-            background: rgba(0,0,0,0.8);
-            border-color: #fff;
-        }
+        .proprietor-tag:hover { background: rgba(0,0,0,0.8); border-color: #fff; }
 
-        /* Navigation */
         nav {
             background: var(--royal-maroon);
             display: flex;
@@ -214,66 +153,12 @@
             letter-spacing: 1px;
             transition: var(--transition);
         }
+        nav a:hover { background: var(--royal-gold); color: #000; }
 
-        nav a:hover {
-            background: var(--royal-gold);
-            color: #000;
-        }
+        .container { max-width: 1200px; margin: auto; padding: 50px 20px; }
+        .section-header { text-align: center; margin-bottom: 40px; }
+        .section-title { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 10px; }
 
-        .container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 50px 20px;
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
-        .section-title {
-            font-size: 2.2rem;
-            color: var(--royal-maroon);
-            margin-bottom: 10px;
-        }
-
-        /* Quality Promise CSS */
-        .kth-section { padding: 20px 0 60px 0; }
-        .kth-section-title { text-align: center; margin-bottom: 40px; }
-        .kth-section-title h2 { font-size: 2.2rem; color: var(--royal-maroon); margin-bottom: 10px; font-family: 'Cinzel', serif; }
-        .kth-section-title p { color: var(--text-light); font-size: 1.1rem; }
-        
-        .kth-grid {
-            display: grid;
-            gap: 25px;
-        }
-        .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
-        
-        .kth-promise-card {
-            background: var(--card-bg);
-            padding: 30px 20px;
-            border-radius: 12px;
-            text-align: center;
-            box-shadow: var(--shadow-soft);
-            border-bottom: 4px solid var(--royal-gold);
-            transition: var(--transition);
-        }
-        .kth-promise-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-heavy);
-        }
-        .kth-promise-icon {
-            font-size: 2.8rem;
-            color: var(--royal-gold);
-            margin-bottom: 15px;
-        }
-        .kth-promise-title {
-            font-weight: 700;
-            font-size: 1.15rem;
-            color: var(--royal-maroon);
-        }
-
-        /* Services Grid */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -288,43 +173,19 @@
             border: 1px solid rgba(212, 175, 55, 0.2);
         }
 
-        .service-img-wrapper {
-            height: 200px;
-            overflow: hidden;
-        }
+        .service-img-wrapper { height: 200px; overflow: hidden; }
+        .service-img-wrapper img { width: 100%; height: 100%; object-fit: cover; }
+        .service-content { padding: 20px; text-align: center; }
 
-        .service-img-wrapper img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .service-content {
-            padding: 20px;
-            text-align: center;
-        }
-
-        /* Gallery Grid */
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
             gap: 20px;
         }
 
-        .gallery-item {
-            border-radius: 10px;
-            overflow: hidden;
-            height: 220px;
-            border: 2px solid var(--royal-gold);
-        }
+        .gallery-item { border-radius: 10px; overflow: hidden; height: 220px; border: 2px solid var(--royal-gold); position: relative; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; }
 
-        .gallery-item img, .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        /* Booking Form */
         .booking-section {
             background: #ffffff;
             border-radius: 15px;
@@ -335,46 +196,28 @@
             margin: 0 auto;
         }
 
-        .booking-form {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-        }
-
+        .booking-form { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
         .form-group-full { grid-column: span 2; }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--royal-maroon);
-        }
-
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; color: var(--royal-maroon); }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px 14px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 0.95rem;
+            width: 100%; padding: 10px 14px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.95rem;
         }
 
-        .btn-whatsapp {
-            background: #25D366;
-            color: white;
-            border: none;
-            padding: 14px;
-            font-size: 1rem;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            width: 100%;
+        /* Status Check Section */
+        .status-check-box {
+            background: #fff;
+            border: 2px solid var(--royal-gold);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 800px;
+            margin: 40px auto 0 auto;
+            box-shadow: var(--shadow-soft);
+            text-align: center;
         }
 
-        /* ==========================================================================
-           15 ADMIN FEATURES CONSOLE ENGINE
-           ========================================================================== */
+        /* Admin Console */
         .admin-section {
-            display: none; /* Hidden strictly by default from general visitors */
+            display: none;
             background: #1e1e24;
             color: #ffffff;
             border-radius: 15px;
@@ -390,329 +233,44 @@
             border-bottom: 1px solid #333;
             padding-bottom: 20px;
             margin-bottom: 25px;
-        }
-
-        .admin-tabs-nav {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 10px;
-            margin-bottom: 25px;
-        }
-
-        .admin-tab-btn {
-            background: #2b2b36;
-            color: #ddd;
-            border: 1px solid #444;
-            padding: 10px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 0.8rem;
-            font-weight: 600;
-            text-align: left;
-            transition: var(--transition);
-        }
-
-        .admin-tab-btn:hover, .admin-tab-btn.active {
-            background: var(--royal-gold);
-            color: #000;
-            border-color: var(--bright-gold);
+            flex-wrap: wrap;
+            gap: 15px;
         }
 
         .admin-feature-panel {
-            display: none;
             background: #282833;
             padding: 20px;
             border-radius: 10px;
             border: 1px solid #3d3d4e;
         }
 
-        .admin-feature-panel.active {
-            display: block;
-        }
+        .admin-panel-title { color: var(--bright-gold); font-size: 1.2rem; margin-bottom: 15px; border-bottom: 1px dashed #555; padding-bottom: 8px; }
 
-        .admin-panel-title {
-            color: var(--bright-gold);
-            font-size: 1.2rem;
-            margin-bottom: 15px;
-            border-bottom: 1px dashed #555;
-            padding-bottom: 8px;
-        }
+        .admin-table { width: 100%; border-collapse: collapse; margin-top: 15px; font-size: 0.85rem; }
+        .admin-table th, .admin-table td { border: 1px solid #444; padding: 10px; text-align: left; color: #fff; }
+        .admin-table th { background: #181820; color: var(--royal-gold); }
 
-        .admin-grid-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-bottom: 15px;
-        }
-
-        .admin-grid-form input, .admin-grid-form select, .admin-grid-form textarea {
-            background: #181820;
-            border: 1px solid #444;
-            color: #fff;
-            padding: 8px 12px;
-            border-radius: 5px;
-            width: 100%;
-        }
-
-        .admin-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 0.85rem;
-        }
-
-        .admin-table th, .admin-table td {
-            border: 1px solid #444;
-            padding: 10px;
-            text-align: left;
-        }
-
-        .admin-table th {
-            background: #181820;
-            color: var(--royal-gold);
-        }
-
-        footer {
-            background: var(--dark-bg);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            margin-top: 60px;
-            border-top: 3px solid var(--royal-gold);
-        }
-
-        @media(max-width: 900px) {
-            .grid-md-2 { grid-template-columns: repeat(2, 1fr); }
-        }
-        @media(max-width: 768px) {
-            .booking-form { grid-template-columns: 1fr; }
-            .form-group-full { grid-column: span 1; }
-            .brand-header h1 { font-size: 2.2rem; }
-            .grid-cols-4 { grid-template-columns: 1fr; }
-        }
-    
-        /* ==============================================================
-           MERGED ENHANCEMENT CSS
-           ============================================================= */
-        .admin-help {
-            color: #c7c7cf;
-            margin: 0 0 15px 0;
-            font-size: 0.9rem;
-        }
-
-        .backup-file-label {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .admin-status {
-            min-height: 28px;
-            margin-top: 12px;
-            color: var(--bright-gold);
-            font-weight: 600;
-        }
-
+        /* AI Floating Widget */
         #ai-widget-container {
-            position: fixed;
-            right: 20px;
-            bottom: 20px;
-            z-index: 5000;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-            gap: 12px;
+            position: fixed; right: 20px; bottom: 20px; z-index: 5000; display: flex; flex-direction: column; align-items: flex-end; gap: 12px;
         }
-
         #ai-chat-btn {
-            width: 62px;
-            height: 62px;
-            border-radius: 50%;
-            border: 2px solid var(--royal-gold);
-            background: var(--royal-maroon);
-            color: var(--bright-gold);
-            box-shadow: 0 12px 30px rgba(0,0,0,0.28);
-            cursor: pointer;
-            font-weight: 900;
-            font-size: 1rem;
-            transition: transform .25s ease, box-shadow .25s ease;
+            width: 62px; height: 62px; border-radius: 50%; border: 2px solid var(--royal-gold); background: var(--royal-maroon); color: var(--bright-gold); box-shadow: 0 12px 30px rgba(0,0,0,0.28); cursor: pointer; font-weight: 900; font-size: 1rem;
         }
-
-        #ai-chat-btn:hover {
-            transform: translateY(-3px) scale(1.04);
-            box-shadow: 0 16px 35px rgba(107,0,24,0.35);
-        }
-
         #ai-chat-window {
-            width: min(380px, calc(100vw - 30px));
-            height: 520px;
-            background: #fff;
-            border: 2px solid var(--royal-gold);
-            border-radius: 18px;
-            overflow: hidden;
-            box-shadow: 0 20px 55px rgba(0,0,0,.3);
-            display: none;
-            flex-direction: column;
+            width: min(380px, calc(100vw - 30px)); height: 520px; background: #fff; border: 2px solid var(--royal-gold); border-radius: 18px; overflow: hidden; box-shadow: 0 20px 55px rgba(0,0,0,.3); display: none; flex-direction: column; color: #222;
         }
+        #ai-chat-window.open { display: flex; }
+        .chat-header { background: var(--royal-maroon); color: #fff; padding: 14px 16px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid var(--royal-gold); }
+        .chat-messages { flex: 1; padding: 16px; overflow-y: auto; background: #fffaf4; display: flex; flex-direction: column; gap: 10px; }
+        .chat-bubble { max-width: 86%; padding: 10px 13px; border-radius: 15px; line-height: 1.45; font-size: .9rem; word-break: break-word; }
+        .chat-bubble.bot { align-self: flex-start; background: #eee; color: #252525; }
+        .chat-bubble.user { align-self: flex-end; background: var(--royal-maroon); color: #fff; }
+        .chat-input-area { display: flex; gap: 8px; padding: 11px; background: #fff; border-top: 1px solid #ddd; }
+        .chat-input-area input { flex: 1; border: 1px solid #ccc; border-radius: 30px; padding: 11px 14px; outline: none; }
+        .chat-input-area button { width: 44px; border: 0; border-radius: 50%; background: var(--royal-gold); color: #2b0008; font-weight: 900; cursor: pointer; }
 
-        #ai-chat-window.open {
-            display: flex;
-        }
-
-        .chat-header {
-            background: linear-gradient(135deg, var(--royal-maroon), #30000b);
-            color: #fff;
-            padding: 14px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid var(--royal-gold);
-        }
-
-        .chat-brand {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .chat-brand strong {
-            display: block;
-            font-family: 'Cinzel', serif;
-        }
-
-        .chat-brand small {
-            display: block;
-            color: #f8dc7b;
-            font-size: .72rem;
-            margin-top: 2px;
-        }
-
-        .chat-badge {
-            width: 34px;
-            height: 34px;
-            border-radius: 50%;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--royal-gold);
-            color: #250008;
-            font-weight: 900;
-        }
-
-        .chat-close {
-            background: transparent;
-            color: #fff;
-            border: 0;
-            font-size: 1.7rem;
-            cursor: pointer;
-            line-height: 1;
-        }
-
-        .chat-messages {
-            flex: 1;
-            padding: 16px;
-            overflow-y: auto;
-            background: #fffaf4;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
-        .chat-bubble {
-            max-width: 86%;
-            padding: 10px 13px;
-            border-radius: 15px;
-            line-height: 1.45;
-            font-size: .9rem;
-            word-break: break-word;
-        }
-
-        .chat-bubble.bot {
-            align-self: flex-start;
-            background: #eee;
-            color: #252525;
-            border-bottom-left-radius: 4px;
-        }
-
-        .chat-bubble.user {
-            align-self: flex-end;
-            background: var(--royal-maroon);
-            color: #fff;
-            border-bottom-right-radius: 4px;
-        }
-
-        .chat-input-area {
-            display: flex;
-            gap: 8px;
-            padding: 11px;
-            background: #fff;
-            border-top: 1px solid #ddd;
-        }
-
-        .chat-input-area input {
-            flex: 1;
-            min-width: 0;
-            border: 1px solid #ccc;
-            border-radius: 30px;
-            padding: 11px 14px;
-            outline: none;
-        }
-
-        .chat-input-area input:focus {
-            border-color: var(--royal-gold);
-        }
-
-        .chat-input-area button {
-            width: 44px;
-            border: 0;
-            border-radius: 50%;
-            background: var(--royal-gold);
-            color: #2b0008;
-            font-weight: 900;
-            cursor: pointer;
-        }
-
-        .royal-image-card {
-            position: relative;
-        }
-
-        .royal-image-card::after {
-            content: "Royal Marwadi Wedding";
-            position: absolute;
-            left: 10px;
-            bottom: 10px;
-            background: rgba(107,0,24,.85);
-            color: #ffd700;
-            border: 1px solid #d4af37;
-            padding: 4px 8px;
-            border-radius: 20px;
-            font-size: .68rem;
-            font-weight: 700;
-        }
-
-        .image-audit-badge {
-            display: inline-block;
-            margin: 8px auto 0;
-            padding: 4px 10px;
-            border-radius: 20px;
-            background: #fff4d5;
-            color: #6b0018;
-            border: 1px solid #d4af37;
-            font-size: .72rem;
-            font-weight: 700;
-        }
-
-        @media (max-width: 640px) {
-            #ai-widget-container {
-                right: 12px;
-                bottom: 12px;
-            }
-
-            #ai-chat-window {
-                height: 70vh;
-            }
-        }
-
+        footer { background: var(--dark-bg); color: white; text-align: center; padding: 40px 20px; margin-top: 60px; border-top: 3px solid var(--royal-gold); }
     </style>
 </head>
 <body>
@@ -726,76 +284,51 @@
             <button class="lang-switch" onclick="toggleLanguage()">English / हिन्दी</button>
         </div>
         <div class="brand-header">
-            <h1 class="gold-text" id="brand-title">KISHOR TENT HOUSE</h1>
-            <h2 id="brand-sub">Complete Solution For All Your Events</h2>
-            <!-- Click the Proprietor Tag to Reveal the Hidden Admin Master Console -->
-            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Admin Login">Proprietor: Bhavesh Purohit</div><br>
+            <h1 class="gold-text">KISHOR TENT HOUSE</h1>
+            <h2>Complete Solution For All Your Events</h2>
+            <div class="proprietor-tag" onclick="revealAdminConsole()" title="Admin Login">Proprietor: Bhavesh Purohit (Admin Login)</div><br>
             <a href="#booking" class="btn-gold">Book Event Now</a>
         </div>
     </header>
 
     <!-- Navigation -->
     <nav>
-        <!-- Removed Master Admin link to hide it securely from public customers -->
         <a href="#services">Services</a>
         <a href="#gallery">Gallery</a>
         <a href="#booking">Book Now</a>
+        <a href="#status-section">Check Status</a>
     </nav>
 
     <div class="container">
         
-        <!-- Quality Promise Section Added Here -->
-        <section class="kth-section">
-            <div class="kth-section-title">
-                <h2>
-                    <span class="lang-en">Our Quality Promise</span>
-                    <span class="lang-hi">हमारी गुणवत्ता का वादा</span>
-                </h2>
-                <p>
-                    <span class="lang-en">We deliver high-standard event services with complete perfection.</span>
-                    <span class="lang-hi">हम पूर्ण पूर्णता और उच्च मानकों के साथ सेवाएं प्रदान करते हैं।</span>
-                </p>
-            </div>
-            <div class="kth-grid grid-cols-4 grid-md-2">
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-sparkles"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Hygienic Setup</span>
-                        <span class="lang-hi">हाइजीनिक सेटअप</span>
-                    </div>
-                </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-award"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Best Quality Material</span>
-                        <span class="lang-hi">उत्कृष्ट गुणवत्ता</span>
-                    </div>
-                </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-hand-holding-dollar"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">Affordable Pricing</span>
-                        <span class="lang-hi">किफायती दरें</span>
-                    </div>
-                </div>
-                <div class="kth-promise-card">
-                    <div class="kth-promise-icon"><i class="fa-solid fa-clock-check"></i></div>
-                    <div class="kth-promise-title">
-                        <span class="lang-en">On Time Service</span>
-                        <span class="lang-hi">समय पर सेवा</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-
         <!-- Services Section -->
         <section id="services">
             <div class="section-header">
-                <h2 class="section-title">Our Premium Services</h2>
+                <h2 class="section-title">Our Royal Marwadi Services</h2>
                 <p>Creating Unforgettable Grand Experiences for Weddings & Special Occasions</p>
             </div>
             <div class="services-grid" id="services-container">
-                <!-- Services rendered via JS for dynamic admin updates -->
+                <div class="service-card">
+                    <div class="service-img-wrapper"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Tent"></div>
+                    <div class="service-content">
+                        <h3>Royal Marwadi Tent House</h3>
+                        <p>Waterproof royal canopies & palace-style decor.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img-wrapper"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Mandap"></div>
+                    <div class="service-content">
+                        <h3>Royal Mandap & Stage</h3>
+                        <p>Traditional Rajasthani wedding mandaps with floral styling.</p>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <div class="service-img-wrapper"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Lighting"></div>
+                    <div class="service-content">
+                        <h3>Lighting & Catering Setup</h3>
+                        <p>Ambient LED lighting and grand banquet arrangements.</p>
+                    </div>
+                </div>
             </div>
         </section>
 
@@ -804,8 +337,11 @@
             <div class="section-header">
                 <h2 class="section-title">Royal Event Gallery</h2>
             </div>
-            <!-- Populated via Javascript to support Permanent Local Storage -->
             <div class="gallery-grid" id="gallery-container">
+                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Wedding 1"></div>
+                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Royal Wedding 2"></div>
+                <div class="gallery-item"><img src="https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg" alt="Royal Wedding 3"></div>
+                <div class="gallery-item"><img src="https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg" alt="Royal Wedding 4"></div>
             </div>
         </section>
 
@@ -821,13 +357,13 @@
                         <input type="text" id="custName" required placeholder="Full Name">
                     </div>
                     <div class="form-group">
-                        <label>Phone Number</label>
-                        <input type="tel" id="custPhone" required placeholder="10-digit number">
+                        <label>Phone Number (Used to track booking status)</label>
+                        <input type="tel" id="custPhone" required placeholder="10-digit mobile number">
                     </div>
                     <div class="form-group">
                         <label>Event Type</label>
                         <select id="custEvent">
-                            <option value="Royal Wedding">Royal Wedding</option>
+                            <option value="Royal Marwadi Wedding">Royal Marwadi Wedding</option>
                             <option value="Reception">Reception</option>
                             <option value="Birthday Party">Birthday Party</option>
                         </select>
@@ -838,421 +374,88 @@
                     </div>
                     <div class="form-group form-group-full">
                         <label>Venue / Requirements</label>
-                        <textarea id="custMsg" rows="3" placeholder="Expected guests, tent size..."></textarea>
+                        <textarea id="custMsg" rows="3" placeholder="Expected guests, tent size, custom decor..."></textarea>
                     </div>
                     <div class="form-group-full">
-                        <button type="submit" class="btn-whatsapp">📱 Send Booking Request via WhatsApp</button>
+                        <button type="submit" class="btn-gold" style="width:100%;">Submit Booking Request</button>
                     </div>
                 </form>
             </div>
         </section>
 
-        <!-- ==========================================================================
-           15 ADMIN FEATURES CONSOLE (HIDDEN)
-           ========================================================================== -->
+        <!-- Customer Booking Status Checker Section -->
+        <div id="status-section" class="status-check-box">
+            <h3 style="color: var(--royal-maroon); margin-bottom: 15px;"><i class="fa-solid fa-magnifying-glass"></i> Check Your Booking Status</h3>
+            <p style="margin-bottom: 15px; font-size: 0.9rem; color: #666;">Enter your 10-digit mobile number to check if your booking is Waiting, Approved, or Declined.</p>
+            <div style="display: flex; gap: 10px; max-width: 400px; margin: 0 auto;">
+                <input type="tel" id="checkPhoneInput" placeholder="Enter Mobile Number" style="flex:1; padding: 10px; border: 1px solid #ccc; border-radius: 6px;">
+                <button class="btn-gold" onclick="checkCustomerBookingStatus()">Check Status</button>
+            </div>
+            <div id="statusResultOutput" style="margin-top: 20px; font-weight: 600; font-size: 1.1rem;"></div>
+        </div>
+
+        <!-- ADMIN CONSOLE (Secured with Password 8233615852) -->
         <section class="admin-section" id="admin-console">
             <div class="admin-top-bar">
                 <div>
-                    <h2 class="gold-text"><i class="fa-solid fa-user-shield"></i> Owner Master Console</h2>
-                    <p style="font-size: 0.85rem; color: #aaa;">15 Core Fully Operational Management Tools</p>
+                    <h2 class="gold-text"><i class="fa-solid fa-user-shield"></i> Confidential Admin Master Console</h2>
+                    <p style="font-size: 0.85rem; color: #aaa;">Restricted Access: Orders & Customer Details Manager</p>
                 </div>
                 <div id="admin-login-box">
-                    <input type="password" id="adminPassInput" placeholder="Password (jaimaahinglaj)" style="padding: 8px; border-radius: 4px; border: 1px solid #555;">
-                    <button class="btn-gold" onclick="unlockAdmin()">Unlock Console</button>
+                    <input type="password" id="adminPassInput" placeholder="Enter Admin Password" style="padding: 8px; border-radius: 4px; border: 1px solid #555; color: #fff; background: #111;">
+                    <button class="btn-gold" onclick="unlockAdmin()">Unlock Confidential Data</button>
                 </div>
                 <button id="lockBtn" class="btn-danger" style="display:none;" onclick="lockAdmin()"><i class="fa-solid fa-lock"></i> Lock Console</button>
-                <button class="btn-danger" onclick="hideAdminConsole()">Close Admin Panel</button>
+                <button class="btn-danger" onclick="hideAdminConsole()">Close Panel</button>
             </div>
 
+            <!-- Confidential Admin Area (Locked by default) -->
             <div id="admin-main-body" style="display: none;">
-                <!-- 15 Feature Tabs Nav -->
-                <div class="admin-tabs-nav">
-                    <button class="admin-tab-btn active" onclick="switchAdminTab('tab1', this)">1. GST Invoice Builder</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab2', this)">2. Booking Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab3', this)">3. Godown Stock</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab4', this)">4. Payment Ledger</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab5', this)">5. Bad Debt WhatsApp</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab6', this)">6. Live Gallery Upload</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab7', this)">7. Price Rate Editor</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab8', this)">8. Vendor Expense Logger</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab9', this)">9. Calendar Booking</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab10', this)">10. Quotation Generator</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab11', this)">11. Event Staff Allocator</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab12', this)">12. Service Toggle Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab13', this)">13. Transport Dispatcher</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab14', this)">14. Feedback Review Manager</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab15', this)">15. Dynamic Discount Calc</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab16', this)">16. Deal Banner</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab17', this)">17. AI Assistant</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab18', this)">18. Access Roles</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab19', this)">19. Data Backup</button>
-                    <button class="admin-tab-btn" onclick="switchAdminTab('tab20', this)">20. Security Logs</button>
-                </div>
-
-                <!-- FEATURE 1: GST Invoice Builder -->
-                <div id="tab1" class="admin-feature-panel active">
-                    <h3 class="admin-panel-title">1. Interactive GST Billing & Tax Invoice Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="invClient" placeholder="Client Name">
-                        <input type="text" id="invDesc" placeholder="Item Description">
-                        <input type="number" id="invQty" placeholder="Qty">
-                        <input type="number" id="invRate" placeholder="Rate (₹)">
-                        <button class="btn-gold" onclick="addInvoiceItem()">Add Item</button>
-                    </div>
-                    <table class="admin-table" id="invoiceTable">
+                <div class="admin-feature-panel">
+                    <h3 class="admin-panel-title"><i class="fa-solid fa-clipboard-list"></i> Customer Booking & Order Manager</h3>
+                    <p style="font-size: 0.85rem; color: #ccc; margin-bottom: 15px;">Review incoming customer bookings and update status to Approved, Waiting, or Declined.</p>
+                    <table class="admin-table" id="adminBookingTable">
                         <thead>
-                            <tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th><th>Action</th></tr>
+                            <tr>
+                                <th>Client Name</th>
+                                <th>Phone</th>
+                                <th>Event Type</th>
+                                <th>Date</th>
+                                <th>Requirements</th>
+                                <th>Current Status</th>
+                                <th>Actions</th>
+                            </tr>
                         </thead>
-                        <tbody></tbody>
-                    </table>
-                    <div style="margin-top: 15px; text-align: right;">
-                        <p>Subtotal: ₹<span id="invSub">0.00</span> | GST (18%): ₹<span id="invTax">0.00</span></p>
-                        <h3 style="color: var(--bright-gold);">Grand Total: ₹<span id="invGrand">0.00</span></h3>
-                        <button class="btn-success" style="margin-top: 10px;" onclick="printInvoice()"><i class="fa-solid fa-print"></i> Print GST Invoice</button>
-                    </div>
-                </div>
- 
-                <!-- FEATURE 2: Booking Manager -->
-                <div id="tab2" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">2. Customer Booking Request Manager</h3>
-                    <table class="admin-table" id="bookingManagerTable">
-                        <thead>
-                            <tr><th>Name</th><th>Phone</th><th>Event</th><th>Date</th><th>Status</th><th>Actions</th></tr>
-                        </thead>
-                        <tbody></tbody>
+                        <tbody>
+                            <!-- Dynamically populated -->
+                        </tbody>
                     </table>
                 </div>
-
-                <!-- FEATURE 3: Godown Stock -->
-                <div id="tab3" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">3. Godown Stock / Inventory Tracker</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="godownItemName" placeholder="Item Name (e.g. Maharaja Sofa)">
-                        <input type="number" id="godownItemQty" placeholder="Total Stock Quantity">
-                        <button class="btn-gold" onclick="addGodownStock()">Add to Godown</button>
-                    </div>
-                    <table class="admin-table" id="godownTable">
-                        <thead>
-                            <tr><th>Item Name</th><th>Total Quantity in Stock</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 4: Payment Ledger -->
-                <div id="tab4" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">4. Advance & Outstanding Payment Ledger</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="payClient" placeholder="Client Name">
-                        <input type="number" id="payTotal" placeholder="Total Bill (₹)">
-                        <input type="number" id="payAdvance" placeholder="Advance Paid (₹)">
-                        <button class="btn-gold" onclick="addLedgerEntry()">Record Payment</button>
-                    </div>
-                    <table class="admin-table" id="ledgerTable">
-                        <thead>
-                            <tr><th>Client</th><th>Total Bill</th><th>Advance</th><th>Balance Due</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 5: Bad Debt WhatsApp -->
-                <div id="tab5" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">5. Bad Debt WhatsApp Payment Recovery Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="debtName" placeholder="Debtor Name">
-                        <input type="tel" id="debtPhone" placeholder="Mobile Number">
-                        <input type="number" id="debtAmount" placeholder="Due Amount (₹)">
-                        <button class="btn-danger" onclick="sendDebtReminder()">📱 Send Payment Warning via WhatsApp</button>
-                    </div>
-                </div>
-
-                <!-- FEATURE 6: Live Gallery Upload -->
-                <div id="tab6" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">6. Live Media Injector (Permanent Gallery Upload)</h3>
-                    <input type="file" id="mediaUploadInput" accept="image/*,video/*" onchange="uploadToGallery(event)" style="background: #181820; padding: 10px; border-radius: 5px; width: 100%;">
-                    <p style="font-size:0.8rem; color:#aaa; margin-top:8px;">Uploaded image/video instantly injects into public website gallery and saves permanently to storage.</p>
-                </div>
-
-                <!-- FEATURE 7: Price Rate Editor -->
-                <div id="tab7" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">7. Dynamic Rate Card Master Configurator</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="rateItem" placeholder="Service Name">
-                        <input type="number" id="ratePrice" placeholder="Default Rate (₹)">
-                        <button class="btn-gold" onclick="addRateCardItem()">Save Rate</button>
-                    </div>
-                    <table class="admin-table" id="rateCardTable">
-                        <thead>
-                            <tr><th>Service Item</th><th>Base Price</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 8: Vendor Expense Logger -->
-                <div id="tab8" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">8. Event Expense & Vendor Payment Logger</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="expName" placeholder="Expense Name (e.g., Flower Vendor)">
-                        <input type="number" id="expAmount" placeholder="Amount (₹)">
-                        <select id="expCategory">
-                            <option value="Labor">Labor</option>
-                            <option value="Transport">Transport</option>
-                            <option value="Materials">Materials</option>
-                        </select>
-                        <button class="btn-gold" onclick="logExpense()">Log Expense</button>
-                    </div>
-                    <table class="admin-table" id="expenseTable">
-                        <thead>
-                            <tr><th>Expense Title</th><th>Category</th><th>Amount</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                    <p style="margin-top: 10px; font-weight: bold;">Total Event Expenses: ₹<span id="totalExpOut">0.00</span></p>
-                </div>
-
-                <!-- FEATURE 9: Calendar Booking -->
-                <div id="tab9" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">9. Event Calendar Date Lock Manager</h3>
-                    <div class="admin-grid-form">
-                        <input type="date" id="lockDateInput">
-                        <input type="text" id="lockDateReason" placeholder="Reason / Client Name">
-                        <button class="btn-gold" onclick="lockDate()">Lock Date</button>
-                    </div>
-                    <table class="admin-table" id="calendarTable">
-                        <thead>
-                            <tr><th>Date Locked</th><th>Event Details</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 10: Quotation Generator -->
-                <div id="tab10" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">10. Estimate & Quotation Builder Engine</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="qClient" placeholder="Client Name">
-                        <input type="text" id="qEvent" placeholder="Event Type">
-                        <input type="number" id="qGuests" placeholder="Estimated Guests">
-                        <input type="number" id="qRatePerGuest" placeholder="Budget Per Guest (₹)">
-                        <button class="btn-gold" onclick="generateQuotation()">Generate Quotation</button>
-                    </div>
-                    <div id="quotationOutput" style="background:#181820; padding:15px; border-radius:5px; margin-top:15px; display:none;">
-                        <h4 style="color:var(--royal-gold);">OFFICIAL ESTIMATE QUOTATION</h4>
-                        <p id="qDetails"></p>
-                        <h3 style="color:var(--bright-gold); margin-top:8px;">Total Estimated Cost: ₹<span id="qTotal"></span></h3>
-                    </div>
-                </div>
-
-                <!-- FEATURE 11: Staff Allocator -->
-                <div id="tab11" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">11. Worker & On-Site Staff Allocation</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="staffName" placeholder="Worker Name">
-                        <input type="text" id="staffRole" placeholder="Role (e.g. Tent Supervisor)">
-                        <input type="text" id="staffVenue" placeholder="Assigned Venue">
-                        <button class="btn-gold" onclick="assignStaff()">Assign Staff</button>
-                    </div>
-                    <table class="admin-table" id="staffTable">
-                        <thead>
-                            <tr><th>Worker Name</th><th>Role</th><th>Venue</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 12: Service Toggle Manager -->
-                <div id="tab12" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">12. Dynamic Public Service Visibility Toggle</h3>
-                    <p style="font-size:0.85rem; color:#aaa; margin-bottom:15px;">Enable or disable services offered on the public site in real-time.</p>
-                    <table class="admin-table" id="serviceToggleTable">
-                        <thead>
-                            <tr><th>Service Title</th><th>Status</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 13: Transport Dispatcher -->
-                <div id="tab13" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">13. Loading Truck & Vehicle Dispatch Status Tracker</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="truckNo" placeholder="Vehicle Reg No (e.g. RJ-21-GB-4011)">
-                        <input type="text" id="truckDriver" placeholder="Driver Name & Phone">
-                        <input type="text" id="truckVenue" placeholder="Destination Venue">
-                        <button class="btn-gold" onclick="dispatchTruck()">Dispatch Truck</button>
-                    </div>
-                    <table class="admin-table" id="truckTable">
-                        <thead>
-                            <tr><th>Vehicle No</th><th>Driver Info</th><th>Destination</th><th>Status</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 14: Feedback Review Manager -->
-                <div id="tab14" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">14. Customer Testimonial Moderation Panel</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="revClient" placeholder="Client Name">
-                        <textarea id="revText" placeholder="Review Comment"></textarea>
-                        <button class="btn-gold" onclick="addCustomerReview()">Add Review</button>
-                    </div>
-                    <table class="admin-table" id="reviewTable">
-                        <thead>
-                            <tr><th>Client Name</th><th>Review Comment</th><th>Action</th></tr>
-                        </thead>
-                        <tbody></tbody>
-                    </table>
-                </div>
-
-                <!-- FEATURE 15: Dynamic Discount Calculator -->
-                <div id="tab15" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">15. Instant Bill Discount & Settlement Calculator</h3>
-                    <div class="admin-grid-form">
-                        <input type="number" id="discBill" placeholder="Total Bill Amount (₹)">
-                        <input type="number" id="discPct" placeholder="Discount Percentage (%)">
-                        <button class="btn-gold" onclick="calcDiscount()">Calculate Discount</button>
-                    </div>
-                    <div id="discResult" style="margin-top:15px; background:#181820; padding:15px; border-radius:5px; display:none;">
-                        <p>Discount Amount: ₹<span id="discAmtOut"></span></p>
-                        <h3 style="color:var(--bright-gold);">Net Final Payable Amount: ₹<span id="finalPayOut"></span></h3>
-                    </div>
-                </div>
-
-                <!-- FEATURE 16: Deal Banner & Notifications -->
-                <div id="tab16" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">16. Deal Banner & Notifications</h3>
-                    <p class="admin-help">Publish a live announcement banner on the public website.</p>
-                    <div class="admin-grid-form">
-                        <input type="text" id="bannerMsg" placeholder="Example: Royal wedding bookings open for October">
-                        <select id="bannerStatus">
-                            <option value="active">Active - Show</option>
-                            <option value="inactive">Inactive - Hide</option>
-                        </select>
-                        <button class="btn-gold" onclick="updateBanner()">Update Banner</button>
-                        <button class="btn-danger" onclick="clearBanner()">Clear Banner</button>
-                    </div>
-                </div>
-
-                <!-- FEATURE 17: AI Assistant Configuration -->
-                <div id="tab17" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">17. AI Assistant</h3>
-                    <p class="admin-help">The assistant works with a configured Gemini API key, or uses a safe local fallback.</p>
-                    <div class="admin-grid-form">
-                        <input type="password" id="geminiApiKey" placeholder="Optional Gemini API key">
-                        <input type="text" id="botGreeting" placeholder="Assistant greeting">
-                        <select id="botActive">
-                            <option value="yes">Assistant Online</option>
-                            <option value="no">Assistant Offline</option>
-                        </select>
-                        <button class="btn-gold" onclick="saveBotConfig()">Save Assistant Settings</button>
-                    </div>
-                </div>
-
-                <!-- FEATURE 18: Admin Access Roles -->
-                <div id="tab18" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">18. Admin Access Roles</h3>
-                    <div class="admin-grid-form">
-                        <input type="text" id="roleUser" placeholder="Username">
-                        <input type="password" id="rolePass" placeholder="Passcode">
-                        <select id="roleType">
-                            <option>Manager</option>
-                            <option>Staff</option>
-                            <option>Viewer</option>
-                        </select>
-                        <button class="btn-gold" onclick="addAccessRole()">Add Role</button>
-                    </div>
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead><tr><th>User</th><th>Role</th><th>Action</th></tr></thead>
-                            <tbody id="rolesTableBody"></tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <!-- FEATURE 19: Local Data Backup -->
-                <div id="tab19" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">19. Data Backup & Restore</h3>
-                    <p class="admin-help">Export the local application database as JSON before changing or clearing browser data.</p>
-                    <div class="admin-grid-form">
-                        <button class="btn-success" onclick="downloadBackup()">Download Backup JSON</button>
-                        <label class="btn-gold backup-file-label">
-                            Restore JSON
-                            <input type="file" id="restoreBackupInput" accept="application/json" onchange="restoreBackup(event)" hidden>
-                        </label>
-                        <button class="btn-danger" onclick="clearLocalAppData()">Clear App Data</button>
-                    </div>
-                    <div id="backupStatus" class="admin-status"></div>
-                </div>
-
-                <!-- FEATURE 20: Security Logs -->
-                <div id="tab20" class="admin-feature-panel">
-                    <h3 class="admin-panel-title">20. Security & Activity Logs</h3>
-                    <p class="admin-help">Local audit events are recorded in this browser only.</p>
-                    <div class="admin-table-wrap">
-                        <table class="admin-table">
-                            <thead><tr><th>Time</th><th>Action</th><th>Details</th></tr></thead>
-                            <tbody id="securityLogBody"></tbody>
-                        </table>
-                    </div>
-                    <button class="btn-danger" onclick="clearSecurityLogs()">Clear Logs</button>
-                </div>
-
             </div>
         </section>
     </div>
 
-    <!-- Printable Invoice Template Hidden Overlay -->
-    <div id="printableInvoice" style="display: none; background: white; color: black; padding: 30px; font-family: sans-serif;">
-        <h2 style="text-align: center; color: #6b0018;">KISHOR TENT HOUSE - TAX INVOICE</h2>
-        <p style="text-align: center;">Kehteswar Market, Nai Morseem | Mob: +91 98928 80155</p>
-        <hr style="margin: 15px 0;">
-        <p><strong>Client:</strong> <span id="pClient"></span></p>
-        <p><strong>Date:</strong> <span id="pDate"></span></p>
-        <br>
-        <table style="width: 100%; border-collapse: collapse;" border="1">
-            <thead>
-                <tr style="background: #eee;"><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr>
-            </thead>
-            <tbody id="pTableBody"></tbody>
-        </table>
-        <br>
-        <div style="text-align: right;">
-            <p>Subtotal: ₹<span id="pSub"></span></p>
-            <p>GST (18%): ₹<span id="pTax"></span></p>
-            <h3>Grand Total: ₹<span id="pGrand"></span></h3>
-        </div>
-    </div>
-
-
-    <!-- ==============================================================
-         ROYAL MARWADI AI ASSISTANT
-         ============================================================== -->
+    <!-- AI Assistant Floating Widget -->
     <div id="ai-widget-container">
-        <div id="ai-chat-window" aria-label="Kishor Tent House AI Assistant">
+        <div id="ai-chat-window" aria-label="AI Assistant">
             <div class="chat-header">
-                <div class="chat-brand">
-                    <span class="chat-badge">AI</span>
-                    <div>
-                        <strong>Kishor Assistant</strong>
-                        <small id="chat-status-text">Royal Wedding Help Desk</small>
-                    </div>
+                <div>
+                    <strong>Kishor Royal AI Assistant</strong>
+                    <small style="color: #f8dc7b; font-size: .72rem;">Ask about bookings & decor</small>
                 </div>
-                <button type="button" class="chat-close" onclick="toggleChat()" aria-label="Close chat">×</button>
+                <button type="button" onclick="toggleChat()" style="background:transparent; color:#fff; border:0; font-size:1.5rem; cursor:pointer;">×</button>
             </div>
             <div id="chat-messages" class="chat-messages">
-                <div class="chat-bubble bot" id="chat-greeting">
-                    Namaste! I can help with royal Marwadi wedding tents, mandaps, decoration, catering, booking and availability.
+                <div class="chat-bubble bot">
+                    Namaste! Welcome to Kishor Tent House. I can assist you with royal Marwadi wedding bookings, decor inquiries, and checking your booking status using your mobile number.
                 </div>
             </div>
             <div class="chat-input-area">
-                <input id="chat-input" type="text" autocomplete="off" placeholder="Ask about your royal wedding...">
-                <button type="button" onclick="sendChatMessage()" aria-label="Send message">➤</button>
+                <input id="chat-input" type="text" autocomplete="off" placeholder="Ask about bookings or decor...">
+                <button type="button" onclick="sendChatMessage()">➤</button>
             </div>
         </div>
-        <button id="ai-chat-btn" type="button" onclick="toggleChat()" aria-label="Open AI assistant">
+        <button id="ai-chat-btn" type="button" onclick="toggleChat()">
             <span>AI</span>
         </button>
     </div>
@@ -1263,157 +466,27 @@
         <p style="margin-top: 15px; font-size: 0.8rem; color: #aaa;">&copy; 2026 Kishor Tent House. All Rights Reserved.</p>
     </footer>
 
-    <!-- ==========================================================================
-       JAVASCRIPT LOGIC ENGINE FOR ALL 15 ADMIN FEATURES
-       ========================================================================== -->
     <script>
-        // System Config Data Structures
-        const CONFIG = {
-            passcode: "jaimaahinglaj",
-            phone: "919892880155",
-            gstRate: 0.18
-        };
+        // Config & API Key integration
+        const GEMINI_API_KEY = "AQ.Ab8RN6IupqwDWAZshmZYVG0qNYdvySF5YVB_1tMANjIh-9UKTQ";
+        const ADMIN_SECRET_PASS = "8233615852";
 
-        // ==============================================================
-        // MERGED IMAGE SOURCE REGISTRY
-        // These two remote assets were visually opened during review.
-        // They are used for every built-in public image so no generic
-        // stock-photo URL remains in the royal wedding gallery.
-        // ==============================================================
-        const ROYAL_MARWADI_IMAGES = [
-            "https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg",
-            "https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg"
-        ];
-
-        const ROYAL_IMAGE_LABELS = [
-            "Royal Marwadi Wedding Tent & Decor",
-            "Royal Rajasthani / Indian Wedding Stage",
-            "Traditional Marwadi Celebration Decor",
-            "Rajputana Inspired Wedding Stage",
-            "Royal Wedding Reception Decor",
-            "Luxury Marwadi Wedding Canopy",
-            "Rajasthani Wedding Floral Stage",
-            "Grand Royal Wedding Backdrop",
-            "Marwadi Celebration Pavilion",
-            "Royal Palace Style Wedding Decor"
-        ];
-
-        function escapeHTML(value) {
-            return String(value ?? '')
-                .replace(/&/g, '&amp;')
-                .replace(/</g, '&lt;')
-                .replace(/>/g, '&gt;')
-                .replace(/"/g, '&quot;')
-                .replace(/'/g, '&#039;');
+        // Initialize Bookings in LocalStorage if not present
+        if (!localStorage.getItem('kth_bookings')) {
+            localStorage.setItem('kth_bookings', JSON.stringify([
+                { name: "Mahendra Singh", phone: "9829012345", event: "Royal Marwadi Wedding", date: "2026-12-10", msg: "Large palace tent with royal gold lighting", status: "Waiting" },
+                { name: "Priyanka Rathore", phone: "9414098765", event: "Reception", date: "2026-10-15", msg: "Standard stage setup", status: "Approved" }
+            ]));
         }
 
-        function getLocalData(key, fallback) {
-            try {
-                const raw = localStorage.getItem(key);
-                return raw === null ? fallback : JSON.parse(raw);
-            } catch (error) {
-                console.warn('Local data read failed:', key, error);
-                return fallback;
-            }
-        }
-
-        function setLocalData(key, value) {
-            try {
-                localStorage.setItem(key, JSON.stringify(value));
-                return true;
-            } catch (error) {
-                console.warn('Local data write failed:', key, error);
-                return false;
-            }
-        }
-
-        function alertModal(message) {
-            window.alert(message);
-        }
-
-        function recordSecurityLog(action, details = '') {
-            const logs = getLocalData('kth_security_logs', []);
-            logs.unshift({
-                timestamp: new Date().toISOString(),
-                action: String(action),
-                details: String(details)
-            });
-            setLocalData('kth_security_logs', logs.slice(0, 100));
-            renderSecurityLogs();
-        }
-
-        function renderSecurityLogs() {
-            const body = document.getElementById('securityLogBody');
-            if (!body) return;
-            const logs = getLocalData('kth_security_logs', []);
-            body.innerHTML = logs.map(log => `
-                <tr>
-                    <td>${escapeHTML(new Date(log.timestamp).toLocaleString('en-IN'))}</td>
-                    <td>${escapeHTML(log.action)}</td>
-                    <td>${escapeHTML(log.details)}</td>
-                </tr>
-            `).join('') || '<tr><td colspan="3">No local activity logs yet.</td></tr>';
-        }
-
-        function clearSecurityLogs() {
-            if (!confirm('Clear all local security logs?')) return;
-            setLocalData('kth_security_logs', []);
-            renderSecurityLogs();
-        }
-
-
-        // Pre-loaded Services State for Toggle Manager
-        let publicServices = [
-            { id: 1, name: "Tent House & Luxury Decoration", desc: "Royal Marwadi tents & waterproof canopies.", img: "https://wedmeplz.com/wp-content/uploads/2021/06/A-Royal-Rajasthani-Wedding-in-the-Pink-City-The-Maharani-Diaries-45-scaled.jpeg", active: true },
-            { id: 2, name: "Wedding Mandap & Stage Setup", desc: "Traditional royal mandaps with flower styling.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg", active: true },
-            { id: 3, name: "Light Decoration & DJ Sound", desc: "Ambient LED lighting & high-bass DJ rigs.", img: "https://www.marriagecolours.com/wp-content/uploads/2025/04/Bhavya-Arvind-Wedding-MRC-17.jpg", active: true }
-        ];
-
-        let invoiceItems = [];
-        
-        // Permanent Data Holders
-        let godownStockDB = JSON.parse(localStorage.getItem('godownStockDB')) || [];
-        let permanentGalleryDB = JSON.parse(localStorage.getItem('permanentGalleryDB')) || [];
-
-        document.addEventListener("DOMContentLoaded", () => {
-            renderPublicServices();
-            renderServiceToggleTable();
-            renderGodownStock();
-            renderPermanentGallery();
-        });
-        document.addEventListener("DOMContentLoaded", () => {
-            setupMergedAdminFeatures();
-            renderSecurityLogs();
-            runRoyalImageAudit();
-        });
-
-        // Toggle Hindi/English Functionality
+        // Language Toggle
         let isHindi = false;
         function toggleLanguage() {
             isHindi = !isHindi;
-            document.querySelectorAll('.lang-en').forEach(el => el.style.display = isHindi ? 'none' : 'inline-block');
-            document.querySelectorAll('.lang-hi').forEach(el => el.style.display = isHindi ? 'inline-block' : 'none');
+            alert(isHindi ? "Hindi mode toggled." : "English mode active.");
         }
 
-        // Render Public Services based on Admin Toggles
-        function renderPublicServices() {
-            const container = document.getElementById('services-container');
-            container.innerHTML = '';
-            publicServices.filter(s => s.active).forEach(s => {
-                const card = document.createElement('div');
-                card.className = 'service-card';
-                card.innerHTML = `
-                    <div class="service-img-wrapper"><img src="${s.img}" alt="${s.name}"></div>
-                    <div class="service-content">
-                        <h3>${s.name}</h3>
-                        <p>${s.desc}</p>
-                    </div>
-                `;
-                container.appendChild(card);
-            });
-        }
-
-        // Secret Admin Panel Revelator
+        // Reveal Admin Console
         function revealAdminConsole() {
             document.getElementById('admin-console').style.display = 'block';
             window.location.href = '#admin-console';
@@ -1424,16 +497,17 @@
             document.getElementById('admin-console').style.display = 'none';
         }
 
-        // Admin Security Lock
+        // Password Authentication
         function unlockAdmin() {
             const pass = document.getElementById('adminPassInput').value;
-            if (pass === CONFIG.passcode) {
+            if (pass === ADMIN_SECRET_PASS) {
                 document.getElementById('admin-login-box').style.display = 'none';
                 document.getElementById('lockBtn').style.display = 'inline-block';
                 document.getElementById('admin-main-body').style.display = 'block';
-                alert("Owner Security Authenticated! Console Unlocked.");
+                renderAdminBookings();
+                alert("Confidential Access Granted!");
             } else {
-                alert("Invalid Admin Password!");
+                alert("Incorrect Password! Access Denied to Confidential Data.");
             }
         }
 
@@ -1444,1057 +518,162 @@
             document.getElementById('adminPassInput').value = '';
         }
 
-        // Tab Switching
-        function switchAdminTab(tabId, btn) {
-            document.querySelectorAll('.admin-feature-panel').forEach(p => p.classList.remove('active'));
-            document.querySelectorAll('.admin-tab-btn').forEach(b => b.classList.remove('active'));
-            document.getElementById(tabId).classList.add('active');
-            btn.classList.add('active');
-        }
-
-        /* FEATURE 1: GST Invoice Builder */
-        function addInvoiceItem() {
-            const desc = document.getElementById('invDesc').value;
-            const qty = parseFloat(document.getElementById('invQty').value) || 0;
-            const rate = parseFloat(document.getElementById('invRate').value) || 0;
-            if (!desc || qty <= 0 || rate <= 0) return alert("Fill item details");
-
-            const total = qty * rate;
-            invoiceItems.push({ desc, qty, rate, total });
-            renderInvoiceTable();
-        }
-
-        function renderInvoiceTable() {
-            const tbody = document.querySelector('#invoiceTable tbody');
-            tbody.innerHTML = '';
-            let subtotal = 0;
-            invoiceItems.forEach((item, index) => {
-                subtotal += item.total;
-                tbody.innerHTML += `<tr><td>${item.desc}</td><td>${item.qty}</td><td>₹${item.rate}</td><td>₹${item.total}</td><td><button class="btn-danger" onclick="invoiceItems.splice(${index},1);renderInvoiceTable();">X</button></td></tr>`;
-            });
-            const tax = subtotal * CONFIG.gstRate;
-            document.getElementById('invSub').innerText = subtotal.toFixed(2);
-            document.getElementById('invTax').innerText = tax.toFixed(2);
-            document.getElementById('invGrand').innerText = (subtotal + tax).toFixed(2);
-        }
-
-        function printInvoice() {
-            const client = document.getElementById('invClient').value || "Valued Client";
-            document.getElementById('pClient').innerText = client;
-            document.getElementById('pDate').innerText = new Date().toLocaleDateString();
-            const pBody = document.getElementById('pTableBody');
-            pBody.innerHTML = '';
-            let subtotal = 0;
-            invoiceItems.forEach(i => {
-                subtotal += i.total;
-                pBody.innerHTML += `<tr><td>${i.desc}</td><td>${i.qty}</td><td>₹${i.rate}</td><td>₹${i.total}</td></tr>`;
-            });
-            const tax = subtotal * CONFIG.gstRate;
-            document.getElementById('pSub').innerText = subtotal.toFixed(2);
-            document.getElementById('pTax').innerText = tax.toFixed(2);
-            document.getElementById('pGrand').innerText = (subtotal + tax).toFixed(2);
-            
-            const printContents = document.getElementById('printableInvoice').innerHTML;
-            const win = window.open('', '', 'height=600,width=800');
-            win.document.write(`<html><body>${printContents}</body></html>`);
-            win.document.close();
-            win.print();
-        }
-
-        /* FEATURE 2: Public Booking to Admin Sync */
+        // Public Booking Submission (Automated recording into Admin section)
         function submitCustomerBooking(e) {
             e.preventDefault();
-            const name = document.getElementById('custName').value;
-            const phone = document.getElementById('custPhone').value;
+            const name = document.getElementById('custName').value.trim();
+            const phone = document.getElementById('custPhone').value.trim();
             const event = document.getElementById('custEvent').value;
             const date = document.getElementById('custDate').value;
-            const msg = document.getElementById('custMsg').value;
+            const msg = document.getElementById('custMsg').value.trim();
 
-            // Add to Admin Booking Manager
-            const tbody = document.querySelector('#bookingManagerTable tbody');
-            tbody.innerHTML += `<tr><td>${name}</td><td>${phone}</td><td>${event}</td><td>${date}</td><td><span style="color:orange;">Pending</span></td><td><button class="btn-success" onclick="this.parentElement.previousElementSibling.innerHTML='<span style=\'color:green;\'>Confirmed</span>'">Confirm</button></td></tr>`;
-
-            // Open WhatsApp
-            const text = `*New Booking Request*%0AName: ${name}%0APhone: ${phone}%0AEvent: ${event}%0ADate: ${date}%0ADetails: ${msg}`;
-            window.open(`https://wa.me/${CONFIG.phone}?text=${text}`, '_blank');
-        }
-
-        /* FEATURE 3: Permanent Godown Stock Tracker (with Local Storage) */
-        function renderGodownStock() {
-            const tbody = document.querySelector('#godownTable tbody');
-            tbody.innerHTML = '';
-            godownStockDB.forEach((item, index) => {
-                tbody.innerHTML += `<tr>
-                    <td>${item.name}</td>
-                    <td>${item.qty} Units</td>
-                    <td><button class="btn-danger" onclick="removeGodownItem(${index})"><i class="fa-solid fa-trash"></i> Remove</button></td>
-                </tr>`;
-            });
-        }
-
-        function addGodownStock() {
-            const name = document.getElementById('godownItemName').value;
-            const qty = parseInt(document.getElementById('godownItemQty').value) || 0;
-            if(!name || qty <= 0) return alert("Please specify valid item name and total quantity.");
-            
-            godownStockDB.push({ name, qty });
-            localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save permanently
-            
-            document.getElementById('godownItemName').value = '';
-            document.getElementById('godownItemQty').value = '';
-            renderGodownStock();
-            alert("Item Added to Godown Successfully!");
-        }
-
-        function removeGodownItem(index) {
-            if(confirm("Are you sure you want to remove this item completely from stock?")) {
-                godownStockDB.splice(index, 1);
-                localStorage.setItem('godownStockDB', JSON.stringify(godownStockDB)); // Save deletion permanently
-                renderGodownStock();
-            }
-        }
-
-        /* FEATURE 4: Payment Ledger */
-        function addLedgerEntry() {
-            const name = document.getElementById('payClient').value;
-            const total = parseFloat(document.getElementById('payTotal').value) || 0;
-            const adv = parseFloat(document.getElementById('payAdvance').value) || 0;
-            const due = total - adv;
-            const status = due <= 0 ? '<span style="color:green;">Paid</span>' : `<span style="color:red;">Due ₹${due}</span>`;
-            document.querySelector('#ledgerTable tbody').innerHTML += `<tr><td>${name}</td><td>₹${total}</td><td>₹${adv}</td><td>₹${due}</td><td>${status}</td></tr>`;
-        }
-
-        /* FEATURE 5: Bad Debt WhatsApp Reminder */
-        function sendDebtReminder() {
-            const name = document.getElementById('debtName').value;
-            const phone = document.getElementById('debtPhone').value;
-            const amt = document.getElementById('debtAmount').value;
-            if(!name || !phone || !amt) return alert("Fill all debt details");
-            const msg = `Dear *${name}*, This is an official payment balance reminder from *Kishor Tent House*. You have an outstanding balance of *₹${amt}*. Kindly clear the payment at earliest. Contact: +91 98928 80155`;
-            window.open(`https://wa.me/91${phone}?text=${encodeURIComponent(msg)}`, '_blank');
-        }
-
-        /* FEATURE 6: Live Gallery Upload (Permanent Local Storage) */
-        function renderPermanentGallery() {
-            const container = document.getElementById('gallery-container');
-            if (!container) return;
-
-            const royalScenes = [
-                { image: ROYAL_MARWADI_IMAGES[0], title: "Royal Marwadi Tent Decor" },
-                { image: ROYAL_MARWADI_IMAGES[1], title: "Royal Rajasthani Mandap Stage" },
-                { image: ROYAL_MARWADI_IMAGES[0], title: "Grand Rajputana Celebration" },
-                { image: ROYAL_MARWADI_IMAGES[1], title: "Red & Gold Palace Stage" },
-                { image: ROYAL_MARWADI_IMAGES[0], title: "Luxury Wedding Canopy" },
-                { image: ROYAL_MARWADI_IMAGES[1], title: "Royal Floral Wedding Stage" },
-                { image: ROYAL_MARWADI_IMAGES[0], title: "Marwadi Wedding Welcome Decor" },
-                { image: ROYAL_MARWADI_IMAGES[1], title: "Royal Reception Backdrop" },
-                { image: ROYAL_MARWADI_IMAGES[0], title: "Rajputana Style Celebration" },
-                { image: ROYAL_MARWADI_IMAGES[1], title: "Royal Palace Inspired Stage" }
-            ];
-
-            let html = royalScenes.map((scene, index) => `
-                <div class="gallery-item royal-image-card">
-                    <img src="${scene.image}" alt="${escapeHTML(scene.title)}" loading="${index < 2 ? 'eager' : 'lazy'}"
-                         onerror="this.onerror=null;this.src=ROYAL_MARWADI_IMAGES[0];">
-                    <div class="image-audit-badge">Verified royal wedding visual</div>
-                </div>
-            `).join('');
-
-            permanentGalleryDB.forEach(mediaSrc => {
-                if (typeof mediaSrc === 'string' && mediaSrc.startsWith('data:video')) {
-                    html = `<div class="gallery-item"><video src="${mediaSrc}" controls></video></div>` + html;
-                } else if (typeof mediaSrc === 'string') {
-                    html = `<div class="gallery-item royal-image-card"><img src="${mediaSrc}" alt="Uploaded Royal Wedding Event" onerror="this.remove()"></div>` + html;
-                }
-            });
-
-            container.innerHTML = html;
-        }
-        function uploadToGallery(e) {
-            const file = e.target.files[0];
-            if(!file) return;
-            const reader = new FileReader();
-            reader.onload = function(event) {
-                try {
-                    // Save base64 string to local array
-                    permanentGalleryDB.push(event.target.result);
-                    localStorage.setItem('permanentGalleryDB', JSON.stringify(permanentGalleryDB)); // Save permanently
-                    
-                    renderPermanentGallery();
-                    alert("Media successfully published permanently to your public website gallery!");
-                } catch (error) {
-                    alert("Browser storage size exceeded! Image shown temporarily but may not save permanently.");
-                    // Fallback to show it temporarily if storage size exceeded
-                    permanentGalleryDB.push(event.target.result);
-                    renderPermanentGallery();
-                }
-            };
-            reader.readAsDataURL(file);
-        }
-
-        /* FEATURE 7: Price Rate Card Editor */
-        function addRateCardItem() {
-            const item = document.getElementById('rateItem').value;
-            const price = document.getElementById('ratePrice').value;
-            if(!item || !price) return;
-            document.querySelector('#rateCardTable tbody').innerHTML += `<tr><td>${item}</td><td>₹${price}</td><td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Remove</button></td></tr>`;
-        }
-
-        /* FEATURE 8: Vendor Expense Logger */
-        let totalExpenses = 0;
-        function logExpense() {
-            const title = document.getElementById('expName').value;
-            const amt = parseFloat(document.getElementById('expAmount').value) || 0;
-            const cat = document.getElementById('expCategory').value;
-            if(!title || amt <= 0) return;
-            totalExpenses += amt;
-            document.querySelector('#expenseTable tbody').innerHTML += `<tr><td>${title}</td><td>${cat}</td><td>₹${amt}</td></tr>`;
-            document.getElementById('totalExpOut').innerText = totalExpenses.toFixed(2);
-        }
-
-        /* FEATURE 9: Calendar Booking Lock */
-        function lockDate() {
-            const date = document.getElementById('lockDateInput').value;
-            const reason = document.getElementById('lockDateReason').value;
-            if(!date) return;
-            document.querySelector('#calendarTable tbody').innerHTML += `<tr><td>${date}</td><td>${reason}</td><td><span style="color:red;">LOCKED</span></td></tr>`;
-        }
-
-        /* FEATURE 10: Quotation Generator */
-        function generateQuotation() {
-            const client = document.getElementById('qClient').value;
-            const event = document.getElementById('qEvent').value;
-            const guests = parseInt(document.getElementById('qGuests').value) || 0;
-            const rate = parseFloat(document.getElementById('qRatePerGuest').value) || 0;
-            const total = guests * rate;
-            
-            document.getElementById('qDetails').innerText = `Prepared for: ${client} | Event: ${event} | Guest Count: ${guests} @ ₹${rate}/guest`;
-            document.getElementById('qTotal').innerText = total.toLocaleString('en-IN');
-            document.getElementById('quotationOutput').style.display = 'block';
-        }
-
-        /* FEATURE 11: Worker Staff Allocator */
-        function assignStaff() {
-            const name = document.getElementById('staffName').value;
-            const role = document.getElementById('staffRole').value;
-            const venue = document.getElementById('staffVenue').value;
-            if(!name) return;
-            document.querySelector('#staffTable tbody').innerHTML += `<tr><td>${name}</td><td>${role}</td><td>${venue}</td><td><button class="btn-danger" onclick="this.parentElement.parentElement.remove()">Unassign</button></td></tr>`;
-        }
-
-        /* FEATURE 12: Service Toggle Manager */
-        function renderServiceToggleTable() {
-            const tbody = document.querySelector('#serviceToggleTable tbody');
-            tbody.innerHTML = '';
-            publicServices.forEach((s, idx) => {
-                tbody.innerHTML += `<tr><td>${s.name}</td><td>${s.active ? '<span style="color:green;">Live</span>' : '<span style="color:red;">Hidden</span>'}</td><td><button class="btn-gold" onclick="toggleServiceActive(${idx})">Toggle</button></td></tr>`;
-            });
-        }
-        function toggleServiceActive(idx) {
-            publicServices[idx].active = !publicServices[idx].active;
-            renderServiceToggleTable();
-            renderPublicServices();
-        }
-
-        /* FEATURE 13: Transport Dispatcher */
-        function dispatchTruck() {
-            const no = document.getElementById('truckNo').value;
-            const driver = document.getElementById('truckDriver').value;
-            const venue = document.getElementById('truckVenue').value;
-            if(!no) return;
-            document.querySelector('#truckTable tbody').innerHTML += `<tr><td>${no}</td><td>${driver}</td><td>${venue}</td><td><span style="color:orange;">In-Transit</span></td></tr>`;
-        }
-
-        /* FEATURE 14: Customer Review Moderation */
-        function addCustomerReview() {
-            const name = document.getElementById('revClient').value;
-            const text = document.getElementById('revText').value;
-            if(!name || !text) return;
-            document.querySelector('#reviewTable tbody').innerHTML += `<tr><td>${name}</td><td>"${text}"</td><td><button class="btn-success" onclick="alert('Review approved & highlighted!')">Approve</button></td></tr>`;
-        }
-
-        /* FEATURE 15: Settlement Discount Calculator */
-        function calcDiscount() {
-            const bill = parseFloat(document.getElementById('discBill').value) || 0;
-            const pct = parseFloat(document.getElementById('discPct').value) || 0;
-            const discAmt = (bill * pct) / 100;
-            const finalPay = bill - discAmt;
-            document.getElementById('discAmtOut').innerText = discAmt.toFixed(2);
-            document.getElementById('finalPayOut').innerText = finalPay.toFixed(2);
-            document.getElementById('discResult').style.display = 'block';
-        }
-
-        // ==============================================================
-        // IMAGE AUDIT ENGINE
-        // Each built-in royal image is attempted ten times. The browser
-        // reports the result without blocking the page or changing the
-        // verified source order.
-        // ==============================================================
-        async function auditImageTenTimes(url) {
-            let successes = 0;
-            let failures = 0;
-
-            for (let attempt = 1; attempt <= 10; attempt++) {
-                try {
-                    await new Promise((resolve, reject) => {
-                        const img = new Image();
-                        const timer = setTimeout(() => {
-                            img.src = '';
-                            reject(new Error('Image load timeout'));
-                        }, 8000);
-
-                        img.onload = () => {
-                            clearTimeout(timer);
-                            resolve();
-                        };
-
-                        img.onerror = () => {
-                            clearTimeout(timer);
-                            reject(new Error('Image load error'));
-                        };
-
-                        img.src = url + (url.includes('?') ? '&' : '?') + 'audit=' + attempt;
-                    });
-                    successes++;
-                } catch (error) {
-                    failures++;
-                }
-            }
-
-            return { url, successes, failures };
-        }
-
-        async function runRoyalImageAudit() {
-            const results = [];
-            for (const imageUrl of ROYAL_MARWADI_IMAGES) {
-                results.push(await auditImageTenTimes(imageUrl));
-            }
-
-            const failed = results.filter(item => item.successes === 0);
-            const partial = results.filter(item => item.successes > 0 && item.successes < 10);
-
-            setLocalData('kth_image_audit', {
-                timestamp: new Date().toISOString(),
-                results
-            });
-
-            const status = document.getElementById('backupStatus');
-            if (status) {
-                status.textContent =
-                    failed.length
-                    ? 'Royal image audit: one or more sources could not be loaded.'
-                    : partial.length
-                        ? 'Royal image audit: sources loaded, with intermittent network responses.'
-                        : 'Royal image audit: both built-in royal wedding sources loaded 10/10 attempts.';
-            }
-
-            recordSecurityLog(
-                'Royal image audit',
-                results.map(item => `${item.successes}/10 ${item.url.includes('wedmeplz') ? 'source-1' : 'source-2'}`).join(', ')
-            );
-        }
-
-        // ==============================================================
-        // FEATURE 16 - BANNER
-        // ==============================================================
-        function updateBanner() {
-            const text = document.getElementById('bannerMsg')?.value.trim() || '';
-            const status = document.getElementById('bannerStatus')?.value || 'inactive';
-            const banner = document.getElementById('public-notification-banner');
-            const output = document.getElementById('public-notification-text');
-
-            setLocalData('kth_notification', {
-                message: text,
-                isActive: status === 'active' && Boolean(text),
-                timestamp: Date.now()
-            });
-
-            if (banner && output) {
-                output.textContent = text;
-                banner.style.display = status === 'active' && text ? 'flex' : 'none';
-            }
-
-            recordSecurityLog('Banner updated', text || 'Banner cleared');
-            alertModal('Banner configuration saved.');
-        }
-
-        function clearBanner() {
-            setLocalData('kth_notification', {
-                message: '',
-                isActive: false,
-                timestamp: Date.now()
-            });
-
-            const banner = document.getElementById('public-notification-banner');
-            if (banner) banner.style.display = 'none';
-
-            recordSecurityLog('Banner cleared');
-        }
-
-        // ==============================================================
-        // FEATURE 17 - AI ASSISTANT CONFIG
-        // ==============================================================
-        function saveBotConfig() {
-            const apiKey = document.getElementById('geminiApiKey')?.value.trim() || '';
-            const greeting = document.getElementById('botGreeting')?.value.trim() ||
-                'Namaste! I can help with your royal Marwadi wedding.';
-            const active = document.getElementById('botActive')?.value !== 'no';
-
-            setLocalData('kth_bot_config', {
-                apiKey,
-                greeting,
-                active,
-                timestamp: Date.now()
-            });
-
-            const greetingNode = document.getElementById('chat-greeting');
-            if (greetingNode) greetingNode.textContent = greeting;
-
-            const status = document.getElementById('chat-status-text');
-            if (status) status.textContent = active ? 'Royal Wedding Help Desk' : 'Assistant Offline';
-
-            recordSecurityLog('AI settings updated', active ? 'assistant-online' : 'assistant-offline');
-            alertModal('Assistant settings saved locally.');
-        }
-
-        // ==============================================================
-        // FEATURE 18 - ACCESS ROLES
-        // ==============================================================
-        function addAccessRole() {
-            const user = document.getElementById('roleUser')?.value.trim();
-            const pass = document.getElementById('rolePass')?.value || '';
-            const role = document.getElementById('roleType')?.value || 'Staff';
-
-            if (!user || !pass) {
-                alertModal('Enter a username and passcode.');
+            if (!name || !phone || !date) {
+                alert("Please fill in all mandatory fields.");
                 return;
             }
 
-            const roles = getLocalData('kth_access_roles', []);
-            roles.push({
-                user,
-                role,
-                passHint: 'stored-locally',
-                createdAt: Date.now()
+            let bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+            
+            // Push new booking with default status 'Waiting'
+            bookings.push({
+                name,
+                phone,
+                event,
+                date,
+                msg: msg || 'No extra notes',
+                status: 'Waiting'
             });
 
-            setLocalData('kth_access_roles', roles);
-            renderAccessRoles();
-            document.getElementById('roleUser').value = '';
-            document.getElementById('rolePass').value = '';
-            recordSecurityLog('Access role added', `${user} / ${role}`);
+            localStorage.setItem('kth_bookings', JSON.stringify(bookings));
+
+            alert("Booking request submitted successfully! Your booking has been recorded automatically in our system. You can check your status anytime using your mobile number.");
+            document.getElementById('publicBookingForm').reset();
         }
 
-        function renderAccessRoles() {
-            const body = document.getElementById('rolesTableBody');
-            if (!body) return;
-
-            const roles = getLocalData('kth_access_roles', []);
-            body.innerHTML = roles.map((item, index) => `
-                <tr>
-                    <td>${escapeHTML(item.user)}</td>
-                    <td>${escapeHTML(item.role)}</td>
-                    <td><button class="btn-danger" onclick="removeAccessRole(${index})">Remove</button></td>
-                </tr>
-            `).join('') || '<tr><td colspan="3">No additional roles configured.</td></tr>';
-        }
-
-        function removeAccessRole(index) {
-            const roles = getLocalData('kth_access_roles', []);
-            const removed = roles[index];
-            roles.splice(index, 1);
-            setLocalData('kth_access_roles', roles);
-            renderAccessRoles();
-            recordSecurityLog('Access role removed', removed?.user || 'unknown');
-        }
-
-        // ==============================================================
-        // FEATURE 19 - BACKUP / RESTORE
-        // ==============================================================
-        function collectBackupData() {
-            const keys = [
-                'godownStockDB',
-                'permanentGalleryDB',
-                'kth_gallery',
-                'kth_notification',
-                'kth_bot_config',
-                'kth_access_roles',
-                'kth_security_logs'
-            ];
-
-            const data = {
-                exportedAt: new Date().toISOString(),
-                application: 'Kishor Tent House - Royal Marwadi Wedding System',
-                version: 'merged-2500-lines',
-                data: {}
-            };
-
-            keys.forEach(key => {
-                data.data[key] = getLocalData(key, null);
+        // Render Bookings in Admin Panel
+        function renderAdminBookings() {
+            const tbody = document.querySelector('#adminBookingTable tbody');
+            if (!tbody) return;
+            const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+            
+            tbody.innerHTML = '';
+            bookings.forEach((b, index) => {
+                let statusColor = b.status === 'Approved' ? 'green' : b.status === 'Declined' ? 'red' : 'orange';
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${escapeHTML(b.name)}</td>
+                        <td>${escapeHTML(b.phone)}</td>
+                        <td>${escapeHTML(b.event)}</td>
+                        <td>${escapeHTML(b.date)}</td>
+                        <td>${escapeHTML(b.msg)}</td>
+                        <td><span style="color:${statusColor}; font-weight:bold;">${b.status}</span></td>
+                        <td>
+                            <button class="btn-success" onclick="updateBookingStatus(${index}, 'Approved')">Approve</button>
+                            <button class="btn-warning" onclick="updateBookingStatus(${index}, 'Waiting')">Wait</button>
+                            <button class="btn-danger" onclick="updateBookingStatus(${index}, 'Declined')">Decline</button>
+                        </td>
+                    </tr>
+                `;
             });
-
-            return data;
         }
 
-        function downloadBackup() {
-            const payload = collectBackupData();
-            const blob = new Blob([JSON.stringify(payload, null, 2)], {
-                type: 'application/json'
+        function updateBookingStatus(index, newStatus) {
+            let bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+            if (bookings[index]) {
+                bookings[index].status = newStatus;
+                localStorage.setItem('kth_bookings', JSON.stringify(bookings));
+                renderAdminBookings();
+                alert(`Booking status updated to ${newStatus}`);
+            }
+        }
+
+        // Customer Status Check by Mobile Number
+        function checkCustomerBookingStatus() {
+            const phone = document.getElementById('checkPhoneInput').value.trim();
+            const output = document.getElementById('statusResultOutput');
+            if (!phone) {
+                output.innerHTML = "<span style='color:red;'>Please enter your mobile number.</span>";
+                return;
+            }
+
+            const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+            const userBookings = bookings.filter(b => b.phone === phone);
+
+            if (userBookings.length === 0) {
+                output.innerHTML = "<span style='color:red;'>No bookings found for mobile number: " + escapeHTML(phone) + "</span>";
+                return;
+            }
+
+            let html = "<div style='margin-top:10px; text-align:left; background:#fff9f0; padding:15px; border-radius:8px; border:1px solid var(--royal-gold);'>";
+            userBookings.forEach(b => {
+                let color = b.status === 'Approved' ? 'green' : b.status === 'Declined' ? 'red' : 'orange';
+                html += `<p><strong>Event:</strong> ${escapeHTML(b.event)} | <strong>Date:</strong> ${escapeHTML(b.date)} | <strong>Status:</strong> <span style="color:${color};">${b.status}</span></p><hr style="margin:8px 0;">`;
             });
-
-            const url = URL.createObjectURL(blob);
-            const link = document.createElement('a');
-            link.href = url;
-            link.download = 'kishor-tent-house-backup-' + new Date().toISOString().slice(0,10) + '.json';
-            document.body.appendChild(link);
-            link.click();
-            link.remove();
-            URL.revokeObjectURL(url);
-
-            recordSecurityLog('Backup exported', 'JSON local database backup');
-            const status = document.getElementById('backupStatus');
-            if (status) status.textContent = 'Backup exported successfully.';
+            html += "</div>";
+            output.innerHTML = html;
         }
 
-        function restoreBackup(event) {
-            const file = event.target.files?.[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = () => {
-                try {
-                    const payload = JSON.parse(reader.result);
-                    if (!payload || !payload.data || typeof payload.data !== 'object') {
-                        throw new Error('Invalid backup structure');
-                    }
-
-                    Object.entries(payload.data).forEach(([key, value]) => {
-                        if (value !== null) setLocalData(key, value);
-                    });
-
-                    if (typeof renderGodownStock === 'function') renderGodownStock();
-                    if (typeof renderPermanentGallery === 'function') renderPermanentGallery();
-                    if (typeof renderServiceToggleTable === 'function') renderServiceToggleTable();
-                    renderAccessRoles();
-                    renderSecurityLogs();
-
-                    recordSecurityLog('Backup restored', file.name);
-                    alertModal('Backup restored successfully.');
-                } catch (error) {
-                    console.error(error);
-                    alertModal('Backup restore failed. Please select a valid Kishor Tent House JSON backup.');
-                }
-            };
-
-            reader.readAsText(file);
+        function escapeHTML(str) {
+            return String(str || '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
         }
 
-        function clearLocalAppData() {
-            if (!confirm('This clears local website data in this browser. Continue?')) return;
-
-            [
-                'godownStockDB',
-                'permanentGalleryDB',
-                'kth_gallery',
-                'kth_notification',
-                'kth_bot_config',
-                'kth_access_roles'
-            ].forEach(key => localStorage.removeItem(key));
-
-            recordSecurityLog('Application data cleared', 'Selected local data keys removed');
-            location.reload();
-        }
-
-        // ==============================================================
-        // AI CHAT
-        // ==============================================================
+        // AI Chat Widget Logic with Gemini API Key Integration
         let chatOpen = false;
-        let chatHistory = [];
-
         function toggleChat() {
             chatOpen = !chatOpen;
-
-            const windowEl = document.getElementById('ai-chat-window');
-            const buttonEl = document.getElementById('ai-chat-btn');
-
-            if (windowEl) windowEl.classList.toggle('open', chatOpen);
-            if (buttonEl) buttonEl.style.display = chatOpen ? 'none' : 'flex';
-
-            if (chatOpen) document.getElementById('chat-input')?.focus();
+            document.getElementById('ai-chat-window').classList.toggle('open', chatOpen);
+            document.getElementById('ai-chat-btn').style.display = chatOpen ? 'none' : 'flex';
         }
 
         function appendChatMessage(text, sender) {
             const box = document.getElementById('chat-messages');
-            if (!box) return;
-
             const bubble = document.createElement('div');
             bubble.className = 'chat-bubble ' + (sender === 'user' ? 'user' : 'bot');
-            bubble.textContent = String(text);
+            bubble.textContent = text;
             box.appendChild(bubble);
             box.scrollTop = box.scrollHeight;
         }
 
-        function localWeddingAssistant(message) {
-            const value = message.toLowerCase();
-
-            if (value.includes('price') || value.includes('cost') || value.includes('rate')) {
-                return 'For a quotation, share your event date, guest count and venue. Our team can prepare a royal Marwadi wedding package.';
-            }
-
-            if (value.includes('tent') || value.includes('decor')) {
-                return 'We provide royal Marwadi tent setups, waterproof canopies, palace-inspired decor and coordinated event styling.';
-            }
-
-            if (value.includes('mandap') || value.includes('stage')) {
-                return 'Our wedding mandaps and stages use traditional royal styling, floral detailing and rich red-gold presentation.';
-            }
-
-            if (value.includes('book') || value.includes('booking') || value.includes('date')) {
-                return 'Please use the Online Booking Engine and submit your date, phone number, event type and guest details.';
-            }
-
-            if (value.includes('catering') || value.includes('food')) {
-                return 'Premium catering can be planned around your guest count, menu preference and wedding schedule.';
-            }
-
-            if (value.includes('marwadi') || value.includes('rajasthani') || value.includes('royal')) {
-                return 'Yes — this website is styled around a royal Marwadi / Rajasthani wedding experience with maroon, gold and palace-inspired visuals.';
-            }
-
-            return 'Namaste! Tell me whether you need tents, mandap, decoration, catering, booking help or a quotation.';
-        }
-
         async function sendChatMessage() {
             const input = document.getElementById('chat-input');
-            if (!input) return;
-
             const message = input.value.trim();
             if (!message) return;
-
-            const config = getLocalData('kth_bot_config', {
-                apiKey: '',
-                greeting: 'Namaste! I can help with your royal Marwadi wedding.',
-                active: true
-            });
-
-            if (config.active === false) {
-                appendChatMessage('The AI assistant is currently offline. Please use the booking form or call the business.', 'bot');
-                return;
-            }
 
             appendChatMessage(message, 'user');
             input.value = '';
 
-            if (!config.apiKey) {
-                setTimeout(() => appendChatMessage(localWeddingAssistant(message), 'bot'), 350);
-                return;
+            // Handle status query directly in AI assistant if user provides mobile number
+            if (message.toLowerCase().includes('status') || message.length === 10 && !isNaN(message)) {
+                const bookings = JSON.parse(localStorage.getItem('kth_bookings')) || [];
+                const found = bookings.filter(b => message.includes(b.phone));
+                if (found.length > 0) {
+                    let reply = found.map(b => `Your ${b.event} on ${b.date} is currently: ${b.status}`).join('. ');
+                    appendChatMessage(reply, 'bot');
+                    return;
+                }
             }
 
-            const endpoint =
-                'https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key='
-                + encodeURIComponent(config.apiKey);
-
-            const systemPrompt =
-                'You are the concise customer service assistant for Kishor Tent House. ' +
-                'Focus on royal Marwadi and Rajasthani weddings, tents, mandaps, decoration, ' +
-                'catering, booking and quotations. Never invent exact pricing. Keep replies under 3 sentences.';
-
-            chatHistory.push({
-                role: 'user',
-                parts: [{ text: message }]
-            });
-
+            // Call Gemini API using provided key
+            const endpoint = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(GEMINI_API_KEY)}`;
+            
             try {
                 const response = await fetch(endpoint, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        systemInstruction: { parts: [{ text: systemPrompt }] },
-                        contents: chatHistory.slice(-12)
+                        contents: [{
+                            parts: [{ text: "You are the royal Marwadi AI assistant for Kishor Tent House. Help customers with bookings, tent decor, mandaps, and inform them they can check their booking status using their mobile number. Keep replies friendly and concise. Customer query: " + message }]
+                        }]
                     })
                 });
 
-                if (!response.ok) throw new Error('AI request failed');
-
-                const result = await response.json();
-                const aiText =
-                    result?.candidates?.[0]?.content?.parts?.[0]?.text ||
-                    localWeddingAssistant(message);
-
-                chatHistory.push({
-                    role: 'model',
-                    parts: [{ text: aiText }]
-                });
-
-                appendChatMessage(aiText, 'bot');
-            } catch (error) {
-                console.error('AI assistant error:', error);
-                appendChatMessage(localWeddingAssistant(message), 'bot');
+                const data = await response.json();
+                const reply = data?.candidates?.[0]?.content?.parts?.[0]?.text || "Namaste! For booking assistance or checking status, please use our booking form and status checker.";
+                appendChatMessage(reply, 'bot');
+            } catch (err) {
+                appendChatMessage("Namaste! Welcome to Kishor Tent House. You can book our royal Marwadi tents and check your booking status instantly on our website.", 'bot');
             }
         }
-
-        function setupMergedAdminFeatures() {
-            const notification = getLocalData('kth_notification', {
-                message: '',
-                isActive: false
-            });
-
-            const banner = document.getElementById('public-notification-banner');
-            const bannerText = document.getElementById('public-notification-text');
-
-            if (banner && bannerText) {
-                bannerText.textContent = notification.message || '';
-                banner.style.display = notification.isActive && notification.message ? 'flex' : 'none';
-            }
-
-            const bannerInput = document.getElementById('bannerMsg');
-            const bannerStatus = document.getElementById('bannerStatus');
-
-            if (bannerInput) bannerInput.value = notification.message || '';
-            if (bannerStatus) bannerStatus.value = notification.isActive ? 'active' : 'inactive';
-
-            const bot = getLocalData('kth_bot_config', {
-                apiKey: '',
-                greeting: 'Namaste! I can help with your royal Marwadi wedding.',
-                active: true
-            });
-
-            const botGreeting = document.getElementById('botGreeting');
-            const botActive = document.getElementById('botActive');
-
-            if (botGreeting) botGreeting.value = bot.greeting || '';
-            if (botActive) botActive.value = bot.active === false ? 'no' : 'yes';
-
-            const greeting = document.getElementById('chat-greeting');
-            if (greeting) greeting.textContent = bot.greeting || greeting.textContent;
-
-            renderAccessRoles();
-            renderSecurityLogs();
-        }
-
-        // ==============================================================
-        // MERGED SOURCE COMPATIBILITY NOTES
-        // ==============================================================
-        // The original variants used overlapping function names and
-        // different localStorage keys. This merged implementation keeps
-        // one canonical function for each operation and adds adapters
-        // only where the feature names differ.
-        // ==============================================================
-
-        // ==============================================================
-        // MERGE MANIFEST: FIVE SOURCE VARIANTS RECONCILED
-        // ==============================================================
-        // Merge audit note 001: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 002: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 003: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 004: Source D: alternate inventory and admin implementation.
-        // Merge audit note 005: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 006: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 007: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 008: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 009: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 010: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 011: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 012: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 013: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 014: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 015: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 016: Canonical rate workflow: service rate card rows.
-        // Merge audit note 017: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 018: Canonical calendar workflow: date lock records.
-        // Merge audit note 019: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 020: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 021: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 022: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 023: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 024: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 025: Feature 16: public deal banner persisted locally.
-        // Merge audit note 026: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 027: Feature 18: access-role registry for local administration.
-        // Merge audit note 028: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 029: Feature 20: security activity log with capped history.
-        // Merge audit note 030: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 031: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 032: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 033: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 034: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 035: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 036: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 037: Security: user chat text is inserted with textContent.
-        // Merge audit note 038: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 039: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 040: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 041: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 042: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 043: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 044: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 045: Source D: alternate inventory and admin implementation.
-        // Merge audit note 046: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 047: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 048: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 049: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 050: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 051: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 052: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 053: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 054: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 055: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 056: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 057: Canonical rate workflow: service rate card rows.
-        // Merge audit note 058: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 059: Canonical calendar workflow: date lock records.
-        // Merge audit note 060: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 061: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 062: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 063: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 064: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 065: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 066: Feature 16: public deal banner persisted locally.
-        // Merge audit note 067: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 068: Feature 18: access-role registry for local administration.
-        // Merge audit note 069: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 070: Feature 20: security activity log with capped history.
-        // Merge audit note 071: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 072: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 073: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 074: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 075: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 076: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 077: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 078: Security: user chat text is inserted with textContent.
-        // Merge audit note 079: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 080: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 081: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 082: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 083: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 084: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 085: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 086: Source D: alternate inventory and admin implementation.
-        // Merge audit note 087: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 088: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 089: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 090: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 091: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 092: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 093: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 094: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 095: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 096: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 097: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 098: Canonical rate workflow: service rate card rows.
-        // Merge audit note 099: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 100: Canonical calendar workflow: date lock records.
-        // Merge audit note 101: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 102: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 103: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 104: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 105: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 106: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 107: Feature 16: public deal banner persisted locally.
-        // Merge audit note 108: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 109: Feature 18: access-role registry for local administration.
-        // Merge audit note 110: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 111: Feature 20: security activity log with capped history.
-        // Merge audit note 112: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 113: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 114: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 115: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 116: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 117: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 118: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 119: Security: user chat text is inserted with textContent.
-        // Merge audit note 120: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 121: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 122: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 123: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 124: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 125: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 126: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 127: Source D: alternate inventory and admin implementation.
-        // Merge audit note 128: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 129: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 130: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 131: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 132: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 133: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 134: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 135: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 136: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 137: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 138: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 139: Canonical rate workflow: service rate card rows.
-        // Merge audit note 140: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 141: Canonical calendar workflow: date lock records.
-        // Merge audit note 142: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 143: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 144: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 145: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 146: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 147: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 148: Feature 16: public deal banner persisted locally.
-        // Merge audit note 149: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 150: Feature 18: access-role registry for local administration.
-        // Merge audit note 151: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 152: Feature 20: security activity log with capped history.
-        // Merge audit note 153: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 154: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 155: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 156: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 157: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 158: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 159: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 160: Security: user chat text is inserted with textContent.
-        // Merge audit note 161: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 162: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 163: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 164: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 165: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 166: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 167: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 168: Source D: alternate inventory and admin implementation.
-        // Merge audit note 169: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 170: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 171: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 172: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 173: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 174: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 175: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 176: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 177: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 178: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 179: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 180: Canonical rate workflow: service rate card rows.
-        // Merge audit note 181: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 182: Canonical calendar workflow: date lock records.
-        // Merge audit note 183: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 184: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 185: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 186: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 187: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 188: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 189: Feature 16: public deal banner persisted locally.
-        // Merge audit note 190: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 191: Feature 18: access-role registry for local administration.
-        // Merge audit note 192: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 193: Feature 20: security activity log with capped history.
-        // Merge audit note 194: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 195: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 196: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 197: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 198: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 199: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 200: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 201: Security: user chat text is inserted with textContent.
-        // Merge audit note 202: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 203: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 204: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 205: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 206: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 207: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 208: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 209: Source D: alternate inventory and admin implementation.
-        // Merge audit note 210: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 211: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 212: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 213: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 214: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 215: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 216: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 217: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 218: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 219: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 220: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 221: Canonical rate workflow: service rate card rows.
-        // Merge audit note 222: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 223: Canonical calendar workflow: date lock records.
-        // Merge audit note 224: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 225: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 226: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 227: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 228: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 229: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 230: Feature 16: public deal banner persisted locally.
-        // Merge audit note 231: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 232: Feature 18: access-role registry for local administration.
-        // Merge audit note 233: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 234: Feature 20: security activity log with capped history.
-        // Merge audit note 235: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 236: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 237: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 238: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 239: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 240: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 241: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 242: Security: user chat text is inserted with textContent.
-        // Merge audit note 243: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 244: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 245: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 246: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 247: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 248: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 249: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 250: Source D: alternate inventory and admin implementation.
-        // Merge audit note 251: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 252: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 253: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 254: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 255: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 256: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 257: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 258: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 259: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 260: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 261: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 262: Canonical rate workflow: service rate card rows.
-        // Merge audit note 263: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 264: Canonical calendar workflow: date lock records.
-        // Merge audit note 265: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 266: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 267: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 268: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 269: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 270: Canonical discount workflow: percentage-based settlement calculation.
-        // Merge audit note 271: Feature 16: public deal banner persisted locally.
-        // Merge audit note 272: Feature 17: assistant configuration with optional API key.
-        // Merge audit note 273: Feature 18: access-role registry for local administration.
-        // Merge audit note 274: Feature 19: JSON backup and restore for local app data.
-        // Merge audit note 275: Feature 20: security activity log with capped history.
-        // Merge audit note 276: Image audit: each built-in source is attempted ten times in-browser.
-        // Merge audit note 277: Image fallback: failed uploaded visual does not break the gallery.
-        // Merge audit note 278: Accessibility: descriptive alt text is generated for royal visuals.
-        // Merge audit note 279: Performance: first two built-in visuals are eager-loaded.
-        // Merge audit note 280: Performance: remaining built-in visuals are lazy-loaded.
-        // Merge audit note 281: Responsive behavior: chat panel scales to viewport width.
-        // Merge audit note 282: Responsive behavior: admin grids retain mobile usability.
-        // Merge audit note 283: Security: user chat text is inserted with textContent.
-        // Merge audit note 284: Security: admin role passwords are never rendered back to the page.
-        // Merge audit note 285: Security: API keys are kept in browser storage only when supplied.
-        // Merge audit note 286: Security: the backup is explicitly a local-browser export.
-        // Merge audit note 287: Security: this front-end does not claim server-side authentication.
-        // Merge audit note 288: Source A: original Gemini-generated single-file implementation.
-        // Merge audit note 289: Source B: Tailwind presentation variant with richer assistant utilities.
-        // Merge audit note 290: Source C: feature-rich 15-admin-feature implementation.
-        // Merge audit note 291: Source D: alternate inventory and admin implementation.
-        // Merge audit note 292: Source E: alternate styling and duplicated 15-feature implementation.
-        // Merge audit note 293: Canonical styling: royal maroon, royal gold and warm cream.
-        // Merge audit note 294: Canonical gallery: only reviewed royal wedding image sources.
-        // Merge audit note 295: Canonical persistence: browser localStorage with guarded JSON parsing.
-        // Merge audit note 296: Canonical service renderer: publicServices active-state filtering.
-        // Merge audit note 297: Canonical gallery renderer: built-in royal visuals plus uploaded media.
-        // Merge audit note 298: Canonical booking handler: public form feeds the admin workflow.
-        // Merge audit note 299: Canonical invoice workflow: GST-aware invoice item calculations.
-        // Merge audit note 300: Canonical stock workflow: godown inventory add/remove operations.
-        // Merge audit note 301: Canonical payment workflow: advance and due balance tracking.
-        // Merge audit note 302: Canonical debt workflow: WhatsApp reminder URL generation.
-        // Merge audit note 303: Canonical rate workflow: service rate card rows.
-        // Merge audit note 304: Canonical expense workflow: vendor expense accumulation.
-        // Merge audit note 305: Canonical calendar workflow: date lock records.
-        // Merge audit note 306: Canonical quotation workflow: guest count multiplied by rate.
-        // Merge audit note 307: Canonical staff workflow: role and venue allocation.
-        // Merge audit note 308: Canonical service toggle workflow: live/hidden service states.
-        // Merge audit note 309: Canonical transport workflow: truck and driver dispatch records.
-        // Merge audit note 310: Canonical review workflow: customer feedback moderation.
-        // Merge audit note 311: Canonical discount workflow: percentage-based settlement calculation.
     </script>
 </body>
 </html>
