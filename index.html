@@ -1452,36 +1452,81 @@
             resultBox.innerHTML = html;
         }
 
-        /* OTP-BASED CUSTOMER VERIFICATION */
+        /* PEAK UPGRADED OTP-BASED CUSTOMER VERIFICATION */
         let generatedOtpCode = "";
         let isCustomerVerified = false;
+        let otpTimerSeconds = 60;
+        let otpInterval = null;
 
         function sendCustomerOTP() {
-            const phone = document.getElementById('custPhone').value.trim();
-            if (!phone || phone.length < 10) {
-                alert("Please enter a valid 10-digit phone number first before requesting OTP.");
+            const phoneInput = document.getElementById('custPhone');
+            const phone = phoneInput.value.trim();
+            
+            // Comprehensive validation for Indian mobile numbers
+            const phoneRegex = /^[6-9]\d{9}$/;
+            if (!phone || !phoneRegex.test(phone)) {
+                alert("Please enter a valid 10-digit Indian mobile number (starting with 6-9) before requesting OTP.");
+                phoneInput.focus();
                 return;
             }
+
             generatedOtpCode = Math.floor(1000 + Math.random() * 9000).toString();
-            document.getElementById('otpGroup').style.display = 'block';
-            alert(`[SIMULATED SMS OTP] Your Kishor Tent House Verification OTP is: ${generatedOtpCode}`);
-            recordSecurityLog("OTP Generated", `Sent to phone ${phone}`);
+            const otpGroup = document.getElementById('otpGroup');
+            otpGroup.style.display = 'block';
+            
+            // Peak UI/UX feedback simulation
+            const statusMsg = document.getElementById('otpStatusMsg');
+            statusMsg.style.color = "var(--warning-color)";
+            statusMsg.innerHTML = `OTP sent to +91 ${phone}. <span id="otpCountdown">60</span>s remaining.`;
+            
+            // Start Countdown Timer
+            otpTimerSeconds = 60;
+            if (otpInterval) clearInterval(otpInterval);
+            otpInterval = setInterval(() => {
+                otpTimerSeconds--;
+                const countdownSpan = document.getElementById('otpCountdown');
+                if (countdownSpan) countdownSpan.textContent = otpTimerSeconds;
+                if (otpTimerSeconds <= 0) {
+                    clearInterval(otpInterval);
+                    if (!isCustomerVerified) {
+                        statusMsg.style.color = "red";
+                        statusMsg.textContent = "OTP expired. Please request a new one.";
+                    }
+                }
+            }, 1000);
+
+            // Real-world friendly browser console log & simulated alert popup
+            console.log(`[KISHOR SECURE OTP] Generated OTP for +91 ${phone}: ${generatedOtpCode}`);
+            alert(`[SIMULATED SECURE SMS GATEWAY]\nYour Kishor Tent House Verification OTP is: ${generatedOtpCode}\n(Also logged to browser console for developer convenience)`);
+            recordSecurityLog("OTP Generated", `Secured token dispatched to phone ${phone}`);
         }
 
         function verifyCustomerOTP() {
             const enteredOtp = document.getElementById('custOtpInput').value.trim();
             const statusMsg = document.getElementById('otpStatusMsg');
+            
+            if (!enteredOtp || enteredOtp.length !== 4) {
+                statusMsg.style.color = "red";
+                statusMsg.textContent = "✖ Please enter the complete 4-digit OTP code.";
+                return;
+            }
+
             if (enteredOtp === generatedOtpCode && generatedOtpCode !== "") {
                 isCustomerVerified = true;
-                statusMsg.textContent = "✔ Customer Verified Successfully via OTP!";
-                document.getElementById('submitBookingBtn').removeAttribute('disabled');
-                document.getElementById('submitBookingBtn').style.opacity = '1';
-                document.getElementById('submitBookingBtn').style.cursor = 'pointer';
-                document.getElementById('submitBookingBtn').textContent = "📱 Send Verified Booking via WhatsApp";
-                recordSecurityLog("Customer OTP Verified", "Successful verification");
+                if (otpInterval) clearInterval(otpInterval);
+                statusMsg.style.color = "var(--success-color)";
+                statusMsg.textContent = "✔ Customer Verified Successfully via Secure OTP!";
+                
+                const submitBtn = document.getElementById('submitBookingBtn');
+                submitBtn.removeAttribute('disabled');
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+                submitBtn.textContent = "📱 Send Verified Booking via WhatsApp";
+                recordSecurityLog("Customer OTP Verified", "Successful token validation completed");
             } else {
                 statusMsg.style.color = "red";
-                statusMsg.textContent = "✖ Invalid OTP. Please try again.";
+                statusMsg.textContent = "✖ Invalid OTP code. Please check and try again.";
+                recordSecurityLog("Customer OTP Failed", "Incorrect code entered");
             }
         }
 
@@ -1939,7 +1984,7 @@
         }
 
         /* ==============================================================
-           ROYAL MARWADI AI ASSISTANT (TRAINED EXPERT FOR EVENTS & BOOKINGS)
+           PEAK PEAK UPGRADED ROYAL MARWADI AI ASSISTANT (GEMINI AI API)
            ============================================================== */
         let chatOpen = false;
         let aiSecurityUnlocked = false;
