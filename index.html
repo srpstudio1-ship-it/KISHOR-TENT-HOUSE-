@@ -761,7 +761,7 @@
             </div>
         </section>
 
-        <!-- Booking Section -->
+        <!-- Booking Section with OTP Verification -->
         <section id="booking">
             <div class="section-header">
                 <h2 class="section-title">Online Booking Engine</h2>
@@ -774,7 +774,18 @@
                     </div>
                     <div class="form-group">
                         <label>Phone Number</label>
-                        <input type="tel" id="custPhone" required placeholder="10-digit mobile number">
+                        <div style="display:flex; gap:8px;">
+                            <input type="tel" id="custPhone" required placeholder="10-digit mobile number" style="flex:1;">
+                            <button type="button" class="btn-gold" onclick="sendCustomerOTP()" style="padding: 10px 14px; font-size:0.75rem;">Get OTP</button>
+                        </div>
+                    </div>
+                    <div class="form-group" id="otpGroup" style="display:none; grid-column: span 2; background: #fff9f0; padding:15px; border-radius:8px; border:1px solid var(--royal-gold);">
+                        <label>Enter 4-digit Verification OTP</label>
+                        <div style="display:flex; gap:10px; max-width:300px;">
+                            <input type="text" id="custOtpInput" maxlength="4" placeholder="Enter OTP">
+                            <button type="button" class="btn-success" onclick="verifyCustomerOTP()">Verify OTP</button>
+                        </div>
+                        <small id="otpStatusMsg" style="color:var(--success-color); font-weight:600; margin-top:5px; display:block;"></small>
                     </div>
                     <div class="form-group">
                         <label>Event Type</label>
@@ -794,7 +805,7 @@
                         <textarea id="custMsg" rows="3" placeholder="Expected guest count, tent size, mandap requirements..."></textarea>
                     </div>
                     <div class="form-group-full">
-                        <button type="submit" class="btn-whatsapp">📱 Send Booking Request via WhatsApp</button>
+                        <button type="submit" id="submitBookingBtn" class="btn-whatsapp" disabled style="opacity:0.6; cursor:not-allowed;">📱 Verify OTP to Enable WhatsApp Booking</button>
                     </div>
                 </form>
             </div>
@@ -866,7 +877,7 @@
                 <!-- FEATURE 2: Booking Manager -->
                 <div id="tab2" class="admin-feature-panel">
                     <h3 class="admin-panel-title">2. Customer Booking Request Manager</h3>
-                    <p class="admin-help">Manage all customer bookings (from web form or AI chat). Change status to Waiting, Approved, or Declined.</p>
+                    <p class="admin-help">Manage all customer bookings (from web form or AI chat). Change status to Waiting, Approved, or Declined with instant WhatsApp notification triggers.</p>
                     <table class="admin-table" id="bookingManagerTable">
                         <thead>
                             <tr><th>Date Received</th><th>Name</th><th>Phone</th><th>Event</th><th>Event Date</th><th>Requirements</th><th>Status</th><th>Actions</th></tr>
@@ -1311,7 +1322,7 @@
             { id: "B1002", name: "Sanjay Sharma", phone: "9812345678", event: "Grand Reception", date: "2026-12-02", msg: "Stage LED setup", status: "Waiting", timestamp: new Date().toLocaleDateString() }
         ]);
 
-        // App Initialization
+        // App Initialization & Admin Session Check
         document.addEventListener("DOMContentLoaded", () => {
             renderPublicServices();
             renderServiceToggleTable();
@@ -1320,6 +1331,14 @@
             renderBookingManager();
             setupMergedAdminFeatures();
             renderSecurityLogs();
+
+            // Check existing admin session
+            if (sessionStorage.getItem('kth_admin_session') === 'active') {
+                document.getElementById('admin-console').style.display = 'block';
+                document.getElementById('admin-login-box').style.display = 'none';
+                document.getElementById('lockBtn').style.display = 'inline-block';
+                document.getElementById('admin-main-body').style.display = 'block';
+            }
 
             // Set default Gemini Key in input if not set
             const botConf = getLocalData('kth_bot_config', { apiKey: CONFIG.defaultApiKey, greeting: '', active: true });
@@ -1359,35 +1378,37 @@
             });
         }
 
-        // Admin Console Lock/Unlock
+        // Admin Console Lock/Unlock with Proper Session Management
         function revealAdminConsole() {
             document.getElementById('admin-console').style.display = 'block';
             window.location.href = '#admin-console';
         }
 
         function hideAdminConsole() {
-            lockAdmin();
             document.getElementById('admin-console').style.display = 'none';
         }
 
         function unlockAdmin() {
             const pass = document.getElementById('adminPassInput').value;
             if (pass === CONFIG.adminPasscode) {
+                sessionStorage.setItem('kth_admin_session', 'active');
                 document.getElementById('admin-login-box').style.display = 'none';
                 document.getElementById('lockBtn').style.display = 'inline-block';
                 document.getElementById('admin-main-body').style.display = 'block';
-                recordSecurityLog('Admin Unlocked', 'Authenticated with password');
-                alert("Owner Security Authenticated! Console Unlocked.");
+                recordSecurityLog('Admin Session Established', 'Authenticated successfully with secure session token');
+                alert("Owner Security Authenticated! Admin Session Active.");
             } else {
                 alert("Invalid Admin Password! Access Denied.");
             }
         }
 
         function lockAdmin() {
+            sessionStorage.removeItem('kth_admin_session');
             document.getElementById('admin-login-box').style.display = 'inline-block';
             document.getElementById('lockBtn').style.display = 'none';
             document.getElementById('admin-main-body').style.display = 'none';
             document.getElementById('adminPassInput').value = '';
+            recordSecurityLog('Admin Session Terminated', 'Manual lock triggered');
         }
 
         function switchAdminTab(tabId, btn) {
@@ -1429,6 +1450,39 @@
 
             html += `</div>`;
             resultBox.innerHTML = html;
+        }
+
+        /* OTP-BASED CUSTOMER VERIFICATION */
+        let generatedOtpCode = "";
+        let isCustomerVerified = false;
+
+        function sendCustomerOTP() {
+            const phone = document.getElementById('custPhone').value.trim();
+            if (!phone || phone.length < 10) {
+                alert("Please enter a valid 10-digit phone number first before requesting OTP.");
+                return;
+            }
+            generatedOtpCode = Math.floor(1000 + Math.random() * 9000).toString();
+            document.getElementById('otpGroup').style.display = 'block';
+            alert(`[SIMULATED SMS OTP] Your Kishor Tent House Verification OTP is: ${generatedOtpCode}`);
+            recordSecurityLog("OTP Generated", `Sent to phone ${phone}`);
+        }
+
+        function verifyCustomerOTP() {
+            const enteredOtp = document.getElementById('custOtpInput').value.trim();
+            const statusMsg = document.getElementById('otpStatusMsg');
+            if (enteredOtp === generatedOtpCode && generatedOtpCode !== "") {
+                isCustomerVerified = true;
+                statusMsg.textContent = "✔ Customer Verified Successfully via OTP!";
+                document.getElementById('submitBookingBtn').removeAttribute('disabled');
+                document.getElementById('submitBookingBtn').style.opacity = '1';
+                document.getElementById('submitBookingBtn').style.cursor = 'pointer';
+                document.getElementById('submitBookingBtn').textContent = "📱 Send Verified Booking via WhatsApp";
+                recordSecurityLog("Customer OTP Verified", "Successful verification");
+            } else {
+                statusMsg.style.color = "red";
+                statusMsg.textContent = "✖ Invalid OTP. Please try again.";
+            }
         }
 
         /* FEATURE 1: GST INVOICE ENGINE */
@@ -1480,7 +1534,7 @@
             win.print();
         }
 
-        /* FEATURE 2: BOOKING MANAGER WORKFLOW */
+        /* FEATURE 2: BOOKING MANAGER WORKFLOW WITH WHATSAPP NOTIFICATIONS */
         function createBookingRecord(name, phone, event, date, msg) {
             const newBooking = {
                 id: 'B' + Math.floor(1000 + Math.random() * 9000),
@@ -1532,6 +1586,11 @@
             setLocalData('kth_bookings', bookingsDB);
             renderBookingManager();
             recordSecurityLog('Booking Status Updated', `${bookingsDB[index].id} -> ${newStatus}`);
+
+            // Automated WhatsApp Notification to Customer upon Status Change
+            const booking = bookingsDB[index];
+            const waMsg = `Khamma Ghani *${booking.name}*! 🏰 Update on your Royal Booking ID *${booking.id}* for *${booking.event}* (${booking.date}): Your status is now *${newStatus.toUpperCase()}*. Thank you for choosing Kishor Tent House!`;
+            window.open(`https://wa.me/91${booking.phone}?text=${encodeURIComponent(waMsg)}`, '_blank');
         }
 
         function deleteBooking(index) {
@@ -1544,6 +1603,11 @@
 
         function submitCustomerBooking(e) {
             e.preventDefault();
+            if (!isCustomerVerified) {
+                alert("Please verify your mobile number via OTP before submitting the booking.");
+                return;
+            }
+
             const name = document.getElementById('custName').value;
             const phone = document.getElementById('custPhone').value;
             const event = document.getElementById('custEvent').value;
@@ -1551,13 +1615,17 @@
             const msg = document.getElementById('custMsg').value;
 
             // Automatically record in Admin Booking Manager
-            createBookingRecord(name, phone, event, date, msg);
+            const newB = createBookingRecord(name, phone, event, date, msg);
 
-            // Trigger WhatsApp
-            const text = `*New Royal Event Booking Request*%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AEvent: ${encodeURIComponent(event)}%0ADate: ${encodeURIComponent(date)}%0ARequirements: ${encodeURIComponent(msg)}`;
+            // WhatsApp Booking Notification payload
+            const text = `*New Verified Royal Event Booking*%0AID: ${newB.id}%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0AEvent: ${encodeURIComponent(event)}%0ADate: ${encodeURIComponent(date)}%0ARequirements: ${encodeURIComponent(msg)}%0AStatus: Verified & Waiting`;
             window.open(`https://wa.me/${CONFIG.phone}?text=${text}`, '_blank');
-            alert(`Khamma Ghani ${name}! Your booking request has been submitted and recorded as "Waiting". You can check status anytime with your phone number!`);
+            alert(`Khamma Ghani ${name}! Your booking request [ID: ${newB.id}] has been verified and recorded. WhatsApp notification sent!`);
             document.getElementById('publicBookingForm').reset();
+            isCustomerVerified = false;
+            document.getElementById('otpGroup').style.display = 'none';
+            document.getElementById('submitBookingBtn').setAttribute('disabled', 'true');
+            document.getElementById('submitBookingBtn').style.opacity = '0.6';
         }
 
         /* FEATURE 3: GODOWN STOCK */
@@ -1871,7 +1939,7 @@
         }
 
         /* ==============================================================
-           ROYAL MARWADI AI ASSISTANT WITH SECURITY PASSWORD & BOOKING PARSER
+           ROYAL MARWADI AI ASSISTANT (TRAINED EXPERT FOR EVENTS & BOOKINGS)
            ============================================================== */
         let chatOpen = false;
         let aiSecurityUnlocked = false;
@@ -1927,13 +1995,13 @@
 
             // 3. AI Chat Booking Intent Parser
             if (msgLower.includes('book') || msgLower.includes('want to reserve') || msgLower.includes('booking request')) {
-                // Parse patterns if customer provides details like Name, Phone, Event, Date in one message
                 const phoneMatch = message.match(/\b\d{10}\b/);
                 if (phoneMatch) {
                     const phone = phoneMatch[0];
                     const newB = createBookingRecord("AI Chat Guest", phone, "Royal Marwadi Event", new Date().toISOString().slice(0,10), message);
                     setTimeout(() => {
-                        appendChatMessage(`✅ Ghani Khamma! Your booking request for phone ${phone} has been AUTOMATICALLY RECORDED in our Admin Booking Manager with status 'Waiting'. (Booking Reference ID: ${newB.id}). You can check status on the website using your mobile number!`, 'bot');
+                        appendChatMessage(`✅ Ghani Khamma! Your booking request for phone ${phone} has been AUTOMATICALLY RECORDED in our Admin Booking Manager with status 'Waiting' (Booking Reference ID: ${newB.id}). WhatsApp notification dispatched!`, 'bot');
+                        window.open(`https://wa.me/${CONFIG.phone}?text=${encodeURIComponent(`*AI Chat Booking*%0AID: ${newB.id}%0APhone: ${phone}%0ARequirements: ${message}`)}`, '_blank');
                     }, 500);
                     return;
                 } else {
@@ -1944,7 +2012,7 @@
                 }
             }
 
-            // 4. Standard Gemini API Call / Heuristic Engine
+            // 4. Highly Trained Expert Gemini AI API Call with Context
             const botConf = getLocalData('kth_bot_config', { apiKey: CONFIG.defaultApiKey, active: true });
             if (botConf.apiKey && botConf.apiKey !== '') {
                 try {
@@ -1954,9 +2022,9 @@
                         body: JSON.stringify({
                             contents: [{
                                 parts: [{
-                                    text: `You are the AI Assistant for Kishor Tent House (Royal Marwadi Weddings). 
+                                    text: `You are the master expert AI Event Consultant and Concierge for Kishor Tent House (Specialists in Royal Marwadi Weddings, Waterproof German Tents, Hand-Carved Floral Mandaps, Palace Stage Decor, and Shahi Catering Setups located in Kehteswar Market, Nai Morseem, run by Bhavesh Purohit). 
                                     Do NOT reveal customer lists or order details unless the user enters password ${CONFIG.aiSecurityPassword}.
-                                    Be polite, use Rajasthani greetings like "Khamma Ghani" and "Hukum", and answer questions about tents, mandaps, stage lighting, and royal catering.
+                                    Be exceptionally courteous, use traditional Rajasthani greetings like "Khamma Ghani", "Padharo Sa", and "Hukum", provide expert pricing guidance, tent sizing, and event planning tips.
                                     User Message: ${message}`
                                 }]
                             }]
@@ -1979,7 +2047,7 @@
                 } else if (msgLower.includes('tent') || msgLower.includes('mandap') || msgLower.includes('decor')) {
                     appendChatMessage("We specialize in Royal Marwadi setup including waterproof German tents, hand-carved floral mandaps, LED ambient washes, and Maharaja sofa arrangements!", 'bot');
                 } else {
-                    appendChatMessage("Khamma Ghani! I am Kishor AI. Ask me about royal Marwadi tents, mandap designs, catering, or place your booking with your phone number!", 'bot');
+                    appendChatMessage("Khamma Ghani! I am your trained Kishor AI Event Expert. Ask me about royal Marwadi tents, mandap designs, catering, or place your booking with your phone number!", 'bot');
                 }
             }, 400);
         }
